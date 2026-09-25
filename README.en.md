@@ -44,9 +44,11 @@ npm run dev
 
 ### Install
 
-The store / website APK is the commercial build (login, hosted models, Credits). It is not built from this source:
+The store / website / GitHub Release APK is the commercial build (login, hosted models, Credits). It is not built from this source:
 
 https://download.memprism.com/nyra-latest.apk
+
+https://github.com/azhimiao/Nyra-yueqi/releases/latest
 
 Build a debug APK from this repo:
 

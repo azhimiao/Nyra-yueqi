@@ -44,9 +44,11 @@ npm run dev
 
 ### 安装包
 
-商店 / 官网安装包是商业版（登录、托管、Credits 等），不是这份源码打出来的包：
+商店 / 官网 / GitHub Release 安装包都是商业版（登录、托管、Credits 等），不是这份源码打出来的包：
 
 https://download.memprism.com/nyra-latest.apk
+
+https://github.com/azhimiao/Nyra-yueqi/releases/latest
 
 要从这份开源码自己打 Debug 包：
 
