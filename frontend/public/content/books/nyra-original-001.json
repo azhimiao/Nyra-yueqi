@@ -1,0 +1,43 @@
+{
+  "schema": "nyra.book.v1",
+  "id": "nyra.original.001",
+  "title": "那里怎么样",
+  "subtitle": "梦境短篇",
+  "series": "Nyra Original",
+  "seriesIndex": 1,
+  "language": "zh-CN",
+  "format": "epub",
+  "file": "nyra-original-001.epub",
+  "delivery": "bundled_or_remote_cache",
+  "readingMode": "shared_reading",
+  "synopsis": "一个从黑暗中的女人与孩童开始，随后转向集市、雪地与普通婚姻生活的梦境短篇。作品不对其中的人生选择作明确价值判断。",
+  "discussionAnchors": [
+    {
+      "id": "anchor_bag",
+      "section": "part1",
+      "contains": "“我不知道怎么带回来。”"
+    },
+    {
+      "id": "anchor_child_gone",
+      "section": "part1",
+      "contains": "忽然只剩下了黑暗。"
+    },
+    {
+      "id": "anchor_market",
+      "section": "part2",
+      "contains": "只有一瞬间的绚丽灯光"
+    },
+    {
+      "id": "anchor_snow",
+      "section": "part2",
+      "contains": "随后是雪地。"
+    },
+    {
+      "id": "anchor_other_life",
+      "section": "part2",
+      "contains": "他意识到，还有另一种人生。"
+    }
+  ],
+  "memoryPolicy": "reading_context_only",
+  "bundledPath": "/content/books/nyra-original-001.epub"
+}

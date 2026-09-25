@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "clipId": "drag",
+  "image": "drag.png",
+  "size": {
+    "width": 304,
+    "height": 722
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "drag_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 304,
+        "height": 722
+      },
+      "source": {
+        "x": 232,
+        "y": 27,
+        "width": 304,
+        "height": 722
+      },
+      "durationMs": 1200
+    }
+  ]
+}

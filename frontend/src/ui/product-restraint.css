@@ -1,0 +1,2115 @@
+/*
+ * Final visual restraint pass.
+ * These rules deliberately target only the three product surfaces that had
+ * grown into demo-sized dashboards: App "Me", App "Character World", and
+ * the mini-phone Pop profile.  The information and controls stay intact;
+ * hierarchy is created with spacing and dividers instead of nested cards.
+ */
+
+/* App / My: a compact identity row followed by grouped settings rows. */
+body[data-app-mode="app"] .me-page {
+  max-width: 680px;
+}
+
+body[data-app-mode="app"] .me-shell.settings-shell {
+  padding-inline: 16px;
+}
+
+body[data-app-mode="app"] .me-home {
+  gap: 16px;
+  padding-bottom: 18px;
+}
+
+body[data-app-mode="app"] .me-home-bar {
+  padding: 14px 0 2px;
+}
+
+body[data-app-mode="app"] .me-home-bar::after,
+body[data-app-mode="app"] .me-home-bar__eyebrow {
+  display: none;
+}
+
+body[data-app-mode="app"] .me-home-bar h1 {
+  color: var(--nyra-ink);
+  font-family: var(--nyra-display);
+  font-size: 25px;
+  font-weight: 620;
+  letter-spacing: -0.025em;
+}
+
+body[data-app-mode="app"] .me-profile,
+body[data-app-mode="app"] .me-profile.me-profile--hero {
+  grid-template-columns: 56px minmax(0, 1fr) 12px;
+  gap: 12px;
+  margin: 0;
+  padding: 4px 0 15px;
+  overflow: visible;
+  border: 0;
+  border-bottom: 1px solid var(--nyra-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body[data-app-mode="app"] .me-profile::before {
+  display: none;
+}
+
+body[data-app-mode="app"] .me-profile__avatar,
+body[data-app-mode="app"] .me-profile--hero .me-profile__avatar {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--nyra-line-strong);
+  color: var(--nyra-navy);
+  font-size: 20px;
+  background: var(--nyra-ice);
+  box-shadow: 0 5px 14px rgba(3, 18, 33, 0.08);
+}
+
+body[data-app-mode="app"] .me-profile .me-profile__copy strong,
+body[data-app-mode="app"] .me-profile--hero .me-profile__copy strong {
+  color: var(--nyra-ink);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 680;
+  letter-spacing: -0.015em;
+}
+
+body[data-app-mode="app"] .me-profile__status,
+body[data-app-mode="app"] .me-profile .me-profile__copy small {
+  padding: 0;
+  color: var(--nyra-muted);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+body[data-app-mode="app"] .me-profile__cta {
+  margin-top: 0;
+  color: var(--nyra-blue);
+  font-size: 11px;
+  font-weight: 620;
+}
+
+body[data-app-mode="app"] .me-group-block {
+  gap: 5px;
+}
+
+body[data-app-mode="app"] .me-group-title,
+body[data-app-mode="app"] .me-section-title {
+  padding: 0;
+  color: var(--nyra-faint);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+body[data-app-mode="app"] .me-group-title::after,
+body[data-app-mode="app"] .me-section-title::after {
+  opacity: 0.55;
+}
+
+body[data-app-mode="app"] .me-group {
+  border: 1px solid var(--nyra-line);
+  border-radius: 12px;
+  background: var(--nyra-paper);
+  box-shadow: 0 6px 18px rgba(3, 18, 33, 0.035);
+}
+
+body[data-app-mode="app"] .me-home .me-cell {
+  grid-template-columns: 26px minmax(0, 1fr) auto 8px;
+  gap: 9px;
+  min-height: 52px;
+  padding: 5px 12px;
+}
+
+body[data-app-mode="app"] .me-home .me-cell:not(:has(.me-cell__value)) {
+  grid-template-columns: 26px minmax(0, 1fr) 8px;
+}
+
+body[data-app-mode="app"] .me-group-block .me-cell__icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--nyra-blue) !important;
+  background: color-mix(in srgb, var(--nyra-ice) 78%, #fff) !important;
+}
+
+body[data-app-mode="app"] .me-home .me-cell__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+body[data-app-mode="app"] .me-home .me-cell__copy strong,
+body[data-app-mode="app"] .me-home .me-cell__label {
+  font-size: 14px;
+  font-weight: 590;
+}
+
+body[data-app-mode="app"] .me-home .me-cell__value {
+  max-width: 92px;
+  font-size: 11px;
+}
+
+/* App / Character World: Twitter-style timeline — no boxed cards. */
+body[data-app-mode="app"] .moments-page-header {
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 0;
+  padding: 6px 0 0;
+  border-bottom: 0;
+}
+
+body[data-app-mode="app"] .moments-page-header > div:first-child span {
+  color: var(--nyra-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+body[data-app-mode="app"] .moments-page-header h1 {
+  margin-top: 2px;
+  color: var(--nyra-ink);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+body[data-app-mode="app"] .world-mode-tabs {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--nyra-line);
+  border-radius: 0;
+  background: transparent !important;
+}
+
+body[data-app-mode="app"] .moments-page-header .world-mode-tabs button,
+body[data-app-mode="app"] .world-mode-tabs button {
+  min-height: 48px;
+  padding: 12px 8px;
+  border-radius: 0;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+body[data-app-mode="app"] .moments-page-header .world-mode-tabs button.is-active,
+body[data-app-mode="app"] .world-mode-tabs button.is-active {
+  color: var(--nyra-ink) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .moments-actions,
+body[data-app-mode="app"] .world-feed-toolbar {
+  gap: 8px;
+  margin-bottom: 0;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--nyra-line);
+}
+
+body[data-app-mode="app"] .moments-actions > span,
+body[data-app-mode="app"] .world-feed-hint {
+  font-size: 12px;
+}
+
+body[data-app-mode="app"] .moments-actions .ghost-action,
+body[data-app-mode="app"] .world-feed-toolbar .ghost-action {
+  min-height: 36px;
+  padding: 0 10px;
+  border-color: transparent;
+  border-radius: 999px;
+  font-size: 13px;
+  box-shadow: none;
+}
+
+body[data-app-mode="app"] .moments-compose {
+  gap: 8px;
+  margin-bottom: 0;
+  padding: 14px 16px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--nyra-line);
+  border-radius: 0;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body[data-app-mode="app"] .moments-compose label,
+body[data-app-mode="app"] .moments-compose label > span {
+  gap: 4px;
+}
+
+body[data-app-mode="app"] .moments-compose label > span {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+body[data-app-mode="app"] .moments-compose textarea {
+  min-height: 84px;
+  padding: 4px 0;
+  border: 0 !important;
+  border-radius: 0;
+  font-size: 17px;
+  line-height: 1.45;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .moments-compose footer {
+  gap: 8px;
+}
+
+body[data-app-mode="app"] .moments-compose .plain-button,
+body[data-app-mode="app"] .moments-compose .ghost-action {
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+body[data-app-mode="app"] .world-feed-list > article,
+body[data-app-mode="app"] .moments-feed > article {
+  border: 0 !important;
+  border-bottom: 1px solid var(--nyra-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body[data-app-mode="app"] .world-feed-card,
+body[data-app-mode="app"] .app-moment {
+  padding: 14px 16px 12px;
+}
+
+body[data-app-mode="app"] .world-feed-card header,
+body[data-app-mode="app"] .app-moment > header,
+body[data-app-mode="app"] .app-moment__body > header,
+body[data-app-mode="app"] .world-feed-body > header {
+  grid-template-columns: unset;
+  gap: 6px 8px;
+  margin-bottom: 0;
+}
+
+body[data-app-mode="app"] .world-feed-avatar,
+body[data-app-mode="app"] .app-moment__avatar {
+  width: 48px;
+  height: 48px;
+}
+
+body[data-app-mode="app"] .world-feed-card p,
+body[data-app-mode="app"] .app-moment > p,
+body[data-app-mode="app"] .app-moment__body > p,
+body[data-app-mode="app"] .world-feed-body > p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body[data-app-mode="app"] .world-feed-card footer,
+body[data-app-mode="app"] .app-moment__actions {
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+body[data-app-mode="app"] .world-feed-aside {
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+@media (max-width: 1079px) {
+  body[data-app-mode="app"] .moments-page-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+  }
+
+  body[data-app-mode="app"] .world-mode-tabs {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  body[data-app-mode="app"] .moments-actions {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  body[data-app-mode="app"] .moments-actions > span {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+}
+
+/* Mini-phone Pop / Me: preserve every route, replace the oversized profile wall. */
+.mini-phone .mini-pop-me {
+  background: var(--nyra-phone-bg);
+}
+
+.mini-phone .mini-me-scroll {
+  padding: 0 16px 20px;
+}
+
+.mini-phone .mini-me-hero {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: center;
+  padding: 18px 0 15px;
+  border-bottom: 1px solid var(--nyra-phone-line);
+  text-align: left;
+}
+
+.mini-phone .mini-me-hero__avatar {
+  grid-row: 1 / span 4;
+  width: 64px;
+  height: 64px;
+  margin: 0;
+  border: 1px solid var(--nyra-phone-line);
+  background: var(--nyra-phone-ice-soft);
+  box-shadow: 0 5px 14px rgb(20 49 78 / 8%);
+}
+
+.mini-phone .mini-me-hero__avatar .mini-avatar-fallback {
+  font-size: 22px;
+}
+
+.mini-phone .mini-me-hero strong[data-pop-me-name] {
+  color: var(--nyra-phone-ink);
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.mini-phone .mini-me-hero__tag {
+  margin-top: 3px;
+  color: var(--nyra-phone-muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.mini-phone .mini-me-hero__handle {
+  margin-top: 2px;
+  color: var(--nyra-phone-muted);
+  font-size: 11px;
+}
+
+.mini-phone .mini-me-hero__companion {
+  grid-column: 1 / -1;
+  margin: 12px 0 0;
+  color: var(--nyra-phone-ink-soft);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.mini-phone .mini-me-stats {
+  justify-content: flex-start;
+  gap: 22px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--nyra-phone-line);
+  font-size: 11px;
+}
+
+.mini-phone .mini-me-stats strong {
+  margin-bottom: 1px;
+  color: var(--nyra-phone-ink);
+  font-size: 15px;
+  text-align: left;
+}
+
+.mini-phone .mini-me-list {
+  margin-top: 8px;
+  overflow: hidden;
+  border: 1px solid var(--nyra-phone-line);
+  border-radius: 12px;
+  background: var(--nyra-phone-surface);
+}
+
+.mini-phone .mini-pop-list-row {
+  grid-template-columns: 24px minmax(0, 1fr) auto 12px;
+  gap: 10px;
+  min-height: 50px;
+  padding: 6px 12px;
+  border-bottom-color: var(--nyra-phone-line);
+  color: var(--nyra-phone-ink);
+  background: transparent;
+}
+
+.mini-phone .mini-pop-list-row:active {
+  background: var(--nyra-phone-ice-soft);
+}
+
+.mini-phone .mini-pop-list-row > svg:first-child {
+  width: 18px;
+  height: 18px;
+  color: var(--nyra-phone-ice);
+  stroke-width: 1.7;
+}
+
+.mini-phone .mini-pop-list-row__body strong,
+.mini-phone .mini-pop-list-row > span {
+  color: var(--nyra-phone-ink);
+  font-size: 14px;
+  font-weight: 560;
+}
+
+.mini-phone .mini-pop-list-row strong[data-wallet-balance] {
+  color: var(--nyra-phone-muted);
+  font-size: 12px;
+}
+
+.mini-phone .mini-pop-list-row__chev {
+  width: 14px;
+  height: 14px;
+  color: var(--nyra-phone-muted);
+}
+
+.mini-phone .mini-view.mini-pop .mini-wallet-ledger {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--nyra-phone-line);
+  background: var(--nyra-phone-ice-soft);
+}
+
+/* Native edge-to-edge: the WebView owns the pixels behind system bars. */
+html.is-native-app body {
+  background: var(--system-bar-surface, #f5f9fc);
+}
+
+html.is-native-app body[data-app-mode="app"] {
+  --nyra-header-height: calc(52px + env(safe-area-inset-top, 0px));
+}
+
+html.is-native-app body[data-app-mode="app"] .mobile-header {
+  height: var(--nyra-header-height);
+  min-height: var(--nyra-header-height);
+  padding-top: calc(4px + env(safe-area-inset-top, 0px));
+}
+
+body[data-app-mode="app"][data-active-panel="chat"] .app-page[data-panel="chat"] {
+  grid-template-rows: 54px minmax(0, 1fr) auto;
+}
+
+html.is-native-app body[data-app-mode="app"][data-active-panel="chat"] .app-page[data-panel="chat"] {
+  grid-template-rows: 54px minmax(0, 1fr) auto;
+}
+
+html.is-native-app body[data-app-mode="app"] .chat-sticky {
+  height: 54px !important;
+  min-height: 54px;
+  max-height: 54px;
+  padding-top: 5px !important;
+}
+
+/* Assistant: one direct conversation surface, not a tool-directory dashboard. */
+.assist-shell--embedded,
+.assist-shell--console {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% -6%, rgba(184, 220, 242, 0.5), transparent 56%),
+    #edf3f7;
+}
+
+/* `.assist-shell` asks for `height: 100%`, but every ancestor between it and
+ * the page was content-sized, so the console floated mid-page and the soft
+ * keyboard shrank the shell out from under a composer that never moved.
+ * Bind the whole detail route to the page height instead. */
+body[data-app-mode="app"][data-active-panel="assist"] .app-page.me-page,
+body[data-app-mode="app"][data-active-panel="assist"] .me-shell.is-detail,
+body[data-app-mode="app"][data-active-panel="assist"] .me-stage,
+body[data-app-mode="app"][data-active-panel="assist"] .settings-editor,
+body[data-app-mode="app"][data-active-panel="assist"] .settings-panel.assist-editor,
+body[data-app-mode="app"][data-active-panel="assist"] .settings-panel.assist-editor > * {
+  height: 100%;
+  min-height: 0;
+}
+
+body[data-app-mode="app"][data-active-panel="assist"] .me-stage {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.assist-shell--embedded .assist-topbar,
+.assist-shell--console .assist-topbar {
+  display: none;
+}
+
+.assist-shell--embedded .assist-stage,
+.assist-shell--console .assist-stage {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.assist-shell--embedded .assist-welcome,
+.assist-shell--console .assist-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  width: min(100%, 520px);
+  min-height: 0;
+  margin: 0 auto;
+  gap: 8px;
+  padding: 32px 18px 22px;
+  text-align: center;
+}
+
+.assist-shell--embedded .assist-welcome__mark,
+.assist-shell--console .assist-welcome__mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 2px;
+  border: 1px solid rgba(10, 66, 111, 0.14);
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(155deg, #12445f 0%, #071b2e 72%);
+  box-shadow:
+    0 0 0 1px rgba(85, 200, 251, 0.16),
+    0 14px 28px rgba(7, 27, 46, 0.16);
+}
+
+.assist-shell--embedded .assist-welcome__mark svg,
+.assist-shell--console .assist-welcome__mark svg {
+  width: 22px;
+  height: 22px;
+}
+
+.assist-shell--embedded .assist-welcome__kicker,
+.assist-shell--console .assist-welcome__kicker {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+
+.assist-shell--embedded .assist-welcome h2,
+.assist-shell--console .assist-welcome h2 {
+  font-size: clamp(22px, 6.2vw, 28px);
+  font-weight: 700;
+}
+
+.assist-shell--embedded .assist-welcome__lead,
+.assist-shell--console .assist-welcome__lead {
+  max-width: 18em;
+  padding-inline: 12px;
+  color: #68788a;
+  font-size: 13px;
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
+.assist-shell--embedded .assist-suggest__label,
+.assist-shell--console .assist-suggest__label {
+  margin-top: 8px;
+}
+
+.assist-shell--embedded .assist-suggest,
+.assist-shell--console .assist-suggest {
+  width: min(100%, 420px);
+  margin-top: 2px;
+  gap: 8px;
+}
+
+.assist-shell--embedded .assist-suggest__chip,
+.assist-shell--console .assist-suggest__chip {
+  min-height: 48px;
+  padding: 10px 12px 10px 10px;
+  border-color: rgba(15, 39, 61, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(2, 28, 52, 0.04);
+}
+
+.assist-shell--embedded .assist-log,
+.assist-shell--console .assist-log {
+  min-height: 100%;
+  padding: 14px 14px 18px;
+}
+
+.assist-shell--embedded .assist-composer,
+.assist-shell--console .assist-composer {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 auto;
+  bottom: auto;
+  margin-top: auto;
+  padding: 8px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid rgba(15, 39, 61, 0.08);
+  background: #fff;
+}
+
+.assist-shell--embedded .assist-composer__box,
+.assist-shell--console .assist-composer__box {
+  grid-template-columns: minmax(0, 1fr) 36px;
+  min-height: 44px;
+  padding: 4px 4px 4px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 39, 61, 0.1);
+  background: #f5f8fb;
+  box-shadow: none;
+}
+
+.assist-shell--embedded .assist-composer__hint,
+.assist-shell--console .assist-composer__hint {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 10px;
+}
+
+/* App companion: each tab owns the full width. Never let the two sections tile. */
+body[data-app-mode="app"] .companion-page {
+  width: min(100%, 680px);
+  max-width: 680px;
+  min-width: 0;
+  margin-inline: auto;
+}
+
+body[data-app-mode="app"] .companion-page.is-active {
+  display: block;
+}
+
+body[data-app-mode="app"] .companion-page .companion-chrome,
+body[data-app-mode="app"] .companion-page > [data-companion-section] {
+  width: 100%;
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .companion-page > [data-companion-section][hidden],
+body[data-app-mode="app"] .companion-page > [data-companion-section]:not(.is-active) {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .companion-page > [data-companion-section].is-active {
+  display: block;
+}
+
+body[data-app-mode="app"] .companion-page .pet-hub,
+body[data-app-mode="app"] .companion-page .memory-layout {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .companion-page .pet-hub__page-head {
+  margin-bottom: 12px;
+}
+
+body[data-app-mode="app"] .companion-page .pet-hub__page-head h2 {
+  font-size: 22px;
+}
+
+body[data-app-mode="app"] .companion-page .pet-hub-hero {
+  grid-template-columns: 76px minmax(0, 1fr) auto;
+  gap: 12px;
+  min-height: 0;
+  padding: 14px;
+  border-radius: 15px;
+}
+
+body[data-app-mode="app"] .companion-page .pet-hub-hero__preview {
+  width: 76px;
+  height: 96px;
+}
+
+body[data-app-mode="app"] .companion-page .pet-hub-nav__item {
+  min-height: 56px;
+  padding: 8px 12px;
+}
+
+/* Pop / Me: a restrained identity row and native grouped-list rhythm. */
+.mini-phone .mini-pop-me {
+  background: #f4f5f7;
+}
+
+.mini-phone .mini-me-scroll {
+  padding: 0 0 calc(18px + env(safe-area-inset-bottom, 0px));
+}
+
+.mini-phone .mini-me-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 13px;
+  align-items: center;
+  min-height: 98px;
+  padding: 17px 16px;
+  border: 0;
+  background: #fff;
+  text-align: left;
+}
+
+.mini-phone .mini-me-hero__avatar {
+  grid-row: 1 / span 2;
+  width: 60px;
+  height: 60px;
+  margin: 0;
+  border: 0;
+  border-radius: 8px;
+  background: #e8f2f9;
+  box-shadow: none;
+}
+
+.mini-phone .mini-me-hero__avatar img,
+.mini-phone .mini-me-hero__avatar .mini-avatar-fallback {
+  border-radius: 8px;
+  font-size: 21px;
+}
+
+.mini-phone .mini-me-hero strong[data-pop-me-name] {
+  align-self: end;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.mini-phone .mini-me-hero__tag,
+.mini-phone .mini-me-hero__companion,
+.mini-phone .mini-me-stats {
+  display: none !important;
+}
+
+.mini-phone .mini-me-hero__handle {
+  align-self: start;
+  margin: 2px 0 0;
+  color: #7b8794;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.mini-phone .mini-me-hero__actions {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #9aa4ae;
+}
+
+.mini-phone .mini-me-hero__actions svg:first-child {
+  width: 17px;
+  height: 17px;
+  color: #526170;
+}
+
+.mini-phone .mini-me-hero__actions svg:last-child {
+  width: 14px;
+  height: 14px;
+}
+
+.mini-phone .mini-me-list {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.mini-phone .mini-me-list-group {
+  overflow: hidden;
+  background: #fff;
+}
+
+.mini-phone .mini-pop-list-row {
+  grid-template-columns: 24px minmax(0, 1fr) auto 14px;
+  min-height: 52px;
+  padding: 5px 16px;
+  border-bottom: 1px solid #eceff2;
+  background: #fff;
+}
+
+.mini-phone .mini-me-list-group .mini-pop-list-row:last-of-type {
+  border-bottom: 0;
+}
+
+.mini-phone .mini-pop-list-row > svg:first-child {
+  width: 19px;
+  height: 19px;
+  color: #40556a;
+  stroke-width: 1.7;
+}
+
+.mini-phone .mini-pop-list-row > span {
+  font-size: 14px;
+  font-weight: 520;
+}
+
+.mini-phone .mini-view.mini-pop .mini-me-list-group .mini-wallet-ledger {
+  border-bottom: 0;
+  background: #f8fafb;
+}
+
+/* Keep controls visually compact while preserving a dependable 44px touch target. */
+body[data-app-mode="app"] .companion-page .journal-card-cta,
+body[data-app-mode="app"] .moments-page-header .world-mode-tabs button,
+body[data-app-mode="app"] .world-feed-segments button,
+body[data-app-mode="app"] .moments-actions .ghost-action,
+body[data-app-mode="app"] .world-feed-toolbar .ghost-action,
+body[data-app-mode="app"] .moments-compose .plain-button,
+body[data-app-mode="app"] .moments-compose .ghost-action {
+  min-height: 44px;
+}
+
+@media (max-width: 1079px) {
+  body[data-app-mode="app"] [data-world-compose] .plain-button {
+    width: auto;
+    min-width: 0;
+    height: auto;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+  }
+
+  body[data-app-mode="app"] [data-world-compose] .plain-button span {
+    display: inline;
+  }
+}
+
+.assist-shell--embedded .assist-composer textarea,
+.assist-shell--console .assist-composer textarea {
+  height: 36px;
+  min-height: 36px;
+  max-height: 96px;
+  padding: 7px 0;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+/* Narrow App shell only. On desktop the shell is a two-column grid
+ * (sidebar | content); forcing `grid-row: 1` there re-places .content-shell
+ * into the sidebar column and leaves the main pane empty. */
+@media (max-width: 1079px) {
+  /* Native top inset belongs to the physical OS bar exactly once. */
+  body[data-app-mode="app"][data-active-panel="chat"] .mobile-header,
+  body[data-app-mode="app"]:has(.app-page[data-panel="chat"].is-active:not([hidden])) .mobile-header {
+    display: none !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="chat"] .app-shell,
+  body[data-app-mode="app"]:has(.app-page[data-panel="chat"].is-active:not([hidden])) .app-shell {
+    grid-template-rows: minmax(0, 1fr) !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="chat"] .content-shell,
+  body[data-app-mode="app"]:has(.app-page[data-panel="chat"].is-active:not([hidden])) .content-shell {
+    grid-row: 1 !important;
+    height: 100svh !important;
+    max-height: 100svh !important;
+    padding-top: 0 !important;
+  }
+}
+
+html.is-native-app body[data-app-mode="app"][data-active-panel="chat"] .app-page[data-panel="chat"] {
+  grid-template-rows: calc(54px + env(safe-area-inset-top, 0px)) minmax(0, 1fr) auto;
+}
+
+html.is-native-app body[data-app-mode="app"] .chat-sticky {
+  height: calc(54px + env(safe-area-inset-top, 0px)) !important;
+  min-height: calc(54px + env(safe-area-inset-top, 0px));
+  max-height: calc(54px + env(safe-area-inset-top, 0px));
+  padding-top: calc(5px + env(safe-area-inset-top, 0px)) !important;
+}
+
+/* The physical Android/iOS bar owns time, battery and signal. The product bar
+ * below it keeps only Yueqi actions: switch shell and open notifications. */
+.mini-phone {
+  --mini-statusbar-height: 0px;
+  --mini-controlbar-height: 44px;
+  --mini-safe-top: var(--mini-controlbar-height);
+}
+
+.mini-phone .mini-statusbar {
+  display: none !important;
+}
+
+.mini-phone .mini-controlbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 30;
+  height: var(--mini-controlbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 14px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgb(247 250 253 / 96%), rgb(247 250 253 / 78%));
+  border-bottom: 1px solid rgb(20 55 94 / 7%);
+  backdrop-filter: blur(14px);
+}
+
+.mini-phone .mini-controlbar button {
+  min-width: 44px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 12px;
+  color: var(--mini-os-navy, #14375e);
+  background: transparent;
+  box-shadow: none;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mini-phone .mini-controlbar button:active {
+  transform: scale(.96);
+  background: rgb(61 149 237 / 10%);
+}
+
+.mini-phone .mini-controlbar button:focus-visible {
+  outline: 2px solid rgb(61 149 237 / 62%);
+  outline-offset: 1px;
+}
+
+.mini-phone .mini-controlbar svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mini-phone .mini-controlbar__app-switch span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.mini-phone .mini-controlbar__notifications {
+  position: relative;
+  width: 44px;
+  padding: 0;
+}
+
+.mini-phone .mini-controlbar__badge {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  min-width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  border: 2px solid #f7fafd;
+  border-radius: 999px;
+  color: #fff;
+  background: #e44f5f;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 750;
+  line-height: 1;
+}
+
+html.is-native-app .mini-phone,
+html.is-compact-shell .mini-phone {
+  --mini-statusbar-height: 0px;
+  --mini-safe-top: calc(env(safe-area-inset-top, 0px) + var(--mini-controlbar-height));
+}
+
+html.is-native-app .mini-phone .mini-controlbar,
+html.is-compact-shell .mini-phone .mini-controlbar {
+  top: env(safe-area-inset-top, 0px);
+}
+
+/* Home-screen chrome only. An opened app carries its own header, so the bar and
+ * the clearance every view reserves for it both go away; zeroing the height is
+ * what releases the clearance, and it leaves the device inset term intact. */
+.mini-phone.is-app-fullscreen {
+  --mini-controlbar-height: 0px;
+}
+
+.mini-phone.is-app-fullscreen .mini-controlbar {
+  display: none;
+}
+
+html.is-native-app .mini-phone .mini-home,
+html.is-compact-shell .mini-phone .mini-home {
+  padding-top: calc(var(--mini-safe-top) + 8px) !important;
+}
+
+/* Launcher paging is transform-driven after an axis lock. Nested native
+ * overflow scrolling is unreliable in Android WebViews when icons/widgets
+ * also own long-press gestures. Vertical intent remains available. */
+.mini-phone .mini-home__pager {
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: none !important;
+  scroll-behavior: auto !important;
+  touch-action: pan-y !important;
+  overscroll-behavior: none;
+  scrollbar-width: none;
+}
+
+.mini-phone .mini-home__pager::-webkit-scrollbar {
+  display: none;
+}
+
+.mini-phone .mini-home__track {
+  display: flex !important;
+  width: 100% !important;
+  min-width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.mini-phone .mini-home__page {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  touch-action: pan-y !important;
+}
+
+/* A swipe may begin on a widget, icon or button. Those descendants previously
+ * advertised conflicting gesture policies. The pager now owns the drag and
+ * writes to a real scroll container; ordinary taps and long-press still flow
+ * until a horizontal drag is committed. */
+.mini-phone .mini-home__page [data-widget],
+.mini-phone .mini-home__page [data-widget] *,
+.mini-phone .mini-home__page .mini-app-icon,
+.mini-phone .mini-home__page .mini-app-icon * {
+  touch-action: pan-y !important;
+}
+
+/* Calendar week dragging is its own horizontal gesture region. */
+.mini-phone .mini-home__page [data-home-gesture-own],
+.mini-phone .mini-home__page [data-home-gesture-own] * {
+  touch-action: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Playback + composer closure
+ *
+ * Primary actions must be present in the first viewport.  Playlists and
+ * suggestions remain available as secondary surfaces, never as vertical
+ * document sections that push the transport/composer out of reach.
+ * ----------------------------------------------------------------------- */
+
+/* Text entry is one calm surface. Android WebView focus must not look like a
+ * selected web form, and focusing must not make the bar jump.
+ * Chat composers: paint the <input> only. Assist: paint the box (textarea stays clear). */
+body[data-app-mode="app"] .composer-field,
+.mini-phone .mini-composer-field {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.assist-shell--embedded .assist-composer__box,
+.assist-shell--console .assist-composer__box {
+  border: 0 !important;
+  background: #f3f5f7 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+body[data-app-mode="app"] .composer-field:focus-within,
+.mini-phone .mini-composer-field:focus-within {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+.assist-shell--embedded .assist-composer__box:focus-within,
+.assist-shell--console .assist-composer__box:focus-within {
+  border: 0 !important;
+  background: #f3f5f7 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+/* Kill global blue focus ring from styles.css / me-page / motion layer */
+body[data-app-mode="app"] .composer-field input:focus,
+body[data-app-mode="app"] .composer-field input:focus-visible,
+body[data-app-mode="app"] .assist-composer textarea:focus,
+body[data-app-mode="app"] .assist-composer textarea:focus-visible,
+.mini-phone .mini-composer input:focus,
+.mini-phone .mini-composer input:focus-visible,
+.assist-shell--embedded .assist-composer textarea:focus,
+.assist-shell--console .assist-composer textarea:focus {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+body[data-app-mode="app"] .composer-field input:focus,
+body[data-app-mode="app"] .composer-field input:focus-visible,
+.mini-phone .mini-composer input:focus,
+.mini-phone .mini-composer input:focus-visible,
+.assist-shell--embedded .assist-composer textarea:focus,
+.assist-shell--embedded .assist-composer textarea:focus-visible,
+.assist-shell--console .assist-composer textarea:focus,
+.assist-shell--console .assist-composer textarea:focus-visible {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .composer-field input::selection,
+.mini-phone .mini-composer input::selection,
+.assist-shell--embedded .assist-composer textarea::selection,
+.assist-shell--console .assist-composer textarea::selection {
+  color: inherit;
+  background: rgb(8 35 58 / 14%);
+}
+
+body[data-app-mode="app"] .composer-stack.pop-composer {
+  margin-inline: 8px !important;
+  /* Bottom inset belongs to the dock below, not to this bar. */
+  padding: 5px 0 6px !important;
+  border-top: 1px solid rgb(8 35 58 / 8%) !important;
+  background: rgb(249 251 253 / 97%) !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer {
+  display: grid !important;
+  grid-template-columns: 44px 44px minmax(0, 1fr) 44px !important;
+  grid-template-areas: "more speak field action" !important;
+  gap: 4px !important;
+  align-items: center !important;
+  min-height: 50px !important;
+  padding: 0 !important;
+}
+
+body[data-app-mode="app"] .pop-composer [data-composer-attach] {
+  grid-area: more !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+body[data-app-mode="app"] .pop-composer [data-composer-attach].is-open {
+  transform: rotate(45deg) !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-speak,
+.mini-phone .mini-composer-speak {
+  grid-area: speak !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-field {
+  grid-area: field !important;
+  display: flex !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 42px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-mic,
+body[data-app-mode="app"] .pop-composer .composer-send,
+body[data-app-mode="app"] .pop-composer .composer-retry-stt {
+  grid-area: action !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-field input {
+  min-height: 42px !important;
+  padding: 8px 12px !important;
+  border: 0 !important;
+  border-radius: 11px !important;
+  background: #f3f5f7 !important;
+  font-size: 16px !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-tool,
+body[data-app-mode="app"] .pop-composer .composer-mic,
+body[data-app-mode="app"] .pop-composer .composer-send {
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  color: #41576a !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-send.is-active,
+body[data-app-mode="app"] .pop-composer .composer-send:not([disabled]):not([hidden]) {
+  color: #fff !important;
+  background: #08243b !important;
+}
+
+.mini-phone .mini-composer {
+  display: grid !important;
+  grid-template-columns: 44px 44px minmax(0, 1fr) 44px !important;
+  grid-template-areas: "more speak field action" !important;
+  gap: 4px !important;
+  min-height: 58px !important;
+  padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+  background: rgb(249 251 253 / 97%) !important;
+  box-shadow: none !important;
+}
+
+/* Gesture-nav handsets report no bottom inset, so a flat 8px sat the bar
+ * directly on the screen edge. Keep a real gap plus any inset. */
+.mini-phone .mini-pop .mini-composer {
+  padding: 6px 8px calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+.mini-phone .mini-composer [data-phone-plus] {
+  grid-area: more !important;
+}
+
+.mini-phone .mini-composer-speak {
+  grid-area: speak !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.mini-phone .mini-composer-field {
+  grid-area: field !important;
+  display: flex !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-composer .mini-mic-btn,
+.mini-phone .mini-composer .mini-send {
+  grid-area: action !important;
+}
+
+.mini-phone .mini-composer input,
+.mini-phone .mini-composer textarea {
+  min-height: 42px !important;
+  padding: 8px 14px !important;
+  border: 0 !important;
+  border-radius: 11px !important;
+  background: #f3f5f7 !important;
+  font-size: 16px !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-composer .mini-composer-tool,
+.mini-phone .mini-composer .mini-mic-btn,
+.mini-phone .mini-composer .mini-send {
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  color: #41576a !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-composer .mini-send.is-active {
+  color: #fff !important;
+  background: #08243b !important;
+}
+
+/* Assistant welcome keeps vertical suggestion rows (not pill chips). */
+.assist-shell--embedded .assist-welcome,
+.assist-shell--console .assist-welcome {
+  align-content: center;
+  gap: 8px;
+  padding: 28px 18px 18px;
+}
+
+.assist-shell--embedded .assist-suggest,
+.assist-shell--console .assist-suggest {
+  display: grid;
+  width: min(100%, 420px);
+  gap: 8px;
+  margin-top: 2px;
+  padding: 0;
+  overflow: visible;
+  scroll-snap-type: none;
+}
+
+.assist-shell--embedded .assist-suggest__chip,
+.assist-shell--console .assist-suggest__chip {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 16px;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px 10px 10px;
+  border: 1px solid rgb(8 35 58 / 10%);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 6px 16px rgb(7 27 46 / 4%);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: normal;
+}
+
+.assist-shell--embedded .assist-suggest__icon,
+.assist-shell--console .assist-suggest__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  color: #0f4a6e;
+  background: rgba(61, 149, 237, 0.12);
+}
+
+.assist-shell--embedded .assist-suggest__icon svg,
+.assist-shell--console .assist-suggest__icon svg {
+  width: 16px;
+  height: 16px;
+  opacity: 1;
+}
+
+.assist-shell--embedded .assist-composer,
+.assist-shell--console .assist-composer {
+  padding: 8px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid rgba(15, 39, 61, 0.08) !important;
+  background: #fff !important;
+}
+
+.assist-shell--embedded .assist-composer__box,
+.assist-shell--console .assist-composer__box {
+  grid-template-columns: minmax(0, 1fr) 36px;
+  min-height: 44px;
+  padding: 4px 4px 4px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 39, 61, 0.1);
+  background: #f5f8fb;
+  box-shadow: none !important;
+}
+
+.assist-shell--embedded .assist-composer textarea,
+.assist-shell--console .assist-composer textarea {
+  height: auto;
+  min-height: 24px;
+  max-height: 120px;
+  padding: 8px 0;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.assist-shell--embedded .assist-send,
+.assist-shell--console .assist-send {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  min-height: 36px;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  background: #08243b;
+  box-shadow: none;
+}
+
+.assist-shell--embedded .assist-send:disabled,
+.assist-shell--console .assist-send:disabled {
+  color: #8a99a7;
+  background: #e7edf2;
+  opacity: 1;
+}
+
+.assist-shell--embedded .assist-composer__hint,
+.assist-shell--console .assist-composer__hint {
+  margin: 3px 0 0;
+  color: #788797;
+  font-size: 9px;
+}
+
+@media (max-width: 1079px) {
+  /* Assist owns the full viewport above the dock (header hidden on this route). */
+  body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell[data-settings-route="assist"]) .content-shell,
+  body[data-app-mode="app"][data-active-panel="assist"] .content-shell,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell[data-settings-route="assist"]) .content-shell,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="assist"] .content-shell {
+    padding: 0 0 var(--nyra-dock-height) !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .me-page:has(.me-shell[data-settings-route="assist"]),
+  body[data-app-mode="app"][data-active-panel="assist"] .me-page,
+  body[data-app-mode="app"] .me-page.is-active:has(.me-shell[data-settings-route="assist"]) {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .me-shell[data-settings-route="assist"] {
+    display: grid !important;
+    grid-template-rows: minmax(0, 1fr);
+    flex: 1 1 auto;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .me-shell[data-settings-route="assist"] .me-stage {
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr);
+    flex: 1 1 auto;
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .me-shell[data-settings-route="assist"] .me-detail-bar {
+    position: relative;
+    top: auto;
+    z-index: 4;
+    min-height: 48px;
+    padding: 8px 12px;
+    box-shadow: none;
+  }
+
+  body[data-app-mode="app"] .me-shell[data-settings-route="assist"] .settings-editor,
+  body[data-app-mode="app"] .me-shell[data-settings-route="assist"] .assist-editor,
+  body[data-app-mode="app"] .me-shell[data-settings-route="assist"] [data-assist-mount] {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .me-shell[data-settings-route="assist"] .assist-shell,
+  body[data-app-mode="app"] .me-shell[data-settings-route="assist"] .assist-shell--console {
+    display: grid !important;
+    grid-template-rows: minmax(0, 1fr) auto;
+    flex: 1 1 auto;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .me-shell[data-settings-route="assist"] .assist-composer {
+    flex: 0 0 auto;
+    align-self: stretch;
+    /* Dock already owns safe-area; don't stack inset again or the bar sits too high / clips oddly. */
+    padding: 8px 12px 10px !important;
+    background: #fff !important;
+  }
+
+  /* Me sub-routes: one flat nav bar, internal scroll — no floating square header. */
+  body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell.is-detail) .mobile-header {
+    display: none !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell.is-detail) .app-shell {
+    grid-template-rows: minmax(0, 1fr) !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell.is-detail) .content-shell {
+    grid-row: 1 !important;
+    height: 100svh !important;
+    max-height: 100svh !important;
+    padding: 0 0 var(--nyra-dock-height) !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .me-page.is-active:has(.me-shell.is-detail) {
+    display: flex !important;
+    flex-direction: column;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail:not([data-settings-route="assist"]) {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0 !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail:not([data-settings-route="assist"]) .me-stage {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0 !important;
+    height: 100% !important;
+    max-height: none !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-detail-bar {
+    position: relative;
+    top: auto;
+    flex: 0 0 auto;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) 40px;
+    align-items: center;
+    gap: 8px;
+    min-height: 48px;
+    margin: 0;
+    padding: max(8px, env(safe-area-inset-top, 0px)) 12px 8px;
+    border-bottom: 1px solid var(--nyra-line);
+    background: var(--nyra-bg);
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-detail-back,
+  body[data-app-mode="app"] .me-shell.is-detail .me-detail-assist {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    border: 0;
+    border-radius: 8px;
+    color: var(--nyra-ink);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-detail-back:active,
+  body[data-app-mode="app"] .me-shell.is-detail .me-detail-assist:active {
+    background: var(--nyra-paper-soft);
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-detail-copy {
+    text-align: left;
+    justify-items: start;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-detail-copy strong {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail:not([data-settings-route="assist"]) .settings-editor {
+    flex: 1 1 auto;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 12px 16px 16px;
+    gap: 10px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .settings-panel {
+    gap: 10px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .section-head,
+  body[data-app-mode="app"] .me-shell.is-detail .editor-head,
+  body[data-app-mode="app"] .me-shell.is-detail .library-head {
+    min-height: 36px;
+    padding: 0 0 6px 10px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .section-head h2,
+  body[data-app-mode="app"] .me-shell.is-detail .editor-head h2 {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .settings-hint {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-account-hero {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    padding: 10px 12px;
+    box-shadow: none !important;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-account-hero__avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+    box-shadow: none;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-account-hero__copy strong {
+    font-family: inherit;
+    font-size: 16px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-auth-panel:not(.is-signed-in),
+  body[data-app-mode="app"] .me-shell.is-detail .me-choice-block,
+  body[data-app-mode="app"] .me-shell.is-detail .me-choice-block--card {
+    padding: 10px 12px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .workflow-toggle,
+  body[data-app-mode="app"] .me-shell.is-detail .mini-toggle,
+  body[data-app-mode="app"] .me-shell.is-detail .permission-context,
+  body[data-app-mode="app"] .me-shell.is-detail .palace-enabled-toggle {
+    min-height: 46px;
+    padding: 6px 12px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .settings-feature-switches,
+  body[data-app-mode="app"] .me-shell.is-detail .feature-switches.settings-feature-switches,
+  body[data-app-mode="app"] .me-shell.is-detail .permission-list {
+    padding: 0 !important;
+    gap: 0 !important;
+    overflow: hidden;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .range-editor label,
+  body[data-app-mode="app"] .me-shell.is-detail .rag-settings > label,
+  body[data-app-mode="app"] .me-shell.is-detail .connection-grid > label,
+  body[data-app-mode="app"] .me-shell.is-detail .dnd-settings > label,
+  body[data-app-mode="app"] .me-shell.is-detail .status-grid > label {
+    padding: 8px 12px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-page .mcp-card {
+    min-height: 56px;
+    padding: 8px 12px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .experience-mode-switch button {
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-choice-stack {
+    gap: 8px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .settings-panel[data-settings-view] {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-page input:not([type="checkbox"]):not([type="range"]):not([type="file"]),
+  body[data-app-mode="app"] .me-shell.is-detail .me-page select,
+  body[data-app-mode="app"] .me-shell.is-detail .me-page textarea:not([data-assist-input]) {
+    min-height: 40px;
+    padding: 8px 10px;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-page textarea:not([data-assist-input]),
+  body[data-app-mode="app"] .me-shell.is-detail .me-page .prompt-grid textarea {
+    min-height: 96px;
+  }
+
+  /* App listen: a player screen, not a vertically scrolling article. */
+  body[data-app-mode="app"][data-active-panel="library"] .content-shell {
+    padding: 6px 12px calc(var(--nyra-dock-height) + 6px) !important;
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"] .library-page.is-active {
+    display: grid !important;
+    grid-template-rows: 38px minmax(0, 1fr);
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  body[data-app-mode="app"] .library-page > .page-section-tabs {
+    min-height: 36px;
+    height: 36px;
+    margin: 0 0 2px;
+  }
+
+  body[data-app-mode="app"] .library-page > .page-section-tabs button {
+    min-height: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  body[data-app-mode="app"] .library-page > .page-section.is-active,
+  body[data-app-mode="app"] .music-library,
+  body[data-app-mode="app"] .music-pane--player {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  body[data-app-mode="app"] .library-page > .page-section[data-library-section="album"].is-active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body[data-app-mode="app"] .library-page > .page-section[data-library-section="album"].is-active > .album-library {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  body[data-app-mode="app"] .music-pane--player {
+    display: grid;
+    grid-template-rows: 40px minmax(0, 1fr);
+  }
+
+  body[data-app-mode="app"] .music-player-head {
+    min-height: 40px;
+    height: 40px;
+    padding: 0 0 4px;
+  }
+
+  body[data-app-mode="app"] .music-player-head__actions .ghost-action {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    min-height: 40px;
+  }
+
+  body[data-app-mode="app"] .now-playing {
+    align-content: start;
+    gap: clamp(8px, 1.6svh, 14px);
+    width: min(100%, 430px);
+    height: 100%;
+    min-height: 0;
+    margin: 0 auto;
+    padding: 8px 0 12px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body[data-app-mode="app"] .vinyl-stage {
+    width: clamp(174px, min(55vw, 25svh), 224px);
+    min-width: 0;
+    padding: 14px;
+    border-radius: 15px;
+    box-shadow: 0 0 0 1px rgb(85 200 251 / 9%), 0 18px 38px rgb(1 15 29 / 17%), inset 0 1px 0 #fff;
+  }
+
+  body[data-app-mode="app"] .vinyl-stage::before {
+    inset: 10px;
+  }
+
+  body[data-app-mode="app"] .vinyl-tonearm {
+    top: 9px;
+    right: 10px;
+    width: 56px;
+    height: 86px;
+  }
+
+  body[data-app-mode="app"] .now-playing-copy h3 {
+    font-family: var(--nyra-sans);
+    font-size: clamp(19px, 5vw, 22px);
+    font-weight: 680;
+    line-height: 1.15;
+  }
+
+  body[data-app-mode="app"] .now-playing-copy p,
+  body[data-app-mode="app"] .now-progress {
+    font-size: 11px;
+  }
+
+  body[data-app-mode="app"] .now-playing-progress {
+    width: min(100%, 350px);
+  }
+
+  body[data-app-mode="app"] .now-transport {
+    grid-template-columns: 44px 56px 44px;
+    gap: 14px;
+  }
+
+  body[data-app-mode="app"] .now-transport__btn {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    box-shadow: none;
+  }
+
+  body[data-app-mode="app"] .now-transport__btn--main {
+    width: 56px;
+    height: 56px;
+    box-shadow: 0 0 0 3px rgb(255 255 255 / 92%), 0 0 0 4px rgb(23 106 165 / 22%), 0 10px 22px rgb(3 18 33 / 23%);
+  }
+
+  body[data-app-mode="app"] .co-listen-actions .ghost-action {
+    min-height: 32px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  body[data-app-mode="app"] .music-pane--list {
+    height: 100%;
+    min-height: 0;
+    /* Auto rows stretch to fill the pane by default, which pushed the head and
+     * the empty copy into the middle of the screen. */
+    align-content: start;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+}
+
+/* Mini-phone listen: the player owns the viewport; the playlist is a bottom
+ * drawer with its own scroll. */
+.mini-phone .mini-listen {
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  background:
+    radial-gradient(68% 42% at 50% 12%, rgb(83 164 222 / 9%), transparent 72%),
+    linear-gradient(180deg, #f7fafe 0%, #edf4fb 100%);
+}
+
+.mini-phone .mini-listen-body {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mini-phone .mini-listen-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  align-content: center;
+  gap: clamp(5px, 1svh, 9px);
+  min-height: 0;
+  padding: 8px 22px 62px;
+  overflow: hidden;
+}
+
+.mini-phone .mini-listen-vinyl {
+  width: clamp(172px, min(56vw, 26svh), 218px);
+  height: clamp(172px, min(56vw, 26svh), 218px);
+}
+
+.mini-phone .mini-listen-vinyl__disc {
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 12%), 0 16px 34px rgb(5 20 34 / 24%);
+}
+
+.mini-phone .mini-listen-vinyl__label {
+  background: conic-gradient(from 220deg, #06182a, #1f678f, #89c8e7, #0b2c49, #06182a) !important;
+}
+
+.mini-phone .mini-listen-now {
+  width: min(100%, 320px);
+  gap: 2px;
+}
+
+.mini-phone .mini-listen-now strong {
+  color: #071b2e;
+  font-size: clamp(19px, 5.2vw, 22px);
+  font-weight: 680;
+}
+
+.mini-phone .mini-listen-now p {
+  font-size: 11px;
+}
+
+.mini-phone .mini-listen-controls {
+  position: relative;
+  grid-template-columns: minmax(0, 1fr) 54px;
+  grid-template-areas:
+    "time play"
+    "seek play"
+    "hint hint";
+  column-gap: 14px;
+  row-gap: 3px;
+  width: min(100%, 320px);
+  margin-top: 2px;
+}
+
+.mini-phone .mini-listen-times {
+  grid-area: time;
+  align-self: end;
+}
+
+.mini-phone .mini-listen-seek {
+  grid-area: seek;
+  align-self: start;
+  min-height: 18px;
+  margin: 0;
+}
+
+.mini-phone .mini-listen-play {
+  grid-area: play;
+  width: 54px;
+  height: 54px;
+  align-self: center;
+  box-shadow: 0 10px 22px rgb(7 27 53 / 22%);
+}
+
+.mini-phone .mini-listen-hint {
+  grid-area: hint;
+}
+
+.mini-phone .mini-listen-colisten {
+  width: min(100%, 320px);
+  min-height: 36px;
+  margin: 8px auto 0;
+  padding: 8px 2px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgb(8 35 58 / 9%);
+  font-size: 13px;
+}
+
+.mini-phone .mini-listen-companion {
+  width: min(100%, 320px);
+  min-height: 46px;
+  grid-template-columns: 30px minmax(0, 1fr) 18px;
+  gap: 8px;
+  margin: -2px auto 0;
+  padding: 4px 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-listen-companion__avatar {
+  width: 30px;
+  height: 30px;
+}
+
+.mini-phone .mini-listen-companion strong {
+  font-size: 11px;
+}
+
+.mini-phone .mini-listen-companion p {
+  margin-top: 1px;
+  font-size: 9px;
+}
+
+.mini-phone .mini-listen-sheet {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 6;
+  width: 100%;
+  height: min(58%, 330px);
+  min-height: 52px;
+  max-height: min(58%, 330px);
+  margin: 0;
+  border: 0;
+  border-top: 1px solid rgb(8 35 58 / 9%);
+  border-radius: 18px 18px 0 0;
+  background: rgb(255 255 255 / 96%);
+  box-shadow: 0 -10px 28px rgb(7 27 46 / 7%);
+}
+
+.mini-phone .mini-listen-sheet.is-collapsed {
+  height: 52px;
+  max-height: 52px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.mini-phone .mini-listen-sheet__head {
+  min-height: 52px;
+  height: 52px;
+  padding: 6px 8px 6px 14px;
+}
+
+.mini-phone .mini-listen-sheet__toggle {
+  min-height: 40px;
+}
+
+.mini-phone .mini-listen-sheet__toggle strong {
+  font-size: 13px;
+}
+
+.mini-phone .mini-listen-sheet__actions .mini-icon-button {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+}
+
+.mini-phone .mini-listen-sheet__body,
+.mini-phone .mini-listen-tracks {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.mini-phone .mini-listen-sheet__body {
+  height: calc(100% - 52px);
+}
+
+@media (max-height: 760px) {
+  body[data-app-mode="app"] .vinyl-stage {
+    width: clamp(162px, min(49vw, 23svh), 184px);
+  }
+
+  body[data-app-mode="app"] .now-playing {
+    gap: 4px;
+  }
+
+  .mini-phone .mini-listen-stage {
+    gap: 4px;
+    padding-top: 4px;
+  }
+
+  .mini-phone .mini-listen-vinyl {
+    width: clamp(154px, min(49vw, 23svh), 180px);
+    height: clamp(154px, min(49vw, 23svh), 180px);
+  }
+
+  .mini-phone .mini-listen-companion {
+    min-height: 38px;
+  }
+}
+
+
+/* phone settings assist clamp */
+.mini-phone .mini-assist .assist-shell,
+.mini-phone .mini-assist .assist-shell--embedded,
+.mini-phone .mini-assist .assist-shell--console {
+  min-height: 0 !important;
+  max-height: 100%;
+  height: 100%;
+}

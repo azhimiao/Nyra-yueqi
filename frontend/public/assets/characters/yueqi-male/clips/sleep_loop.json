@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "clipId": "sleep_loop",
+  "image": "sleep_loop.png",
+  "size": {
+    "width": 553,
+    "height": 230
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "sleep_loop_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 553,
+        "height": 230
+      },
+      "source": {
+        "x": 107,
+        "y": 269,
+        "width": 553,
+        "height": 230
+      },
+      "durationMs": 2200
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+/* Shared ReaderEngine — App + 小手机
+ * Viewport has NO horizontal padding; each page is exactly viewport-wide.
+ */
+
+.reader-engine-viewport {
+  position: relative;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden !important;
+  /* Allow long-press text selection; paging is handled in JS */
+  touch-action: manipulation;
+  box-sizing: border-box;
+  padding: 0 !important;
+  margin: 0;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.85;
+  user-select: text;
+  -webkit-user-select: text;
+  -webkit-touch-callout: default;
+}
+
+.reader-engine-pages {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100%;
+  will-change: transform;
+  transition: transform 0.2s ease;
+  /* Never let the strip paint outside the viewport clip */
+  max-width: none;
+}
+
+.reader-engine-page,
+.mini-ebook-page,
+.book-reader-page {
+  flex: 0 0 auto;
+  height: 100%;
+  /* Allow inline notes under a mark to paint; viewport still clips */
+  overflow: hidden;
+  box-sizing: border-box;
+  /* Padding is also set inline by the engine for measure parity */
+  padding: 56px 22px 48px;
+}
+
+mark.ebook-hl-mark {
+  color: inherit;
+  background: rgb(255 214 102 / 55%);
+  border-radius: 2px;
+  padding: 0 1px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+mark.ebook-hl-mark.has-comment {
+  cursor: pointer;
+}
+
+.ebook-inline-note.is-collapsed {
+  display: none !important;
+}
+
+.reader-engine-p,
+.mini-ebook-p,
+.book-reader-p {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 1em;
+  text-align: justify;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  user-select: text;
+  -webkit-user-select: text;
+  -webkit-touch-callout: default;
+}
+
+.reader-engine-p.is-heading,
+.mini-ebook-p.is-heading,
+.book-reader-p.is-heading {
+  margin-top: 0.55em;
+  margin-bottom: 0.85em;
+  font-weight: 650;
+  font-size: 1.05em;
+  text-align: left;
+}
+
+.reader-engine-p.is-toc,
+.mini-ebook-p.is-toc,
+.book-reader-p.is-toc {
+  margin: 0.35em 0;
+  font-weight: 650;
+  text-align: left;
+  text-align-last: left;
+  letter-spacing: 0.06em;
+}
+
+.reader-engine-measure {
+  position: absolute;
+  left: -12000px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -1;
+  overflow: visible;
+}
+
+.reader-engine-measure p {
+  display: block;
+  width: 100%;
+  margin: 0 0 1em;
+  text-align: justify;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Warm selection — not browser default blue */
+.reader-engine-viewport ::selection,
+.mini-ebook-viewport ::selection,
+.book-reader-viewport ::selection,
+.reader-engine-p::selection,
+.mini-ebook-p::selection,
+.book-reader-p::selection {
+  background: rgb(214 168 98 / 42%);
+  color: inherit;
+}
+
+.reader-engine-viewport ::-moz-selection,
+.mini-ebook-viewport ::-moz-selection,
+.book-reader-viewport ::-moz-selection {
+  background: rgb(214 168 98 / 42%);
+  color: inherit;
+}
+
+[data-ebook-theme="night"] .reader-engine-viewport ::selection,
+[data-ebook-theme="night"] ::selection {
+  background: rgb(196 154 90 / 48%);
+  color: #f3efe6;
+}

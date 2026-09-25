@@ -1,0 +1,815 @@
+/*
+ * One ordinary mobile composer for Pop chat, the system assistant and Explore.
+ * This file intentionally loads last: older feature CSS contains several
+ * competing composer treatments that made focus, spacing and send controls
+ * change from screen to screen.
+ */
+
+:root {
+  --message-composer-surface: #ffffff;
+  --message-composer-field: #f3f5f7;
+  --message-composer-text: #122334;
+  --message-composer-muted: #82909d;
+  --message-composer-action: #0b263d;
+  --message-composer-divider: rgb(12 36 56 / 9%);
+  --message-composer-focus: rgb(12 36 56 / 18%);
+}
+
+body[data-app-mode="app"] .pop-composer button,
+.mini-phone .mini-composer button,
+.assist-composer button,
+.explore-session__composer button,
+.explore-task-form button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* App chat and mini-phone Pop: + · 续聊 · 输入 · 麦/发送 */
+body[data-app-mode="app"] .composer-stack.pop-composer,
+.mini-phone .mini-composer {
+  margin: 0 !important;
+  border-top: 1px solid var(--message-composer-divider) !important;
+  background: var(--message-composer-surface) !important;
+  box-shadow: none !important;
+}
+
+/* The app dock is fixed beneath this bar and already covers the gesture inset;
+ * the mini-phone composer is itself the bottom edge, so only it adds one. */
+body[data-app-mode="app"] .composer-stack.pop-composer {
+  padding: 7px 10px !important;
+}
+
+.mini-phone .mini-composer {
+  padding: 7px 10px calc(7px + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer,
+.mini-phone .mini-composer {
+  display: grid !important;
+  grid-template-columns: 44px 44px minmax(0, 1fr) 44px !important;
+  grid-template-areas: "more speak field action" !important;
+  align-items: center !important;
+  gap: 4px !important;
+  min-height: 48px !important;
+  padding: 0 !important;
+}
+
+/* The field grows upward, so the tool row stays on the bottom baseline. */
+body[data-app-mode="app"] .pop-composer .composer {
+  align-items: end !important;
+}
+
+/* Selected images are content, not a filename stuffed into the input pill. */
+body[data-app-mode="app"] .pop-composer .composer-attachment-preview,
+.mini-phone .mini-composer-attachment-preview {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 360px);
+  min-height: 58px;
+  margin: 0 0 6px;
+  padding: 7px 9px;
+  border: 1px solid var(--message-composer-divider);
+  border-radius: 13px;
+  background: #f8fafb;
+  box-shadow: 0 4px 16px rgb(12 36 56 / 6%);
+}
+
+body[data-app-mode="app"] .pop-composer .composer-attachment-preview__media,
+.mini-phone .mini-composer-attachment-preview__media {
+  display: grid;
+  flex: 0 0 48px;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 9px;
+  color: var(--message-composer-action);
+  background: #e8eef2;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-attachment-preview__media img,
+.mini-phone .mini-composer-attachment-preview__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-attachment-preview__copy,
+.mini-phone .mini-composer-attachment-preview__copy {
+  display: grid;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 2px;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-attachment-preview__copy strong,
+.mini-phone .mini-composer-attachment-preview__copy strong {
+  overflow: hidden;
+  color: var(--message-composer-text);
+  font-size: 13px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-attachment-preview__copy span,
+.mini-phone .mini-composer-attachment-preview__copy span {
+  color: var(--message-composer-muted);
+  font-size: 11px;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-attachment-preview__remove,
+.mini-phone .mini-composer-attachment-preview__remove {
+  display: grid;
+  flex: 0 0 44px;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  border: 0;
+  border-radius: 50%;
+  color: var(--message-composer-muted);
+  background: transparent;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-attachment-preview__remove:active,
+.mini-phone .mini-composer-attachment-preview__remove:active {
+  background: rgb(12 36 56 / 8%);
+}
+
+body[data-app-mode="app"] .pop-composer [data-composer-attach],
+.mini-phone .mini-composer [data-phone-plus] {
+  grid-area: more !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: auto !important;
+  transform: none !important;
+}
+
+body[data-app-mode="app"] .pop-composer [data-composer-attach].is-open,
+.mini-phone .mini-composer [data-phone-plus].is-open {
+  transform: rotate(45deg) !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-speak,
+.mini-phone .mini-composer-speak {
+  grid-area: speak !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+/*
+ * One painted surface only.
+ * Older sheets painted BOTH .composer-field and the <input> (and a global
+ * focus-visible inset ring beat our overrides). The wrapper is layout-only;
+ * the input (or hold button) is the single gray pill.
+ */
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field,
+.mini-phone .mini-composer-field {
+  grid-area: field !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+  filter: none !important;
+  overflow: visible !important;
+}
+
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field:focus-within,
+.mini-phone .mini-composer-field:focus-within {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field input,
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field textarea,
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field [data-composer-text],
+body[data-app-mode="app"] .app-shell .pop-composer #messageInput,
+.mini-phone .mini-composer-field input,
+.mini-phone .mini-composer-field input[data-phone-chat-input] {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 44px !important;
+  margin: 0 !important;
+  padding: 10px 13px !important;
+  border: 0 !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  border-radius: 11px !important;
+  outline: 0 !important;
+  background: var(--message-composer-field) !important;
+  background-color: var(--message-composer-field) !important;
+  color: var(--message-composer-text) !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field input:focus,
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field input:focus-visible,
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field textarea:focus,
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field textarea:focus-visible,
+body[data-app-mode="app"] .app-shell .pop-composer #messageInput:focus,
+body[data-app-mode="app"] .app-shell .pop-composer #messageInput:focus-visible,
+.mini-phone .mini-composer-field input:focus,
+.mini-phone .mini-composer-field input:focus-visible {
+  border: 0 !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: var(--message-composer-field) !important;
+  background-color: var(--message-composer-field) !important;
+  transform: none !important;
+}
+
+/* Multi-line message field: grows with the text, then scrolls inside the pill.
+ * Height itself is set per keystroke by the shared composer chrome. */
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field textarea {
+  box-sizing: border-box !important;
+  max-height: 132px !important;
+  font-family: inherit !important;
+  resize: none !important;
+  overflow-y: hidden !important;
+}
+
+body[data-app-mode="app"] .app-shell .pop-composer .composer-field textarea[hidden] {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .app-shell .pop-composer .composer-hold,
+.mini-phone .mini-composer-hold {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-height: 44px !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 13px !important;
+  border: 0 !important;
+  border-radius: 11px !important;
+  background: var(--message-composer-field) !important;
+  box-shadow: none !important;
+  color: var(--message-composer-text) !important;
+}
+
+body[data-app-mode="app"] .app-shell .pop-composer .composer-hold:active,
+body[data-app-mode="app"] .app-shell .pop-composer .composer-hold.is-recording,
+.mini-phone .mini-composer-hold:active,
+.mini-phone .mini-composer-hold.is-recording {
+  background: #e8ecef !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-field input::placeholder,
+body[data-app-mode="app"] .pop-composer .composer-field textarea::placeholder,
+.mini-phone .mini-composer-field input::placeholder,
+.assist-composer textarea::placeholder,
+.explore-session__composer input::placeholder {
+  color: var(--message-composer-muted) !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-mic,
+body[data-app-mode="app"] .pop-composer .composer-send,
+body[data-app-mode="app"] .pop-composer .composer-retry-stt,
+.mini-phone .mini-composer .mini-mic-btn,
+.mini-phone .mini-composer .mini-send {
+  grid-area: action !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-tool,
+body[data-app-mode="app"] .pop-composer .composer-mic,
+body[data-app-mode="app"] .pop-composer .composer-send,
+.mini-phone .mini-composer .mini-composer-tool,
+.mini-phone .mini-composer .mini-mic-btn,
+.mini-phone .mini-composer .mini-send {
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  color: #526779 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .pop-composer .composer-send.is-active,
+body[data-app-mode="app"] .pop-composer .composer-send:not([disabled]):not([hidden]),
+.mini-phone .mini-composer .mini-send.is-active {
+  color: #fff !important;
+  background: var(--message-composer-action) !important;
+}
+
+/*
+ * Assistant composer = the chat composer anatomy (tool · pill · action) with a
+ * growing field. Literal colors and shell-qualified selectors on purpose: the
+ * console/embedded surfaces carry their own `!important` treatments, and the
+ * assistant used to lose the pill and the send chip entirely on App shell.
+ */
+body[data-app-mode="app"] .assist-composer__row,
+.mini-phone .assist-composer__row,
+.assist-shell--console .assist-composer__row,
+.assist-shell--embedded .assist-composer__row {
+  display: flex !important;
+  align-items: flex-end !important;
+  gap: 8px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+body[data-app-mode="app"] .assist-composer__row:not(:has([data-assist-mic])),
+.mini-phone .assist-composer__row:not(:has([data-assist-mic])),
+.assist-shell--console .assist-composer__row:not(:has([data-assist-mic])),
+.assist-shell--embedded .assist-composer__row:not(:has([data-assist-mic])) {
+  display: flex !important;
+}
+
+body[data-app-mode="app"] .assist-composer__tool,
+.mini-phone .assist-composer__tool,
+.assist-shell--console .assist-composer__tool,
+.assist-shell--embedded .assist-composer__tool {
+  display: grid !important;
+  place-items: center !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  color: #526779 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .assist-composer__tool.is-recording,
+.mini-phone .assist-composer__tool.is-recording,
+.assist-shell--console .assist-composer__tool.is-recording,
+.assist-shell--embedded .assist-composer__tool.is-recording {
+  color: #fff !important;
+  background: #c0392b !important;
+}
+
+body[data-app-mode="app"] .assist-composer__tool.is-transcribing,
+.mini-phone .assist-composer__tool.is-transcribing,
+.assist-shell--console .assist-composer__tool.is-transcribing,
+.assist-shell--embedded .assist-composer__tool.is-transcribing {
+  color: #0b263d !important;
+  background: #e8ecef !important;
+}
+
+/* The pill: one painted surface, same gray as chat, on every assistant surface. */
+body[data-app-mode="app"] .assist-composer__box,
+body[data-app-mode="app"] .app-shell .assist-composer__box,
+.mini-phone .assist-composer__box,
+.assist-shell--console .assist-composer__box,
+.assist-shell--embedded .assist-composer__box,
+body[data-app-mode="app"] .assist-composer__box:focus-within,
+body[data-app-mode="app"] .app-shell .assist-composer__box:focus-within,
+.mini-phone .assist-composer__box:focus-within,
+.assist-shell--console .assist-composer__box:focus-within,
+.assist-shell--embedded .assist-composer__box:focus-within {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-items: end !important;
+  gap: 0 !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: 44px !important;
+  margin: 0 !important;
+  padding: 0 13px !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 11px !important;
+  background: #f3f5f7 !important;
+  background-color: #f3f5f7 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+/*
+ * The Me page paints every textarea as a settings field (porcelain fill, 1px
+ * border, inset shadow) with `!important`. Inside the assistant that produced a
+ * white box floating in the pill, so restate the field here at higher weight.
+ */
+body[data-app-mode="app"] .me-page .assist-composer textarea,
+body[data-app-mode="app"] .app-shell .assist-composer textarea,
+.mini-phone .assist-composer textarea,
+.assist-shell--console .assist-composer textarea,
+.assist-shell--embedded .assist-composer textarea,
+body[data-app-mode="app"] .me-page .assist-composer textarea:focus,
+body[data-app-mode="app"] .me-page .assist-composer textarea:focus-visible,
+body[data-app-mode="app"] .app-shell .assist-composer textarea:focus-visible,
+.mini-phone .assist-composer textarea:focus-visible,
+.assist-shell--console .assist-composer textarea:focus-visible,
+.assist-shell--embedded .assist-composer textarea:focus-visible {
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .assist-composer__counter,
+.mini-phone .assist-composer__counter,
+.assist-shell--console .assist-composer__counter,
+.assist-shell--embedded .assist-composer__counter {
+  justify-self: end !important;
+  padding: 0 0 5px !important;
+  color: var(--message-composer-muted) !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* Send keeps a visible chip when idle, exactly like the chat send control. */
+body[data-app-mode="app"] .assist-send,
+.mini-phone .assist-send,
+.assist-shell--console .assist-send,
+.assist-shell--embedded .assist-send {
+  align-self: end !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  color: #fff !important;
+  background: #0b263d !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .assist-send:disabled,
+.mini-phone .assist-send:disabled,
+.assist-shell--console .assist-send:disabled,
+.assist-shell--embedded .assist-send:disabled {
+  color: #8a99a7 !important;
+  background: #e7edf2 !important;
+  opacity: 1 !important;
+}
+
+body[data-app-mode="app"] .assist-send.is-busy svg,
+.mini-phone .assist-send.is-busy svg,
+.assist-shell--console .assist-send.is-busy svg,
+.assist-shell--embedded .assist-send.is-busy svg {
+  animation: assist-send-busy 900ms linear infinite;
+}
+
+@keyframes assist-send-busy {
+  from { opacity: .35; }
+  50% { opacity: 1; }
+  to { opacity: .35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assist-send.is-busy svg {
+    animation: none !important;
+  }
+}
+
+/* Assistant: a plain growing text field with one trailing send action. */
+.assist-composer {
+  position: relative !important;
+  z-index: 4 !important;
+  bottom: auto !important;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+  border-top: 1px solid var(--message-composer-divider) !important;
+  background: var(--message-composer-surface) !important;
+  box-shadow: none !important;
+}
+
+/* `--assist-input-height` is set by the composer script as the text grows;
+ * an inline `height` cannot win against the `!important` sheets above. */
+.assist-composer textarea {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: var(--assist-input-height, auto) !important;
+  min-height: 44px !important;
+  max-height: 112px !important;
+  margin: 0 !important;
+  padding: 10px 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  resize: none !important;
+  background: transparent !important;
+  color: var(--message-composer-text) !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  box-shadow: none !important;
+}
+
+.assist-composer textarea:disabled {
+  color: var(--message-composer-muted) !important;
+  opacity: 1 !important;
+}
+
+.explore-icon-btn--send {
+  width: 40px !important;
+  min-width: 40px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  color: #fff !important;
+  background: var(--message-composer-action) !important;
+  box-shadow: none !important;
+}
+
+.explore-icon-btn--send:disabled {
+  color: #9aa6b1 !important;
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+.assist-composer__hint {
+  display: none !important;
+}
+
+/* Explore conversations follow the exact same surface and focus behavior. */
+.explore-session__composer,
+.mini-explore-host .explore-session__composer {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+  border-top: 1px solid var(--message-composer-divider) !important;
+  background: var(--message-composer-surface) !important;
+  box-shadow: none !important;
+}
+
+.explore-session__composer-box,
+.mini-explore-host .explore-session__composer-box {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 40px !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 48px !important;
+  padding: 4px 4px 4px 13px !important;
+  border: 0 !important;
+  border-radius: 11px !important;
+  background: var(--message-composer-field) !important;
+  box-shadow: none !important;
+}
+
+.explore-session__composer-box:focus-within,
+.mini-explore-host .explore-session__composer-box:focus-within {
+  box-shadow: none !important;
+}
+
+.explore-session__composer input,
+.mini-explore-host .explore-session__composer input {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 40px !important;
+  margin: 0 !important;
+  padding: 8px 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  color: var(--message-composer-text) !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  box-shadow: none !important;
+}
+
+/* Explore's task prompt is a normal multiline form, not a dashboard card. */
+.explore-task-form {
+  gap: 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.explore-task-form textarea {
+  min-height: 96px !important;
+  margin: 0 !important;
+  padding: 11px 12px !important;
+  border: 0 !important;
+  border-radius: 11px !important;
+  outline: 0 !important;
+  resize: vertical !important;
+  background: var(--message-composer-field) !important;
+  color: var(--message-composer-text) !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  box-shadow: inset 0 0 0 1px rgb(12 36 56 / 8%) !important;
+}
+
+.explore-task-form textarea:focus {
+  box-shadow: inset 0 0 0 1px rgb(12 36 56 / 8%) !important;
+}
+
+.explore-task-form > button[type="submit"] {
+  justify-self: start !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 44px !important;
+  padding: 0 16px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  background: var(--message-composer-action) !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .pop-composer input:focus,
+body[data-app-mode="app"] .pop-composer input:focus-visible,
+.mini-phone .mini-composer input:focus,
+.mini-phone .mini-composer input:focus-visible,
+.assist-composer textarea:focus,
+.assist-composer textarea:focus-visible,
+.explore-session__composer input:focus,
+.explore-session__composer input:focus-visible {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .pop-composer input::selection,
+.mini-phone .mini-composer input::selection,
+.assist-composer textarea::selection,
+.explore-session__composer input::selection,
+.explore-task-form textarea::selection {
+  color: inherit;
+  background: rgb(130 144 157 / 18%);
+}
+
+@media (pointer: coarse) {
+  body[data-app-mode="app"] .pop-composer button:active,
+  .mini-phone .mini-composer button:active,
+  .assist-composer button:active,
+  .explore-session__composer button:active,
+  .explore-task-form button:active {
+    transform: scale(.96) !important;
+    opacity: .78;
+  }
+}
+
+@media (max-width: 374px) {
+  body[data-app-mode="app"] .composer-stack.pop-composer,
+  .mini-phone .mini-composer,
+  .assist-composer,
+  .explore-session__composer,
+  .mini-explore-host .explore-session__composer {
+    padding-inline: 8px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-app-mode="app"] .pop-composer button,
+  .mini-phone .mini-composer button,
+  .assist-composer button,
+  .explore-session__composer button,
+  .explore-task-form button {
+    transition: none !important;
+  }
+}
+
+/*
+ * Soft keyboard: shrink the shell so every composer (App chat, 小手机,
+ * Pop, 栖机助手, 探索) sits on the IME instead of under it.
+ */
+html.is-keyboard-open .nyra-dock,
+html.is-keyboard-open .bottom-tabs {
+  transform: translateY(calc(100% + env(safe-area-inset-bottom, 0px)));
+  pointer-events: none;
+  visibility: hidden;
+}
+
+html.is-keyboard-open .mini-pop-tabs {
+  display: none !important;
+}
+
+/* The float is anchored to the viewport bottom, so while typing it would sit in
+ * the keyboard band instead of the chat. */
+html.is-keyboard-open [data-companion-float] {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/*
+ * Chat already paints its own sticky header inside .content-shell.
+ * Shrink the visible column to the real keyboard inset and keep overflow
+ * locked so scrollIntoView cannot shove the header above the fold.
+ */
+html.is-keyboard-open body[data-app-mode="app"] .app-shell,
+html.is-keyboard-open.html.is-native-app body[data-app-mode="app"] .app-shell,
+html.is-keyboard-open.html.is-compact-shell body[data-app-mode="app"] .app-shell {
+  height: calc(100svh - var(--vv-offset-bottom, 0px)) !important;
+  max-height: calc(100svh - var(--vv-offset-bottom, 0px)) !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+html.is-keyboard-open body[data-app-mode="app"] .content-shell,
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="chat"] .content-shell,
+html.is-keyboard-open body[data-app-mode="app"]:has(.app-page[data-panel="chat"].is-active:not([hidden])) .content-shell,
+html.is-keyboard-open.html.is-native-app body[data-app-mode="app"] .content-shell,
+html.is-keyboard-open.html.is-compact-shell body[data-app-mode="app"] .content-shell,
+html.is-keyboard-open.html.is-native-app body[data-app-mode="app"][data-active-panel="chat"] .content-shell,
+html.is-keyboard-open.html.is-compact-shell body[data-app-mode="app"][data-active-panel="chat"] .content-shell,
+html.is-keyboard-open.html.is-native-app body[data-app-mode="app"]:has(.app-page[data-panel="chat"].is-active:not([hidden])) .content-shell,
+html.is-keyboard-open.html.is-compact-shell body[data-app-mode="app"]:has(.app-page[data-panel="chat"].is-active:not([hidden])) .content-shell {
+  height: calc(100svh - var(--nyra-header-height, 0px) - var(--vv-offset-bottom, 0px)) !important;
+  max-height: calc(100svh - var(--nyra-header-height, 0px) - var(--vv-offset-bottom, 0px)) !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  padding-bottom: 0 !important;
+  overflow: hidden !important;
+}
+
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="chat"] .content-shell,
+html.is-keyboard-open body[data-app-mode="app"]:has(.app-page[data-panel="chat"].is-active:not([hidden])) .content-shell,
+html.is-keyboard-open.html.is-native-app body[data-app-mode="app"][data-active-panel="chat"] .content-shell,
+html.is-keyboard-open.html.is-compact-shell body[data-app-mode="app"][data-active-panel="chat"] .content-shell,
+html.is-keyboard-open.html.is-native-app body[data-app-mode="app"]:has(.app-page[data-panel="chat"].is-active:not([hidden])) .content-shell,
+html.is-keyboard-open.html.is-compact-shell body[data-app-mode="app"]:has(.app-page[data-panel="chat"].is-active:not([hidden])) .content-shell,
+/* Assist and the me detail routes hide the App header (compact-subpage.css),
+ * so reserving its height here left the composer under the keyboard. */
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell[data-settings-route="assist"]) .content-shell,
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="assist"] .content-shell {
+  height: calc(100svh - var(--vv-offset-bottom, 0px)) !important;
+  max-height: calc(100svh - var(--vv-offset-bottom, 0px)) !important;
+  padding: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="chat"] .app-page[data-panel="chat"],
+html.is-keyboard-open body[data-app-mode="app"] .app-page[data-panel="chat"].is-active {
+  height: 100% !important;
+  max-height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="chat"] .chat-panel {
+  min-height: 0 !important;
+}
+
+/* Assistant detail route: page and shell padding would leave the composer
+ * floating ~56px above the keyboard once the column shrinks. */
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="assist"] .app-page.me-page,
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="assist"] .me-shell.is-detail,
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell[data-settings-route="assist"]) .app-page.me-page,
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell[data-settings-route="assist"]) .me-shell.is-detail {
+  padding-bottom: 0 !important;
+}
+
+html.is-keyboard-open .mini-phone,
+html.is-keyboard-open body[data-app-mode="phone"] .mini-phone,
+html.is-keyboard-open.html.is-native-app .mini-phone,
+html.is-keyboard-open.html.is-compact-shell .mini-phone {
+  height: calc(100svh - var(--vv-offset-bottom, 0px)) !important;
+  max-height: calc(100svh - var(--vv-offset-bottom, 0px)) !important;
+}
+
+html.is-keyboard-open .composer-stack.pop-composer,
+html.is-keyboard-open .mini-composer-stack,
+html.is-keyboard-open .mini-composer,
+html.is-keyboard-open .assist-composer,
+html.is-keyboard-open .explore-session__composer,
+html.is-keyboard-open .mini-explore-host .explore-session__composer {
+  padding-bottom: 8px !important;
+  position: relative !important;
+  bottom: auto !important;
+}

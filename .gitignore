@@ -1,0 +1,24 @@
+node_modules/
+frontend/www/
+frontend/dist/
+backend/data/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+!.env.example
+.env.local
+*.pem
+*.jks
+*.keystore
+local.properties
+
+artifacts/
+.tmp/
+coverage/
+*.apk
+*.aab
+
+# Local gateway token created on first run
+**/.local-token

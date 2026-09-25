@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "clipId": "lean_close",
+  "image": "lean_close.png",
+  "size": {
+    "width": 317,
+    "height": 703
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "lean_close_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 317,
+        "height": 703
+      },
+      "source": {
+        "x": 222,
+        "y": 34,
+        "width": 317,
+        "height": 703
+      },
+      "durationMs": 1500
+    }
+  ]
+}

@@ -1,0 +1,1209 @@
+/**
+ * Mobile product closure.
+ * This is the final visual layer for the App shell and the small-phone home.
+ * It intentionally changes presentation only; repositories, events and routes
+ * continue to be owned by their existing modules.
+ */
+
+/* --------------------------------------------------------------------------
+ * Shared mobile restraint
+ * ----------------------------------------------------------------------- */
+
+body[data-app-mode="app"] {
+  --nyra-dock-body: 58px;
+  --nyra-dock-height: calc(var(--nyra-dock-body) + env(safe-area-inset-bottom, 0px));
+  --bottom-nav-height: var(--nyra-dock-height);
+  --nyra-composer-body: 64px;
+  --nyra-header-body: 52px;
+}
+
+body[data-app-mode="app"] button,
+.mini-phone button,
+.nyra-overlay button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body[data-app-mode="app"] button:active,
+.mini-phone button:active {
+  transition-duration: 80ms;
+}
+
+/* A bottom bar should read as navigation, not as the page's main card. */
+body[data-app-mode="app"] .nyra-dock {
+  min-height: var(--nyra-dock-height) !important;
+  padding: 3px 12px calc(3px + env(safe-area-inset-bottom, 0px)) !important;
+  border-top: 1px solid var(--nyra-line) !important;
+  background: rgb(255 255 255 / 96%) !important;
+  box-shadow: 0 -4px 16px rgb(12 30 50 / 4%) !important;
+  backdrop-filter: blur(14px);
+}
+
+body[data-app-mode="app"] .nyra-dock > button:not(.nyra-dock__hub) {
+  min-height: 46px !important;
+  gap: 1px !important;
+  padding: 1px 8px !important;
+}
+
+body[data-app-mode="app"] .nyra-dock > button:not(.nyra-dock__hub) svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke-width: 1.75;
+}
+
+body[data-app-mode="app"] .nyra-dock > button:not(.nyra-dock__hub) > span:last-child {
+  font-size: 10px !important;
+  font-weight: 560 !important;
+}
+
+/* Hub is pulse + label stacked — do not force the whole button into a circle. */
+body[data-app-mode="app"] .nyra-dock .nyra-dock__hub {
+  width: auto !important;
+  height: auto !important;
+  min-height: 58px !important;
+  margin-top: -6px !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+/* --------------------------------------------------------------------------
+ * App chat — one calm conversation surface
+ * ----------------------------------------------------------------------- */
+
+body[data-app-mode="app"][data-active-panel="chat"] .mobile-header {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .chat-sticky {
+  display: grid !important;
+  grid-template-columns: 40px minmax(78px, 1fr) auto !important;
+  align-items: center !important;
+  gap: 6px !important;
+  min-height: 52px;
+  padding: 6px 10px !important;
+  border-bottom: 1px solid var(--nyra-line) !important;
+  background: rgb(255 255 255 / 97%) !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .chat-sticky__menu {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  color: var(--nyra-navy);
+  background: transparent;
+}
+
+body[data-app-mode="app"] .chat-sticky__menu:active,
+body[data-app-mode="app"] .chat-quick-action:active {
+  background: var(--nyra-surface-soft) !important;
+  transform: scale(.96);
+}
+
+body[data-app-mode="app"] .chat-sticky__menu svg,
+body[data-app-mode="app"] .chat-quick-action svg {
+  width: 19px !important;
+  height: 19px !important;
+  stroke-width: 1.75;
+}
+
+body[data-app-mode="app"] .chat-identity {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .chat-identity-avatar,
+body[data-app-mode="app"] .chat-identity-avatar .role-avatar-fallback {
+  width: 34px !important;
+  height: 34px !important;
+  flex: 0 0 34px;
+  border-radius: 50% !important;
+}
+
+body[data-app-mode="app"] .chat-identity-copy {
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .chat-identity-copy strong,
+body[data-app-mode="app"] .chat-identity-copy small {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .chat-identity-copy strong {
+  color: var(--nyra-ink);
+  font-size: 14px !important;
+  font-weight: 650 !important;
+}
+
+body[data-app-mode="app"] .chat-identity-copy small {
+  margin-top: 1px;
+  color: var(--nyra-muted);
+  font-size: 10px !important;
+}
+
+body[data-app-mode="app"] .chat-sticky .parameter-strip {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .chat-quick-actions {
+  display: flex !important;
+  align-items: center;
+  gap: 0 !important;
+}
+
+body[data-app-mode="app"] .chat-quick-action {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 11px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .chat-pet-toggle__label {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .chat-pet-toggle__lamp {
+  width: 5px !important;
+  height: 5px !important;
+}
+
+body[data-app-mode="app"] .message-list {
+  min-height: 100%;
+}
+
+body[data-app-mode="app"] .composer-stack.pop-composer,
+html.is-native-app body[data-app-mode="app"][data-active-panel="chat"] .composer-stack,
+html.is-compact-shell body[data-app-mode="app"][data-active-panel="chat"] .composer-stack {
+  /* No bottom inset here: the fixed dock sits below this bar and already spans
+   * the gesture area, so repeating it opens a dead band under the field. */
+  padding: 6px 10px !important;
+  border-top: 1px solid var(--nyra-line) !important;
+  background: rgb(255 255 255 / 97%) !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .composer.pop-composer__bar {
+  min-height: 46px !important;
+  gap: 5px !important;
+}
+
+body[data-app-mode="app"] .composer-field {
+  min-height: 44px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+body[data-app-mode="app"] .composer-field input {
+  min-height: 44px !important;
+  border-radius: 11px !important;
+  padding-inline: 13px !important;
+  font-size: 16px !important;
+}
+
+body[data-app-mode="app"] .composer-tool {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+}
+
+/* Chat page owns the composer as a grid row. Only reserve the fixed dock on
+ * compact viewports — do not also pad .chat-panel for a phantom composer. */
+body[data-app-mode="app"][data-active-panel="chat"] .chat-panel {
+  padding-bottom: 0 !important;
+}
+
+@media (max-width: 1079px) {
+  body[data-app-mode="app"][data-active-panel="chat"] .content-shell {
+    padding-bottom: var(--nyra-dock-height) !important;
+  }
+}
+
+@media (min-width: 1080px) {
+  body[data-app-mode="app"][data-active-panel="chat"] .content-shell {
+    padding-bottom: 0 !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Album — one page identity and an embedded empty state
+ * ----------------------------------------------------------------------- */
+
+body[data-app-mode="app"] .album-library {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: 100% !important;
+  padding: 14px var(--nyra-page-pad-x) 24px !important;
+  overflow: hidden !important;
+  background: transparent !important;
+}
+
+body[data-app-mode="app"] .album-library .library-head.app-gallery__head {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex: 0 0 auto !important;
+  min-height: 44px !important;
+  padding: 2px 0 10px !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .album-library .library-head h2 {
+  margin: 0 !important;
+  color: var(--nyra-ink) !important;
+  font: var(--nyra-type-page) !important;
+}
+
+body[data-app-mode="app"] .album-library .app-gallery__subtitle {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .album-library .mini-gallery-hint {
+  display: block !important;
+  margin: 0 0 12px !important;
+  color: var(--nyra-muted, #6a7874) !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+
+body[data-app-mode="app"] .album-library .library-head .ghost-action[data-gallery-action="add-group"] {
+  min-height: 38px !important;
+  padding: 0 12px !important;
+  border: 1px solid var(--nyra-line-strong) !important;
+  border-radius: 999px !important;
+  color: var(--nyra-navy) !important;
+  background: rgb(255 255 255 / 82%) !important;
+  font-size: 12px !important;
+  font-weight: 650 !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .album-library .permission-bar {
+  flex: 0 0 auto !important;
+}
+
+body[data-app-mode="app"] .album-library .app-gallery__body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .album-library .app-gallery__body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+body[data-app-mode="app"] .album-library .app-gallery__pane,
+body[data-app-mode="app"] .album-library .mini-album-stacks {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .album-library .mini-album-stacks {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 16px 12px !important;
+}
+
+/* Life tabs: one rail, one underline. The player head must not draw a second indicator. */
+body[data-app-mode="app"] .library-page > .page-section-tabs {
+  display: flex !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 40px !important;
+  margin: 0 0 2px !important;
+  padding-right: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--nyra-line) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .library-page > .page-section-tabs button {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  min-height: 40px !important;
+  padding: 0 8px 2px !important;
+}
+
+body[data-app-mode="app"] .library-page > .page-section-tabs button.is-active::after {
+  left: 28% !important;
+  right: 28% !important;
+  bottom: -1px !important;
+  width: auto !important;
+  height: 2px !important;
+}
+
+body[data-app-mode="app"] .music-player-head::after {
+  display: none !important;
+  content: none !important;
+}
+
+body[data-app-mode="app"] .album-library .permission-bar[hidden] {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .album-library .mini-album-empty,
+.mini-phone .mini-album-empty {
+  width: min(100%, 340px) !important;
+  min-height: 250px !important;
+  margin: 24px auto 0 !important;
+  padding: 28px 18px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .album-library .mini-album-empty__btn,
+.mini-phone .mini-album-empty__btn {
+  min-height: 40px !important;
+  padding: 0 16px !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: var(--nyra-navy) !important;
+  box-shadow: 0 7px 16px rgb(20 55 94 / 12%) !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Small phone — Today is a feed; Apps is a launcher
+ * ----------------------------------------------------------------------- */
+
+.mini-phone .mini-home {
+  --nyra-phone-page-x: clamp(18px, 5.8vw, 24px);
+  grid-template-rows: minmax(0, 1fr) 14px auto !important;
+  gap: 4px !important;
+  padding-right: 0 !important;
+  padding-bottom: max(6px, env(safe-area-inset-bottom, 0px)) !important;
+  padding-left: 0 !important;
+}
+
+/* Home paging is transform + pointer driven (os-home-pager.js). Do not switch
+ * this layer to native overflow-x scroll — that breaks desktop mouse drag and
+ * fights phone-product-final / product-restraint. */
+.mini-phone .mini-home__pager {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  scroll-snap-type: none !important;
+  touch-action: none !important;
+  overscroll-behavior: none !important;
+}
+
+.mini-phone .mini-home__track {
+  display: flex !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  height: 100% !important;
+}
+
+.mini-phone .mini-home__page {
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  padding: 16px var(--nyra-phone-page-x) 4px !important;
+  overflow: hidden !important;
+  touch-action: none !important;
+  scroll-snap-align: none;
+}
+
+.mini-phone .mini-widgets,
+.mini-phone .mini-widgets--minimal {
+  width: 100% !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-content: initial !important;
+  gap: 10px !important;
+  padding: 0 !important;
+}
+
+.mini-phone .mini-widget {
+  min-width: 0 !important;
+  border: 1px solid rgb(20 55 94 / 9%) !important;
+  border-radius: 16px !important;
+  background: rgb(255 255 255 / 78%) !important;
+  box-shadow: 0 7px 18px rgb(15 40 70 / 5%) !important;
+}
+
+.mini-phone .mini-widget--clock,
+.mini-phone .mini-home-hero {
+  min-height: 92px !important;
+  padding: 8px 2px 4px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-home-greeting {
+  gap: 4px !important;
+  align-content: center !important;
+  padding: 0 !important;
+}
+
+.mini-phone .mini-home-greeting time {
+  display: none !important;
+}
+
+.mini-phone .mini-home-greeting strong {
+  color: var(--nyra-phone-ink, #10243a) !important;
+  font-size: clamp(20px, 6vw, 24px) !important;
+  font-weight: 680 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+}
+
+.mini-phone .mini-home-greeting p {
+  margin: 0 !important;
+  color: var(--nyra-phone-muted, #748596) !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+
+.mini-phone .mini-widget--today {
+  min-height: 108px !important;
+  padding: 13px 14px !important;
+  border-left: 2px solid rgb(61 149 237 / 54%) !important;
+}
+
+.mini-phone .mini-today__head {
+  gap: 8px !important;
+}
+
+.mini-phone .mini-today__head strong {
+  font-size: 13px !important;
+}
+
+.mini-phone .mini-today__head span,
+.mini-phone .mini-today__empty,
+.mini-phone .mini-today__item {
+  font-size: 11px !important;
+}
+
+.mini-phone .mini-widget--vinyl {
+  min-height: 88px !important;
+  display: grid !important;
+  grid-template-columns: 54px minmax(0, 1fr) 30px !important;
+  grid-template-rows: auto 1fr !important;
+  gap: 3px 10px !important;
+  align-items: center !important;
+  padding: 12px 13px !important;
+  background: linear-gradient(135deg, rgb(255 255 255 / 88%), rgb(242 247 252 / 84%)) !important;
+}
+
+.mini-phone .mini-widget--vinyl .mini-home-widget-title {
+  grid-column: 2 / 4 !important;
+  grid-row: 1 !important;
+  min-width: 0;
+}
+
+.mini-phone .mini-widget--vinyl .mini-home-widget-title strong,
+.mini-phone .mini-widget--vinyl .mini-home-widget-title span {
+  font-size: 11px !important;
+}
+
+.mini-phone .mini-widget--vinyl .mini-vinyl {
+  grid-column: 1 !important;
+  grid-row: 1 / 3 !important;
+}
+
+.mini-phone .mini-widget--vinyl .mini-vinyl,
+.mini-phone .mini-widget--vinyl .mini-vinyl__disc {
+  width: 52px !important;
+  height: 52px !important;
+}
+
+.mini-phone .mini-widget--vinyl .mini-vinyl__arm {
+  display: none !important;
+}
+
+.mini-phone .mini-widget--vinyl .mini-vinyl__meta {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  min-width: 0;
+}
+
+.mini-phone .mini-widget--vinyl .mini-vinyl__meta strong {
+  font-size: 12px !important;
+}
+
+.mini-phone .mini-widget--vinyl .mini-vinyl__meta p {
+  font-size: 10px !important;
+}
+
+.mini-phone .mini-widget--vinyl .mini-home-widget-action {
+  grid-column: 3 !important;
+  grid-row: 2 !important;
+}
+
+.mini-phone .mini-widget--calendar {
+  display: none !important;
+}
+
+/* Apps page: strict four-column launcher geometry. */
+.mini-phone .mini-app-grid {
+  width: 100% !important;
+  height: auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  grid-auto-rows: max-content !important;
+  align-content: start !important;
+  gap: clamp(26px, 4.5vh, 36px) 10px !important;
+  padding: 16px 0 10px !important;
+}
+
+/* Empty layout slots remain valid drop targets while arranging icons, but a
+ * normal launcher never paints them as mysterious blank applications. */
+.mini-phone:not(.is-home-editing) .mini-app-slot {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.mini-phone .mini-app-icon {
+  min-width: 0 !important;
+  gap: 5px !important;
+}
+
+.mini-phone .mini-app-icon > span {
+  width: 54px !important;
+  height: 54px !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  color: var(--nyra-phone-navy, #14375e) !important;
+  background: rgb(255 255 255 / 74%) !important;
+  box-shadow: 0 6px 14px rgb(15 40 70 / 6%) !important;
+}
+
+/* An empty grid slot is a hole in the layout, not a blank app. It keeps a
+ * tile's footprint so the grid stays on its rhythm, but never the tile's fill
+ * or shadow — sharing that rule made empty slots read as white cards. Height
+ * follows the width so the density sheets can shrink it and stay square. */
+.mini-phone .mini-app-slot > i {
+  width: 54px !important;
+  height: auto !important;
+  aspect-ratio: 1 !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Arranging icons is the only time a slot shows itself, as an outline. */
+.mini-phone.is-home-editing .mini-app-slot > i {
+  background: rgb(255 255 255 / 10%) !important;
+  box-shadow: inset 0 0 0 1px rgb(20 55 94 / 13%) !important;
+}
+
+.mini-phone[data-wallpaper-tone="dark"].is-home-editing .mini-app-slot > i {
+  background: rgb(255 255 255 / 8%) !important;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 18%) !important;
+}
+
+.mini-phone .mini-app-icon svg,
+.mini-phone .mini-app-slot svg {
+  width: 26px !important;
+  height: 26px !important;
+  stroke-width: 1.75 !important;
+}
+
+.mini-phone .mini-app-icon em,
+.mini-phone .mini-app-slot em,
+.mini-phone .mini-app-icon > b,
+.mini-phone .mini-app-slot > span:last-child {
+  max-width: 72px;
+  color: var(--nyra-phone-ink, #10243a) !important;
+  font-size: 12px !important;
+  font-weight: 560 !important;
+  line-height: 1.2 !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mini-phone .mini-home__edit-hint {
+  display: none !important;
+}
+
+.mini-phone .mini-home__dots {
+  min-height: 14px !important;
+  gap: 6px !important;
+  margin: 0 0 3px !important;
+}
+
+.mini-phone .mini-home__dots button {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 999px !important;
+  opacity: .28 !important;
+}
+
+.mini-phone .mini-home__dots button.is-active {
+  width: 14px !important;
+  opacity: .84 !important;
+}
+
+/* Dock width follows its real icon count, avoiding a giant empty pill. */
+.mini-phone .mini-dock {
+  width: min(80%, 308px) !important;
+  min-height: 64px !important;
+  margin: 0 auto 4px !important;
+  padding: 7px 12px !important;
+  border: 1px solid rgb(20 55 94 / 8%) !important;
+  border-radius: 22px !important;
+  background: rgb(255 255 255 / 72%) !important;
+  box-shadow: 0 9px 22px rgb(15 40 70 / 7%) !important;
+  backdrop-filter: blur(14px);
+}
+
+.mini-phone .mini-dock[data-dock-count="1"] { width: 82px !important; }
+.mini-phone .mini-dock[data-dock-count="2"] { width: 154px !important; }
+.mini-phone .mini-dock[data-dock-count="3"] { width: 224px !important; }
+
+.mini-phone .mini-dock__slot {
+  min-width: 0 !important;
+}
+
+.mini-phone .mini-dock-icon > span,
+.mini-phone .mini-dock__slot > i,
+.mini-phone .mini-dock .mini-app-icon > span {
+  width: 44px !important;
+  height: 44px !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-dock-icon svg,
+.mini-phone .mini-dock__slot svg {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.mini-phone .mini-dock .mini-app-icon em,
+.mini-phone .mini-dock .mini-app-icon > b {
+  display: none !important;
+}
+
+@media (max-height: 760px) {
+  .mini-phone .mini-home__page {
+    padding-top: 10px !important;
+  }
+
+  .mini-phone .mini-widget--clock,
+  .mini-phone .mini-home-hero {
+    min-height: 78px !important;
+  }
+
+  .mini-phone .mini-widget--today {
+    min-height: 96px !important;
+  }
+
+  .mini-phone .mini-app-grid {
+    gap: 22px 8px !important;
+    padding-top: 10px !important;
+  }
+}
+
+@media (min-width: 1080px) {
+  body[data-app-mode="app"] .chat-sticky {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+  }
+
+  body[data-app-mode="app"] .chat-sticky__menu {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mini-phone .mini-home__track,
+  .nyra-overlay__sheet,
+  .nyra-overlay__scrim {
+    transition-duration: 1ms !important;
+  }
+}
+
+
+/* phone switch geometry lock */
+.mini-phone button.mini-switch,
+.mini-phone .mini-switch[role="switch"] {
+  width: 46px !important;
+  height: 28px !important;
+  min-width: 46px !important;
+  min-height: 28px !important;
+  max-width: 46px !important;
+  max-height: 28px !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  background: #c5d0d8 !important;
+  flex: 0 0 46px !important;
+  aspect-ratio: auto !important;
+}
+.mini-phone button.mini-switch.is-on,
+.mini-phone .mini-switch[aria-checked="true"] {
+  background: #14375e !important;
+}
+.mini-phone button.mini-switch > .mini-switch__knob,
+.mini-phone button.mini-switch > i {
+  position: absolute !important;
+  top: 3px !important;
+  left: 3px !important;
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  transform: translateX(0) !important;
+}
+.mini-phone button.mini-switch.is-on > .mini-switch__knob,
+.mini-phone button.mini-switch.is-on > i,
+.mini-phone .mini-switch[aria-checked="true"] > .mini-switch__knob,
+.mini-phone .mini-switch[aria-checked="true"] > i {
+  transform: translateX(18px) !important;
+}
+.mini-phone .mini-settings-block > .mini-segmented .mini-segment.is-active::after,
+.mini-phone .mini-profile-block > .mini-segmented .mini-segment.is-active::after {
+  display: none !important;
+}
+.mini-phone .preset-card .preset-action.is-on {
+  color: #fff !important;
+  border-color: transparent !important;
+  background: #14375e !important;
+}
+
+.mini-phone .mini-listen-colisten {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: min(100%, 320px) !important;
+  min-height: 36px !important;
+  height: auto !important;
+  margin: 8px auto 0 !important;
+  padding: 8px 2px !important;
+  gap: 12px !important;
+  border: 0 !important;
+  border-top: 1px solid rgb(8 35 58 / 9%) !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+}
+
+.mini-phone .mini-listen-colisten > span {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 22px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.2 !important;
+  font-size: 13px !important;
+}
+
+.mini-phone .mini-listen-colisten button.mini-switch {
+  align-self: center !important;
+  width: 42px !important;
+  height: 24px !important;
+  min-width: 42px !important;
+  min-height: 24px !important;
+  max-width: 42px !important;
+  max-height: 24px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 0 0 42px !important;
+  position: relative !important;
+  top: auto !important;
+}
+
+.mini-phone .mini-listen-colisten button.mini-switch > .mini-switch__knob,
+.mini-phone .mini-listen-colisten button.mini-switch > i {
+  top: 3px !important;
+  left: 3px !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  min-height: 18px !important;
+}
+
+.mini-phone .mini-listen-colisten button.mini-switch.is-on > .mini-switch__knob,
+.mini-phone .mini-listen-colisten button.mini-switch.is-on > i {
+  transform: translateX(18px) !important;
+}
+
+/* Bottom padding is owned by product-restraint.css, which keeps a real gap
+ * plus the safe-area inset. Flattening it here glued the bar to the edge. */
+
+.mini-phone .mini-pop-tabs {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  min-height: 0 !important;
+  padding-top: 8px !important;
+  padding-bottom: max(28px, env(safe-area-inset-bottom, 0px)) !important;
+}
+
+.mini-phone .mini-pop.is-thread .mini-pop-tabs {
+  display: none !important;
+}
+
+.mini-phone .mini-pop-tabs button {
+  display: grid !important;
+  align-content: center !important;
+  justify-items: center !important;
+  gap: 3px !important;
+  min-height: 48px !important;
+  padding: 4px 2px 0 !important;
+  font-size: 10px !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0 !important;
+}
+
+.mini-phone .mini-pop-tabs button span {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.15;
+}
+
+.mini-phone .mini-contact-pinned {
+  grid-template-columns: 40px minmax(0, 1fr) 16px !important;
+  gap: 12px !important;
+  min-height: 56px !important;
+  padding: 10px 16px !important;
+}
+
+.mini-phone .mini-contact-pinned .mini-pop-list-row__body strong {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+}
+
+.mini-phone .mini-contact-section__label {
+  padding: 6px 16px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+}
+
+.mini-phone .mini-contact-main {
+  grid-template-columns: 40px minmax(0, 1fr) !important;
+  gap: 12px !important;
+  align-items: center !important;
+  min-height: 56px !important;
+  padding: 8px 16px !important;
+}
+
+.mini-phone .mini-contact-copy strong {
+  display: block !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+}
+
+.mini-phone .mini-contact-avatar,
+.mini-phone .mini-contact-avatar .mini-avatar-fallback {
+  display: grid !important;
+  place-items: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+}
+
+.mini-phone .mini-moment-empty__btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 40px !important;
+  padding: 0 18px !important;
+  line-height: 1 !important;
+}
+
+/* Video call sheet — compact card, idle placeholder, no native empty-video chrome. */
+body[data-app-mode="app"] .video-call-modal.is-open {
+  align-content: center;
+  padding:
+    max(12px, env(safe-area-inset-top, 0px))
+    12px
+    max(12px, env(safe-area-inset-bottom, 0px));
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  width: min(100%, 336px) !important;
+  max-height: min(calc(100svh - 24px), 620px) !important;
+  padding: 14px 14px 12px !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel > header {
+  position: static !important;
+  flex: 0 0 auto;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel > header h2 {
+  font-size: 17px !important;
+  font-weight: 650 !important;
+  line-height: 1.2 !important;
+}
+
+body[data-app-mode="app"] .video-call-modal:not([data-call-mode="voice"]) .video-call-stage {
+  flex: 0 0 auto;
+  aspect-ratio: 16 / 10 !important;
+  max-height: min(32svh, 220px) !important;
+  min-height: 156px;
+  overflow: hidden;
+}
+
+body[data-app-mode="app"] .video-call-placeholder {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  color: rgba(255, 255, 255, 0.74);
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.45;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(85, 200, 251, 0.16), transparent 58%),
+    linear-gradient(180deg, #0f2438 0%, #07131f 100%);
+}
+
+body[data-app-mode="app"] .video-call-placeholder[hidden],
+body[data-app-mode="app"] .video-call-stage.is-live .video-call-placeholder {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .video-call-placeholder__icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: #b8dcf5;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body[data-app-mode="app"] .video-call-placeholder__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+body[data-app-mode="app"] .video-call-stage video[data-video-call-preview] {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #07131f;
+}
+
+body[data-app-mode="app"] .video-call-stage video[data-video-call-preview][hidden] {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .video-call-actions {
+  flex: 0 0 auto;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  margin: 0 !important;
+}
+
+body[data-app-mode="app"] .video-call-actions .ghost-action {
+  min-height: 44px !important;
+  padding: 10px 12px !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+}
+
+body[data-app-mode="app"] .video-call-actions .ghost-action:disabled {
+  opacity: 0.46;
+  pointer-events: none;
+}
+
+body[data-app-mode="app"] .video-call-actions .video-call-stop,
+body[data-app-mode="app"] .video-call-modal:not([data-call-mode="voice"]) .video-call-actions [data-video-call-auto] {
+  grid-column: 1 / -1;
+}
+
+body[data-app-mode="app"] .video-call-actions .video-call-stop {
+  min-height: 46px !important;
+}
+
+body[data-app-mode="app"] .video-call-log {
+  flex: 0 0 auto;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 8px 4px 2px !important;
+  border-top: 1px solid var(--nyra-line) !important;
+  background: transparent !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+/* The space control is a quick switcher, not another settings page. Keep the
+ * three destinations immediately visible above the dock. */
+body[data-app-mode="app"] .nyra-nav-hub {
+  align-items: end;
+  padding-bottom: calc(var(--nyra-dock-height) - 1px);
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__panel--compact {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  max-height: none;
+  padding: 6px 14px 14px;
+  overflow: visible;
+  border: 1px solid var(--nyra-line);
+  border-bottom: 0;
+  border-radius: 18px 18px 0 0;
+  background: var(--nyra-paper);
+  box-shadow: 0 -8px 20px rgb(2 10 18 / 8%);
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__panel--compact > header {
+  justify-content: flex-end;
+  min-height: 30px;
+  padding: 0;
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__sr-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__panel--compact .nyra-nav-hub__close {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  color: var(--nyra-muted);
+  background: transparent;
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__panel--compact .nyra-nav-hub__routes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__panel--compact .nyra-nav-hub__routes > button {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px auto;
+  align-content: center;
+  justify-items: center;
+  gap: 7px;
+  min-height: 84px;
+  padding: 10px 4px 11px;
+  border: 1px solid var(--nyra-line);
+  border-radius: 12px;
+  color: var(--nyra-ink);
+  background: var(--nyra-paper-soft);
+  text-align: center;
+  transition: background 140ms ease, border-color 140ms ease, transform 100ms ease;
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__panel--compact .nyra-nav-hub__routes > button:active {
+  transform: scale(.98);
+  border-color: color-mix(in srgb, var(--nyra-blue) 38%, var(--nyra-line));
+  background: color-mix(in srgb, var(--nyra-blue) 8%, var(--nyra-paper-soft));
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__panel--compact .nyra-nav-hub__routes > button > span:nth-child(2) {
+  display: block;
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__panel--compact .nyra-nav-hub__routes strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__panel--compact .nyra-nav-hub__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--nyra-navy);
+  box-shadow: none;
+}
+
+body[data-app-mode="app"] .nyra-nav-hub__panel--compact .nyra-nav-hub__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 380px) {
+  body[data-app-mode="app"] .nyra-nav-hub__panel--compact .nyra-nav-hub__routes > button {
+    min-height: 76px;
+    grid-template-rows: 36px auto;
+  }
+
+  body[data-app-mode="app"] .nyra-nav-hub__panel--compact .nyra-nav-hub__icon {
+    width: 36px;
+    height: 36px;
+  }
+}

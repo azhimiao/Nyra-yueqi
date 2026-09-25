@@ -1,0 +1,1569 @@
+/*
+ * Compact Subpage Design System — App secondary / tertiary surfaces.
+ * Home (me-home, dock, main tabs) stays relaxed; detail routes get tighter rhythm.
+ * Loaded after nyra-app / product-restraint so shared primitives win here.
+ */
+
+body[data-app-mode="app"] {
+  --subpage-pad-x: 20px;
+  --subpage-section-gap: 10px;
+  --subpage-block-gap: 14px;
+  --subpage-row: 54px;
+  --subpage-row-pad-y: 6px;
+  --subpage-input: 44px;
+  --subpage-inline-input: 32px;
+  --subpage-segment: 42px;
+  --subpage-chip: 34px;
+  --subpage-chip-pad-x: 12px;
+  --subpage-switch-w: 44px;
+  --subpage-switch-h: 26px;
+  --subpage-switch-knob: 22px;
+  --subpage-card-radius: 14px;
+  --subpage-group-pad-x: 16px;
+  --subpage-hint-size: 12.5px;
+  --subpage-label-size: 14px;
+  --subpage-title-size: 15px;
+}
+
+/* Surfaces that inherit compact density (syntax shared, content varies). */
+body[data-app-mode="app"] :is(
+  .me-shell.is-detail,
+  .api-page:has(.api-detail:not([hidden]))
+) {
+  --me-row: var(--subpage-row);
+  --me-pad-x: var(--subpage-group-pad-x);
+  --me-gap: var(--subpage-section-gap);
+  --me-radius: var(--subpage-card-radius);
+}
+
+/* ── Editor scroll + section rhythm ── */
+body[data-app-mode="app"] .me-shell.is-detail:not([data-settings-route="assist"]) .settings-editor {
+  padding: 10px var(--subpage-pad-x) 14px !important;
+  gap: var(--subpage-block-gap) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail:not([data-settings-route="assist"]) .settings-panel {
+  gap: var(--subpage-section-gap) !important;
+  align-self: start;
+  align-content: start;
+  grid-auto-rows: max-content;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-section-title {
+  margin: 0;
+  padding: 0 2px;
+  font-size: var(--subpage-title-size);
+  font-weight: 620;
+  letter-spacing: -0.01em;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .settings-hint,
+body[data-app-mode="app"] .me-shell.is-detail .me-soft-status,
+body[data-app-mode="app"] .me-shell.is-detail .me-foot-hint {
+  margin: 0;
+  padding: 0 2px;
+  font-size: var(--subpage-hint-size);
+  line-height: 1.45;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .section-head,
+body[data-app-mode="app"] .me-shell.is-detail .editor-head {
+  min-height: 34px !important;
+  padding: 0 0 4px 10px !important;
+  border-bottom: 0 !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .section-head::before,
+body[data-app-mode="app"] .me-shell.is-detail .editor-head::before {
+  top: 2px;
+  bottom: 4px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .section-head h2,
+body[data-app-mode="app"] .me-shell.is-detail .editor-head h2 {
+  font-size: var(--subpage-title-size) !important;
+  font-weight: 600;
+}
+
+/* The route bar already owns the page title; action-only headers must not leave
+ * a cyan rail and an empty title-sized block underneath it. */
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  [data-settings-view="external"],
+  [data-settings-view="update"],
+  [data-settings-view="community"]
+) > :is(.section-head, .editor-head) {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 40px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  [data-settings-view="external"],
+  [data-settings-view="update"],
+  [data-settings-view="community"]
+) > :is(.section-head, .editor-head)::before {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  [data-settings-view="external"],
+  [data-settings-view="update"],
+  [data-settings-view="community"]
+) > :is(.section-head, .editor-head) > div {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  [data-settings-view="external"],
+  [data-settings-view="update"],
+  [data-settings-view="community"]
+) > :is(.section-head, .editor-head) .ghost-action {
+  min-height: 40px !important;
+  padding: 0 12px !important;
+  border-color: var(--nyra-line) !important;
+  color: var(--nyra-navy) !important;
+  background: var(--nyra-paper) !important;
+}
+
+/* Worldbook needs a compact two-line toolbar: explanation, then actions. */
+body[data-app-mode="app"] .me-shell.is-detail .world-editor > .editor-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  min-height: 0 !important;
+  padding: 2px 0 8px !important;
+  border: 0 !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .world-editor > .editor-head::before {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .world-editor > .editor-head > div {
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .world-editor > .editor-head .me-soft-status {
+  padding: 0 !important;
+  font-size: var(--subpage-hint-size);
+  line-height: 1.45;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .world-editor .editor-head-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 6px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .world-editor .editor-head-actions .ghost-action {
+  min-height: 40px !important;
+  padding: 0 11px !important;
+  border-color: var(--nyra-line) !important;
+  color: var(--nyra-navy) !important;
+  background: var(--nyra-paper) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .world-editor .world-entry-list:empty {
+  display: none;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .editor-line-head {
+  gap: 8px;
+  margin-bottom: 0;
+  padding: 10px var(--subpage-group-pad-x) 6px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .editor-line-head span {
+  font-size: 13px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .editor-line-head small {
+  font-size: 11px;
+}
+
+/* ── Grouped cards: container only; rows carry height ── */
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  .field-grid,
+  .status-workflow,
+  .diary-schedule,
+  .connection-grid,
+  .dnd-settings,
+  .status-grid,
+  .rag-settings,
+  .range-editor,
+  .settings-feature-switches,
+  .feature-switches.settings-feature-switches,
+  .permission-list,
+  .token-editor,
+  .world-entry-list,
+  .me-status-line,
+  .experience-mode-switch--in-settings,
+  .me-choice-block--card
+) {
+  border-radius: var(--subpage-card-radius) !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-choice-block,
+body[data-app-mode="app"] .me-shell.is-detail .me-choice-block--card {
+  gap: 8px !important;
+  padding: 10px var(--subpage-group-pad-x) 12px !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-choice-block__label {
+  font-size: 12.5px;
+  font-weight: 620;
+}
+
+/* ── Standard setting row ── */
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  .edit-field,
+  .rag-settings > label,
+  .connection-grid > label,
+  .dnd-settings > label,
+  .status-grid > label,
+  .cloud-actions > .edit-field
+) {
+  min-height: var(--subpage-row) !important;
+  padding: var(--subpage-row-pad-y) var(--subpage-group-pad-x) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  .edit-field > span,
+  .rag-settings > label > span,
+  .connection-grid > label > span,
+  .dnd-settings > label > span,
+  .status-grid > label > span
+) {
+  font-size: var(--subpage-label-size);
+}
+
+/* Inline row inputs — not bank-form boxes */
+body[data-app-mode="app"] .me-shell.is-detail .edit-field:not(.span-2) input,
+body[data-app-mode="app"] .me-shell.is-detail .edit-field:not(.span-2) select,
+body[data-app-mode="app"] .me-shell.is-detail .status-grid > label input,
+body[data-app-mode="app"] .me-shell.is-detail .status-grid > label select,
+body[data-app-mode="app"] .me-shell.is-detail .connection-grid > label input,
+body[data-app-mode="app"] .me-shell.is-detail .connection-grid > label select,
+body[data-app-mode="app"] .me-shell.is-detail .dnd-settings > label input,
+body[data-app-mode="app"] .me-shell.is-detail .rag-settings input,
+body[data-app-mode="app"] .me-shell.is-detail .rag-settings select {
+  min-height: var(--subpage-inline-input) !important;
+  padding: 4px 6px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 14px;
+  text-align: right;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .edit-field:not(.span-2) input:focus,
+body[data-app-mode="app"] .me-shell.is-detail .edit-field:not(.span-2) select:focus,
+body[data-app-mode="app"] .me-shell.is-detail .status-grid > label input:focus,
+body[data-app-mode="app"] .me-shell.is-detail .status-grid > label select:focus {
+  outline: 2px solid color-mix(in srgb, var(--nyra-blue, #159ee9) 28%, transparent) !important;
+  outline-offset: 0;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .edit-field.span-2 {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .edit-field.span-2 textarea {
+  min-height: 88px !important;
+  padding: 6px 0 !important;
+  line-height: 1.55;
+}
+
+/* Prompt is a real long-form editor, not an inline setting field. */
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-lab--editor {
+  overflow: visible !important;
+  gap: 12px !important;
+  padding: 12px !important;
+}
+
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-grid {
+  overflow: visible;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-block--single {
+  padding: 0 !important;
+  border: 0 !important;
+  gap: 8px !important;
+}
+
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-block--single > span {
+  color: var(--nyra-muted, #526779);
+  font-size: 12px;
+  font-weight: 550;
+}
+
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-grid textarea,
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-block--single textarea {
+  box-sizing: border-box;
+  min-height: clamp(280px, 52svh, 560px) !important;
+  max-height: none !important;
+  padding: 12px 12px 16px !important;
+  border: 1px solid var(--nyra-line) !important;
+  border-radius: 10px !important;
+  background: var(--nyra-paper-soft) !important;
+  box-shadow: none !important;
+  line-height: 1.65 !important;
+  overflow: auto !important;
+  overflow-wrap: anywhere;
+  resize: vertical;
+  -webkit-overflow-scrolling: touch;
+}
+
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-lab textarea[hidden] {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-lab--editor > .me-toolbar__btn--block {
+  width: 100%;
+  margin: 0;
+}
+
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-preview:empty,
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-preview[hidden] {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  min-height: 0 !important;
+}
+
+body[data-app-mode="app"] .me-shell[data-settings-route="prompt"] .prompt-preview:not(:empty):not([hidden]) {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--nyra-line);
+  border-radius: 10px;
+  background: var(--nyra-paper-soft);
+}
+
+/* Auth labels are field stacks, not standalone inputs. */
+body[data-app-mode="app"] .me-shell.is-detail .me-auth-input {
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-auth-panel [data-auth-guest-only] {
+  gap: 10px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-auth-primary {
+  min-height: 40px;
+  font-size: 15px;
+}
+
+/* Standalone inputs (not inline row fields) */
+body[data-app-mode="app"] .me-shell.is-detail .me-settings-row input,
+body[data-app-mode="app"] .me-shell.is-detail .me-settings-row select,
+body[data-app-mode="app"] .me-shell.is-detail .me-settings-row textarea,
+body[data-app-mode="app"] .me-shell.is-detail .inline-add input,
+body[data-app-mode="app"] .me-shell.is-detail .token-editor input {
+  min-height: var(--subpage-input) !important;
+  padding: 8px 10px !important;
+}
+
+/* Re-assert inline row inputs after any broad me-page input rules from nyra-app */
+body[data-app-mode="app"] .me-shell.is-detail .edit-field:not(.span-2) input,
+body[data-app-mode="app"] .me-shell.is-detail .edit-field:not(.span-2) select {
+  min-height: var(--subpage-inline-input) !important;
+  padding: 4px 6px !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Mobile setting rows must not inherit the legacy "full-width form field" rule. */
+body[data-app-mode="app"] .me-page .me-shell.is-detail :is(
+  .status-grid > label,
+  .connection-grid > label,
+  .dnd-settings > label,
+  .rag-settings > label
+):not(:has(input[type="range"])) {
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+}
+
+body[data-app-mode="app"] .me-page .me-shell.is-detail :is(
+  .status-grid > label,
+  .connection-grid > label,
+  .dnd-settings > label,
+  .rag-settings > label
+):not(:has(input[type="range"])) > :is(input, select),
+body[data-app-mode="app"] .me-page .me-shell.is-detail .status-grid .me-date-field__control {
+  flex: 0 1 58% !important;
+  flex-basis: 58% !important;
+  width: 58% !important;
+  max-width: 190px !important;
+  min-width: 0 !important;
+  min-height: var(--subpage-inline-input) !important;
+  padding: 4px 6px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  text-align: right;
+}
+
+body[data-app-mode="app"] .me-page .me-shell.is-detail .status-grid > label:has(> input[hidden]) {
+  display: none !important;
+}
+
+/* Identity is a grouped settings page, not a permanently expanded bank form. */
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .status-workflow {
+  overflow: hidden !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .status-grid {
+  padding-inline: 0 !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .status-grid > label {
+  min-height: 52px !important;
+  padding: 5px var(--subpage-group-pad-x) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .status-grid > label > span {
+  color: var(--nyra-ink);
+  font-size: var(--subpage-label-size);
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .status-grid input:not([type="range"]),
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .status-grid select,
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .me-date-field__display,
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .me-date-field__native {
+  min-height: var(--subpage-inline-input) !important;
+  border: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--nyra-ink) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .status-grid .me-choice-block--inline {
+  margin: 0;
+  padding: 8px var(--subpage-group-pad-x) 10px !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .status-workflow > p {
+  margin: 0;
+  padding: 8px var(--subpage-group-pad-x) 10px;
+  color: var(--nyra-muted);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+/* ── Toggles & switches ── */
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  .workflow-toggle,
+  .mini-toggle,
+  .permission-context,
+  .palace-enabled-toggle,
+  .settings-feature-switches label,
+  .feature-switches.settings-feature-switches label
+) {
+  min-height: var(--subpage-row) !important;
+  padding: var(--subpage-row-pad-y) var(--subpage-group-pad-x) !important;
+  font-size: var(--subpage-label-size);
+}
+
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  .workflow-toggle,
+  .mini-toggle,
+  .permission-context,
+  .palace-enabled-toggle,
+  .settings-feature-switches,
+  .feature-switches.settings-feature-switches
+) input[type="checkbox"] {
+  width: var(--subpage-switch-w) !important;
+  height: var(--subpage-switch-h) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  .workflow-toggle,
+  .mini-toggle,
+  .permission-context,
+  .palace-enabled-toggle,
+  .settings-feature-switches,
+  .feature-switches.settings-feature-switches
+) input[type="checkbox"]::before {
+  width: var(--subpage-switch-knob) !important;
+  height: var(--subpage-switch-knob) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail :is(
+  .workflow-toggle,
+  .mini-toggle,
+  .permission-context,
+  .palace-enabled-toggle,
+  .settings-feature-switches,
+  .feature-switches.settings-feature-switches
+) input[type="checkbox"]:checked::before {
+  transform: translateX(calc(var(--subpage-switch-w) - var(--subpage-switch-knob) - 4px));
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .diary-schedule .edit-field,
+body[data-app-mode="app"] .me-shell.is-detail .diary-schedule .workflow-toggle {
+  min-height: var(--subpage-row) !important;
+  padding: var(--subpage-row-pad-y) var(--subpage-group-pad-x) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .diary-schedule .editor-line-head {
+  padding: 10px var(--subpage-group-pad-x) 6px;
+  border-bottom: 1px solid var(--nyra-line);
+}
+
+/* ── Segmented controls ── */
+body[data-app-mode="app"] .me-shell.is-detail .me-segment {
+  border-radius: 10px !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-segment button {
+  min-height: var(--subpage-segment) !important;
+  padding: 6px 10px !important;
+  font-size: 13.5px !important;
+  font-weight: 600;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-segment--wrap {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-segment--wrap button {
+  min-height: var(--subpage-segment) !important;
+  padding: 6px 8px !important;
+  font-size: 12.5px !important;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .experience-mode-switch button {
+  min-height: var(--subpage-segment) !important;
+}
+
+/* ── Chips / pills (diary style, weather mode, sync strategy…) ── */
+body[data-app-mode="app"] .me-shell.is-detail .me-chips,
+body[data-app-mode="app"] .me-shell.is-detail .me-chips--wrap {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  overflow: visible !important;
+  grid-template-columns: unset !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-chips button,
+body[data-app-mode="app"] .me-shell.is-detail .me-chips--wrap button {
+  flex: 0 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: var(--subpage-chip) !important;
+  height: auto !important;
+  padding: 5px var(--subpage-chip-pad-x) !important;
+  font-size: 12.5px !important;
+  font-weight: 550;
+  line-height: 1.2 !important;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-choice-block--inline {
+  gap: 6px !important;
+  padding: 8px var(--subpage-group-pad-x) 10px !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .status-workflow .me-choice-block--inline {
+  border-top: 1px solid var(--nyra-line);
+}
+
+/* ── Theme grid ── */
+body[data-app-mode="app"] .me-shell.is-detail .theme-grid {
+  gap: 6px !important;
+  padding: 8px !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .theme-option {
+  min-height: var(--subpage-row) !important;
+  padding: 8px 10px !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .theme-option strong {
+  font-size: 13.5px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .theme-option small {
+  font-size: 11px;
+}
+
+/* ── Toolbar & secondary actions ── */
+body[data-app-mode="app"] .me-shell.is-detail .me-toolbar {
+  gap: 6px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-toolbar__btn {
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 0 10px !important;
+  font-size: 12.5px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-auth-secondary,
+body[data-app-mode="app"] .me-shell.is-detail .ghost-action {
+  min-height: var(--subpage-segment);
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .section-head .ghost-action,
+body[data-app-mode="app"] .me-shell.is-detail .editor-head .ghost-action {
+  min-height: 34px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+/* ── MCP / permission cards ── */
+body[data-app-mode="app"] .me-page .permission-center-list {
+  overflow: hidden;
+  border: 1px solid var(--nyra-line);
+  border-radius: var(--nyra-radius);
+  background: var(--nyra-paper);
+}
+
+body[data-app-mode="app"] .me-page .permission-center-row {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 8px var(--subpage-group-pad-x);
+  border: 0;
+  border-radius: 0;
+  color: var(--nyra-ink);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+}
+
+body[data-app-mode="app"] .me-page .permission-center-list > .permission-center-row:not(:first-child) {
+  border-top: 1px solid var(--nyra-line);
+}
+
+body[data-app-mode="app"] .me-page .permission-center-hint {
+  margin: 0;
+  padding: 0 14px 12px 46px;
+  color: var(--nyra-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+body[data-app-mode="app"] .me-page .permission-center-row > :is(i, svg) {
+  width: 21px;
+  height: 21px;
+  color: var(--nyra-navy);
+  stroke-width: 1.8;
+}
+
+body[data-app-mode="app"] .me-page .permission-center-row > strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+body[data-app-mode="app"] .me-page .permission-center-state {
+  color: var(--nyra-muted);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .me-page .permission-center-row.is-granted .permission-center-state {
+  color: var(--nyra-navy);
+}
+
+body[data-app-mode="app"] .me-page .permission-center-row:disabled {
+  opacity: 1;
+}
+
+body[data-app-mode="app"] .me-page .permission-center-row:not(:disabled):active {
+  background: var(--nyra-paper-soft);
+}
+
+body[data-app-mode="app"] .me-page .permission-center-row:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 2px solid color-mix(in srgb, var(--nyra-electric) 65%, transparent);
+  outline-offset: -2px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .mcp-card {
+  min-height: var(--subpage-row) !important;
+  padding: 6px var(--subpage-group-pad-x) !important;
+}
+
+body[data-app-mode="app"] .me-page .me-shell.is-detail .external-editor .mcp-card {
+  grid-template-columns: 24px minmax(0, 1fr) auto auto !important;
+  grid-template-areas: "permission-icon permission-name permission-state permission-toggle" !important;
+  gap: 8px 10px !important;
+  min-height: 60px !important;
+  padding: 6px var(--subpage-group-pad-x) !important;
+}
+
+body[data-app-mode="app"] .me-page .me-shell.is-detail .external-editor .mcp-card > :is(i, svg) {
+  grid-area: permission-icon;
+}
+
+body[data-app-mode="app"] .me-page .me-shell.is-detail .external-editor .mcp-card > strong {
+  grid-area: permission-name;
+  font-size: 14px;
+}
+
+body[data-app-mode="app"] .me-page .me-shell.is-detail .external-editor .mcp-card .permission-row {
+  grid-area: permission-state;
+  gap: 5px;
+}
+
+body[data-app-mode="app"] .me-page .me-shell.is-detail .external-editor .mcp-card .permission-context {
+  grid-area: permission-toggle;
+  min-width: var(--subpage-switch-w);
+  min-height: 44px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  justify-content: flex-end;
+}
+
+body[data-app-mode="app"] .me-page .me-shell.is-detail .external-editor .permission-row button {
+  min-height: 36px !important;
+  padding: 0 9px !important;
+  font-size: 12.5px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .presets-list {
+  gap: 8px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .preset-card__head {
+  gap: 4px;
+  padding: 10px var(--subpage-group-pad-x) 8px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .preset-card__title strong {
+  font-size: 15px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .preset-card__desc {
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .regex-list {
+  gap: 8px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .regex-card__row {
+  gap: 10px;
+  min-height: 0;
+  padding: 8px var(--subpage-group-pad-x);
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .regex-card__copy {
+  gap: 2px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .regex-card__copy strong {
+  font-size: 14px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .regex-card__blurb {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .regex-card__meta {
+  gap: 4px;
+  font-size: 11.5px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .regex-edit > summary {
+  min-height: 40px;
+  line-height: 40px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .entry-fields label {
+  min-height: var(--subpage-row) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .world-entry {
+  padding: 10px var(--subpage-group-pad-x) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .prompt-lab {
+  padding: 10px var(--subpage-group-pad-x) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .prompt-grid {
+  gap: 10px !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .range-editor label {
+  min-height: 46px !important;
+  padding: 4px var(--subpage-group-pad-x) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .status-grid > label:has(input[type="range"]) {
+  min-height: 46px !important;
+  padding: 4px var(--subpage-group-pad-x) !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-choice-stack {
+  gap: 0 !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-choice-stack .me-choice-block {
+  padding: 8px var(--subpage-group-pad-x) 10px !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail [data-choice-for="rag-topk"] {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 6px !important;
+  overflow-x: auto;
+  grid-template-columns: unset !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail [data-choice-for="rag-topk"] button {
+  flex: 0 0 auto !important;
+  min-width: 36px !important;
+  padding-inline: 10px !important;
+}
+
+/* ── API workbench detail (shared density) ── */
+body[data-app-mode="app"] .api-page:has(.api-detail:not([hidden])) {
+  --me-row: var(--subpage-row);
+}
+
+body[data-app-mode="app"] .api-page .api-detail-bar {
+  min-height: 52px;
+  padding-bottom: 8px;
+}
+
+body[data-app-mode="app"] .api-page .api-detail-bar__copy strong {
+  font-size: 15px;
+}
+
+body[data-app-mode="app"] .api-page .api-form-grid > label input,
+body[data-app-mode="app"] .api-page .api-form-grid > label select,
+body[data-app-mode="app"] .api-page .connection-grid > label input,
+body[data-app-mode="app"] .api-page .connection-grid > label select {
+  min-height: var(--subpage-input) !important;
+  padding: 7px 10px !important;
+  font-size: 14px;
+}
+
+body[data-app-mode="app"] .api-page .api-form-grid > label,
+body[data-app-mode="app"] .api-page .connection-grid > label {
+  gap: 3px;
+}
+
+body[data-app-mode="app"] .api-page .api-form-grid > label > span,
+body[data-app-mode="app"] .api-page .connection-grid > label > span {
+  font-size: 12.5px;
+}
+
+/* ── Mobile: undo nyra-app full-width chip/segment grids in detail routes ── */
+@media (max-width: 1079px) {
+  /* Assist is a full workspace route; it must not keep the App header above
+   * its own route bar or inherit the regular settings page side gutters. */
+  body[data-app-mode="app"][data-active-panel="assist"] .mobile-header {
+    display: none !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="assist"] .app-shell {
+    grid-template-rows: minmax(0, 1fr) !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="assist"] .content-shell {
+    grid-row: 1 !important;
+    height: 100svh !important;
+    max-height: 100svh !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="assist"] .me-shell[data-settings-route="assist"] {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .me-segment--wrap {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body[data-app-mode="app"] .me-page .me-shell.is-detail .me-chips,
+  body[data-app-mode="app"] .me-page .me-shell.is-detail .me-chips--wrap {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    grid-template-columns: unset !important;
+  }
+
+  body[data-app-mode="app"] .me-page .me-shell.is-detail .me-chips button,
+  body[data-app-mode="app"] .me-page .me-shell.is-detail .me-chips--wrap button {
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  body[data-app-mode="app"] .me-shell.is-detail .theme-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1080px) {
+  body[data-app-mode="app"] .me-shell.is-detail .me-segment--wrap {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ── Character identity: float-inspired dossier, not stacked bank forms ── */
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor {
+  display: grid;
+  gap: var(--subpage-block-gap);
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor > .me-toolbar {
+  margin: 0;
+}
+
+body[data-app-mode="app"] .char-dossier {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  margin: 0;
+  padding: 14px;
+  border: 1px solid var(--nyra-line, rgb(4 25 43 / 13%));
+  border-radius: var(--subpage-card-radius);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--nyra-ice, #dff1fb) 55%, transparent), transparent 62%),
+    var(--nyra-paper, #fff);
+}
+
+body[data-app-mode="app"] .char-dossier__photo {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 96px;
+  overflow: hidden;
+  border: 1px solid var(--nyra-line-strong, rgb(4 24 42 / 22%));
+  border-radius: 4px;
+  background: var(--nyra-porcelain, #f4f7f9);
+  color: var(--nyra-navy, #071b2e);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+body[data-app-mode="app"] .char-dossier__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.12) contrast(1.04);
+}
+
+body[data-app-mode="app"] .char-dossier__fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+body[data-app-mode="app"] .char-dossier__copy {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+body[data-app-mode="app"] .char-dossier__kicker {
+  color: var(--nyra-muted, #526779);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body[data-app-mode="app"] .char-dossier__name {
+  min-width: 0;
+  color: var(--nyra-ink, #07131f);
+  font-size: 20px;
+  font-weight: 780;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+body[data-app-mode="app"] .char-dossier__alias {
+  color: var(--nyra-muted, #526779);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+/* Gender / pronouns / boundaries: same row chrome as .edit-field */
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .identity-row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between;
+  gap: 6px 12px;
+  min-width: 0;
+  max-width: 100%;
+  min-height: var(--subpage-row) !important;
+  margin: 0;
+  padding: var(--subpage-row-pad-y) var(--subpage-group-pad-x) !important;
+  border: 0;
+  border-bottom: 1px solid var(--nyra-line, rgb(4 25 43 / 13%));
+  background: transparent;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .identity-row:last-child {
+  border-bottom: 0;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .identity-row > span {
+  flex: 0 0 auto;
+  color: var(--nyra-ink, #07131f);
+  font-size: var(--subpage-label-size);
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .identity-row > input {
+  flex: 1 1 auto;
+  min-width: 0 !important;
+  min-height: var(--subpage-inline-input) !important;
+  padding: 4px 6px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-align: right;
+  font-size: 14px;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .identity-row--stack {
+  display: grid !important;
+  gap: 6px;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .identity-row--stack > textarea {
+  min-height: 88px !important;
+  padding: 6px 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-align: left;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .character-identity-grid {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .char-dossier-fold {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--nyra-line, rgb(4 25 43 / 13%)) !important;
+  border-radius: var(--subpage-card-radius) !important;
+  background: var(--nyra-paper, #fff) !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .char-dossier-fold > summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px var(--subpage-group-pad-x);
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .char-dossier-fold > summary::-webkit-details-marker,
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .char-dossier-fold > summary::marker {
+  display: none;
+  content: "";
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .char-dossier-fold > summary > span {
+  color: var(--nyra-ink, #07131f);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .char-dossier-fold > summary > small {
+  color: var(--nyra-muted, #526779);
+  font-size: 11.5px;
+  text-align: right;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .char-dossier-fold > .status-workflow {
+  margin: 0;
+  padding: 0;
+  border: 0 !important;
+  border-top: 1px solid var(--nyra-line, rgb(4 25 43 / 13%));
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Save/discard: in-flow footer, never sticky overlay */
+body[data-app-mode="app"] .me-shell.is-detail .character-editor-actions {
+  position: static !important;
+  z-index: auto !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  margin: 4px 0 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .character-editor-actions .character-editor-unsaved {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .character-editor-actions .me-toolbar__btn {
+  width: 100%;
+  justify-content: center;
+  margin: 0;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-prompt-entry {
+  overflow: hidden;
+  align-items: flex-start;
+  padding: 12px var(--subpage-group-pad-x, 14px);
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-prompt-entry__copy {
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-prompt-entry__copy small {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--nyra-muted, #526779);
+  font-size: 12px;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .me-prompt-entry .me-cell__chevron {
+  margin-top: 4px;
+  flex: 0 0 auto;
+}
+
+body[data-app-mode="app"] .me-shell.is-detail .identity-editor .origin-memory-editor {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 12px var(--subpage-group-pad-x, 14px);
+}
+
+.origin-memory-count {
+  margin: 0;
+  color: var(--nyra-muted, #526779);
+  font-size: 12px;
+}
+
+.origin-memory-list {
+  display: grid;
+  gap: 8px;
+}
+
+.origin-memory-card {
+  border: 1px solid var(--nyra-line, rgb(4 25 43 / 13%));
+  border-radius: 12px;
+  background: var(--nyra-paper, #fff);
+  overflow: hidden;
+}
+
+.origin-memory-card__summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 12px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.origin-memory-card__summary::-webkit-details-marker,
+.origin-memory-card__summary::marker {
+  display: none;
+  content: "";
+}
+
+.origin-memory-card__fields {
+  display: grid;
+  gap: 8px;
+  padding: 0 12px 12px;
+  border-top: 1px solid var(--nyra-line, rgb(4 25 43 / 13%));
+}
+
+.origin-memory-field {
+  display: grid;
+  gap: 4px;
+}
+
+.origin-memory-field > span {
+  color: var(--nyra-muted, #526779);
+  font-size: 12px;
+  font-weight: 550;
+}
+
+.origin-memory-field input,
+.origin-memory-field select,
+.origin-memory-field textarea {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid var(--nyra-line, rgb(4 25 43 / 13%));
+  border-radius: 10px;
+  background: #f7faf8;
+  font: inherit;
+}
+
+.origin-memory-field textarea {
+  min-height: 96px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.origin-memory-card__attrs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 420px) {
+  .origin-memory-card__attrs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.origin-memory-card__checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+}
+
+.origin-memory-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.origin-memory-add,
+.origin-memory-remove {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.origin-memory-add {
+  justify-self: start;
+  color: var(--nyra-ink, #07131f);
+  background: rgb(4 25 43 / 6%);
+}
+
+.origin-memory-remove {
+  justify-self: start;
+  color: #9b3b3b;
+  background: #f6e8e8;
+}
+
+/* Inner destinations already have a title/back bar. Stacking the brand
+ * header + page chrome + dock leaves a sliver for the actual page. */
+@media (max-width: 1079px) {
+  body[data-app-mode="app"][data-active-panel="economy"] .mobile-header,
+  body[data-app-mode="app"][data-active-panel="world"] .mobile-header,
+  body[data-app-mode="app"][data-active-panel="library"] .mobile-header,
+  body[data-app-mode="app"][data-active-panel="calendar"] .mobile-header,
+  body[data-app-mode="app"][data-active-panel="api"] .mobile-header,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="economy"] .mobile-header,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="world"] .mobile-header,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="library"] .mobile-header,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="calendar"] .mobile-header,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="api"] .mobile-header,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="economy"] .mobile-header,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="world"] .mobile-header,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="library"] .mobile-header,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="calendar"] .mobile-header,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="api"] .mobile-header {
+    display: none !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="economy"] .app-shell,
+  body[data-app-mode="app"][data-active-panel="world"] .app-shell,
+  body[data-app-mode="app"][data-active-panel="library"] .app-shell,
+  body[data-app-mode="app"][data-active-panel="calendar"] .app-shell,
+  body[data-app-mode="app"][data-active-panel="api"] .app-shell {
+    grid-template-rows: minmax(0, 1fr) !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="economy"] .content-shell,
+  body[data-app-mode="app"][data-active-panel="world"] .content-shell,
+  body[data-app-mode="app"][data-active-panel="library"] .content-shell,
+  body[data-app-mode="app"][data-active-panel="calendar"] .content-shell,
+  body[data-app-mode="app"][data-active-panel="api"] .content-shell,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="economy"] .content-shell,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="world"] .content-shell,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="library"] .content-shell,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="calendar"] .content-shell,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="api"] .content-shell,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="economy"] .content-shell,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="world"] .content-shell,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="library"] .content-shell,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="calendar"] .content-shell,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="api"] .content-shell {
+    grid-row: 1 !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100svh !important;
+    max-height: 100svh !important;
+    margin: 0 !important;
+    padding: 0 0 var(--nyra-dock-height) !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="economy"] .content-shell,
+  html.is-native-app body[data-app-mode="app"][data-active-panel="economy"] .content-shell,
+  html.is-compact-shell body[data-app-mode="app"][data-active-panel="economy"] .content-shell {
+    overflow: hidden !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="world"] .moments-page .world-mode-tabs,
+  body[data-app-mode="app"][data-active-panel="world"] .world-mode-tabs {
+    padding-top: env(safe-area-inset-top, 0px) !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="library"] .library-page.is-active {
+    grid-template-rows: calc(36px + var(--library-safe-top, env(safe-area-inset-top, 0px))) minmax(0, 1fr);
+  }
+
+  body[data-app-mode="app"][data-active-panel="library"] .library-page > .page-section-tabs {
+    height: auto;
+    min-height: calc(36px + var(--library-safe-top, env(safe-area-inset-top, 0px)));
+    padding-top: var(--library-safe-top, env(safe-area-inset-top, 0px)) !important;
+    margin: 0;
+  }
+
+  html.is-native-app body[data-app-mode="app"][data-active-panel="library"] {
+    --library-safe-top: max(36px, env(safe-area-inset-top, 0px));
+  }
+
+  body[data-app-mode="app"][data-active-panel="library"] .now-playing {
+    align-content: start !important;
+  }
+
+  body[data-app-mode="app"][data-active-panel="library"] .vinyl-stage {
+    width: clamp(160px, min(52vw, 28svh), 220px) !important;
+    min-width: 0 !important;
+    max-width: 220px;
+  }
+
+  body[data-app-mode="app"][data-active-panel="calendar"] .app-page[data-panel="calendar"] > .page-header {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/*
+ * Elastic pages: destination routes hide the brand header and zero
+ * content-shell gutters so tabs can go full-bleed. List rows and
+ * URL/Key fields still default to min-content (button min-width,
+ * input size=20) and outer focus rings, which paints past the screen.
+ */
+body[data-app-mode="app"] .app-page:not([data-panel="chat"]),
+body[data-app-mode="app"] .app-page:not([data-panel="chat"]) > .page-header,
+body[data-app-mode="app"] .api-workbench,
+body[data-app-mode="app"] .api-hub,
+body[data-app-mode="app"] .api-detail,
+body[data-app-mode="app"] .settings-editor,
+body[data-app-mode="app"] .settings-panel,
+body[data-app-mode="app"] .library-editor,
+body[data-app-mode="app"] .library-page,
+body[data-app-mode="app"] .me-shell,
+body[data-app-mode="app"] .me-home,
+body[data-app-mode="app"] .me-group,
+body[data-app-mode="app"] .companion-page,
+body[data-app-mode="app"] .moments-page,
+body[data-app-mode="app"] .economy-page {
+  min-width: 0;
+  max-width: 100%;
+}
+
+body[data-app-mode="app"] .app-page:not([data-panel="chat"]):not([data-panel="calendar"]) {
+  overflow-x: clip;
+}
+
+body[data-app-mode="app"] :is(
+  .api-entry,
+  .me-cell,
+  .me-profile,
+  .book-row,
+  .track-row,
+  .event-row,
+  .mcp-card,
+  .drawer-nav > button,
+  .nyra-nav-hub__routes > button
+) {
+  min-width: 0;
+  max-width: 100%;
+}
+
+body[data-app-mode="app"] :is(
+  .connection-grid,
+  .api-form-grid,
+  .field-grid,
+  .status-grid,
+  .prompt-grid,
+  .edit-field,
+  .entry-fields,
+  .memory-construction,
+  .rag-settings,
+  .event-row,
+  .track-row,
+  .inline-add
+) :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]) {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body[data-app-mode="app"] .app-page:not([data-panel="chat"]) :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([data-composer-text]):not([data-assist-input]):focus,
+body[data-app-mode="app"] .app-page:not([data-panel="chat"]) :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([data-composer-text]):not([data-assist-input]):focus-visible {
+  outline: none !important;
+  box-shadow: inset 0 0 0 2px rgba(61, 149, 237, 0.28) !important;
+}
+
+/* 栖机助手 is a chat bar inside Me. Settings-field chrome and dock padding
+ * must not leak onto it, or focus paints a nested blue box and the send chip
+ * sits on the field. compact-subpage loads last, so restate the composer here. */
+body[data-app-mode="app"] .assist-composer__row {
+  display: flex !important;
+  align-items: flex-end !important;
+  gap: 8px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+body[data-app-mode="app"] .assist-composer__box,
+body[data-app-mode="app"] .assist-composer__box:focus-within {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  background: #f3f5f7 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+body[data-app-mode="app"] .assist-composer textarea,
+body[data-app-mode="app"] .assist-composer textarea:focus,
+body[data-app-mode="app"] .assist-composer textarea:focus-visible {
+  width: 100% !important;
+  min-height: 44px !important;
+  padding: 10px 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+body[data-app-mode="app"] .assist-composer__tool,
+body[data-app-mode="app"] .assist-send {
+  flex: 0 0 44px !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell[data-settings-route="assist"]) .content-shell,
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="assist"] .content-shell {
+  padding: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell[data-settings-route="assist"]) .app-page.me-page,
+html.is-keyboard-open body[data-app-mode="app"][data-active-panel="me"]:has(.me-shell[data-settings-route="assist"]) .me-shell.is-detail {
+  padding-bottom: 0 !important;
+}
+
+html.is-keyboard-open .assist-welcome__mark,
+html.is-keyboard-open .assist-welcome__kicker,
+html.is-keyboard-open .assist-composer__hint {
+  display: none !important;
+}
+
+html.is-keyboard-open .assist-welcome {
+  justify-content: flex-start !important;
+  flex: 0 1 auto !important;
+  padding: 8px 16px 6px !important;
+  gap: 6px !important;
+}
+
+html.is-keyboard-open .assist-welcome__lead {
+  display: none !important;
+}
+
+@media (max-width: 1079px) {
+  body[data-app-mode="app"][data-active-panel="api"] .api-page {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding:
+      max(10px, env(safe-area-inset-top, 0px))
+      max(16px, env(safe-area-inset-right, 0px))
+      16px
+      max(16px, env(safe-area-inset-left, 0px));
+    overflow-x: clip;
+  }
+
+  body[data-app-mode="app"] :is(.connection-grid, .api-form-grid, .field-grid, .prompt-grid, .status-grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,395 @@
+:root {
+  --motion-press-in: 90ms;
+  --motion-release: 150ms;
+  --motion-select: 190ms;
+  --motion-page: 230ms;
+  --motion-sheet: 270ms;
+  --motion-ease-out: cubic-bezier(.2, 0, 0, 1);
+  --motion-ease-release: cubic-bezier(.2, .8, .2, 1);
+}
+
+.app-shell button,
+.app-shell [role="button"],
+.mini-phone button,
+.mini-phone [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition-duration: var(--motion-release), var(--motion-select), var(--motion-select), var(--motion-select) !important;
+  transition-timing-function: var(--motion-ease-release), var(--motion-ease-out), var(--motion-ease-out), var(--motion-ease-out) !important;
+}
+
+.app-shell button:disabled,
+.app-shell [aria-disabled="true"],
+.mini-phone button:disabled,
+.mini-phone [aria-disabled="true"] {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none;
+  cursor: default;
+}
+
+@media (pointer: coarse) {
+  body[data-app-mode="app"] .app-shell button:active:not(:disabled),
+  body[data-app-mode="app"] .app-shell button.is-pressed:not(:disabled),
+  body[data-app-mode="app"] .app-shell [role="button"]:active:not([aria-disabled="true"]),
+  body[data-app-mode="app"] .app-shell [role="button"].is-pressed:not([aria-disabled="true"]),
+  .mini-phone button:active:not(:disabled),
+  .mini-phone button.is-pressed:not(:disabled),
+  .mini-phone [role="button"]:active:not([aria-disabled="true"]),
+  .mini-phone [role="button"].is-pressed:not([aria-disabled="true"]) {
+    transform: scale(.975);
+    filter: none;
+    opacity: 1;
+    transition-duration: var(--motion-press-in) !important;
+    transition-timing-function: ease-out !important;
+  }
+}
+
+/* Inset rings: outer outline-offset + glow paints past 100% rows on phones. */
+body[data-app-mode="app"] .app-shell button:focus-visible,
+body[data-app-mode="app"] .app-shell [role="button"]:focus-visible,
+body[data-app-mode="app"] .app-shell [tabindex="0"]:focus-visible {
+  outline: 2px solid color-mix(in srgb, #159ee9 72%, #ffffff) !important;
+  outline-offset: -2px !important;
+  box-shadow: none !important;
+}
+
+.mini-phone button:focus-visible,
+.mini-phone [role="button"]:focus-visible {
+  outline: 2px solid color-mix(in srgb, #159ee9 72%, #ffffff) !important;
+  outline-offset: -2px !important;
+  box-shadow: none !important;
+}
+
+/* Chat psychology fold: never inherit desktop/browser blue focus rings. */
+body[data-app-mode="app"] .app-shell .message-turn-activity > summary:focus-visible,
+body[data-app-mode="app"] .app-shell .message-turn-activity:focus-visible,
+.mini-phone .message-turn-activity > summary:focus-visible,
+.mini-phone .mini-turn-activity > summary:focus-visible,
+.mini-phone .message-turn-activity:focus-visible,
+.mini-phone .mini-turn-activity:focus-visible {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .app-shell input:not([type="checkbox"]):not([type="radio"]),
+body[data-app-mode="app"] .app-shell textarea,
+body[data-app-mode="app"] .app-shell select,
+.mini-phone input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+.mini-phone textarea,
+.mini-phone select {
+  transition: border-color var(--motion-select) var(--motion-ease-out), box-shadow var(--motion-select) var(--motion-ease-out), background-color var(--motion-select) var(--motion-ease-out);
+}
+
+/* Form controls get a calm focus ring — never chat composers.
+ * Composer fields already paint one surface; this catch-all used to win
+ * on specificity (via :not) and draw a nested focus box inside the pill. */
+body[data-app-mode="app"] .app-shell input:not([type="checkbox"]):not([type="radio"]):not([data-composer-text]):focus,
+body[data-app-mode="app"] .app-shell input:not([type="checkbox"]):not([type="radio"]):not([data-composer-text]):focus-visible,
+body[data-app-mode="app"] .app-shell textarea:not([data-composer-text]):focus,
+body[data-app-mode="app"] .app-shell textarea:not([data-composer-text]):focus-visible,
+body[data-app-mode="app"] .app-shell select:focus,
+body[data-app-mode="app"] .app-shell select:focus-visible,
+.mini-phone input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([data-phone-chat-input]):focus,
+.mini-phone input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([data-phone-chat-input]):focus-visible,
+.mini-phone textarea:not([data-phone-chat-input]):focus,
+.mini-phone textarea:not([data-phone-chat-input]):focus-visible,
+.mini-phone select:focus,
+.mini-phone select:focus-visible {
+  outline: 0 !important;
+  border-color: rgb(21 158 233 / 54%) !important;
+  box-shadow: inset 0 0 0 2px rgb(21 158 233 / 28%) !important;
+}
+
+/* Beat the generic textarea/select focus chrome inside message composers. */
+body[data-app-mode="app"] .app-shell .composer-field input:focus,
+body[data-app-mode="app"] .app-shell .composer-field input:focus-visible,
+body[data-app-mode="app"] .app-shell .composer-field textarea:focus,
+body[data-app-mode="app"] .app-shell .composer-field textarea:focus-visible,
+body[data-app-mode="app"] .app-shell .assist-composer textarea:focus,
+body[data-app-mode="app"] .app-shell .assist-composer textarea:focus-visible,
+body[data-app-mode="app"] .app-shell .assist-composer__box:focus-within,
+body[data-app-mode="app"] .app-shell .explore-session__composer input:focus,
+body[data-app-mode="app"] .app-shell .explore-session__composer input:focus-visible,
+.mini-phone .mini-composer-field input:focus,
+.mini-phone .mini-composer-field input:focus-visible,
+.mini-phone .mini-composer-field textarea:focus,
+.mini-phone .mini-composer-field textarea:focus-visible,
+.mini-phone .assist-composer textarea:focus,
+.mini-phone .assist-composer textarea:focus-visible,
+.mini-phone .explore-session__composer input:focus,
+.mini-phone .explore-session__composer input:focus-visible {
+  outline: 0 !important;
+  border: 0 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Composer fields own their chrome — never inherit the blue focus ring twin. */
+body[data-app-mode="app"] .composer-field input:focus,
+body[data-app-mode="app"] .composer-field input:focus-visible,
+body[data-app-mode="app"] .composer-field textarea:focus,
+body[data-app-mode="app"] .composer-field textarea:focus-visible,
+body[data-app-mode="app"] .assist-composer textarea:focus,
+body[data-app-mode="app"] .assist-composer textarea:focus-visible,
+.mini-phone .mini-composer input:focus,
+.mini-phone .mini-composer input:focus-visible,
+.mini-assist .assist-composer textarea:focus,
+.mini-assist .assist-composer textarea:focus-visible {
+  outline: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Chat / assist composers: no blue focus flash */
+body[data-app-mode="app"] .composer-field,
+body[data-app-mode="app"] .composer-field input,
+body[data-app-mode="app"] .composer-field textarea,
+body[data-app-mode="app"] .assist-composer__box,
+body[data-app-mode="app"] .assist-composer textarea,
+.mini-phone .mini-composer-field,
+.mini-phone .mini-composer input,
+.mini-phone .mini-composer textarea,
+.mini-assist .assist-composer__box,
+.mini-assist .assist-composer textarea {
+  -webkit-tap-highlight-color: transparent !important;
+  caret-color: var(--nyra-ink, #0c1f33);
+}
+
+body[data-app-mode="app"] .composer-field:focus-within,
+.mini-phone .mini-composer-field:focus-within {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+body[data-app-mode="app"] .assist-composer__box:focus-within,
+.mini-assist .assist-composer__box:focus-within {
+  border: 0 !important;
+  background: #f3f5f7 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+body[data-app-mode="app"] .composer-field input:focus,
+body[data-app-mode="app"] .composer-field input:focus-visible,
+body[data-app-mode="app"] .assist-composer textarea:focus,
+body[data-app-mode="app"] .assist-composer textarea:focus-visible,
+.mini-phone .mini-composer input:focus,
+.mini-phone .mini-composer input:focus-visible,
+.mini-assist .assist-composer textarea:focus,
+.mini-assist .assist-composer textarea:focus-visible {
+  outline: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .composer-send:focus-visible,
+body[data-app-mode="app"] .composer-mic:focus-visible,
+body[data-app-mode="app"] .composer-tool:focus-visible,
+body[data-app-mode="app"] .assist-send:focus-visible,
+.mini-phone .mini-send:focus-visible,
+.mini-phone .mini-mic-btn:focus-visible,
+.mini-assist .assist-send:focus-visible {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+/* App: light surfaces float; blue-black controls sink. */
+body[data-app-mode="app"] .composer-field {
+  transition: border-color var(--motion-select) var(--motion-ease-out), background-color var(--motion-select) var(--motion-ease-out);
+}
+
+body[data-app-mode="app"] .composer-mic,
+body[data-app-mode="app"] .composer-send,
+body[data-app-mode="app"] .now-transport__btn--main,
+body[data-app-mode="app"] .nyra-dock__pulse,
+.mini-phone .mini-send.is-active,
+.mini-phone .mini-listen-play,
+.mini-phone .mini-app-cta {
+  will-change: transform;
+  transition: transform var(--motion-release) var(--motion-ease-release), box-shadow var(--motion-select) var(--motion-ease-out), background-color var(--motion-select) var(--motion-ease-out), color var(--motion-select) var(--motion-ease-out) !important;
+}
+
+@media (pointer: coarse) {
+  body[data-app-mode="app"] .composer-mic:active:not(:disabled),
+  body[data-app-mode="app"] .composer-mic.is-pressed:not(:disabled),
+  body[data-app-mode="app"] .composer-send:active:not(:disabled),
+  body[data-app-mode="app"] .composer-send.is-pressed:not(:disabled),
+  body[data-app-mode="app"] .now-transport__btn--main:active:not(:disabled),
+  body[data-app-mode="app"] .now-transport__btn--main.is-pressed:not(:disabled),
+  .mini-phone .mini-send.is-active:active,
+  .mini-phone .mini-send.is-active.is-pressed,
+  .mini-phone .mini-listen-play:active:not(:disabled),
+  .mini-phone .mini-listen-play.is-pressed:not(:disabled),
+  .mini-phone .mini-app-cta:active:not(:disabled),
+  .mini-phone .mini-app-cta.is-pressed:not(:disabled) {
+    transform: translateY(2px) scale(.965) !important;
+    box-shadow: 0 4px 10px rgb(3 18 33 / 22%), inset 0 2px 5px rgb(0 0 0 / 26%), inset 0 0 0 1px rgb(121 201 236 / 18%) !important;
+  }
+
+  body[data-app-mode="app"] .nyra-dock__hub:active .nyra-dock__pulse,
+  body[data-app-mode="app"] .nyra-dock__hub.is-pressed .nyra-dock__pulse {
+    transform: translateY(2px) scale(.96);
+    box-shadow: 0 5px 12px rgb(1 15 29 / 30%), inset 0 2px 6px rgb(0 0 0 / 30%);
+  }
+}
+
+body[data-app-mode="app"] .message.user:last-child {
+  animation: interaction-message-in 170ms var(--motion-ease-out) both;
+  transform-origin: 100% 100%;
+}
+
+body[data-app-mode="app"] .chat-identity-avatar,
+.mini-phone .mini-home-relation__avatar,
+.mini-phone .mini-listen-companion {
+  transition: transform var(--motion-select) var(--motion-ease-out), box-shadow var(--motion-select) var(--motion-ease-out);
+}
+
+body[data-app-mode="app"] .app-shell.is-companion-aware .chat-identity-avatar,
+.mini-phone.is-companion-aware .mini-home-relation__avatar,
+.mini-phone.is-companion-aware .mini-listen-companion {
+  animation: interaction-aware 430ms var(--motion-ease-out) both;
+}
+
+/* Mini-phone: device controls retain resistance without opacity flashes. */
+.mini-phone .mini-app-icon,
+.mini-phone .mini-dock-icon,
+.mini-phone .mini-home-shortcut {
+  transition: transform var(--motion-release) var(--motion-ease-release), filter var(--motion-select) var(--motion-ease-out) !important;
+}
+
+@media (pointer: coarse) {
+  .mini-phone .mini-app-icon:active,
+  .mini-phone .mini-app-icon.is-pressed {
+    transform: scale(.955) !important;
+    opacity: 1 !important;
+  }
+
+  .mini-phone .mini-app-icon:active > span,
+  .mini-phone .mini-app-icon.is-pressed > span,
+  .mini-phone .mini-app-icon:active .mini-app-face,
+  .mini-phone .mini-app-icon.is-pressed .mini-app-face {
+    transform: none !important;
+    filter: brightness(.97) saturate(.96);
+    box-shadow: 0 3px 8px rgb(18 42 59 / 10%), inset 0 1px 0 rgb(255 255 255 / 32%);
+  }
+
+  .mini-phone .mini-dock-icon:active,
+  .mini-phone .mini-dock-icon.is-pressed,
+  .mini-phone .mini-home-shortcut:active,
+  .mini-phone .mini-home-shortcut.is-pressed {
+    transform: scale(.965) !important;
+    opacity: 1 !important;
+  }
+}
+
+.mini-phone .mini-composer {
+  gap: 6px;
+  min-height: 60px;
+  padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--mini-os-line);
+  background: rgb(248 251 253 / 97%);
+  box-shadow: 0 -8px 24px rgb(7 27 46 / 5%);
+}
+
+.mini-phone .mini-composer-field {
+  min-height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-composer-field:focus-within {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.mini-phone .mini-composer input,
+.mini-phone .mini-composer textarea {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 11px;
+  color: var(--mini-os-ink);
+  background: #f3f5f7;
+  box-shadow: none;
+}
+
+.mini-phone .mini-composer input::placeholder,
+.mini-phone .mini-composer textarea::placeholder {
+  color: var(--mini-os-muted);
+}
+
+.mini-phone .mini-composer .mini-send {
+  border: 1px solid transparent;
+  border-radius: 50%;
+  color: var(--mini-os-muted);
+  background: var(--mini-os-surface-soft) !important;
+}
+
+.mini-phone .mini-composer .mini-send.is-active {
+  color: #fff;
+  border-color: rgb(77 155 212 / 35%);
+  background: linear-gradient(145deg, #143b5e, var(--mini-os-navy-deep) 72%) !important;
+  box-shadow: 0 10px 22px rgb(7 27 53 / 24%), inset 0 1px 0 rgb(180 225 250 / 28%);
+}
+
+.mini-phone .mini-composer-tool:active,
+.mini-phone .mini-composer-tool.is-pressed {
+  opacity: 1 !important;
+}
+
+.mini-phone .mini-listen-play {
+  background: linear-gradient(145deg, #173e61, var(--mini-os-navy-deep) 70%);
+  box-shadow: 0 10px 22px rgb(7 27 53 / 26%), inset 0 1px 0 rgb(180 225 250 / 28%);
+}
+
+.mini-phone .mini-listen-play.is-playing {
+  background: linear-gradient(145deg, #196d9e, var(--mini-os-navy-deep) 72%);
+}
+
+.mini-phone .mini-listen-vinyl__disc,
+.mini-phone .mini-widget--vinyl .mini-vinyl__disc {
+  animation-timing-function: linear;
+  transition: filter 360ms var(--motion-ease-out), transform 420ms var(--motion-ease-release);
+}
+
+.mini-phone .mini-switch::before,
+.mini-phone .mini-switch::after {
+  transition: transform 190ms var(--motion-ease-out), background-color 190ms var(--motion-ease-out), box-shadow 190ms var(--motion-ease-out) !important;
+}
+
+@keyframes interaction-message-in {
+  from { opacity: 0; transform: translate3d(0, 10px, 0) scale(.99); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes interaction-aware {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgb(21 158 233 / 0%); }
+  42% { transform: scale(1.025); box-shadow: 0 0 0 5px rgb(21 158 233 / 12%); }
+  100% { transform: scale(1); box-shadow: 0 0 0 9px rgb(21 158 233 / 0%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell *,
+  .app-shell *::before,
+  .app-shell *::after,
+  .mini-phone *,
+  .mini-phone *::before,
+  .mini-phone *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+

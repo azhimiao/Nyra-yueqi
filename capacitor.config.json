@@ -1,0 +1,18 @@
+{
+  "appId": "app.yueqi.open",
+  "appName": "月栖",
+  "webDir": "frontend/www",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": false
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon_config_sample",
+      "iconColor": "#9f5963"
+    },
+    "CapacitorSQLite": {
+      "androidIsEncryption": true
+    }
+  }
+}

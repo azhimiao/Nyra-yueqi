@@ -1,0 +1,2587 @@
+/*
+ * Chat message visual authority.
+ *
+ * This file is loaded after every App and mini-phone shell stylesheet. Keep
+ * message appearance here; older files may retain structural fallbacks, but
+ * new visual overrides must not be added there.
+ */
+
+body[data-app-mode="app"] {
+  --chat-ui-bg: var(--nyra-chat-wallpaper-color, var(--nyra-paper-soft));
+  --chat-ui-surface: var(--nyra-paper, #fff);
+  --chat-ui-surface-soft: var(--message-user, #edf1f4);
+  --chat-ui-ink: var(--nyra-ink, #07131f);
+  --chat-ui-muted: var(--nyra-muted, #526779);
+  --chat-ui-faint: var(--nyra-faint, #8496a5);
+  --chat-ui-line: var(--nyra-line, rgb(4 25 43 / 13%));
+  --chat-ui-line-strong: var(--nyra-line-strong, rgb(4 24 42 / 22%));
+  --chat-ui-accent: var(--nyra-navy, #071b2e);
+  --chat-ui-accent-soft: var(--nyra-ice, #dff1fb);
+  --chat-ui-success: var(--nyra-success, #397d70);
+  --chat-ui-danger: var(--nyra-danger, #b75863);
+  --chat-ui-danger-soft: color-mix(in srgb, var(--chat-ui-danger) 9%, var(--chat-ui-surface));
+  --chat-ui-shadow: 0 2px 8px rgb(1 15 29 / 5%);
+  --chat-ui-radius: 12px;
+  --chat-ui-tail-radius: 4px;
+}
+
+body[data-app-mode="app"][data-theme="ink"] {
+  --chat-ui-surface-soft: var(--nyra-paper-soft, #1d2a40);
+  --chat-ui-shadow: 0 2px 8px rgb(0 0 0 / 16%);
+}
+
+.mini-phone {
+  --chat-ui-bg: var(--mini-os-bg, #f3f6f8);
+  --chat-ui-surface: var(--mini-os-surface, #fff);
+  --chat-ui-surface-soft: var(--mini-os-surface-soft, #edf2f5);
+  --chat-ui-ink: var(--mini-os-ink, #111b25);
+  --chat-ui-muted: var(--mini-os-muted, #71808d);
+  --chat-ui-faint: color-mix(in srgb, var(--mini-os-muted, #71808d) 72%, transparent);
+  --chat-ui-line: var(--mini-os-line, rgb(22 45 63 / 12%));
+  --chat-ui-line-strong: var(--mini-os-line-strong, rgb(22 45 63 / 20%));
+  --chat-ui-accent: var(--mini-os-navy, #10283b);
+  --chat-ui-accent-soft: var(--mini-os-ice-soft, #dcecf7);
+  --chat-ui-success: #397d70;
+  --chat-ui-danger: #a94f5b;
+  --chat-ui-danger-soft: color-mix(in srgb, var(--chat-ui-danger) 9%, var(--chat-ui-surface));
+  --chat-ui-shadow: 0 2px 8px rgb(18 42 59 / 5%);
+  --chat-ui-radius: 12px;
+  --chat-ui-tail-radius: 4px;
+  --mini-bubble-ai: var(--chat-ui-surface);
+  --mini-bubble-user: var(--chat-ui-surface-soft);
+}
+
+body[data-app-mode="app"] .chat-panel,
+.mini-phone .mini-message-list {
+  background-color: var(--chat-ui-bg);
+}
+
+/* Thread rhythm is shared; shell chrome (wallpaper / composer frame) may differ. */
+body[data-app-mode="app"] .message-list,
+.mini-phone .mini-pop-chat-thread .mini-message-list {
+  gap: 10px;
+  padding: 14px 12px 18px !important;
+  scroll-padding-bottom: 18px;
+}
+
+.mini-phone .mini-message-list__pin {
+  gap: 10px;
+}
+
+body[data-app-mode="app"] .message,
+.mini-phone .mini-message {
+  position: relative;
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: min(84%, 620px);
+  padding: 9px 12px;
+  border-radius: var(--chat-ui-radius);
+  color: var(--chat-ui-ink);
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: 0;
+  box-shadow: var(--chat-ui-shadow);
+}
+
+body[data-app-mode="app"] .message p,
+.mini-phone .mini-message p {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  white-space: pre-wrap;
+}
+
+body[data-app-mode="app"] .message.ai,
+body[data-app-mode="app"] .message.ai:has(~ .message.ai),
+.mini-phone .mini-message.is-ai {
+  color: var(--chat-ui-ink);
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  border-bottom-left-radius: var(--chat-ui-tail-radius);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+}
+
+body[data-app-mode="app"] .message.user,
+.mini-phone .mini-message.is-user {
+  color: var(--chat-ui-ink);
+  border: 1px solid var(--chat-ui-line-strong);
+  border-radius: var(--chat-ui-radius);
+  border-bottom-right-radius: var(--chat-ui-tail-radius);
+  background: var(--chat-ui-surface-soft);
+  box-shadow: var(--chat-ui-shadow);
+}
+
+body[data-app-mode="app"] .message.system,
+.mini-phone .mini-message.is-system {
+  width: auto;
+  max-width: min(92%, 520px);
+  margin-block: 2px;
+  padding: 3px 8px;
+  color: var(--chat-ui-muted);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+/* Clock and delivery ticks live outside the bubble: the timeline separator
+ * already states the time, and repeating it per bubble read as clutter. */
+.mini-phone .mini-message footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+.mini-phone .mini-message footer svg {
+  width: 12px;
+  height: 12px;
+  color: var(--chat-ui-faint);
+  stroke-width: 1.8;
+}
+
+.mini-phone .mini-message__speaker {
+  margin: 0 0 4px;
+  color: var(--chat-ui-muted);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.mini-phone .mini-message.is-user .mini-message__speaker {
+  color: var(--chat-ui-muted);
+  text-align: right;
+}
+
+/* Only sending / failed surface a marker; delivered and read stay silent. */
+body[data-app-mode="app"] .message-delivery {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  margin-top: 3px;
+  color: var(--chat-ui-faint);
+  font-size: 10px;
+  line-height: 1;
+}
+
+body[data-app-mode="app"] .message-delivery svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 1.8;
+}
+
+body[data-app-mode="app"] .message-delivery.is-failed {
+  color: var(--chat-ui-danger);
+}
+
+body[data-app-mode="app"] .message-retry {
+  justify-self: end;
+  min-height: 44px;
+  margin: -4px -6px -8px 0;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--chat-ui-danger);
+  background: transparent;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+body[data-app-mode="app"] .message-retry:hover,
+body[data-app-mode="app"] .message-retry:focus-visible {
+  background: color-mix(in srgb, var(--chat-ui-danger) 8%, transparent);
+  outline: none;
+}
+
+body[data-app-mode="app"] .chat-time-separator,
+.mini-phone .mini-chat-time-separator {
+  align-self: center;
+  justify-self: center;
+  margin: 8px 0 2px;
+  color: var(--chat-ui-faint);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+body[data-app-mode="app"] .message.is-pending,
+.mini-phone .mini-message.is-pending {
+  opacity: 0.66;
+}
+
+body[data-app-mode="app"] .message.is-failed,
+.mini-phone .mini-message.is-failed,
+.mini-phone .mini-message.is-user.is-failed {
+  color: var(--chat-ui-danger);
+  border-color: color-mix(in srgb, var(--chat-ui-danger) 28%, var(--chat-ui-line));
+  background: var(--chat-ui-danger-soft);
+  box-shadow: none;
+}
+
+.mini-phone .mini-message__state {
+  display: block;
+  margin-top: 4px;
+  color: var(--chat-ui-muted);
+  font-size: 10px;
+  text-align: right;
+}
+
+.mini-phone .mini-message__retry {
+  min-height: 28px;
+  margin: 2px -6px -5px 0;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--chat-ui-danger);
+  background: transparent;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mini-phone .mini-message__retry:hover,
+.mini-phone .mini-message__retry:focus-visible {
+  background: color-mix(in srgb, var(--chat-ui-danger) 8%, transparent);
+  outline: none;
+}
+
+body[data-app-mode="app"] .message-speak,
+.mini-phone .mini-speak-btn {
+  color: var(--chat-ui-muted);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body[data-app-mode="app"] .message-speak:hover,
+body[data-app-mode="app"] .message-speak:focus-visible,
+.mini-phone .mini-speak-btn:hover,
+.mini-phone .mini-speak-btn:focus-visible {
+  color: var(--chat-ui-accent);
+  background: var(--chat-ui-accent-soft);
+  outline: none;
+}
+
+/* Domain activity is a quiet transcript event, not another speech bubble. */
+body[data-app-mode="app"] .message.system.is-activity,
+.mini-phone .mini-message.is-system.has-activity {
+  width: auto;
+  max-width: min(94%, 520px);
+  margin-inline: auto;
+  padding: 0;
+}
+
+body[data-app-mode="app"] .chat-activity-note,
+.mini-phone .chat-activity-note,
+.mini-phone .mini-activity-note {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2px 6px;
+  min-height: 30px;
+  padding: 2px 6px 2px 10px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: 999px;
+  color: var(--chat-ui-muted);
+  background: color-mix(in srgb, var(--chat-ui-surface) 84%, transparent);
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: none;
+}
+
+body[data-app-mode="app"] .chat-activity-note button,
+.mini-phone .chat-activity-note button,
+.mini-phone .mini-activity-action {
+  min-width: 44px;
+  min-height: 44px;
+  margin-block: -8px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 8px;
+  color: var(--chat-ui-accent);
+  background: transparent;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+body[data-app-mode="app"] .chat-activity-note button:hover,
+body[data-app-mode="app"] .chat-activity-note button:focus-visible,
+.mini-phone .chat-activity-note button:hover,
+.mini-phone .chat-activity-note button:focus-visible,
+.mini-phone .mini-activity-action:hover,
+.mini-phone .mini-activity-action:focus-visible {
+  background: var(--chat-ui-accent-soft);
+  outline: none;
+}
+
+body[data-app-mode="app"] .message.system.is-diary-activity,
+.mini-phone .mini-message.is-system.is-diary-activity {
+  width: min(88%, 320px);
+  max-width: 320px;
+  margin: 4px auto;
+  padding: 0;
+}
+
+body[data-app-mode="app"] .message-diary-card,
+.mini-phone .message-diary-card {
+  box-sizing: border-box;
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid var(--chat-ui-line);
+  border-left: 3px solid var(--chat-ui-accent);
+  border-radius: var(--chat-ui-radius);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+  font: inherit;
+  text-align: left;
+}
+
+button.message-diary-card {
+  cursor: pointer;
+}
+
+body[data-app-mode="app"] .message-diary-card__head,
+.mini-phone .message-diary-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--chat-ui-muted);
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+body[data-app-mode="app"] .message-diary-card__head > span,
+.mini-phone .message-diary-card__head > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+body[data-app-mode="app"] .message-diary-card__head svg,
+.mini-phone .message-diary-card__head svg {
+  width: 14px;
+  height: 14px;
+  color: var(--chat-ui-accent);
+  stroke-width: 1.8;
+}
+
+body[data-app-mode="app"] .message-diary-card__head time,
+.mini-phone .message-diary-card__head time {
+  color: var(--chat-ui-faint);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-app-mode="app"] .message-diary-card > strong,
+.mini-phone .message-diary-card > strong {
+  color: var(--chat-ui-ink);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+body[data-app-mode="app"] .message-diary-card > p,
+.mini-phone .message-diary-card > p {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--chat-ui-muted);
+  font-size: 11px;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+body[data-app-mode="app"] .message-diary-card__action,
+.mini-phone .message-diary-card__action {
+  justify-self: start;
+  margin-top: 2px;
+  color: var(--chat-ui-accent);
+  font-size: 11px;
+  font-weight: 650;
+}
+
+body[data-app-mode="app"] .message-diary-card__action::after,
+.mini-phone .message-diary-card__action::after {
+  margin-left: 4px;
+  content: "›";
+}
+
+body[data-app-mode="app"] button.message-diary-card:hover,
+body[data-app-mode="app"] button.message-diary-card:focus-visible,
+.mini-phone button.message-diary-card:hover,
+.mini-phone button.message-diary-card:focus-visible {
+  border-color: color-mix(in srgb, var(--chat-ui-accent) 28%, var(--chat-ui-line));
+  background: color-mix(in srgb, var(--chat-ui-accent-soft) 22%, var(--chat-ui-surface));
+  outline: none;
+}
+
+body[data-app-mode="app"] .message.system.is-game-event,
+.mini-phone .mini-message.is-system.is-game-event {
+  width: min(88%, 320px);
+  max-width: 320px;
+  margin: 4px auto;
+  padding: 0;
+}
+
+body[data-app-mode="app"] .message-game-card,
+.mini-phone .message-game-card {
+  box-sizing: border-box;
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+  text-align: left;
+}
+
+body[data-app-mode="app"] .message-game-card.is-start,
+.mini-phone .message-game-card.is-start {
+  border-left: 3px solid var(--chat-ui-accent);
+}
+
+body[data-app-mode="app"] .message-game-card.is-result,
+.mini-phone .message-game-card.is-result {
+  border-left: 3px solid var(--chat-ui-success);
+}
+
+body[data-app-mode="app"] .message-game-card.is-end,
+.mini-phone .message-game-card.is-end {
+  background: color-mix(in srgb, var(--chat-ui-surface-soft) 44%, var(--chat-ui-surface));
+  box-shadow: none;
+}
+
+body[data-app-mode="app"] .message-game-card__head,
+.mini-phone .message-game-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--chat-ui-muted);
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+body[data-app-mode="app"] .message-game-card__head > span,
+.mini-phone .message-game-card__head > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+body[data-app-mode="app"] .message-game-card__head svg,
+.mini-phone .message-game-card__head svg {
+  width: 14px;
+  height: 14px;
+  color: var(--chat-ui-accent);
+  stroke-width: 1.8;
+}
+
+body[data-app-mode="app"] .message-game-card__head em,
+.mini-phone .message-game-card__head em {
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: var(--chat-ui-muted);
+  background: var(--chat-ui-surface-soft);
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+body[data-app-mode="app"] .message-game-card > strong,
+.mini-phone .message-game-card > strong {
+  color: var(--chat-ui-ink);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+body[data-app-mode="app"] .message-game-card > p,
+.mini-phone .message-game-card > p {
+  margin: 0;
+  color: var(--chat-ui-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+body[data-app-mode="app"] .message-game-card__actions,
+.mini-phone .message-game-card__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1px;
+  padding-top: 5px;
+  border-top: 1px solid var(--chat-ui-line);
+}
+
+body[data-app-mode="app"] .message-game-card__actions button,
+.mini-phone .message-game-card__actions button {
+  min-height: 44px;
+  margin-block: -5px;
+  padding: 0 7px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--chat-ui-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+body[data-app-mode="app"] .message-game-card__actions button:hover,
+body[data-app-mode="app"] .message-game-card__actions button:focus-visible,
+.mini-phone .message-game-card__actions button:hover,
+.mini-phone .message-game-card__actions button:focus-visible {
+  color: var(--chat-ui-danger);
+  background: var(--chat-ui-danger-soft);
+  outline: none;
+}
+
+body[data-app-mode="app"] .message.system.is-call-record,
+.mini-phone .mini-message.is-system.is-call-record {
+  width: min(84%, 300px);
+  max-width: 300px;
+  margin: 4px auto;
+  padding: 0;
+}
+
+body[data-app-mode="app"] .message-call-card,
+.mini-phone .message-call-card {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 11px;
+  align-items: center;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+  text-align: left;
+}
+
+body[data-app-mode="app"] .message-call-card__icon,
+.mini-phone .message-call-card__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid color-mix(in srgb, var(--chat-ui-accent) 10%, var(--chat-ui-line));
+  border-radius: 50%;
+  color: var(--chat-ui-accent);
+  background: var(--chat-ui-accent-soft);
+}
+
+body[data-app-mode="app"] .message-call-card__icon svg,
+.mini-phone .message-call-card__icon svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.8;
+}
+
+body[data-app-mode="app"] .message-call-card__body,
+.mini-phone .message-call-card__body {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .message-call-card__head,
+.mini-phone .message-call-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+body[data-app-mode="app"] .message-call-card__head strong,
+.mini-phone .message-call-card__head strong {
+  color: var(--chat-ui-ink);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+body[data-app-mode="app"] .message-call-card__head em,
+.mini-phone .message-call-card__head em {
+  color: var(--chat-ui-muted);
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+body[data-app-mode="app"] .message-call-card__duration,
+.mini-phone .message-call-card__duration {
+  color: var(--chat-ui-ink);
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+body[data-app-mode="app"] .message-call-card__body small,
+.mini-phone .message-call-card__body small {
+  color: var(--chat-ui-faint);
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+
+body[data-app-mode="app"] .message.has-attachment,
+.mini-phone .mini-message.has-attachment {
+  width: min(88%, 320px);
+  max-width: 320px;
+  padding: 0 !important;
+  border: 0 !important;
+  color: var(--chat-ui-ink) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .message-attachment-card,
+.mini-phone .message-attachment-card {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+  text-align: left;
+}
+
+body[data-app-mode="app"] .message-attachment-card.is-image,
+.mini-phone .message-attachment-card.is-image {
+  display: grid;
+  overflow: hidden;
+  max-width: 280px;
+}
+
+body[data-app-mode="app"] .message-attachment-card.is-image > img,
+.mini-phone .message-attachment-card.is-image > img {
+  display: block;
+  width: 100%;
+  max-height: 260px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--chat-ui-surface-soft);
+}
+
+body[data-app-mode="app"] .message-attachment-card__placeholder,
+.mini-phone .message-attachment-card__placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 150px;
+  color: var(--chat-ui-muted);
+  background: var(--chat-ui-surface-soft);
+}
+
+body[data-app-mode="app"] .message-attachment-card__placeholder svg,
+.mini-phone .message-attachment-card__placeholder svg {
+  width: 28px;
+  height: 28px;
+  stroke-width: 1.5;
+}
+
+body[data-app-mode="app"] .message-attachment-card figcaption,
+.mini-phone .message-attachment-card figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  padding: 8px 10px;
+  border-top: 1px solid var(--chat-ui-line);
+}
+
+body[data-app-mode="app"] .message-attachment-card figcaption strong,
+.mini-phone .message-attachment-card figcaption strong {
+  overflow: hidden;
+  color: var(--chat-ui-ink);
+  font-size: 11px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .message-attachment-card figcaption span,
+.mini-phone .message-attachment-card figcaption span {
+  flex: 0 0 auto;
+  color: var(--chat-ui-faint);
+  font-size: 9px;
+}
+
+body[data-app-mode="app"] .message-attachment-card.is-text,
+body[data-app-mode="app"] .message-attachment-card.is-file,
+.mini-phone .message-attachment-card.is-text,
+.mini-phone .message-attachment-card.is-file {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 11px 12px;
+}
+
+body[data-app-mode="app"] .message-attachment-card__icon,
+.mini-phone .message-attachment-card__icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid color-mix(in srgb, var(--chat-ui-accent) 10%, var(--chat-ui-line));
+  border-radius: 9px;
+  color: var(--chat-ui-accent);
+  background: var(--chat-ui-accent-soft);
+}
+
+body[data-app-mode="app"] .message-attachment-card__icon svg,
+.mini-phone .message-attachment-card__icon svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.7;
+}
+
+body[data-app-mode="app"] .message-attachment-card__body,
+.mini-phone .message-attachment-card__body {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .message-attachment-card__body > strong,
+.mini-phone .message-attachment-card__body > strong {
+  overflow: hidden;
+  color: var(--chat-ui-ink);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .message-attachment-card__body > span,
+.mini-phone .message-attachment-card__body > span {
+  color: var(--chat-ui-muted);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+body[data-app-mode="app"] .message-attachment-card__body > p,
+.mini-phone .message-attachment-card__body > p {
+  display: -webkit-box;
+  margin: 5px 0 0;
+  overflow: hidden;
+  color: var(--chat-ui-muted);
+  font-size: 10px;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Artifact result cards. */
+body[data-app-mode="app"] .message.has-artifact,
+.mini-phone .mini-message.has-artifact {
+  width: min(84%, 320px);
+  max-width: 320px;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .message-artifact,
+.mini-phone .mini-artifact-card {
+  box-sizing: border-box;
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  min-height: 64px;
+  padding: 11px 12px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+  text-align: left;
+  cursor: pointer;
+}
+
+body[data-app-mode="app"] .message-artifact strong,
+.mini-phone .mini-artifact-card strong {
+  color: var(--chat-ui-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+body[data-app-mode="app"] .message-artifact span,
+.mini-phone .mini-artifact-card span {
+  color: var(--chat-ui-ink);
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+body[data-app-mode="app"] .message-artifact:hover,
+body[data-app-mode="app"] .message-artifact:focus-visible,
+.mini-phone .mini-artifact-card:hover,
+.mini-phone .mini-artifact-card:focus-visible {
+  border-color: color-mix(in srgb, var(--chat-ui-accent) 28%, var(--chat-ui-line));
+  background: color-mix(in srgb, var(--chat-ui-accent-soft) 26%, var(--chat-ui-surface));
+  outline: none;
+}
+
+/* Location uses the same card shell, with a restrained map marker. */
+body[data-app-mode="app"] .message.has-location,
+.mini-phone .mini-message.has-location {
+  width: min(84%, 300px);
+  max-width: 300px;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .message-location-wrap,
+.mini-phone .message-location {
+  width: 100%;
+  max-width: 300px;
+}
+
+body[data-app-mode="app"] .message-location,
+.mini-phone .message-location {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+}
+
+body[data-app-mode="app"] .message-location__pin,
+.mini-phone .message-location__pin {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid color-mix(in srgb, var(--chat-ui-accent) 10%, var(--chat-ui-line));
+  border-radius: 9px;
+  color: var(--chat-ui-accent);
+  background: var(--chat-ui-accent-soft);
+}
+
+body[data-app-mode="app"] .message-location__pin svg,
+.mini-phone .message-location__pin svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.8;
+}
+
+body[data-app-mode="app"] .message-location__body,
+.mini-phone .message-location__body {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .message-location__body strong,
+.mini-phone .message-location__body strong {
+  overflow: hidden;
+  color: var(--chat-ui-ink);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .message-location__body span,
+.mini-phone .message-location__body span {
+  overflow: hidden;
+  color: var(--chat-ui-muted);
+  font-size: 10px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Voice stays a message, not a card inside a card. */
+body[data-app-mode="app"] .voice-message {
+  gap: 5px;
+  min-width: min(230px, 82%);
+}
+
+body[data-app-mode="app"] .voice-bar {
+  gap: 8px;
+  min-height: 38px;
+  padding: 5px 7px;
+  border: 0;
+  border-radius: 8px;
+  color: inherit;
+  background: color-mix(in srgb, var(--chat-ui-accent-soft) 38%, transparent);
+  box-shadow: none;
+}
+
+body[data-app-mode="app"] .voice-bar-wave {
+  width: 20px;
+  height: 20px;
+  background:
+    radial-gradient(circle at 50% 50%, var(--chat-ui-accent) 0 24%, transparent 26%),
+    var(--chat-ui-accent-soft);
+  opacity: 1;
+}
+
+body[data-app-mode="app"] .voice-bar-meta strong {
+  color: var(--chat-ui-ink);
+  font-size: 12px;
+}
+
+body[data-app-mode="app"] .voice-bar-meta em,
+body[data-app-mode="app"] .voice-transcript {
+  color: var(--chat-ui-muted);
+  font-size: 10px;
+}
+
+body[data-app-mode="app"] .voice-transcript {
+  padding-top: 5px;
+  border-top: 1px solid var(--chat-ui-line);
+}
+
+.mini-phone .mini-message__voice {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  margin-top: 6px;
+  padding: 3px 6px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--chat-ui-muted);
+  background: var(--chat-ui-accent-soft);
+}
+
+.mini-phone .mini-message__voice svg {
+  width: 14px;
+  height: 14px;
+}
+
+.mini-phone .mini-message__voice em {
+  margin-left: 2px;
+  color: inherit;
+  font-size: 10px;
+  font-style: normal;
+}
+
+/* Stickers remain media, with no fake surrounding speech surface. */
+body[data-app-mode="app"] .message.is-sticker,
+.mini-phone .mini-message.is-sticker {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .message-sticker,
+.mini-phone .mini-message__sticker {
+  max-width: 132px;
+}
+
+body[data-app-mode="app"] .message-sticker img,
+.mini-phone .mini-message__sticker img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+}
+
+/* NyraCoin cards share one neutral financial surface on both shells. */
+body[data-app-mode="app"] .message.has-token,
+.mini-phone .mini-message.has-token {
+  width: min(88%, 320px);
+  max-width: 320px;
+  padding: 0 !important;
+  border: 0 !important;
+  color: var(--chat-ui-ink) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .message-token {
+  width: 100%;
+  max-width: 320px;
+}
+
+body[data-app-mode="app"] .mini-token-card,
+.mini-phone .mini-token-card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+}
+
+body[data-app-mode="app"] .mini-token-card--transfer,
+.mini-phone .mini-token-card--transfer {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  min-width: 238px;
+  min-height: 68px;
+  padding: 10px 12px;
+  border: 1px solid var(--chat-ui-line);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+}
+
+body[data-app-mode="app"] .mini-token-card--transfer .mini-token-card__badge,
+.mini-phone .mini-token-card--transfer .mini-token-card__badge {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid color-mix(in srgb, var(--chat-ui-accent) 10%, var(--chat-ui-line));
+  border-radius: 50%;
+  color: var(--chat-ui-accent);
+  background: var(--chat-ui-accent-soft);
+}
+
+body[data-app-mode="app"] .mini-token-card--transfer .mini-token-card__badge svg,
+.mini-phone .mini-token-card--transfer .mini-token-card__badge svg {
+  width: 17px;
+  height: 17px;
+  stroke-width: 1.8;
+}
+
+body[data-app-mode="app"] .mini-token-card--transfer .mini-token-card__main,
+.mini-phone .mini-token-card--transfer .mini-token-card__main {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .mini-token-card--transfer .mini-token-card__money,
+.mini-phone .mini-token-card--transfer .mini-token-card__money {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  min-width: 0;
+  color: var(--chat-ui-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-app-mode="app"] .mini-token-card--transfer .mini-token-card__currency,
+.mini-phone .mini-token-card--transfer .mini-token-card__currency {
+  color: var(--chat-ui-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+body[data-app-mode="app"] .mini-token-card--transfer .mini-token-card__figure,
+.mini-phone .mini-token-card--transfer .mini-token-card__figure {
+  overflow: visible;
+  color: var(--chat-ui-ink);
+  font-size: 22px;
+  font-weight: 650;
+  line-height: 1;
+}
+
+body[data-app-mode="app"] .mini-token-card--transfer .mini-token-card__figure small,
+.mini-phone .mini-token-card--transfer .mini-token-card__figure small {
+  font-size: 0.55em;
+  font-weight: 600;
+}
+
+body[data-app-mode="app"] .mini-token-card__note,
+.mini-phone .mini-token-card__note {
+  margin: 0;
+  overflow: hidden;
+  color: var(--chat-ui-muted);
+  font-size: 10px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .mini-token-card__action,
+.mini-phone .mini-token-card__action {
+  min-width: 58px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 9px;
+  color: #fff;
+  background: var(--chat-ui-accent);
+  box-shadow: none;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+body[data-app-mode="app"] .mini-token-card__action:hover,
+body[data-app-mode="app"] .mini-token-card__action:focus-visible,
+.mini-phone .mini-token-card__action:hover,
+.mini-phone .mini-token-card__action:focus-visible {
+  filter: brightness(1.08);
+  outline: none;
+}
+
+body[data-app-mode="app"] .mini-token-card__done,
+.mini-phone .mini-token-card__done {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: var(--chat-ui-muted);
+  background: var(--chat-ui-surface-soft);
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .mini-token-card.is-settled,
+.mini-phone .mini-token-card.is-settled {
+  filter: none;
+  opacity: 1;
+}
+
+body[data-app-mode="app"] .mini-token-card--collect,
+body[data-app-mode="app"] .mini-token-card--reminder,
+.mini-phone .mini-token-card--collect,
+.mini-phone .mini-token-card--reminder {
+  display: grid;
+  gap: 5px;
+  min-width: 220px;
+  padding: 11px 12px;
+  border: 1px solid var(--chat-ui-line);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+}
+
+body[data-app-mode="app"] .mini-token-card__tag,
+.mini-phone .mini-token-card__tag {
+  color: var(--chat-ui-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+}
+
+body[data-app-mode="app"] .mini-token-card__amount,
+.mini-phone .mini-token-card__amount {
+  margin: 0;
+  color: var(--chat-ui-ink);
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+body[data-app-mode="app"] .mini-token-card--collect .mini-token-card__action,
+.mini-phone .mini-token-card--collect .mini-token-card__action {
+  justify-self: start;
+  margin-top: 3px;
+  background: var(--chat-ui-accent);
+}
+
+body[data-app-mode="app"] .mini-token-card--reminder,
+.mini-phone .mini-token-card--reminder {
+  border-left: 3px solid var(--chat-ui-accent);
+  border-radius: var(--chat-ui-radius);
+}
+
+/* Inline task approvals use the same surface and button hierarchy. */
+.mini-phone .mini-message:has(> .mini-pop-task-card) {
+  display: grid;
+  gap: 6px;
+  width: min(92%, 320px);
+  max-width: 320px;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-message:has(> .mini-pop-task-card) > p {
+  justify-self: start;
+  width: fit-content;
+  padding: 9px 12px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  border-bottom-left-radius: var(--chat-ui-tail-radius);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+}
+
+.mini-phone .mini-pop-task-card {
+  box-sizing: border-box;
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+}
+
+.mini-phone .mini-pop-task-card header strong {
+  color: var(--chat-ui-ink);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.mini-phone .mini-pop-task-card header span {
+  color: var(--chat-ui-muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.mini-phone .mini-pop-task-card__effect {
+  color: var(--chat-ui-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.mini-phone .mini-pop-task-card__actions {
+  gap: 6px;
+  padding-top: 2px;
+  border-top: 1px solid var(--chat-ui-line);
+}
+
+.mini-phone .mini-pop-task-card__actions button {
+  min-height: 44px;
+  border-radius: 8px;
+}
+
+.mini-phone .mini-pop-task-card__actions .mini-app-cta {
+  color: #fff;
+  background: var(--chat-ui-accent);
+}
+
+/* Proposal cards use the same contract instead of their legacy mint palette. */
+body[data-app-mode="app"] .action-proposal-card,
+.mini-phone .action-proposal-card {
+  border: 1px solid var(--chat-ui-line);
+  border-radius: var(--chat-ui-radius);
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: var(--chat-ui-shadow);
+}
+
+body[data-app-mode="app"] .action-proposal-card__risk,
+.mini-phone .action-proposal-card__risk {
+  color: var(--chat-ui-muted);
+  border-color: var(--chat-ui-line);
+  background: var(--chat-ui-surface-soft);
+}
+
+body[data-app-mode="app"] .action-proposal-card__when,
+body[data-app-mode="app"] .action-proposal-card__target,
+body[data-app-mode="app"] .action-proposal-card__status,
+.mini-phone .action-proposal-card__when,
+.mini-phone .action-proposal-card__target,
+.mini-phone .action-proposal-card__status {
+  color: var(--chat-ui-muted);
+}
+
+body[data-app-mode="app"] .action-proposal-card__btn.is-confirm,
+.mini-phone .action-proposal-card__btn.is-confirm {
+  color: #fff;
+  background: var(--chat-ui-accent);
+}
+
+body[data-app-mode="app"] .action-proposal-card__btn.is-reject,
+.mini-phone .action-proposal-card__btn.is-reject {
+  color: var(--chat-ui-ink);
+  border-color: var(--chat-ui-line);
+  background: var(--chat-ui-surface-soft);
+}
+
+/* The welcome note is the first page of history. It stays at the top of the
+ * transcript, folds down to a heading, and scrolls away as the chat grows. */
+body[data-app-mode="app"] .chat-intro-note,
+.mini-phone .chat-intro-note {
+  container-type: inline-size;
+  align-self: start;
+  width: min(100%, 552px);
+  margin: 6px auto 26px;
+  padding: 2px 14px 0;
+  color: var(--chat-ui-ink);
+  background: transparent;
+}
+
+.mini-phone .chat-intro-note {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px 14px 0;
+}
+
+body[data-app-mode="app"] .chat-intro-note.is-collapsed,
+.mini-phone .chat-intro-note.is-collapsed {
+  margin-bottom: 12px;
+}
+
+body[data-app-mode="app"] .chat-intro-note__head,
+.mini-phone .chat-intro-note__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+body[data-app-mode="app"] .chat-intro-note__identity,
+.mini-phone .chat-intro-note__identity {
+  min-width: 0;
+}
+
+body[data-app-mode="app"] .chat-intro-note__toggle,
+.mini-phone .chat-intro-note__toggle {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  padding: 4px 0 4px 8px;
+  border: 0;
+  color: var(--chat-ui-faint);
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+body[data-app-mode="app"] .chat-intro-note__toggle:hover,
+body[data-app-mode="app"] .chat-intro-note__toggle:focus-visible,
+.mini-phone .chat-intro-note__toggle:hover,
+.mini-phone .chat-intro-note__toggle:focus-visible {
+  color: var(--chat-ui-ink);
+  outline: none;
+}
+
+body[data-app-mode="app"] .chat-intro-note__from,
+.mini-phone .chat-intro-note__from {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--chat-ui-faint);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+body[data-app-mode="app"] .chat-intro-note h2,
+.mini-phone .chat-intro-note h2 {
+  margin: 0;
+  color: var(--chat-ui-ink);
+  font-size: 19px;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+body[data-app-mode="app"] .chat-intro-note.is-collapsed h2,
+.mini-phone .chat-intro-note.is-collapsed h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+body[data-app-mode="app"] .chat-intro-note__lead,
+.mini-phone .chat-intro-note__lead {
+  margin: 9px 0 0;
+  color: var(--chat-ui-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+body[data-app-mode="app"] .chat-intro-note__notes,
+.mini-phone .chat-intro-note__notes {
+  display: grid;
+  gap: 13px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+body[data-app-mode="app"] .chat-intro-note__note,
+.mini-phone .chat-intro-note__note {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+body[data-app-mode="app"] .chat-intro-note__note p,
+.mini-phone .chat-intro-note__note p {
+  margin: 0;
+  color: var(--chat-ui-muted);
+  font-size: 12.5px;
+  line-height: 1.8;
+}
+
+body[data-app-mode="app"] .chat-intro-note__note strong,
+.mini-phone .chat-intro-note__note strong {
+  margin-inline-end: 4px;
+  color: var(--chat-ui-ink);
+  font-weight: 650;
+}
+
+body[data-app-mode="app"] .chat-intro-note__mark,
+.mini-phone .chat-intro-note__mark {
+  width: 14px;
+  height: 14px;
+  margin-top: 5px;
+  color: color-mix(in srgb, var(--chat-ui-accent) 55%, var(--chat-ui-faint));
+  stroke-width: 1.6;
+}
+
+body[data-app-mode="app"] .chat-intro-note__links,
+.mini-phone .chat-intro-note__links {
+  white-space: nowrap;
+  color: var(--chat-ui-faint);
+}
+
+/* Links stay inline in the sentence: reading the note must never feel like
+ * scanning a list of buttons. */
+body[data-app-mode="app"] .chat-intro-note__link,
+.mini-phone .chat-intro-note__link {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--chat-ui-accent) 28%, transparent);
+  border-radius: 0;
+  color: var(--chat-ui-accent);
+  background: transparent;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+body[data-app-mode="app"] .chat-intro-note__link:hover,
+body[data-app-mode="app"] .chat-intro-note__link:focus-visible,
+.mini-phone .chat-intro-note__link:hover,
+.mini-phone .chat-intro-note__link:focus-visible {
+  border-bottom-color: var(--chat-ui-accent);
+  outline: none;
+}
+
+body[data-app-mode="app"] .chat-intro-note__setup,
+.mini-phone .chat-intro-note__setup {
+  margin: 14px 0 0;
+}
+
+body[data-app-mode="app"] .opening-setup-cta,
+.mini-phone .opening-setup-cta {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in srgb, var(--chat-ui-accent) 32%, var(--chat-ui-line));
+  border-radius: 999px;
+  color: var(--chat-ui-accent);
+  background: color-mix(in srgb, var(--chat-ui-accent) 9%, transparent);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  cursor: pointer;
+}
+
+body[data-app-mode="app"] .message > .opening-setup-cta,
+.mini-phone .mini-message > .opening-setup-cta {
+  margin-top: 10px;
+}
+
+body[data-app-mode="app"] .opening-setup-cta:hover,
+body[data-app-mode="app"] .opening-setup-cta:focus-visible,
+.mini-phone .opening-setup-cta:hover,
+.mini-phone .opening-setup-cta:focus-visible {
+  border-color: var(--chat-ui-accent);
+  background: color-mix(in srgb, var(--chat-ui-accent) 16%, transparent);
+  outline: none;
+}
+
+body[data-app-mode="app"] .chat-intro-note__sign,
+.mini-phone .chat-intro-note__sign {
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--chat-ui-line);
+  color: var(--chat-ui-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+@media (max-width: 520px) {
+  body[data-app-mode="app"] .chat-intro-note,
+  .mini-phone .chat-intro-note {
+    padding-inline: 12px;
+  }
+
+  body[data-app-mode="app"] .chat-intro-note h2,
+  .mini-phone .chat-intro-note h2 {
+    font-size: 18px;
+  }
+}
+
+@container (max-width: 360px) {
+  .chat-intro-note__notes {
+    gap: 12px;
+  }
+
+  .chat-intro-note__lead,
+  .chat-intro-note__note p,
+  .chat-intro-note__sign {
+    line-height: 1.7;
+  }
+
+  .chat-intro-note__links {
+    white-space: normal;
+  }
+}
+
+.mini-phone .mini-pop-game-list {
+  gap: 7px;
+}
+
+.mini-phone .mini-pop-game-card,
+.mini-phone .mini-pop-game-card.tone-mint,
+.mini-phone .mini-pop-game-card.tone-coral,
+.mini-phone .mini-pop-game-card.tone-ember {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px 12px;
+  width: 100%;
+  min-height: 62px;
+  padding: 10px 38px 10px 12px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: 10px;
+  color: var(--chat-ui-ink);
+  background: var(--chat-ui-surface);
+  box-shadow: none;
+  text-align: left;
+}
+
+.mini-phone .mini-pop-game-card::after {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  color: var(--chat-ui-faint);
+  content: "›";
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.mini-phone .mini-pop-game-card strong,
+.mini-phone .mini-pop-game-card span {
+  grid-column: 1;
+}
+
+.mini-phone .mini-pop-game-card strong {
+  color: var(--chat-ui-ink);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.mini-phone .mini-pop-game-card span {
+  color: var(--chat-ui-muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.mini-phone .mini-pop-game-card:hover,
+.mini-phone .mini-pop-game-card:focus-visible {
+  border-color: color-mix(in srgb, var(--chat-ui-accent) 24%, var(--chat-ui-line));
+  background: color-mix(in srgb, var(--chat-ui-accent-soft) 22%, var(--chat-ui-surface));
+  outline: none;
+}
+
+body[data-app-mode="app"] .message-reply-preview,
+.mini-phone .message-reply-preview {
+  display: grid;
+  gap: 1px;
+  margin: 0 0 7px;
+  padding: 6px 8px;
+  border: 0;
+  border-left: 2px solid var(--chat-ui-accent);
+  border-radius: 0 6px 6px 0;
+  color: var(--chat-ui-muted);
+  background: color-mix(in srgb, var(--chat-ui-accent-soft) 34%, transparent);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+body[data-app-mode="app"] .message-reply-preview strong,
+.mini-phone .message-reply-preview strong {
+  color: var(--chat-ui-accent);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+body[data-app-mode="app"] .message-reply-preview span,
+.mini-phone .message-reply-preview span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .message-reactions,
+.mini-phone .message-reactions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 5px;
+}
+
+body[data-app-mode="app"] .message-reaction,
+.mini-phone .message-reaction {
+  padding: 2px 7px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: 999px;
+  color: var(--chat-ui-muted);
+  background: var(--chat-ui-surface);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+/* Psychology turns paint a separate `.message-bubble` and reserve the ⋯ strip
+ * with transparent padding. User / plain-AI cards *are* the painted box, so
+ * the same padding would just grow the grey and trap ⋯ inside it. Those cards
+ * hang the menu below the box and reserve the strip with margin instead.
+ * WebViews without `:has()` still get `.has-message-menu` from JS. */
+body[data-app-mode="app"] .message.has-turn-activity:has(.message-menu),
+.mini-phone .mini-message.has-turn-activity:has(.message-menu) {
+  padding-bottom: 18px;
+}
+
+body[data-app-mode="app"] .message:has(.message-menu):not(.has-turn-activity),
+body[data-app-mode="app"] .message.has-message-menu:not(.has-turn-activity),
+.mini-phone .mini-message:has(.message-menu):not(.has-turn-activity),
+.mini-phone .mini-message.has-message-menu:not(.has-turn-activity) {
+  margin-bottom: 16px;
+  overflow: visible;
+}
+
+body[data-app-mode="app"] .message-menu,
+.mini-phone .message-menu {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  display: flex;
+}
+
+body[data-app-mode="app"] .message:not(.has-turn-activity) > .message-menu,
+.mini-phone .mini-message:not(.has-turn-activity) > .message-menu {
+  top: calc(100% + 2px);
+  bottom: auto;
+}
+
+/* A bubble still in flight, or one whose send failed, has no content worth
+ * editing or answering — but its way out always stays, because a send that
+ * never settles is exactly the one a reader wants to clear. */
+body[data-app-mode="app"] .message.is-pending .message-menu__list button:not([data-message-action="delete"]),
+body[data-app-mode="app"] .message.is-failed .message-menu__list button:not([data-message-action="delete"]),
+.mini-phone .mini-message.is-pending .message-menu__list button:not([data-message-action="delete"]),
+.mini-phone .mini-message.is-failed .message-menu__list button:not([data-message-action="delete"]) {
+  display: none;
+}
+
+body[data-app-mode="app"] .message.is-pending .message-menu__list button[data-message-action="delete"],
+body[data-app-mode="app"] .message.is-failed .message-menu__list button[data-message-action="delete"],
+.mini-phone .mini-message.is-pending .message-menu__list button[data-message-action="delete"],
+.mini-phone .mini-message.is-failed .message-menu__list button[data-message-action="delete"] {
+  margin-top: 0;
+  padding-top: 4px;
+  border-top: 0;
+  border-radius: 9px;
+}
+
+body[data-app-mode="app"] .message.user .message-menu,
+.mini-phone .mini-message.is-user .message-menu {
+  right: 0;
+  left: auto;
+}
+
+body[data-app-mode="app"] .message-menu__trigger,
+.mini-phone .message-menu__trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  color: var(--chat-ui-muted, #60717f);
+  background: transparent;
+  cursor: pointer;
+  opacity: 1;
+  transition: color 140ms ease, background 140ms ease;
+}
+
+/* Visual footprint stays tiny; the tap target does not. */
+body[data-app-mode="app"] .message-menu__trigger::after,
+.mini-phone .message-menu__trigger::after {
+  content: "";
+  position: absolute;
+  inset: -8px -7px;
+}
+
+body[data-app-mode="app"] .message:hover .message-menu__trigger,
+body[data-app-mode="app"] .message-menu.is-open .message-menu__trigger,
+body[data-app-mode="app"] .message-menu__trigger:focus-visible,
+.mini-phone .mini-message:hover .message-menu__trigger,
+.mini-phone .message-menu.is-open .message-menu__trigger,
+.mini-phone .message-menu__trigger:focus-visible {
+  color: var(--chat-ui-accent);
+  background: var(--chat-ui-accent-soft);
+  outline: none;
+}
+
+body[data-app-mode="app"] .message-menu__trigger svg,
+.mini-phone .message-menu__trigger svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2.2;
+}
+
+body[data-app-mode="app"] .message-menu__list,
+.mini-phone .message-menu__list {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 124px;
+  padding: 5px;
+  border: 1px solid var(--chat-ui-line);
+  border-radius: 14px;
+  background: var(--chat-ui-surface);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 6%), 0 12px 32px -8px rgb(15 23 42 / 22%);
+  transform-origin: top left;
+  animation: message-menu-in 120ms ease-out;
+}
+
+body[data-app-mode="app"] .message.user .message-menu__list,
+.mini-phone .mini-message.is-user .message-menu__list {
+  transform-origin: top right;
+}
+
+body[data-app-mode="app"] .message-menu.is-up .message-menu__list,
+.mini-phone .message-menu.is-up .message-menu__list {
+  transform-origin: bottom left;
+}
+
+body[data-app-mode="app"] .message.user .message-menu.is-up .message-menu__list,
+.mini-phone .mini-message.is-user .message-menu.is-up .message-menu__list {
+  transform-origin: bottom right;
+}
+
+@keyframes message-menu-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-app-mode="app"] .message-menu__list,
+  .mini-phone .message-menu__list {
+    animation: none;
+  }
+}
+
+body[data-app-mode="app"] .message.user .message-menu__list,
+.mini-phone .mini-message.is-user .message-menu__list {
+  right: 0;
+  left: auto;
+}
+
+/* Last resort: the transcript had no scroll room left to open downward into. */
+body[data-app-mode="app"] .message-menu.is-up .message-menu__list,
+.mini-phone .message-menu.is-up .message-menu__list {
+  top: auto;
+  bottom: calc(100% + 5px);
+}
+
+body[data-app-mode="app"] .message-menu__list[hidden],
+.mini-phone .message-menu__list[hidden] {
+  display: none;
+}
+
+body[data-app-mode="app"] .message-menu__list button,
+.mini-phone .message-menu__list button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 34px;
+  padding: 4px 9px;
+  border: 0;
+  border-radius: 9px;
+  color: var(--chat-ui-ink);
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  text-align: start;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Destructive action set apart from the four reversible ones above it. */
+body[data-app-mode="app"] .message-menu__list button[data-message-action="delete"],
+.mini-phone .message-menu__list button[data-message-action="delete"] {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--chat-ui-line);
+  border-radius: 0 0 9px 9px;
+  min-height: 36px;
+}
+
+body[data-app-mode="app"] .message-menu__list button:hover,
+body[data-app-mode="app"] .message-menu__list button:focus-visible,
+.mini-phone .message-menu__list button:hover,
+.mini-phone .message-menu__list button:focus-visible {
+  color: var(--chat-ui-accent);
+  background: var(--chat-ui-accent-soft);
+  outline: none;
+}
+
+body[data-app-mode="app"] .message-menu__list button[data-message-action="delete"],
+.mini-phone .message-menu__list button[data-message-action="delete"] {
+  color: var(--chat-ui-danger);
+}
+
+body[data-app-mode="app"] .message-menu__list button[data-message-action="delete"]:hover,
+body[data-app-mode="app"] .message-menu__list button[data-message-action="delete"]:focus-visible,
+.mini-phone .message-menu__list button[data-message-action="delete"]:hover,
+.mini-phone .message-menu__list button[data-message-action="delete"]:focus-visible {
+  color: var(--chat-ui-danger);
+  background: color-mix(in srgb, var(--chat-ui-danger) 10%, transparent);
+}
+
+body[data-app-mode="app"] .message-menu__list svg,
+.mini-phone .message-menu__list svg {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  color: var(--chat-ui-muted);
+  stroke-width: 1.8;
+}
+
+body[data-app-mode="app"] .message-menu__list button:hover svg,
+body[data-app-mode="app"] .message-menu__list button:focus-visible svg,
+.mini-phone .message-menu__list button:hover svg,
+.mini-phone .message-menu__list button:focus-visible svg {
+  color: inherit;
+}
+
+body[data-app-mode="app"] .message-menu__list button[data-message-action="delete"] svg,
+.mini-phone .message-menu__list button[data-message-action="delete"] svg {
+  color: inherit;
+}
+
+body[data-app-mode="app"] .message.is-recalled > :not(.message-recalled-copy, .message-menu),
+.mini-phone .mini-message.is-recalled > :not(.message-recalled-copy, footer, .message-menu) {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .message-recalled-copy,
+.mini-phone .message-recalled-copy {
+  color: var(--chat-ui-muted);
+  font-size: 11px;
+  font-style: italic;
+}
+
+body[data-app-mode="app"] .message.is-recalled,
+.mini-phone .mini-message.is-recalled {
+  border-style: dashed;
+  background: color-mix(in srgb, var(--chat-ui-surface) 76%, transparent);
+  box-shadow: none;
+}
+
+.composer-reply-preview {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--chat-ui-line, rgb(12 31 48 / 12%));
+  border-left: 3px solid var(--chat-ui-accent, #10283b);
+  border-radius: 9px;
+  color: var(--chat-ui-muted, #60717f);
+  background: var(--chat-ui-surface, #fff);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.composer-reply-preview > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.composer-reply-preview button {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.composer-reply-preview button:hover,
+.composer-reply-preview button:focus-visible {
+  color: var(--chat-ui-accent, #10283b);
+  background: var(--chat-ui-accent-soft, #dcecf7);
+  outline: none;
+}
+
+.composer-reply-preview svg {
+  width: 14px;
+  height: 14px;
+}
+
+.chat-feedback-host {
+  position: fixed;
+  z-index: 2600;
+  left: 50%;
+  bottom: max(20px, calc(env(safe-area-inset-bottom) + 12px));
+  max-width: min(88vw, 420px);
+  padding: 9px 13px;
+  border: 1px solid rgb(12 31 48 / 14%);
+  border-radius: 10px;
+  color: #f8fbfd;
+  background: rgb(10 27 42 / 94%);
+  box-shadow: 0 8px 28px rgb(0 10 20 / 18%);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 8px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.chat-feedback-host[data-visible="true"] {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.chat-feedback-host[data-tone="success"] {
+  background: rgb(43 103 88 / 95%);
+}
+
+.chat-feedback-host[data-tone="warning"] {
+  background: rgb(113 76 29 / 95%);
+}
+
+.chat-feedback-host[data-tone="danger"] {
+  background: rgb(132 55 65 / 95%);
+}
+
+/* DeepSeek-style psychology: muted fold above the spoken bubble.
+   Definite column width (not shrink-to-fit) so peek/copy stay inside the screen.
+   No browser blue tap/focus chrome — soft opacity press only. */
+body[data-app-mode="app"] .message.ai.has-turn-activity,
+body[data-app-mode="app"] .message.ai.has-turn-activity:has(~ .message.ai),
+body[data-app-mode="app"] .message.system.has-turn-activity,
+.mini-phone .mini-message.is-ai.has-turn-activity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  box-sizing: border-box;
+  /* Definite width: percentage children resolve; long peek cannot expand past viewport.
+     Do NOT set overflow-x:hidden here — it forces overflow-y to auto and mid-glyph clips. */
+  width: min(84%, 620px);
+  max-width: min(84%, 620px);
+  min-width: 0;
+  padding: 0 0 18px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+body[data-app-mode="app"] .message.user {
+  width: fit-content;
+  margin-left: auto;
+}
+
+body[data-app-mode="app"] .message.ai.has-turn-activity > .message-bubble,
+body[data-app-mode="app"] .message.system.has-turn-activity > .message-bubble,
+.mini-phone .mini-message.is-ai.has-turn-activity > .message-bubble {
+  box-sizing: border-box;
+  width: auto;
+  max-width: 100%;
+  min-width: min(42vw, 160px);
+  padding: 9px 12px;
+  color: var(--chat-ui-ink, #10283b);
+  border: 1px solid var(--chat-ui-line, #d8e0e6);
+  border-radius: var(--chat-ui-radius, 14px);
+  border-bottom-left-radius: var(--chat-ui-tail-radius, 4px);
+  background: var(--chat-ui-surface, #fff);
+  box-shadow: var(--chat-ui-shadow, 0 7px 20px rgb(1 15 29 / 7%));
+}
+
+/* Safety: if psychology chrome is on but bubble shell missing, keep a readable card. */
+body[data-app-mode="app"] .message.ai.has-turn-activity:not(:has(> .message-bubble)),
+body[data-app-mode="app"] .message.system.has-turn-activity:not(:has(> .message-bubble)) {
+  border: 1px solid var(--chat-ui-line, #d8e0e6);
+  border-radius: var(--chat-ui-radius, 14px);
+  border-bottom-left-radius: var(--chat-ui-tail-radius, 4px);
+  background: var(--chat-ui-surface, #fff);
+  box-shadow: var(--chat-ui-shadow, 0 7px 20px rgb(1 15 29 / 7%));
+  padding: 9px 12px 18px;
+}
+
+/* Hold the spoken bubble until psychology finishes streaming. */
+body[data-app-mode="app"] .message.ai.is-psychology-pending > .message-bubble,
+body[data-app-mode="app"] .message.system.is-psychology-pending > .message-bubble,
+.mini-phone .mini-message.is-ai.is-psychology-pending > .message-bubble {
+  display: none;
+}
+
+body[data-app-mode="app"] .message.ai.is-psychology-pending > .message-menu,
+body[data-app-mode="app"] .message.system.is-psychology-pending > .message-menu,
+.mini-phone .mini-message.is-ai.is-psychology-pending > .message-menu {
+  display: none;
+}
+
+body[data-app-mode="app"] .message.ai.has-turn-activity > .message-turn-activity,
+body[data-app-mode="app"] .message.system.has-turn-activity > .message-turn-activity,
+.mini-phone .mini-message.is-ai.has-turn-activity > .message-turn-activity,
+.mini-phone .mini-message.is-ai.has-turn-activity > .mini-turn-activity {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+/* Character thought is a quiet aside above the spoken bubble, not a product card. */
+body[data-app-mode="app"] .message.ai.has-turn-activity > .message-turn-activity.is-inner-state,
+body[data-app-mode="app"] .message.system.has-turn-activity > .message-turn-activity.is-inner-state,
+.mini-phone .mini-message.is-ai.has-turn-activity > .message-turn-activity.is-inner-state {
+  margin: 0 0 8px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body[data-app-mode="app"] .message.ai.has-turn-activity > .message-turn-activity.is-runtime-progress,
+body[data-app-mode="app"] .message.system.has-turn-activity > .message-turn-activity.is-runtime-progress,
+.mini-phone .mini-message.is-ai.has-turn-activity > .message-turn-activity.is-runtime-progress {
+  margin: 0 0 6px;
+  padding-inline: 2px;
+}
+
+.message-turn-activity.is-inner-state > summary,
+.mini-turn-activity.is-inner-state > summary {
+  min-height: 28px;
+  padding: 2px 2px 4px;
+  border-bottom: 0;
+  color: var(--chat-ui-muted, #60717f);
+}
+
+.message-turn-activity.is-inner-state[open] > summary,
+.mini-turn-activity.is-inner-state[open] > summary {
+  border-bottom: 0;
+}
+
+.message-turn-activity.is-inner-state .message-turn-activity__label,
+.mini-turn-activity.is-inner-state .mini-turn-activity__label {
+  color: var(--chat-ui-muted, #60717f);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.message-turn-activity.is-inner-state .message-turn-activity__label::before,
+.mini-turn-activity.is-inner-state .mini-turn-activity__label::before {
+  width: 0;
+  height: 0;
+  margin-right: 6px;
+  border-style: solid;
+  border-width: 4px 0 4px 5px;
+  border-color: transparent transparent transparent var(--chat-ui-faint, #8a9aa8);
+  border-radius: 0;
+  background: transparent;
+  vertical-align: 1px;
+}
+
+.message-turn-activity__toggle,
+.mini-turn-activity__toggle,
+.message-turn-activity__state,
+.mini-turn-activity__state {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.message-turn-activity.is-inner-state > .message-turn-activity__copy,
+.mini-turn-activity.is-inner-state > .mini-turn-activity__copy {
+  margin: 0;
+  max-height: min(55vh, 30em);
+  padding: 0 2px 2px 14px;
+  border-left: 1px solid color-mix(in srgb, var(--chat-ui-line, #d8e0e6) 80%, transparent);
+  color: color-mix(in srgb, var(--chat-ui-ink, #10283b) 58%, var(--chat-ui-muted, #60717f));
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.65;
+}
+
+.message-turn-activity.is-waiting .message-turn-activity__label,
+.mini-turn-activity.is-waiting .mini-turn-activity__label {
+  animation: yueqi-think-breathe 1.5s ease-in-out infinite;
+}
+
+@keyframes yueqi-think-breathe {
+  0%, 100% { opacity: 0.42; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .message-turn-activity.is-waiting .message-turn-activity__label,
+  .mini-turn-activity.is-waiting .mini-turn-activity__label {
+    animation: none;
+  }
+}
+
+.message-turn-activity,
+.mini-turn-activity {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  border-top: 0;
+  color: var(--chat-ui-faint, #8a9aa8);
+  text-align: left;
+  overflow: visible;
+}
+
+.message-turn-activity[hidden],
+.mini-turn-activity[hidden] {
+  display: none !important;
+}
+
+.message-turn-activity > summary,
+.mini-turn-activity > summary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px 0;
+  list-style: none;
+  cursor: pointer;
+  color: var(--chat-ui-muted, #60717f);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent;
+  border-radius: 6px;
+}
+
+.message-turn-activity,
+.mini-turn-activity,
+.message-turn-activity *,
+.mini-turn-activity * {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.message-turn-activity > summary:focus,
+.mini-turn-activity > summary:focus,
+.message-turn-activity > summary:focus-visible,
+.mini-turn-activity > summary:focus-visible,
+.message-turn-activity > summary:active,
+.mini-turn-activity > summary:active,
+.message-turn-activity:focus,
+.mini-turn-activity:focus,
+.message-turn-activity:focus-visible,
+.mini-turn-activity:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Soft press — mobile, not browser blue ring */
+.message-turn-activity > summary:active,
+.mini-turn-activity > summary:active {
+  opacity: 0.72;
+}
+
+.message-turn-activity > summary::-webkit-details-marker,
+.mini-turn-activity > summary::-webkit-details-marker,
+.message-turn-activity > summary::marker,
+.mini-turn-activity > summary::marker {
+  display: none;
+  content: "";
+}
+
+/* Kill legacy styles.css summary::after "⌄" (old tool-trace chrome). */
+.message-turn-activity > summary::after,
+.mini-turn-activity > summary::after,
+.message-turn-activity[open] > summary::after,
+.mini-turn-activity[open] > summary::after {
+  content: none !important;
+  display: none !important;
+  margin: 0 !important;
+}
+
+.message-turn-activity__label,
+.mini-turn-activity__label {
+  flex: 0 0 auto;
+  color: var(--chat-ui-muted, #60717f);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.message.ai.is-tool-progress::before,
+.message.ai.is-reply-progress::before {
+  content: none !important;
+  display: none !important;
+}
+
+.message-attachment-caption {
+  margin: 7px 0 0;
+  color: var(--chat-ui-muted, #60717f);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.message-turn-activity__label::before,
+.mini-turn-activity__label::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-right: 6px;
+  border-style: solid;
+  border-width: 4px 0 4px 5px;
+  border-color: transparent transparent transparent var(--chat-ui-faint, #8a9aa8);
+  vertical-align: 1px;
+  transition: transform 140ms ease;
+}
+
+.message-turn-activity[open] > summary .message-turn-activity__label::before,
+.mini-turn-activity[open] > summary .mini-turn-activity__label::before {
+  transform: rotate(90deg);
+}
+
+.message-turn-activity__peek,
+.mini-turn-activity__peek {
+  /* Collapsed summary is label-only; never leak thinking body into the peek. */
+  display: none !important;
+}
+
+.message-turn-activity[open] > summary .message-turn-activity__peek,
+.mini-turn-activity[open] > summary .mini-turn-activity__peek {
+  display: none !important;
+}
+
+.message-turn-activity__copy,
+.mini-turn-activity__copy {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  max-height: min(55vh, 28em);
+  margin: 4px 0 2px;
+  padding: 0 0 2px 14px;
+  overflow-x: visible;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  color: color-mix(in srgb, var(--chat-ui-ink, #10283b) 42%, var(--chat-ui-muted, #60717f));
+  font-size: 12.5px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.message-turn-activity:not([open]) > .message-turn-activity__copy,
+.mini-turn-activity:not([open]) > .mini-turn-activity__copy {
+  display: none;
+}
+
+.message-turn-activity.is-waiting .message-turn-activity__label {
+  color: var(--chat-ui-muted, #60717f);
+}
+
+.message-turn-activity.is-failed .message-turn-activity__copy {
+  color: color-mix(in srgb, #a04555 55%, var(--chat-ui-muted, #60717f));
+}
+
+/* ⋯ under the bubble's own corner (fit-content article), not the screen edge. */
+body[data-app-mode="app"] .message-menu,
+.mini-phone .message-menu {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  display: flex;
+}
+
+body[data-app-mode="app"] .message:not(.has-turn-activity) > .message-menu,
+.mini-phone .mini-message:not(.has-turn-activity) > .message-menu {
+  top: calc(100% + 2px);
+  bottom: auto;
+}
+
+body[data-app-mode="app"] .message.user .message-menu,
+.mini-phone .mini-message.is-user .message-menu {
+  right: 0;
+  left: auto;
+}
+
+body[data-app-mode="app"] .message.ai.has-turn-activity > .message-menu,
+body[data-app-mode="app"] .message.system.has-turn-activity > .message-menu,
+.mini-phone .mini-message.is-ai.has-turn-activity > .message-menu {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  margin-top: 0;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .message-turn-activity__label::before,
+  .mini-turn-activity__label::before {
+    transition: none;
+  }
+
+  body[data-app-mode="app"] .message,
+  .mini-phone .mini-message,
+  .mini-phone .mini-message__retry,
+  .chat-feedback-host {
+    transition: none !important;
+  }
+}
+
+/* ── App / Pop message parity (final authority) ─────────────────────────────
+ * Decoration may keep decorative chrome (wallpaper, pop tabs, composer frame).
+ * Bubble metrics, thinking fold, and activity/tool cards stay identical.
+ */
+body[data-app-mode="app"] .message,
+.mini-phone .mini-message {
+  width: fit-content !important;
+  max-width: min(84%, 620px) !important;
+  padding: 9px 12px !important;
+  border-radius: var(--chat-ui-radius, 12px) !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  letter-spacing: 0 !important;
+}
+
+body[data-app-mode="app"] .message.ai.has-turn-activity,
+body[data-app-mode="app"] .message.ai.has-turn-activity:has(~ .message.ai),
+.mini-phone .mini-message.is-ai.has-turn-activity {
+  width: min(84%, 620px) !important;
+  max-width: min(84%, 620px) !important;
+  padding: 0 0 18px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .message.ai.has-turn-activity > .message-bubble,
+.mini-phone .mini-message.is-ai.has-turn-activity > .message-bubble {
+  padding: 9px 12px !important;
+  border-radius: var(--chat-ui-radius, 12px) !important;
+  border-bottom-left-radius: var(--chat-ui-tail-radius, 4px) !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+body[data-app-mode="app"] .message-turn-activity,
+.mini-phone .message-turn-activity,
+.mini-phone .mini-turn-activity {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-top: 0 !important;
+}
+
+body[data-app-mode="app"] .message.ai.has-turn-activity > .message-turn-activity.is-inner-state,
+body[data-app-mode="app"] .message.system.has-turn-activity > .message-turn-activity.is-inner-state,
+.mini-phone .mini-message.is-ai.has-turn-activity > .message-turn-activity.is-inner-state,
+.mini-phone .mini-message.is-ai.has-turn-activity > .mini-turn-activity.is-inner-state {
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-app-mode="app"] .message-turn-activity__label,
+.mini-phone .message-turn-activity__label,
+.mini-phone .mini-turn-activity__label {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+body[data-app-mode="app"] .message-turn-activity.is-inner-state .message-turn-activity__label,
+.mini-phone .message-turn-activity.is-inner-state .message-turn-activity__label,
+.mini-phone .mini-turn-activity.is-inner-state .mini-turn-activity__label {
+  color: var(--chat-ui-muted, #60717f) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+
+body[data-app-mode="app"] .message-turn-activity__copy,
+.mini-phone .message-turn-activity__copy,
+.mini-phone .mini-turn-activity__copy {
+  font-size: 12.5px !important;
+  line-height: 1.65 !important;
+  padding: 0 0 2px 14px !important;
+}
+
+body[data-app-mode="app"] .message-turn-activity.is-inner-state > .message-turn-activity__copy,
+.mini-phone .message-turn-activity.is-inner-state > .message-turn-activity__copy,
+.mini-phone .mini-turn-activity.is-inner-state > .mini-turn-activity__copy {
+  padding: 0 2px 2px 12px !important;
+  font-size: 13px !important;
+  font-style: italic;
+}
+
+body[data-app-mode="app"] .message-diary-card,
+.mini-phone .message-diary-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 12px 13px !important;
+  border-radius: var(--chat-ui-radius, 12px) !important;
+  font-size: 13px !important;
+}
+
+body[data-app-mode="app"] .action-proposal-card,
+.mini-phone .action-proposal-card {
+  width: min(100%, 360px) !important;
+  max-width: min(84%, 420px) !important;
+  padding: 12px 14px !important;
+  border-radius: 14px !important;
+  font-size: 13px !important;
+}
+
+body[data-app-mode="app"] .action-proposal-card__title,
+.mini-phone .action-proposal-card__title {
+  font-size: 14px !important;
+}
+
+body[data-app-mode="app"] .action-proposal-card__effect,
+body[data-app-mode="app"] .action-proposal-card__when,
+body[data-app-mode="app"] .action-proposal-card__target,
+body[data-app-mode="app"] .action-proposal-card__status,
+.mini-phone .action-proposal-card__effect,
+.mini-phone .action-proposal-card__when,
+.mini-phone .action-proposal-card__target,
+.mini-phone .action-proposal-card__status {
+  font-size: 13px !important;
+}
+
+body[data-app-mode="app"] .action-proposal-card__status,
+.mini-phone .action-proposal-card__status {
+  font-size: 12px !important;
+}
+
+/* Final-authority shorthand paints the article as the bubble. Do not grow that
+ * fill with padding — hang ⋯ below the box and reserve the strip with margin. */
+body[data-app-mode="app"] .message:has(.message-menu):not(.has-turn-activity),
+body[data-app-mode="app"] .message.has-message-menu:not(.has-turn-activity),
+.mini-phone .mini-message:has(.message-menu):not(.has-turn-activity),
+.mini-phone .mini-message.has-message-menu:not(.has-turn-activity) {
+  padding-bottom: 9px !important;
+  margin-bottom: 16px;
+  overflow: visible;
+}
+
+body[data-app-mode="app"] .message:not(.has-turn-activity) > .message-menu,
+.mini-phone .mini-message:not(.has-turn-activity) > .message-menu {
+  top: calc(100% + 2px);
+  bottom: auto;
+}

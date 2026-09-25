@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "clipId": "talk_loop",
+  "image": "talk_loop.png",
+  "size": {
+    "width": 528,
+    "height": 660
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "talk_loop_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 264,
+        "height": 660
+      },
+      "source": {
+        "x": 227,
+        "y": 60,
+        "width": 264,
+        "height": 660
+      },
+      "durationMs": 500
+    },
+    {
+      "id": "talk_loop_001",
+      "index": 1,
+      "atlas": {
+        "x": 266,
+        "y": 0,
+        "width": 262,
+        "height": 660
+      },
+      "source": {
+        "x": 228,
+        "y": 60,
+        "width": 262,
+        "height": 660
+      },
+      "durationMs": 500
+    }
+  ]
+}

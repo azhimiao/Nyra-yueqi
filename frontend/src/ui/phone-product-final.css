@@ -1,0 +1,708 @@
+/*
+ * Nyra phone product surface
+ *
+ * This is the final, intentionally small cascade for the phone shell. The
+ * legacy phone stylesheet contains several historical product directions;
+ * these rules provide one stable mobile contract without changing feature
+ * module HTML contracts.
+ */
+
+.mini-phone {
+  --nyra-phone-bg: #f3f7fb;
+  --nyra-phone-surface: #ffffff;
+  --nyra-phone-surface-soft: #f7fbff;
+  --nyra-phone-ink: #10243a;
+  --nyra-phone-ink-soft: #506477;
+  --nyra-phone-muted: #7b8b9a;
+  --nyra-phone-line: rgb(16 36 58 / 13%);
+  --nyra-phone-line-strong: rgb(16 36 58 / 22%);
+  --nyra-phone-ice: #4e9ee8;
+  --nyra-phone-ice-soft: #e3f1ff;
+  --nyra-phone-navy: #0d243b;
+  --nyra-phone-shadow: 0 8px 20px rgb(20 49 78 / 8%);
+  --nyra-phone-radius: 14px;
+  --nyra-phone-control: 44px;
+  min-width: 0;
+  min-height: 0;
+  color: var(--nyra-phone-ink);
+  background: var(--nyra-phone-bg);
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.mini-phone,
+.mini-phone *,
+.mini-phone *::before,
+.mini-phone *::after { box-sizing: border-box; }
+
+.mini-phone button,
+.mini-phone input,
+.mini-phone textarea,
+.mini-phone select { font: inherit; }
+
+.mini-phone button,
+.mini-phone [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.mini-phone button:focus-visible,
+.mini-phone [role="button"]:focus-visible,
+.mini-phone input:focus-visible,
+.mini-phone textarea:focus-visible,
+.mini-phone select:focus-visible {
+  outline: 2px solid var(--nyra-phone-ice);
+  outline-offset: 2px;
+}
+
+.mini-phone .mini-appbar {
+  grid-template-columns: var(--nyra-phone-control) minmax(0, 1fr) var(--nyra-phone-control);
+  min-height: 58px;
+  padding: 7px 10px;
+  gap: 6px;
+  border-color: var(--nyra-phone-line);
+  background: rgb(255 255 255 / 96%);
+  box-shadow: 0 1px 0 rgb(16 36 58 / 4%);
+}
+
+.mini-phone .mini-appbar strong {
+  display: block;
+  min-width: 0;
+  color: var(--nyra-phone-ink);
+  font-size: 15px;
+  line-height: 1.22;
+  overflow-wrap: anywhere;
+}
+
+.mini-phone .mini-appbar span {
+  display: block;
+  margin-top: 2px;
+  color: var(--nyra-phone-muted);
+  font-size: 10px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.mini-phone .mini-icon-button {
+  width: var(--nyra-phone-control);
+  min-width: var(--nyra-phone-control);
+  height: var(--nyra-phone-control);
+  min-height: var(--nyra-phone-control);
+  padding: 0;
+  border: 1px solid var(--nyra-phone-line);
+  border-radius: 50%;
+  color: var(--nyra-phone-ink);
+  background: var(--nyra-phone-surface);
+  box-shadow: 0 4px 10px rgb(20 49 78 / 6%);
+}
+
+.mini-phone .mini-icon-button:active,
+.mini-phone .mini-app-cta:active,
+.mini-phone .mini-shop-buy:active,
+.mini-phone .explore-cta:active { transform: scale(.97); }
+
+.mini-phone .mini-app-scroll,
+.mini-phone .mini-profile__scroll,
+.mini-phone .mini-settings-list {
+  min-width: 0;
+  max-width: 100%;
+  padding: 12px 14px calc(30px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+.mini-phone h1,
+.mini-phone h2 {
+  max-width: 100%;
+  font-size: 21px;
+  line-height: 1.22;
+  overflow-wrap: anywhere;
+}
+
+.mini-phone h3 {
+  max-width: 100%;
+  font-size: 16px;
+  line-height: 1.28;
+  overflow-wrap: anywhere;
+}
+
+.mini-phone p,
+.mini-phone li,
+.mini-phone dd,
+.mini-phone dt,
+.mini-phone label {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.mini-phone .mini-app-cta,
+.mini-phone .mini-form button,
+.mini-phone .mini-settings-row,
+.mini-phone .mini-switch-row,
+.mini-phone .mini-form__row {
+  min-height: var(--nyra-phone-control);
+  max-width: 100%;
+  padding: 9px 13px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.28;
+}
+
+.mini-phone .mini-app-cta:not(.mini-app-cta--ghost) {
+  color: #fff;
+  background: var(--nyra-phone-navy);
+  box-shadow: 0 6px 14px rgb(13 36 59 / 16%);
+}
+
+.mini-phone .mini-app-cta--ghost {
+  color: var(--nyra-phone-ink);
+  border: 1px solid var(--nyra-phone-line-strong);
+  background: var(--nyra-phone-surface);
+}
+
+.mini-phone .mini-form input,
+.mini-phone .mini-form textarea,
+.mini-phone .mini-form select,
+.mini-phone .mini-search,
+.mini-phone .mini-shop-search {
+  min-width: 0;
+  max-width: 100%;
+  min-height: var(--nyra-phone-control);
+  padding: 9px 11px;
+  border-color: var(--nyra-phone-line-strong);
+  border-radius: 12px;
+  color: var(--nyra-phone-ink);
+  background: var(--nyra-phone-surface);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.mini-phone .mini-form textarea { min-height: 92px; resize: vertical; }
+
+/* Home: a real two-page viewport. The track must never grow the phone width. */
+.mini-phone .mini-home {
+  min-width: 0;
+  min-height: 0;
+  padding: 0 10px max(8px, env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+  background: var(--nyra-phone-bg);
+}
+
+.mini-phone .mini-home__pager {
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+  /* Desktop is fixed-height: only horizontal paging, never vertical scroll. */
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+.mini-phone .mini-home__track {
+  display: flex;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  transition: transform 260ms cubic-bezier(.22, 1, .36, 1);
+  will-change: transform;
+}
+
+.mini-phone .mini-home__track.is-dragging { transition: none; }
+
+.mini-phone .mini-home__page {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 0;
+  height: 100%;
+  padding: 10px 6px 6px;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: pan-x;
+  scrollbar-width: none;
+}
+
+.mini-phone .mini-home__page::-webkit-scrollbar { display: none; }
+
+.mini-phone .mini-widgets {
+  grid-template-rows: auto 108px 68px minmax(32px, 1fr) auto;
+  gap: 9px;
+  padding-bottom: 4px;
+}
+
+.mini-phone .mini-widget {
+  border: 1px solid var(--nyra-phone-line);
+  border-radius: var(--nyra-phone-radius);
+  background: var(--nyra-phone-surface);
+  box-shadow: var(--nyra-phone-shadow);
+}
+
+.mini-phone .mini-home-hero {
+  grid-template-columns: minmax(0, 1fr) 128px;
+  gap: 10px;
+  min-height: 90px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-home-greeting strong {
+  color: var(--nyra-phone-ink);
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.mini-phone .mini-home-greeting p {
+  color: var(--nyra-phone-ink-soft);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.mini-phone .mini-home-relation {
+  min-width: 0;
+  min-height: 68px;
+  padding: 9px;
+  border: 1px solid rgb(78 158 232 / 24%);
+  border-radius: var(--nyra-phone-radius);
+  color: var(--nyra-phone-ink);
+  background: var(--nyra-phone-surface);
+  box-shadow: 0 8px 18px rgb(44 122 190 / 9%);
+}
+
+.mini-phone .mini-home-shortcuts { gap: 9px 7px; padding-top: 2px; }
+.mini-phone .mini-home-shortcut { gap: 4px; padding: 0; }
+
+.mini-phone .mini-home-shortcut > span {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--nyra-phone-line);
+  border-radius: 13px;
+  color: var(--nyra-phone-navy);
+  background: var(--nyra-phone-surface);
+  box-shadow: 0 6px 14px rgb(20 49 78 / 7%);
+}
+
+.mini-phone .mini-home-shortcut em {
+  color: var(--nyra-phone-ink-soft);
+  font-size: 10px;
+  font-weight: 550;
+}
+
+.mini-phone .mini-home__dots { min-height: 12px; gap: 5px; }
+
+.mini-phone .mini-dock {
+  width: min(286px, calc(100% - 22px));
+  min-height: 58px;
+  margin: 0 auto 4px;
+  padding: 7px 10px;
+  border: 1px solid var(--nyra-phone-line);
+  border-radius: 18px;
+  background: var(--nyra-phone-surface);
+  box-shadow: 0 8px 20px rgb(20 49 78 / 9%);
+}
+
+/* Shared feature surfaces: compact, layered by whitespace rather than boxes. */
+.mini-phone .mini-profile-card,
+.mini-phone .mini-memory-card,
+.mini-phone .mini-gallery-card,
+.mini-phone .mini-settings-card,
+.mini-phone .mini-shop-card,
+.mini-phone .mini-shop-order-row,
+.mini-phone .mini-shop-detail-card,
+.mini-phone .explore-task-card,
+.mini-phone .explore-market-row,
+.mini-phone .explore-cap-card {
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid var(--nyra-phone-line);
+  border-radius: 12px;
+  background: var(--nyra-phone-surface);
+  box-shadow: var(--nyra-phone-shadow);
+}
+
+/* Diary: stable static pages on phone, no oversized paper or library crop. */
+.mini-phone .mini-diary { background: var(--nyra-phone-bg); }
+
+.mini-phone .mini-diary-host {
+  min-width: 0;
+  padding: 10px 12px 16px;
+  overflow: hidden;
+}
+
+.mini-phone .diary-book-shell,
+.mini-phone .diary-book-interior,
+.mini-phone .diary-book-stage,
+.mini-phone .diary-flip-book { min-width: 0; max-width: 100%; }
+
+.mini-phone .diary-book-shell { width: min(100%, 314px); }
+.mini-phone .diary-book-interior { padding: 8px; }
+
+.mini-phone .diary-book-stage {
+  grid-template-columns: 36px minmax(0, 1fr) 36px;
+  min-height: 0;
+  touch-action: pan-y;
+}
+
+.mini-phone .diary-page-turn {
+  width: 36px;
+  height: 44px;
+  border: 1px solid var(--nyra-phone-line);
+  border-radius: 50%;
+  color: var(--nyra-phone-ink);
+  background: var(--nyra-phone-surface);
+  font-size: 20px;
+}
+
+.mini-phone .diary-flip-book {
+  width: 100%;
+  min-height: 0 !important;
+  height: auto;
+  filter: drop-shadow(0 8px 16px rgb(20 49 78 / 10%));
+}
+
+.mini-phone .diary-flip-page-inner { min-height: 270px; gap: 9px; padding: 18px 16px 14px; }
+.mini-phone .diary-flip-page .diary-page-title { font-size: 18px; line-height: 1.28; }
+.mini-phone .diary-page-excerpt { font-size: 13px; line-height: 1.65; }
+
+/* Shop and Explore: one back affordance, one column of content, no horizontal spill. */
+.mini-phone .mini-shop,
+.mini-phone .mini-explore-host { min-width: 0; max-width: 100%; background: var(--nyra-phone-bg); }
+
+.mini-phone .mini-shop-tabs,
+.mini-phone .explore-tabs--three,
+.mini-phone .explore-tabs--two {
+  min-width: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  padding: 3px 10px 5px;
+  background: var(--nyra-phone-surface);
+  border-bottom: 1px solid var(--nyra-phone-line);
+}
+.mini-phone .explore-tabs--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+
+.mini-phone .mini-shop-tab,
+.mini-phone .explore-tabs--three button,
+.mini-phone .explore-tabs--two button {
+  min-width: 0;
+  min-height: 42px;
+  padding: 7px 4px;
+  border-radius: 8px;
+  color: var(--nyra-phone-muted);
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.mini-phone .mini-shop-tab.is-active,
+.mini-phone .explore-tabs--three button.is-active,
+.mini-phone .explore-tabs--two button.is-active {
+  color: var(--nyra-phone-navy);
+  background: var(--nyra-phone-ice-soft);
+}
+
+.mini-phone .mini-shop-hero {
+  margin: 4px 0 10px;
+  padding: 12px 14px;
+  border: 0;
+  border-left: 2px solid var(--nyra-phone-ice);
+  border-radius: 0 12px 12px 0;
+  color: var(--nyra-phone-ink);
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-shop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; padding: 0 0 28px; }
+.mini-phone .mini-shop-card__cover {
+  aspect-ratio: 1.28;
+  font-size: 40px;
+  line-height: 1;
+}
+.mini-phone .mini-shop-card__body { gap: 2px; padding: 7px 8px 8px; }
+.mini-phone .mini-shop-card__body strong { font-size: 12px; }
+
+.mini-phone .mini-shop-grid .mini-shop-buy {
+  min-width: 40px;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--nyra-phone-navy);
+  font-size: 11px;
+}
+
+.mini-phone .mini-explore-host,
+.mini-phone .explore-host,
+.mini-phone .explore-body,
+.mini-phone .explore-market,
+.mini-phone .explore-tasks,
+.mini-phone .explore-session {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.mini-phone .explore-appbar { grid-template-columns: 44px minmax(0, 1fr) 44px; padding: 7px 10px; background: var(--nyra-phone-surface); }
+.mini-phone .explore-appbar strong { font-size: 16px; letter-spacing: 0; }
+.mini-phone .explore-appbar span,
+.mini-phone .explore-tasks p,
+.mini-phone .explore-market p { font-size: 12px; line-height: 1.45; }
+
+.mini-phone .explore-tasks,
+.mini-phone .explore-market { padding: 12px 14px 28px; gap: 10px; }
+.mini-phone .explore-task-form textarea { min-height: 88px; padding: 10px 11px; font-size: 13px; }
+
+.mini-phone .explore-task-form > button,
+.mini-phone .explore-market-actions > button,
+.mini-phone .explore-cta {
+  min-height: 44px;
+  max-width: 100%;
+  padding: 9px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.mini-phone .explore-market-actions,
+.mini-phone .explore-task-actions { grid-template-columns: minmax(0, 1fr); min-width: 0; }
+.mini-phone .explore-market-row,
+.mini-phone .explore-task-card,
+.mini-phone .explore-cap-card { padding: 12px; }
+
+.mini-phone .explore-market-row__actions,
+.mini-phone .explore-task-actions { display: flex; flex-wrap: wrap; gap: 7px; min-width: 0; }
+
+.mini-phone .explore-market-row__actions > button,
+.mini-phone .explore-task-actions > button {
+  flex: 1 1 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 42px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* App call overlay is bounded by the viewport, never by the document.
+ * Must stay display:none until .is-open — a bare display:grid here
+ * overrides .modal { display:none } and makes Close appear broken. */
+body[data-app-mode="app"] .video-call-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  place-items: center;
+  min-height: 0;
+  padding: max(12px, env(safe-area-inset-top, 0px)) 12px max(12px, env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+body[data-app-mode="app"] .video-call-modal:not(.is-open) {
+  display: none !important;
+}
+
+body[data-app-mode="app"] .video-call-modal.is-open {
+  display: grid !important;
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-backdrop {
+  z-index: 0;
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 340px);
+  max-width: 100%;
+  max-height: calc(100dvh - max(24px, env(safe-area-inset-top, 0px)) - max(24px, env(safe-area-inset-bottom, 0px)));
+  min-height: 0;
+  padding: 12px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border-radius: 18px;
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel > header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 2px;
+  background: var(--nyra-paper, #fff);
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel > header h2 {
+  min-width: 0;
+  max-width: calc(100% - 52px);
+  font-size: 17px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel > header [data-video-call-close] {
+  position: relative;
+  z-index: 4;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+body[data-app-mode="app"] .video-call-modal[data-call-mode="voice"] .video-call-stage {
+  aspect-ratio: auto;
+  max-height: none;
+}
+body[data-app-mode="app"] .voice-call-avatar { width: 76px; height: 76px; }
+
+@media (max-width: 365px) {
+  .mini-phone .mini-home-hero { grid-template-columns: minmax(0, 1fr) 112px; gap: 7px; }
+  .mini-phone .mini-home-greeting strong { font-size: 19px; }
+  .mini-phone .mini-home-relation { padding: 8px; }
+  .mini-phone .mini-home-shortcut > span { width: 42px; height: 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mini-phone .mini-home__track { transition-duration: 1ms; }
+}
+
+/* Final visual QA refinements. */
+.mini-phone .mini-home {
+  padding-top: 44px;
+}
+
+.mini-phone .mini-explore-host h2 {
+  font-size: 18px;
+}
+
+.mini-phone .mini-explore-host h3,
+.mini-phone .mini-explore-host .explore-market-section {
+  color: var(--nyra-phone-ink);
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.mini-phone .mini-explore-host .explore-market-row {
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px;
+}
+
+.mini-phone .mini-explore-host .explore-market-row__body strong {
+  color: var(--nyra-phone-ink);
+  font-size: 14px;
+}
+
+.mini-phone .mini-explore-host .explore-market-row__meta {
+  color: var(--nyra-phone-muted);
+  font-size: 11px;
+}
+
+.mini-phone .mini-explore-host .explore-market-row__actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.mini-phone .mini-explore-host .explore-market-row__actions > button {
+  min-height: 40px;
+  padding: 7px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+.mini-phone .mini-explore-host .explore-market-play {
+  color: #fff;
+  background: var(--nyra-phone-navy);
+}
+
+.mini-phone .mini-explore-host .explore-market-get {
+  color: var(--nyra-phone-navy);
+  background: var(--nyra-phone-ice-soft);
+}
+
+.mini-phone .mini-explore-host .explore-market-get.is-ghost {
+  border: 1px solid var(--nyra-phone-line);
+  background: var(--nyra-phone-surface);
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel {
+  width: min(calc(100% - 24px), 340px);
+  padding: 12px;
+  gap: 10px;
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel > header h2 {
+  font-size: 17px;
+}
+
+body[data-app-mode="app"] .video-call-modal[data-call-mode="voice"] .video-call-stage {
+  max-height: none;
+}
+
+.mini-phone .mini-explore-host .explore-market-hero__hint,
+.mini-phone .mini-explore-host .explore-cap-card__note {
+  color: var(--nyra-phone-navy) !important;
+}
+
+.mini-phone .mini-explore-host .explore-market-icon {
+  color: var(--nyra-phone-navy);
+  background: var(--nyra-phone-ice-soft);
+}
+
+.mini-phone .mini-explore-host .explore-task-actions > button.is-primary,
+.mini-phone .mini-explore-host .explore-cta:not(.explore-cta--ghost),
+.mini-phone .mini-explore-host .explore-icon-btn--send,
+.mini-phone .mini-explore-host .explore-msg--user {
+  color: #fff;
+  background: var(--nyra-phone-navy);
+}
+
+.mini-phone .mini-explore-host .explore-cta--ghost,
+.mini-phone .mini-explore-host .explore-task-actions > button:not(.is-primary) {
+  color: var(--nyra-phone-navy);
+  background: var(--nyra-phone-ice-soft);
+}
+
+.mini-phone .mini-explore-host .explore-tabs--three button.is-active::after,
+.mini-phone .mini-explore-host .explore-tabs--two button.is-active::after {
+  background: var(--nyra-phone-ice);
+}
+
+.mini-phone .mini-shop-balance,
+.mini-phone .mini-shop-price,
+.mini-phone .mini-shop-product__price {
+  color: var(--nyra-phone-navy);
+}
+
+/* Home desktop lock: win over legacy layers that re-enable pan-y / overflow-y */
+.mini-phone .mini-phone__content,
+.mini-phone .mini-home,
+.mini-phone .mini-home__pager,
+.mini-phone .mini-home__page,
+.mini-phone .mini-widgets {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
+.mini-phone .mini-home__pager,
+.mini-phone .mini-home__page {
+  touch-action: none;
+}

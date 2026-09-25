@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "id": "xingli",
+  "name": "星梨 (Xingli)",
+  "version": "2.0",
+  "renderer": "canvas2d-atlas",
+  "portrait": "portrait.png",
+  "sourceCleanup": {
+    "method": "largest-alpha-component-4",
+    "discardedAlphaPixels": 41
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "revision": "e2ff3b20f29b36b2",
+  "defaultClip": "idle_loop",
+  "totalFrames": 24,
+  "clips": {
+    "comfort": {
+      "id": "comfort",
+      "atlas": "clips/comfort.json",
+      "image": "clips/comfort.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 110,
+      "holdMs": 1700,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    },
+    "drag": {
+      "id": "drag",
+      "atlas": "clips/drag.json",
+      "image": "clips/drag.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 70,
+      "holdMs": 1200,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    },
+    "greet": {
+      "id": "greet",
+      "atlas": "clips/greet.json",
+      "image": "clips/greet.png",
+      "frameCount": 3,
+      "fps": 4,
+      "crossfadeMs": 80,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    },
+    "idle_loop": {
+      "id": "idle_loop",
+      "atlas": "clips/idle_loop.json",
+      "image": "clips/idle_loop.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 0,
+      "playback": "loop",
+      "motionHonesty": "single-frame; stage applies CSS breath/parallax — true 8–12fps idle needs new art"
+    },
+    "lean_close": {
+      "id": "lean_close",
+      "atlas": "clips/lean_close.json",
+      "image": "clips/lean_close.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 100,
+      "holdMs": 1500,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    },
+    "listen": {
+      "id": "listen",
+      "atlas": "clips/listen.json",
+      "image": "clips/listen.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 100,
+      "holdMs": 1400,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    },
+    "react_tap": {
+      "id": "react_tap",
+      "atlas": "clips/react_tap.json",
+      "image": "clips/react_tap.png",
+      "frameCount": 2,
+      "fps": 4,
+      "crossfadeMs": 70,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    },
+    "selfie": {
+      "id": "selfie",
+      "atlas": "clips/selfie.json",
+      "image": "clips/selfie.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 100,
+      "holdMs": 1700,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    },
+    "shy_look_away": {
+      "id": "shy_look_away",
+      "atlas": "clips/shy_look_away.json",
+      "image": "clips/shy_look_away.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 100,
+      "holdMs": 1500,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    },
+    "sit_idle": {
+      "id": "sit_idle",
+      "atlas": "clips/sit_idle.json",
+      "image": "clips/sit_idle.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 0,
+      "playback": "loop"
+    },
+    "sit_to_sleep": {
+      "id": "sit_to_sleep",
+      "atlas": "clips/sit_to_sleep.json",
+      "image": "clips/sit_to_sleep.png",
+      "frameCount": 3,
+      "fps": 4,
+      "crossfadeMs": 90,
+      "playback": "once",
+      "returnClip": "sleep_loop"
+    },
+    "sleep_loop": {
+      "id": "sleep_loop",
+      "atlas": "clips/sleep_loop.json",
+      "image": "clips/sleep_loop.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 0,
+      "playback": "loop"
+    },
+    "stand_to_sit": {
+      "id": "stand_to_sit",
+      "atlas": "clips/stand_to_sit.json",
+      "image": "clips/stand_to_sit.png",
+      "frameCount": 3,
+      "fps": 4,
+      "crossfadeMs": 80,
+      "playback": "once",
+      "returnClip": "sit_idle"
+    },
+    "talk_loop": {
+      "id": "talk_loop",
+      "atlas": "clips/talk_loop.json",
+      "image": "clips/talk_loop.png",
+      "frameCount": 2,
+      "fps": 2,
+      "crossfadeMs": 90,
+      "playback": "loop"
+    },
+    "thinking": {
+      "id": "thinking",
+      "atlas": "clips/thinking.json",
+      "image": "clips/thinking.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 100,
+      "holdMs": 1600,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    },
+    "welcome_home": {
+      "id": "welcome_home",
+      "atlas": "clips/welcome_home.json",
+      "image": "clips/welcome_home.png",
+      "frameCount": 1,
+      "fps": 1,
+      "crossfadeMs": 100,
+      "holdMs": 1600,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    }
+  }
+}

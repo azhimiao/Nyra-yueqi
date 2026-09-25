@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "clipId": "welcome_home",
+  "image": "welcome_home.png",
+  "size": {
+    "width": 320,
+    "height": 722
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "welcome_home_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 722
+      },
+      "source": {
+        "x": 224,
+        "y": 27,
+        "width": 320,
+        "height": 722
+      },
+      "durationMs": 1600
+    }
+  ]
+}

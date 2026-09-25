@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#111d24"/><stop offset="1" stop-color="#26343a"/></linearGradient>
+    <linearGradient id="floor" x2="0" y2="1"><stop stop-color="#34434a"/><stop offset="1" stop-color="#11191d"/></linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="10"/></filter>
+    <pattern id="rain" width="46" height="58" patternUnits="userSpaceOnUse" patternTransform="skewX(-10)"><path d="M9 0v28M31 18v34" stroke="#c9e1e4" stroke-opacity=".2" stroke-width="3"/></pattern>
+  </defs>
+  <rect width="1536" height="1024" fill="url(#sky)"/>
+  <g filter="url(#blur)" opacity=".75"><circle cx="170" cy="320" r="24" fill="#e1a46e"/><circle cx="340" cy="270" r="14" fill="#8bb8ba"/><circle cx="1270" cy="300" r="30" fill="#e8b978"/></g>
+  <path d="M0 470L1536 424V1024H0Z" fill="url(#floor)"/>
+  <path d="M0 530L1536 485" stroke="#d8c36f" stroke-width="13"/>
+  <path d="M0 553L1536 508" stroke="#f3df83" stroke-opacity=".34" stroke-width="4"/>
+  <g fill="#0b1115"><rect x="82" y="208" width="24" height="305"/><rect x="742" y="170" width="26" height="320"/><rect x="1416" y="145" width="28" height="300"/></g>
+  <path d="M0 165L1536 104V175L0 252Z" fill="#0c1419"/><path d="M0 244L1536 165" stroke="#779095" stroke-opacity=".4" stroke-width="4"/>
+  <g fill="#b8d2d2"><rect x="340" y="213" width="290" height="7"/><rect x="930" y="183" width="330" height="7"/></g>
+  <g fill="#eef0d4"><rect x="380" y="229" width="94" height="13" opacity=".7"/><rect x="1024" y="198" width="112" height="13" opacity=".6"/></g>
+  <g opacity=".38"><path d="M245 560L110 1024H210L330 560Z" fill="#74aeb2"/><path d="M1100 520L940 1024H1040L1180 520Z" fill="#b88262"/></g>
+  <rect width="1536" height="1024" fill="url(#rain)"/>
+</svg>

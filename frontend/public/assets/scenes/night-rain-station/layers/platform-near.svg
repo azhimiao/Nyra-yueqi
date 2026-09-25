@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="canopy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a4654"/>
+      <stop offset="100%" stop-color="#1a222c"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a323c" stop-opacity="0"/>
+      <stop offset="35%" stop-color="#1c242e" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0a0e12"/>
+    </linearGradient>
+    <linearGradient id="lamp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0d9a8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#f0d9a8" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="wet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6a90b0" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#6a90b0" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- station canopy -->
+  <path d="M0 95 H800 V145 H0 Z" fill="url(#canopy)" opacity="0.95"/>
+  <path d="M0 145 H800 L780 165 H20 Z" fill="#121820" opacity="0.7"/>
+  <!-- pillars -->
+  <rect x="90" y="145" width="14" height="220" fill="#1a222c"/>
+  <rect x="390" y="145" width="14" height="220" fill="#1a222c"/>
+  <rect x="690" y="145" width="14" height="220" fill="#1a222c"/>
+  <!-- warm platform lamps -->
+  <ellipse cx="97" cy="155" rx="28" ry="40" fill="url(#lamp)" opacity="0.55"/>
+  <ellipse cx="397" cy="155" rx="28" ry="40" fill="url(#lamp)" opacity="0.55"/>
+  <ellipse cx="697" cy="155" rx="28" ry="40" fill="url(#lamp)" opacity="0.55"/>
+  <circle cx="97" cy="152" r="5" fill="#f5e2b8" opacity="0.85"/>
+  <circle cx="397" cy="152" r="5" fill="#f5e2b8" opacity="0.85"/>
+  <circle cx="697" cy="152" r="5" fill="#f5e2b8" opacity="0.85"/>
+  <!-- platform floor + wet sheen -->
+  <rect x="0" y="340" width="800" height="140" fill="url(#floor)"/>
+  <path d="M0 360 Q200 350 400 365 T800 358 L800 420 Q400 440 0 415 Z" fill="url(#wet)"/>
+  <!-- track edge -->
+  <rect x="0" y="368" width="800" height="3" fill="#4a5a6a" opacity="0.45"/>
+  <rect x="0" y="378" width="800" height="2" fill="#8aa0b4" opacity="0.2"/>
+</svg>

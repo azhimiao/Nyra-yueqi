@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "clipId": "react_tap",
+  "image": "react_tap.png",
+  "size": {
+    "width": 636,
+    "height": 722
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "react_tap_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 314,
+        "height": 722
+      },
+      "source": {
+        "x": 227,
+        "y": 27,
+        "width": 314,
+        "height": 722
+      },
+      "durationMs": 220
+    },
+    {
+      "id": "react_tap_001",
+      "index": 1,
+      "atlas": {
+        "x": 316,
+        "y": 0,
+        "width": 320,
+        "height": 722
+      },
+      "source": {
+        "x": 224,
+        "y": 27,
+        "width": 320,
+        "height": 722
+      },
+      "durationMs": 560
+    }
+  ]
+}

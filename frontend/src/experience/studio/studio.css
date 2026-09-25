@@ -1,0 +1,167 @@
+/* Experience Studio — 作品工坊 (W6). Distinct from imagegen 绘境. */
+
+.exp-studio {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100%;
+  padding: 10px 12px 28px;
+  background:
+    radial-gradient(70% 40% at 90% 0%, rgb(90 140 150 / 16%), transparent 50%),
+    linear-gradient(180deg, #e8f0ef 0%, #dde8e5 45%, #d2e0db 100%);
+  color: #1a2422;
+}
+
+.exp-studio__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.exp-studio__head strong {
+  display: block;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.exp-studio__head span {
+  display: block;
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
+.exp-studio__pkg-id {
+  font-size: 0.65rem;
+  opacity: 0.55;
+  max-width: 40%;
+  text-align: right;
+  word-break: break-all;
+}
+
+.exp-studio__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.exp-studio__tab {
+  border: 0;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  background: rgb(255 255 255 / 55%);
+  color: inherit;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.exp-studio__tab.is-active {
+  background: #2a4a44;
+  color: #f4faf8;
+}
+
+.exp-studio__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exp-studio__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.78rem;
+}
+
+.exp-studio__form input,
+.exp-studio__form textarea,
+.exp-studio__form select {
+  border: 1px solid rgb(40 70 64 / 18%);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font: inherit;
+  background: rgb(255 255 255 / 72%);
+  color: inherit;
+  min-height: 44px;
+}
+
+.exp-studio__check {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px !important;
+}
+
+.exp-studio__hint {
+  margin: 0;
+  font-size: 0.72rem;
+  opacity: 0.72;
+  line-height: 1.4;
+}
+
+.exp-studio__code,
+.exp-studio__inspector {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: rgb(20 36 34 / 88%);
+  color: #d7ebe6;
+  border-radius: 12px;
+  padding: 10px;
+  border: 0;
+  min-height: 120px;
+}
+
+.exp-studio__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.exp-studio__actions button,
+.exp-studio__chip {
+  border: 0;
+  border-radius: 10px;
+  padding: 7px 11px;
+  font-size: 0.75rem;
+  background: #2f554e;
+  color: #f2f9f6;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.exp-studio__chip {
+  background: rgb(255 255 255 / 55%);
+  color: inherit;
+}
+
+.exp-studio__chip.is-active {
+  background: #2a4a44;
+  color: #f4faf8;
+}
+
+.exp-studio__opening-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.exp-studio__status {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #2a4a44;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-studio,
+  .exp-studio * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,147 @@
+/**
+ * Nyra overlay sheets — replace window.prompt / confirm for in-app flows.
+ */
+
+.nyra-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2400;
+  display: grid;
+  align-items: end;
+  justify-items: stretch;
+  padding: 0;
+  pointer-events: none;
+}
+
+.nyra-overlay[hidden] {
+  display: none !important;
+}
+
+.nyra-overlay.is-open {
+  pointer-events: auto;
+}
+
+.nyra-overlay__scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgb(9 22 36 / 34%);
+  backdrop-filter: blur(1.5px);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.nyra-overlay.is-open .nyra-overlay__scrim {
+  opacity: 1;
+}
+
+.nyra-overlay__sheet {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 480px);
+  margin: 0 auto;
+  max-height: min(78dvh, 520px);
+  padding: 18px 20px calc(16px + env(safe-area-inset-bottom, 0px));
+  overflow: auto;
+  border: 1px solid rgb(20 55 94 / 8%);
+  border-bottom: 0;
+  border-radius: 20px 20px 0 0;
+  background: #fff;
+  box-shadow: 0 -16px 42px rgb(12 30 48 / 13%);
+  transform: translateY(108%);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nyra-overlay.is-open .nyra-overlay__sheet {
+  transform: translateY(0);
+}
+
+.nyra-overlay__title {
+  margin: 0 0 14px;
+  color: var(--nyra-ink, #0f2438);
+  font: 650 16px/1.3 "Noto Sans SC", system-ui, sans-serif;
+}
+
+.nyra-overlay__body {
+  margin: 0 0 14px;
+  color: var(--nyra-muted, #7a8d9e);
+  font: 400 13px/1.45 "Noto Sans SC", system-ui, sans-serif;
+}
+
+.nyra-overlay__field {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  margin: 0 0 16px;
+  padding: 0 14px;
+  border: 1px solid var(--nyra-line-strong, rgb(20 55 94 / 16%));
+  border-radius: 12px;
+  color: var(--nyra-ink, #0f2438);
+  background: #f7f9fb;
+  font: 400 16px/1.3 "Noto Sans SC", system-ui, sans-serif;
+  outline: none;
+}
+
+.nyra-overlay__field:focus {
+  border-color: rgb(20 55 94 / 30%);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgb(20 55 94 / 7%);
+}
+
+.nyra-overlay__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.nyra-overlay__btn {
+  min-height: 44px;
+  min-width: 76px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 12px;
+  font: 650 14px/1 "Noto Sans SC", system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.nyra-overlay__btn--ghost {
+  color: var(--nyra-ink-soft, #3d5368);
+  background: transparent;
+}
+
+.nyra-overlay__btn--primary {
+  color: #fff;
+  background: linear-gradient(180deg, #183f68, #102f50);
+  box-shadow: 0 6px 14px rgb(20 55 94 / 13%);
+}
+
+.nyra-overlay__btn--danger {
+  color: #fff;
+  background: #b44b4b;
+}
+
+.nyra-overlay__btn:active {
+  transform: scale(0.97);
+}
+
+/* Center modal variant for short confirms on tall keyboards */
+@media (min-height: 720px) {
+  .nyra-overlay--center {
+    align-items: center;
+    padding: 24px;
+  }
+
+  .nyra-overlay--center .nyra-overlay__sheet {
+    width: min(100%, 360px);
+    border: 1px solid rgb(20 55 94 / 9%);
+    border-radius: 20px;
+    transform: translateY(12px) scale(0.98);
+    opacity: 0;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  .nyra-overlay--center.is-open .nyra-overlay__sheet {
+    transform: none;
+    opacity: 1;
+  }
+}

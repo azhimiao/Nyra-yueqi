@@ -1,0 +1,959 @@
+.cocreate-app--v3 {
+  --cc3-paper: #f7f8f5;
+  --cc3-white: #ffffff;
+  --cc3-ink: #1f2725;
+  --cc3-muted: #68726e;
+  --cc3-line: #dce2de;
+  --cc3-accent: #286a55;
+  --cc3-accent-soft: #e3efe9;
+  --cc3-warm: #b95f48;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--cc3-paper);
+  color: var(--cc3-ink);
+  font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+}
+
+.cc3-shell {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.cc3-library-head,
+.cc3-topbar,
+.cc3-section-head,
+.cc3-record-section > header,
+.cc3-chapters > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cc3-library-head {
+  flex: 0 0 auto;
+  padding: 22px 20px 18px;
+  border-bottom: 1px solid var(--cc3-line);
+  background: var(--cc3-white);
+}
+
+.cc3-library-head h1 {
+  margin: 4px 0 0;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 28px;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.cc3-library-head p,
+.cc3-title-block span,
+.cc3-topbar > div > span,
+.cc3-section-head span {
+  display: block;
+  margin: 4px 0 0;
+  color: var(--cc3-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.cc3-eyebrow {
+  color: var(--cc3-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.cc3-icon-command,
+.cc3-chapters header button,
+.cc3-section-head > button,
+.cc3-chapter-actions button,
+.cc3-record-list article > button {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 1px solid var(--cc3-line);
+  border-radius: 6px;
+  background: var(--cc3-white);
+  color: var(--cc3-ink);
+  cursor: pointer;
+}
+
+.cc3-icon-command svg,
+.cc3-chapters header button svg,
+.cc3-section-head > button svg,
+.cc3-chapter-actions button svg,
+.cc3-record-list article > button svg {
+  width: 17px;
+  height: 17px;
+}
+
+.cc3-library-main,
+.cc3-new-main,
+.cc3-structured {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cc3-library-main {
+  padding: 0 20px 28px;
+}
+
+.cc3-library-summary {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr auto 1fr;
+  gap: 4px 7px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--cc3-line);
+}
+
+.cc3-library-summary strong {
+  font-size: 18px;
+}
+
+.cc3-library-summary span {
+  color: var(--cc3-muted);
+  font-size: 11px;
+}
+
+.cc3-project-list {
+  display: grid;
+}
+
+.cc3-project-row {
+  border-bottom: 1px solid var(--cc3-line);
+}
+
+.cc3-project-open {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 20px;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  min-height: 98px;
+  padding: 15px 2px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cc3-project-index {
+  align-self: start;
+  padding-top: 3px;
+  color: var(--cc3-accent);
+  font: 700 11px/1.2 "SFMono-Regular", Consolas, monospace;
+}
+
+.cc3-project-copy {
+  display: block;
+  min-width: 0;
+}
+
+.cc3-project-copy strong,
+.cc3-project-copy em,
+.cc3-project-copy small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cc3-project-copy strong {
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 18px;
+}
+
+.cc3-project-copy em {
+  margin-top: 6px;
+  color: #46504c;
+  font-size: 12px;
+  font-style: normal;
+}
+
+.cc3-project-copy small {
+  margin-top: 7px;
+  color: var(--cc3-muted);
+  font-size: 10px;
+}
+
+.cc3-project-open > svg {
+  width: 17px;
+  color: #8b9490;
+}
+
+.cc3-topbar {
+  flex: 0 0 auto;
+  gap: 10px;
+  min-height: 58px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--cc3-line);
+  background: var(--cc3-white);
+}
+
+.cc3-topbar > div,
+.cc3-title-block {
+  min-width: 0;
+  flex: 1;
+}
+
+.cc3-topbar > div > strong,
+.cc3-title-block strong {
+  display: block;
+  overflow: hidden;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cc3-topbar-spacer {
+  width: 38px;
+}
+
+.cc3-new-main {
+  padding: 20px;
+}
+
+.cc3-new-form,
+.cc3-bible-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.cc3-new-form label,
+.cc3-bible-grid label,
+.cc3-wide-field {
+  display: grid;
+  gap: 7px;
+}
+
+.cc3-new-form label > span,
+.cc3-bible-grid label > span,
+.cc3-wide-field > span {
+  color: var(--cc3-muted);
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.cc3-new-form input,
+.cc3-new-form textarea,
+.cc3-new-form select,
+.cc3-bible-grid input,
+.cc3-bible-grid textarea,
+.cc3-wide-field textarea,
+.cc3-outline-list input,
+.cc3-outline-list textarea,
+.cc3-outline-list select,
+.cc3-record-list input,
+.cc3-record-list textarea {
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 10px;
+  border: 1px solid var(--cc3-line);
+  border-radius: 5px;
+  outline: 0;
+  background: var(--cc3-white);
+  color: var(--cc3-ink);
+  font: inherit;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.cc3-new-form textarea,
+.cc3-bible-grid textarea,
+.cc3-wide-field textarea,
+.cc3-outline-list textarea,
+.cc3-record-list textarea {
+  resize: vertical;
+  line-height: 1.65;
+}
+
+.cc3-new-form input:focus,
+.cc3-new-form textarea:focus,
+.cc3-new-form select:focus,
+.cc3-bible-grid input:focus,
+.cc3-bible-grid textarea:focus,
+.cc3-wide-field textarea:focus,
+.cc3-outline-list input:focus,
+.cc3-outline-list textarea:focus,
+.cc3-outline-list select:focus,
+.cc3-record-list input:focus,
+.cc3-record-list textarea:focus,
+.cc3-manuscript:focus,
+.cc3-chapter-title:focus,
+.cc3-chapter-summary:focus,
+.cc3-guidance input:focus {
+  border-color: var(--cc3-accent);
+  box-shadow: 0 0 0 2px rgb(40 106 85 / 10%);
+}
+
+.cc3-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.cc3-primary-command,
+.cc3-secondary-command,
+.cc3-tool-row button,
+.cc3-history-list button,
+.cc3-record-section > header button {
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.cc3-primary-command {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: var(--cc3-accent);
+  color: #fff;
+}
+
+.cc3-primary-command svg {
+  width: 16px;
+}
+
+.cc3-secondary-command {
+  border-color: var(--cc3-line);
+  background: var(--cc3-white);
+  color: var(--cc3-ink);
+}
+
+.cc3-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--cc3-line);
+  background: var(--cc3-white);
+}
+
+.cc3-tabs button {
+  min-height: 40px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--cc3-muted);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.cc3-tabs button.is-active {
+  border-bottom-color: var(--cc3-accent);
+  color: var(--cc3-ink);
+  font-weight: 700;
+}
+
+.cc3-work-body {
+  display: grid;
+  grid-template-columns: 178px minmax(0, 1fr);
+  flex: 1;
+  min-height: 0;
+}
+
+.cc3-chapters {
+  min-height: 0;
+  overflow: hidden;
+  border-right: 1px solid var(--cc3-line);
+  background: #edf1ee;
+}
+
+.cc3-chapters > header {
+  height: 46px;
+  padding: 0 10px 0 14px;
+  border-bottom: 1px solid var(--cc3-line);
+}
+
+.cc3-chapters > header strong {
+  font-size: 12px;
+}
+
+.cc3-chapters header button {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+}
+
+.cc3-chapter-list {
+  height: calc(100% - 46px);
+  overflow-y: auto;
+}
+
+.cc3-chapter-item {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  gap: 7px;
+  align-items: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 8px 10px;
+  border: 0;
+  border-bottom: 1px solid rgb(31 39 37 / 7%);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cc3-chapter-item.is-active {
+  background: var(--cc3-white);
+  box-shadow: inset 3px 0 0 var(--cc3-accent);
+}
+
+.cc3-chapter-item span,
+.cc3-chapter-item em {
+  color: var(--cc3-muted);
+  font: 10px/1 "SFMono-Regular", Consolas, monospace;
+  font-style: normal;
+}
+
+.cc3-chapter-item strong {
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cc3-panel {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--cc3-white);
+}
+
+.cc3-draft {
+  display: grid;
+  grid-template-rows: auto minmax(200px, 1fr) auto auto;
+  height: 100%;
+  min-height: 0;
+}
+
+.cc3-document-head {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px 10px;
+  min-height: 64px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--cc3-line);
+}
+
+.cc3-chapter-title,
+.cc3-chapter-summary {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.cc3-chapter-title {
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.cc3-chapter-summary {
+  grid-column: 1;
+  color: var(--cc3-muted);
+  font-size: 11px;
+}
+
+.cc3-chapter-actions {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cc3-chapter-actions button {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  color: var(--cc3-muted);
+}
+
+.cc3-editor-wrap {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.cc3-manuscript {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  resize: none;
+  padding: 24px clamp(18px, 7%, 64px) 42px;
+  border: 0;
+  outline: 0;
+  background: var(--cc3-white);
+  color: #202522;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 15px;
+  line-height: 2;
+  letter-spacing: 0;
+}
+
+.cc3-editor-status {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  display: flex;
+  gap: 10px;
+  color: var(--cc3-muted);
+  font-size: 10px;
+  pointer-events: none;
+}
+
+.cc3-ai-tools {
+  padding: 9px 12px 10px;
+  border-top: 1px solid var(--cc3-line);
+  background: #f2f5f2;
+}
+
+.cc3-tool-row {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 7px;
+}
+
+.cc3-tool-row button {
+  min-height: 38px;
+  flex: 0 0 auto;
+  padding: 0 10px;
+  border-color: #cbd7d0;
+  background: var(--cc3-white);
+  color: var(--cc3-accent);
+  font-size: 11px;
+}
+
+.cc3-tool-row button:disabled {
+  opacity: .45;
+  cursor: wait;
+}
+
+.cc3-guidance {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.cc3-guidance input {
+  width: 100%;
+  min-height: 34px;
+  padding: 0 9px;
+  border: 1px solid var(--cc3-line);
+  border-radius: 5px;
+  outline: 0;
+  background: var(--cc3-white);
+  color: inherit;
+  font: inherit;
+  font-size: 11px;
+}
+
+.cc3-guidance span {
+  color: var(--cc3-muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.cc3-revision {
+  max-height: 46%;
+  overflow-y: auto;
+  padding: 12px;
+  border-top: 2px solid var(--cc3-accent);
+  background: #f7faf8;
+}
+
+.cc3-revision > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 9px;
+}
+
+.cc3-revision > header strong {
+  font-size: 13px;
+}
+
+.cc3-revision > header span,
+.cc3-revision em {
+  color: var(--cc3-muted);
+  font-size: 10px;
+  font-style: normal;
+}
+
+.cc3-revision > div {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 8px;
+  padding: 7px 0;
+  border-top: 1px solid var(--cc3-line);
+}
+
+.cc3-revision p {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.cc3-revision footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+  padding-top: 9px;
+}
+
+.cc3-structured {
+  height: 100%;
+  padding: 16px clamp(14px, 4%, 32px) 30px;
+  background: var(--cc3-paper);
+}
+
+.cc3-section-head {
+  min-height: 46px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--cc3-line);
+}
+
+.cc3-section-head strong {
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 18px;
+}
+
+.cc3-section-head > button {
+  width: 32px;
+  height: 32px;
+}
+
+.cc3-wide-field {
+  margin: 16px 0;
+}
+
+.cc3-outline-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cc3-outline-list li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 130px;
+  gap: 10px;
+  padding: 14px 0;
+  border-top: 1px solid var(--cc3-line);
+}
+
+.cc3-outline-list li > span {
+  padding-top: 11px;
+  color: var(--cc3-accent);
+  font: 700 10px/1 "SFMono-Regular", Consolas, monospace;
+}
+
+.cc3-outline-list li > div {
+  display: grid;
+  gap: 6px;
+}
+
+.cc3-outline-list li input,
+.cc3-outline-list li textarea,
+.cc3-outline-list li select {
+  background: var(--cc3-white);
+}
+
+.cc3-bible-grid {
+  grid-template-columns: 1fr 1fr;
+  padding: 16px 0 20px;
+  border-bottom: 1px solid var(--cc3-line);
+}
+
+.cc3-bible-grid label:first-child {
+  grid-column: 1 / -1;
+}
+
+.cc3-record-section {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--cc3-line);
+}
+
+.cc3-record-section > header strong {
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 15px;
+}
+
+.cc3-record-section > header button {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-color: var(--cc3-line);
+  background: var(--cc3-white);
+  color: var(--cc3-accent);
+  font-size: 11px;
+}
+
+.cc3-record-section > header button svg {
+  width: 14px;
+}
+
+.cc3-record-list {
+  display: grid;
+  margin-top: 10px;
+}
+
+.cc3-record-list article {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  padding: 12px 42px 12px 0;
+  border-top: 1px solid var(--cc3-line);
+}
+
+.cc3-record-list article:first-child {
+  border-top: 0;
+}
+
+.cc3-record-list article > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.cc3-record-list article > button {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: var(--cc3-muted);
+}
+
+.cc3-subhead {
+  margin: 20px 0 8px;
+  color: var(--cc3-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.cc3-history-list {
+  display: grid;
+}
+
+.cc3-history-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  min-height: 58px;
+  padding: 10px 0;
+  border-top: 1px solid var(--cc3-line);
+}
+
+.cc3-history-list article > div strong,
+.cc3-history-list article > div span {
+  display: block;
+}
+
+.cc3-history-list article > div strong {
+  font-size: 12px;
+}
+
+.cc3-history-list article > div span,
+.cc3-history-list article > p {
+  margin: 4px 0 0;
+  color: var(--cc3-muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.cc3-history-list article > p {
+  grid-column: 1 / -1;
+}
+
+.cc3-history-list button {
+  min-height: 32px;
+  border-color: var(--cc3-line);
+  background: var(--cc3-white);
+  color: var(--cc3-accent);
+}
+
+.cc3-empty {
+  margin: 0;
+  padding: 18px 0;
+  color: var(--cc3-muted);
+  font-size: 12px;
+}
+
+.mini-cocreate-host,
+.mini-cocreate-mount,
+.mini-cocreate-mount .cocreate-app {
+  height: 100%;
+  min-height: 0;
+}
+
+.mini-cocreate-host {
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-cocreate-host > .mini-appbar {
+  flex: 0 0 auto;
+}
+
+.mini-cocreate-host > .mini-cocreate-mount {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.mini-cocreate-mount .cc3-ai-tools {
+  padding-bottom: max(42px, calc(10px + env(safe-area-inset-bottom)));
+}
+
+.mini-cocreate-mount .cc3-structured {
+  padding-bottom: max(46px, calc(30px + env(safe-area-inset-bottom)));
+}
+
+@media (max-width: 620px) {
+  .cc3-library-head {
+    padding: 17px 15px 14px;
+  }
+
+  .cc3-library-main,
+  .cc3-new-main {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .cc3-library-summary {
+    grid-template-columns: auto 1fr auto 1fr;
+  }
+
+  .cc3-library-summary strong:nth-of-type(3),
+  .cc3-library-summary strong:nth-of-type(3) + span {
+    display: none;
+  }
+
+  .cc3-work-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cc3-chapters {
+    flex: 0 0 50px;
+    min-height: 50px;
+    overflow: hidden;
+    border-right: 0;
+    border-bottom: 1px solid var(--cc3-line);
+  }
+
+  .cc3-chapters > header {
+    display: none;
+  }
+
+  .cc3-chapter-list {
+    display: flex;
+    height: 50px;
+    overflow-x: auto;
+  }
+
+  .cc3-chapter-item {
+    grid-template-columns: 22px auto;
+    width: auto;
+    min-width: 126px;
+    height: 50px;
+    flex: 0 0 auto;
+    border-right: 1px solid var(--cc3-line);
+    border-bottom: 0;
+  }
+
+  .cc3-chapter-item.is-active {
+    box-shadow: inset 0 -3px 0 var(--cc3-accent);
+  }
+
+  .cc3-chapter-item em {
+    display: none;
+  }
+
+  .cc3-panel {
+    flex: 1;
+  }
+
+  .cc3-draft {
+    grid-template-rows: auto minmax(160px, 1fr) auto auto;
+  }
+
+  .cc3-manuscript {
+    padding: 18px 16px 40px;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .cc3-guidance {
+    grid-template-columns: 1fr;
+  }
+
+  .cc3-guidance span {
+    display: none;
+  }
+
+  .cc3-outline-list li {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .cc3-outline-list li > select {
+    grid-column: 2;
+  }
+
+  .cc3-bible-grid,
+  .cc3-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cc3-bible-grid label:first-child {
+    grid-column: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cocreate-app--v3 *,
+  .cocreate-app--v3 *::before,
+  .cocreate-app--v3 *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

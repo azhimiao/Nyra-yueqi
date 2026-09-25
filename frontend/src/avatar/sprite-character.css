@@ -1,0 +1,106 @@
+.sprite-character {
+  --sprite-character-size: 240px;
+  position: relative;
+  display: inline-grid;
+  width: min(var(--sprite-character-size), 100%);
+  max-width: 100%;
+  aspect-ratio: 1;
+  place-items: end center;
+  overflow: visible;
+  /* Avoid contain:paint / isolation — they can force a black matte under
+     transparent canvases on Chromium Windows and Android WebView. */
+  contain: layout style;
+  background: transparent;
+  pointer-events: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sprite-character__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: 50% 100%;
+  opacity: 1;
+  background: transparent;
+  transition: opacity 140ms ease-out;
+}
+
+.sprite-character[data-clip="idle_loop"] .sprite-character__canvas,
+.sprite-character[data-clip="listen"] .sprite-character__canvas,
+.sprite-character[data-clip="thinking"] .sprite-character__canvas,
+.sprite-character[data-clip="sit_idle"] .sprite-character__canvas {
+  animation: xingli-breathe 3.8s ease-in-out infinite;
+}
+
+.sprite-character[data-clip="talk_loop"] .sprite-character__canvas {
+  animation: xingli-talk 720ms ease-in-out infinite;
+}
+
+.sprite-character[data-clip="sleep_loop"] .sprite-character__canvas {
+  animation: xingli-sleep 4.6s ease-in-out infinite;
+}
+
+.sprite-character[data-clip="greet"] .sprite-character__canvas,
+.sprite-character[data-clip="react_tap"] .sprite-character__canvas,
+.sprite-character[data-clip="welcome_home"] .sprite-character__canvas {
+  animation: xingli-react 520ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+
+.sprite-character[data-clip="shy_look_away"] .sprite-character__canvas,
+.sprite-character[data-clip="lean_close"] .sprite-character__canvas {
+  animation: xingli-shy 1.25s ease-in-out both;
+}
+
+.sprite-character[data-clip="comfort"] .sprite-character__canvas,
+.sprite-character[data-clip="selfie"] .sprite-character__canvas {
+  animation: xingli-warm 1.15s cubic-bezier(.25, .8, .3, 1) both;
+}
+
+@keyframes xingli-breathe {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-0.7%) scaleY(1.007); }
+}
+
+@keyframes xingli-talk {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-0.9%) rotate(0.35deg); }
+}
+
+@keyframes xingli-sleep {
+  0%, 100% { transform: scale(1); }
+  50% { transform: translateY(-0.25%) scale(1.006); }
+}
+
+@keyframes xingli-react {
+  0% { transform: translateY(1.5%) scale(0.985); }
+  52% { transform: translateY(-1.2%) scale(1.012); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes xingli-shy {
+  0% { transform: translate3d(0, 0, 0) rotate(0); }
+  48% { transform: translate3d(-2px, 1px, 0) rotate(-1deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0); }
+}
+
+@keyframes xingli-warm {
+  0% { transform: translate3d(0, 2px, 0) scale(1); }
+  42% { transform: translate3d(0, -3px, 0) scale(1.018); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+.sprite-character[data-status="loading"] .sprite-character__canvas {
+  opacity: 0;
+}
+
+.sprite-character[data-status="error"] .sprite-character__canvas {
+  opacity: 0.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sprite-character__canvas {
+    transition-duration: 1ms;
+    animation: none !important;
+  }
+}

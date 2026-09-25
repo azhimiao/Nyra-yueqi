@@ -1,0 +1,431 @@
+.boy-character {
+  --boy-size: 176px;
+  --boy-look-x: 0px;
+  --boy-look-y: 0px;
+  --boy-float-distance: 3px;
+  position: relative;
+  display: inline-grid;
+  width: var(--boy-size);
+  max-width: 100%;
+  aspect-ratio: 8 / 11;
+  place-items: end center;
+  overflow: visible;
+  contain: layout style;
+  isolation: isolate;
+  pointer-events: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.boy-character__canvas {
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 100%;
+  animation: boy-float 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.boy-character__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: none;
+}
+
+.boy-character__svg [data-part] {
+  transform-box: fill-box;
+}
+
+.boy-character__svg [data-part="character"] {
+  transform-origin: 50% 100%;
+  animation: boy-breathe 3.4s ease-in-out infinite;
+}
+
+.boy-character__svg [data-part="head"] {
+  transform-origin: 50% 82%;
+}
+
+.boy-character__svg [data-part="hair-tuft"] {
+  transform-origin: 35% 90%;
+  animation: boy-tuft-sway 3.2s ease-in-out infinite;
+}
+
+.boy-character__svg [data-part="ground-shadow"] {
+  display: none;
+}
+
+.boy-character__svg [data-part="iris-left"],
+.boy-character__svg [data-part="iris-right"] {
+  transform: translate(var(--boy-look-x), var(--boy-look-y));
+  transition: transform 180ms ease-out;
+}
+
+.boy-character__svg [data-part="arm-thinking"],
+.boy-character__svg [data-part="arm-listening"],
+.boy-character__svg [data-part="arm-reacting"],
+.boy-character__svg [data-part="effects-thinking"],
+.boy-character__svg [data-part="effects-listening"],
+.boy-character__svg [data-part="effects-reacting"],
+.boy-character__svg [data-part="eyes-closed"],
+.boy-character__svg [data-part="eyes-happy"],
+.boy-character__svg [data-part="mouth-neutral"],
+.boy-character__svg [data-part="mouth-sad"],
+.boy-character__svg [data-part="mouth-talk"],
+.boy-character__svg [data-part="mouth-o"] {
+  opacity: 0;
+}
+
+.boy-character__svg [data-part="arm-default"],
+.boy-character__svg [data-part="mouth-smile"] {
+  opacity: 1;
+}
+
+/* A short automatic blink keeps idle states alive without JavaScript timers. */
+.boy-character[data-auto-blink="true"] .boy-character__svg [data-part="eyes-open"] {
+  animation: boy-eyes-open 5.8s steps(1, end) infinite;
+}
+
+.boy-character[data-auto-blink="true"] .boy-character__svg [data-part="eyes-closed"] {
+  animation: boy-eyes-closed 5.8s steps(1, end) infinite;
+}
+
+.boy-character[data-state="blink"] .boy-character__svg [data-part="eyes-open"] {
+  animation: none;
+  opacity: 0;
+}
+
+.boy-character[data-state="blink"] .boy-character__svg [data-part="eyes-closed"] {
+  animation: none;
+  opacity: 1;
+}
+
+.boy-character[data-state="breathe"] .boy-character__svg [data-part="character"] {
+  animation: boy-breathe-deep 2.7s ease-in-out infinite;
+}
+
+.boy-character[data-state="talking"] .boy-character__svg [data-part="character"],
+.boy-character[data-speaking="true"] .boy-character__svg [data-part="character"] {
+  animation: boy-talk-bob 760ms ease-in-out infinite;
+}
+
+.boy-character[data-state="talking"] .boy-character__svg [data-part="head"],
+.boy-character[data-speaking="true"] .boy-character__svg [data-part="head"] {
+  animation: boy-talk-head 920ms ease-in-out infinite alternate;
+}
+
+.boy-character[data-state="thinking"] .boy-character__svg [data-part="character"] {
+  animation: boy-think-lean 2.6s ease-in-out infinite;
+}
+
+.boy-character[data-state="thinking"] .boy-character__svg [data-part="arm-default"] {
+  opacity: 0;
+}
+
+.boy-character[data-state="thinking"] .boy-character__svg [data-part="arm-thinking"] {
+  opacity: 1;
+}
+
+.boy-character[data-state="thinking"] .boy-character__svg [data-part="effects-thinking"] {
+  opacity: 0.9;
+  animation: boy-thought-dots 1.8s ease-in-out infinite;
+}
+
+.boy-character[data-state="listening"] .boy-character__svg [data-part="character"] {
+  animation: boy-listen-lean 1.9s ease-in-out infinite;
+}
+
+.boy-character[data-state="listening"] .boy-character__svg [data-part="arm-default"] {
+  opacity: 0;
+}
+
+.boy-character[data-state="listening"] .boy-character__svg [data-part="arm-listening"] {
+  opacity: 1;
+}
+
+.boy-character[data-state="listening"] .boy-character__svg [data-part="effects-listening"] {
+  opacity: 0.9;
+  animation: boy-listen-rings 1.25s ease-out infinite;
+  transform-origin: 0% 55%;
+}
+
+.boy-character[data-state="reacting"] .boy-character__canvas {
+  animation: boy-react-float 720ms cubic-bezier(0.25, 0.8, 0.35, 1) both;
+}
+
+.boy-character[data-state="reacting"] .boy-character__svg [data-part="character"] {
+  animation: boy-react-bounce 720ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+.boy-character[data-state="reacting"] .boy-character__svg [data-part="arm-default"] {
+  opacity: 0;
+}
+
+.boy-character[data-state="reacting"] .boy-character__svg [data-part="arm-reacting"] {
+  opacity: 1;
+}
+
+.boy-character[data-state="reacting"] .boy-character__svg [data-part="effects-reacting"] {
+  opacity: 1;
+  animation: boy-spark-pop 720ms ease-out both;
+  transform-origin: center;
+}
+
+.boy-character[data-state="sleep"] .boy-character__canvas {
+  transform: rotate(-12deg) translateY(10px);
+  transform-origin: center bottom;
+}
+
+.boy-character[data-state="sleep"] .boy-character__svg [data-part="eyes-open"],
+.boy-character[data-state="sleep"] .boy-character__svg [data-part="eyes-happy"] {
+  opacity: 0;
+}
+
+.boy-character[data-state="sleep"] .boy-character__svg [data-part="eyes-closed"] {
+  opacity: 1;
+}
+
+.boy-character[data-state="greet"] .boy-character__svg [data-part="arm-default"] {
+  opacity: 0;
+}
+
+.boy-character[data-state="greet"] .boy-character__svg [data-part="arm-reacting"] {
+  opacity: 1;
+}
+
+.boy-character[data-state="greet"] .boy-character__canvas {
+  animation: boy-react-float 900ms cubic-bezier(0.25, 0.8, 0.35, 1) both;
+}
+
+.boy-character[data-state="selfie"] .boy-character__svg [data-part="arm-default"] {
+  opacity: 0;
+}
+
+.boy-character[data-state="selfie"] .boy-character__svg [data-part="arm-thinking"] {
+  opacity: 1;
+}
+
+.boy-character[data-state="selfie"] .boy-character__canvas {
+  animation: boy-react-bounce 900ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+/* Emotion poses are intentionally restrained so runtime actions remain readable. */
+.boy-character[data-emotion="happy"] .boy-character__svg [data-part="eyes-open"],
+.boy-character[data-emotion="excited"] .boy-character__svg [data-part="eyes-open"],
+.boy-character[data-emotion="happy"] .boy-character__svg [data-part="eyes-closed"],
+.boy-character[data-emotion="excited"] .boy-character__svg [data-part="eyes-closed"] {
+  animation: none;
+  opacity: 0;
+}
+
+.boy-character[data-emotion="happy"] .boy-character__svg [data-part="eyes-happy"],
+.boy-character[data-emotion="excited"] .boy-character__svg [data-part="eyes-happy"] {
+  opacity: 1;
+}
+
+.boy-character[data-emotion="shy"] .boy-character__svg [data-part="face-blush"],
+.boy-character[data-emotion="warm"] .boy-character__svg [data-part="face-blush"] {
+  opacity: 0.62;
+}
+
+.boy-character[data-emotion="sad"] .boy-character__svg [data-part="mouth-smile"] {
+  opacity: 0;
+}
+
+.boy-character[data-emotion="sad"] .boy-character__svg [data-part="mouth-sad"] {
+  opacity: 1;
+}
+
+.boy-character[data-emotion="sad"] .boy-character__svg [data-part="brow-left"] {
+  transform: rotate(10deg) translateY(2px);
+  transform-origin: right center;
+}
+
+.boy-character[data-emotion="sad"] .boy-character__svg [data-part="brow-right"] {
+  transform: rotate(-10deg) translateY(2px);
+  transform-origin: left center;
+}
+
+.boy-character[data-emotion="angry"] .boy-character__svg [data-part="mouth-smile"] {
+  opacity: 0;
+}
+
+.boy-character[data-emotion="angry"] .boy-character__svg [data-part="mouth-neutral"] {
+  opacity: 1;
+}
+
+.boy-character[data-emotion="angry"] .boy-character__svg [data-part="brow-left"] {
+  transform: rotate(-12deg) translateY(3px);
+  transform-origin: right center;
+}
+
+.boy-character[data-emotion="angry"] .boy-character__svg [data-part="brow-right"] {
+  transform: rotate(12deg) translateY(3px);
+  transform-origin: left center;
+}
+
+.boy-character[data-emotion="surprised"] .boy-character__svg [data-part="mouth-smile"] {
+  opacity: 0;
+}
+
+.boy-character[data-emotion="surprised"] .boy-character__svg [data-part="mouth-o"] {
+  opacity: 1;
+  animation: boy-mouth-surprise 700ms ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+.boy-character[data-state="talking"] .boy-character__svg [data-part^="mouth-"],
+.boy-character[data-speaking="true"] .boy-character__svg [data-part^="mouth-"] {
+  opacity: 0;
+}
+
+.boy-character[data-state="talking"] .boy-character__svg [data-part="mouth-talk"],
+.boy-character[data-speaking="true"] .boy-character__svg [data-part="mouth-talk"] {
+  opacity: 1;
+  animation: boy-mouth-talk 330ms ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+.boy-character[data-state="reacting"] .boy-character__svg [data-part="eyes-open"],
+.boy-character[data-state="reacting"] .boy-character__svg [data-part="eyes-closed"] {
+  animation: none;
+  opacity: 0;
+}
+
+.boy-character[data-state="reacting"] .boy-character__svg [data-part="eyes-happy"] {
+  opacity: 1;
+}
+
+/* Explicit blink wins over emotion-specific eye poses. */
+.boy-character[data-state="blink"] .boy-character__svg [data-part="eyes-open"],
+.boy-character[data-state="blink"] .boy-character__svg [data-part="eyes-happy"] {
+  animation: none;
+  opacity: 0;
+}
+
+.boy-character[data-state="blink"] .boy-character__svg [data-part="eyes-closed"] {
+  animation: none;
+  opacity: 1;
+}
+
+.boy-character[data-loading="true"] {
+  opacity: 0;
+}
+
+.boy-character[data-loading="false"] {
+  opacity: 1;
+  transition: opacity 180ms ease-out;
+}
+
+@keyframes boy-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(var(--boy-float-distance) * -1)); }
+}
+
+@keyframes boy-react-float {
+  0% { transform: translateY(0); }
+  36% { transform: translateY(-9px); }
+  68% { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes boy-breathe {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.008, 1.012); }
+}
+
+@keyframes boy-breathe-deep {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.014, 1.02); }
+}
+
+@keyframes boy-talk-bob {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  45% { transform: translateY(-2px) rotate(-0.5deg); }
+  75% { transform: translateY(0.5px) rotate(0.4deg); }
+}
+
+@keyframes boy-talk-head {
+  from { transform: rotate(-1deg); }
+  to { transform: rotate(1.2deg); }
+}
+
+@keyframes boy-think-lean {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(1.8deg) translateY(-1px); }
+}
+
+@keyframes boy-listen-lean {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(-1.4deg) translateX(-1px); }
+}
+
+@keyframes boy-react-bounce {
+  0% { transform: scale(1) rotate(0); }
+  35% { transform: scale(1.04, 0.97) rotate(-1.5deg); }
+  62% { transform: scale(0.985, 1.025) rotate(1deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes boy-tuft-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes boy-shadow-breathe {
+  0%, 100% { transform: scaleX(1); opacity: 0.14; }
+  50% { transform: scaleX(0.9); opacity: 0.1; }
+}
+
+@keyframes boy-eyes-open {
+  0%, 43%, 47%, 100% { opacity: 1; }
+  44%, 46% { opacity: 0; }
+}
+
+@keyframes boy-eyes-closed {
+  0%, 43%, 47%, 100% { opacity: 0; }
+  44%, 46% { opacity: 1; }
+}
+
+@keyframes boy-mouth-talk {
+  from { transform: scale(1, 0.45); }
+  to { transform: scale(0.88, 1.08); }
+}
+
+@keyframes boy-mouth-surprise {
+  from { transform: scale(0.9); }
+  to { transform: scale(1.06); }
+}
+
+@keyframes boy-thought-dots {
+  0%, 100% { transform: translateY(2px) scale(0.92); opacity: 0.55; }
+  50% { transform: translateY(-3px) scale(1); opacity: 1; }
+}
+
+@keyframes boy-listen-rings {
+  0% { transform: scale(0.82); opacity: 0; }
+  35% { opacity: 1; }
+  100% { transform: scale(1.08); opacity: 0; }
+}
+
+@keyframes boy-spark-pop {
+  0% { transform: scale(0.35) rotate(-8deg); opacity: 0; }
+  45% { transform: scale(1.08) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boy-character,
+  .boy-character *,
+  .boy-character *::before,
+  .boy-character *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+
+  .boy-character[data-speaking="true"] .boy-character__svg [data-part="mouth-talk"],
+  .boy-character[data-state="talking"] .boy-character__svg [data-part="mouth-talk"] {
+    transform: scale(1, 0.75);
+  }
+}

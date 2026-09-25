@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024">
+  <defs><linearGradient id="night" x2="0" y2="1"><stop stop-color="#18272f"/><stop offset=".68" stop-color="#4d5d60"/><stop offset="1" stop-color="#c09570"/></linearGradient></defs>
+  <rect width="1536" height="1024" fill="url(#night)"/><circle cx="1210" cy="190" r="66" fill="#e4d8b2" opacity=".8"/>
+  <g fill="#172126"><path d="M0 430H260V720H0Z"/><path d="M220 350H470V720H220Z"/><path d="M1090 390H1325V720H1090Z"/><path d="M1280 310H1536V720H1280Z"/></g>
+  <g fill="#d1ad6d" opacity=".55"><rect x="285" y="420" width="28" height="42"/><rect x="345" y="420" width="28" height="42"/><rect x="1150" y="465" width="30" height="44"/><rect x="1350" y="390" width="32" height="44"/></g>
+  <path d="M0 690H1536V1024H0Z" fill="#2a3435"/><path d="M0 720H1536" stroke="#8f8b76" stroke-width="12"/>
+  <g stroke="#829397" stroke-width="9"><path d="M90 620V870M1446 620V870M90 660H1446"/><path d="M300 660L300 790M520 660L520 790M740 660L740 790M960 660L960 790M1180 660L1180 790"/></g>
+  <g fill="#4c5a4e"><rect x="180" y="790" width="150" height="90"/><rect x="1160" y="800" width="170" height="80"/></g><g fill="#789069"><circle cx="218" cy="780" r="48"/><circle cx="286" cy="775" r="42"/><circle cx="1205" cy="790" r="45"/><circle cx="1280" cy="780" r="40"/></g>
+  <path d="M590 1024L690 770H845L955 1024Z" fill="#202829" opacity=".7"/>
+</svg>

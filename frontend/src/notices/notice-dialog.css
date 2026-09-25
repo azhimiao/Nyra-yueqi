@@ -1,0 +1,32 @@
+html.notice-dialog-open,
+body.notice-dialog-open {
+  overflow: hidden;
+}
+
+.notice-dialog {
+  /* Sit below the signed update dialog (1600) so a forced APK prompt wins a race. */
+  z-index: 1550;
+}
+
+.notice-dialog--stay .modal-backdrop,
+.notice-dialog--forced .modal-backdrop {
+  pointer-events: auto;
+}
+
+.notice-dialog .update-dialog__panel,
+.notice-dialog .update-dialog__notes,
+.notice-dialog .update-dialog__hint,
+.notice-dialog .update-dialog__footer {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.notice-dialog .update-dialog__panel h2 {
+  overflow-wrap: anywhere;
+}
+
+.notice-dialog .update-dialog__footer .ghost-action:focus-visible,
+.notice-dialog .update-dialog__footer .send-button:focus-visible {
+  outline: 2px solid color-mix(in srgb, #1a2430 55%, transparent);
+  outline-offset: -2px;
+}

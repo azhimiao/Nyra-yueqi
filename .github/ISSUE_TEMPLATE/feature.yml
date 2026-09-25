@@ -1,0 +1,21 @@
+name: 想法
+description: 新功能或产品行为建议
+title: "[idea] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: why
+    attributes:
+      label: 为什么要做
+      placeholder: 谁会用，现在缺什么
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 你希望看到什么
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: 云登录、托管模型和 BillingCredit 不在这个仓库的范围里。

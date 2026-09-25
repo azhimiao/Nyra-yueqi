@@ -1,0 +1,56 @@
+/**
+ * Phone diary hosts the App Memory gallery markup.
+ * Keep the book/cover-first phone rules from fighting the gallery layout.
+ */
+
+body[data-app-mode="phone"] .mini-diary {
+  background: var(--nyra-phone-bg, #f3f7fb);
+}
+
+body[data-app-mode="phone"] .mini-diary-host.companion-page {
+  display: block;
+  place-items: unset;
+  padding: 0;
+  overflow: hidden;
+  min-height: 0;
+  height: 100%;
+}
+
+body[data-app-mode="phone"] .mini-diary-host.companion-page .memory-layout--gallery {
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 12px 20px;
+  box-sizing: border-box;
+}
+
+body[data-app-mode="phone"] .mini-diary-host.companion-page .memory-diary-reader {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  background: var(--nyra-phone-bg, #f3f7fb);
+}
+
+body[data-app-mode="phone"] .mini-diary-host.companion-page .memory-compose-sheet,
+body[data-app-mode="phone"] .mini-diary-host.companion-page .memory-month-sheet {
+  z-index: 20;
+}
+
+/* Neutralize legacy phone cover-book constraints when App gallery is present */
+body[data-app-mode="phone"] .mini-diary:has([data-phone-memory-gallery]) .diary-book-shell {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  overflow: hidden;
+}
+
+body[data-app-mode="phone"] .mini-diary:has([data-phone-memory-gallery]) .diary-book-interior {
+  height: 100%;
+  max-height: none;
+}
+
+body[data-app-mode="phone"] .mini-diary:has([data-phone-memory-gallery]) .diary-flip-page-inner {
+  min-height: 220px;
+}

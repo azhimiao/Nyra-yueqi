@@ -1,0 +1,2171 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+    <title>月栖 | 人机恋 App</title>
+    <meta name="theme-color" content="#f6f1ea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="月栖" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="assets/favicon-48.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/src/ui/reader-engine.css" />
+    <link rel="stylesheet" href="/src/ui/product-shell.css" />
+    <link rel="stylesheet" href="/src/ui/phone-shell.css" />
+    <link rel="stylesheet" href="/src/ui/phone-glass-icons.css" />
+    <link rel="stylesheet" href="/src/agent/ui/task-center.css" />
+    <link rel="stylesheet" href="/src/context/ui/context-viewer.css" />
+    <link rel="stylesheet" href="/src/ui/scenario-theater.css" />
+    <link rel="stylesheet" href="/src/ui/scenario-story.css" />
+    <link rel="stylesheet" href="/src/ui/assets-hub.css" />
+    <link rel="stylesheet" href="/src/ui/games-app.css" />
+    <link rel="stylesheet" href="/src/ui/adventure-app.css" />
+    <link rel="stylesheet" href="/src/cocreate/cocreate-app.css" />
+    <link rel="stylesheet" href="/src/ui/action-proposal-card.css" />
+    <link rel="stylesheet" href="/src/ui/companion-debug-console.css" />
+    <link rel="stylesheet" href="/src/ui/first-run-shell.css" />
+    <link rel="stylesheet" href="/src/first-light/first-light.css" />
+    <link rel="stylesheet" href="/src/ui/nyra-app.css" />
+    <link rel="stylesheet" href="/src/ui/interaction-motion.css" />
+    <link rel="stylesheet" href="/src/ui/app-memory-shell.css" />
+    <link rel="stylesheet" href="/src/ui/app-sheet-layer.css" />
+    <link rel="stylesheet" href="/src/ui/mobile-density.css" />
+    <link rel="stylesheet" href="/src/ui/app-density-final.css" />
+    <link rel="stylesheet" href="/src/ui/phone-product-final.css" />
+    <link rel="stylesheet" href="/src/ui/phone-inner-density.css" />
+    <link rel="stylesheet" href="/src/ui/phone-memory-bridge.css" />
+    <link rel="stylesheet" href="/src/ui/product-restraint.css" />
+    <link rel="stylesheet" href="/src/ui/nyra-system.css" />
+    <link rel="stylesheet" href="/src/ui/nyra-refactor.css" />
+    <link rel="stylesheet" href="/src/ui/message-composer-unified.css" />
+    <link rel="stylesheet" href="/src/ui/moments.css" />
+    <link rel="stylesheet" href="/src/ui/economy.css" />
+    <link rel="stylesheet" href="/src/billing/ui/billing-panel.css" />
+    <link rel="stylesheet" href="/src/ui/compact-subpage.css" />
+    <link rel="stylesheet" href="/src/ui/pop-im-layout.css" />
+    <link rel="stylesheet" href="/src/ui/chat-message-visual.css" />
+    <link rel="stylesheet" href="/src/ui/world-timeline.css" />
+    <style>
+      [data-boot-screen] { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; isolation: isolate; overflow: hidden; background: radial-gradient(760px 430px at 50% 48%, rgba(172, 198, 232, .10), transparent 64%), radial-gradient(420px 240px at 52% 46%, rgba(244, 232, 210, .05), transparent 72%), linear-gradient(180deg, #03122b 0%, #071b33 68%, #041220 100%); transition: opacity 400ms cubic-bezier(.3, 0, .1, 1), visibility 400ms step-end; }
+      [data-boot-dust] { position: absolute; inset: -24%; pointer-events: none; opacity: .03; background-image: radial-gradient(circle at 16% 29%, #fff 0 .75px, transparent 1px), radial-gradient(circle at 76% 62%, #fff 0 .75px, transparent 1px), radial-gradient(circle at 45% 82%, #fff 0 .75px, transparent 1px); background-size: 128px 128px, 172px 172px, 144px 144px; animation: boot-drift 26s linear infinite; }
+      [data-boot-halo] { position: absolute; left: 50%; top: 47%; width: min(78vw, 660px); height: min(38vw, 260px); border-radius: 50%; background: radial-gradient(ellipse, rgba(224, 234, 246, .08), rgba(224, 234, 246, 0) 70%); filter: blur(26px); transform: translate(-50%, -50%); pointer-events: none; }
+      [data-boot-wordmark] { position: relative; width: min(80vw, 540px); height: auto; overflow: visible; transform: translateY(-3vh); }
+      [data-boot-ink] { fill: #f3ecdf; }
+      [data-boot-bloom] { fill: #e8d7bb; opacity: 0; transition: opacity 520ms ease; }
+      [data-boot-src] { fill: none; stroke: none; }
+      [data-boot-brand] { position: absolute; left: 50%; top: calc(50% + min(15vw, 104px)); margin: 0; transform: translateX(-50%); white-space: nowrap; font: 300 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .34em; text-transform: uppercase; color: rgba(243, 236, 223, .42); opacity: 0; transition: opacity 520ms ease; }
+      [data-boot-screen].is-ready [data-boot-bloom] { opacity: .16; }
+      [data-boot-screen].is-ready [data-boot-brand] { opacity: 1; }
+      @keyframes boot-drift { from { transform: translate3d(0, 0, 0) rotate(2deg); } to { transform: translate3d(50px, -34px, 0) rotate(2deg); } }
+      @media (min-width: 720px) { [data-boot-wordmark] { width: min(60vw, 560px); transform: translateY(-1vh); } [data-boot-brand] { top: calc(50% + 118px); } }
+      html:not(.app-boot-ready):not(.immediate-phone-ready) .app-shell,
+      html:not(.app-boot-ready):not(.immediate-phone-ready) [data-small-phone-root],
+      html:not(.app-boot-ready):not(.immediate-phone-ready) [data-onboard-gate] { visibility: hidden !important; pointer-events: none !important; }
+      html.immediate-phone-ready .app-shell,
+      html.immediate-phone-ready [data-onboard-gate] { visibility: hidden !important; pointer-events: none !important; }
+      html.splash-done.app-boot-ready [data-boot-screen],
+      html.splash-done.immediate-phone-ready [data-boot-screen] { opacity: 0; visibility: hidden; pointer-events: none; }
+      @media (prefers-reduced-motion: reduce) { [data-boot-screen] { transition: none; } [data-boot-dust] { animation: none; } }
+    </style>
+    <script>
+      /* Failsafe: a module graph that never loads must not trap the shell behind
+         the intro. Once the intro claims the scene it reports its own end. */
+      window.setTimeout(function () {
+        var scene = document.querySelector("[data-boot-screen]");
+        if (!scene || !scene.dataset.splashState) document.documentElement.classList.add("splash-done");
+      }, 6000);
+    </script>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body data-active-panel="chat">
+    <div data-boot-screen aria-hidden="true">
+      <div data-boot-dust></div>
+      <div data-boot-halo></div>
+      <svg data-boot-wordmark viewBox="0 22 700 236" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="boot-soft" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="5" />
+          </filter>
+        </defs>
+        <g data-boot-bloom filter="url(#boot-soft)"></g>
+        <g data-boot-ink></g>
+        <g data-boot-src></g>
+      </svg>
+      <p data-boot-brand>月栖 · Nyra</p>
+    </div>
+    <section class="lang-gate onboard-gate" data-onboard-gate data-lang-gate hidden aria-hidden="true">
+      <div class="lang-gate-card onboard-card first-run-shell" data-onboard-card>
+        <header class="first-run-nav">
+          <button type="button" class="first-run-back onboard-back" data-onboard-back hidden aria-label="返回" data-i18n-attr="aria-label:common.back">←</button>
+          <div class="first-run-progress" data-onboard-progress>
+            <span class="first-run-progress-label" data-onboard-progress-label>1/2</span>
+            <div class="first-run-dots" data-onboard-progress-dots></div>
+          </div>
+          <span class="first-run-back-spacer" aria-hidden="true"></span>
+        </header>
+
+        <div class="onboard-step is-active" data-onboard-step="language">
+          <header class="first-run-header">
+            <p class="lang-gate-brand" data-i18n="brand.gateLine">月栖 · Nyra</p>
+            <h1 data-i18n="lang.gateTitle">选择语言</h1>
+            <p class="lang-gate-hint" data-i18n="lang.gateHint">进入后可在「我的」里随时切换。中文品牌为月栖，英文为 Nyra。</p>
+          </header>
+          <div class="first-run-main" data-onboard-scroll>
+            <div class="lang-gate-actions first-run-choices">
+              <button type="button" class="lang-choice" data-set-locale="zh-CN" role="radio" aria-pressed="false"><strong data-i18n="lang.zh">中文</strong><span>月栖</span></button>
+              <button type="button" class="lang-choice" data-set-locale="en" role="radio" aria-pressed="false"><strong data-i18n="lang.en">English</strong><span>Nyra</span></button>
+            </div>
+          </div>
+          <footer class="first-run-footer">
+            <button type="button" class="first-run-cta onboard-next me-auth-primary" data-onboard-language-next data-i18n="onboard.next">继续</button>
+          </footer>
+        </div>
+
+        <div class="onboard-step" data-onboard-step="ui" hidden>
+          <header class="first-run-header">
+            <h1 data-i18n="onboard.uiTitle">界面版本</h1>
+            <p class="lang-gate-hint" data-i18n="onboard.uiHint">选择进入后的界面；之后可在设置中切换。</p>
+          </header>
+          <div class="first-run-main" data-onboard-scroll>
+            <div class="lang-gate-actions first-run-choices">
+              <button type="button" class="lang-choice" data-onboard-ui="app">
+                <strong data-i18n="onboard.uiApp">App 版本</strong>
+                <span data-i18n="onboard.uiAppHint">全屏陪伴 App，集中呈现聊天、空间与陪伴功能</span>
+              </button>
+              <button type="button" class="lang-choice is-active" data-onboard-ui="phone">
+                <strong data-i18n="onboard.uiPhone">小手机版本</strong>
+                <span data-i18n="onboard.uiPhoneHint">口袋系统界面，用桌面和独立应用组织功能</span>
+              </button>
+            </div>
+          </div>
+          <footer class="first-run-footer">
+            <button type="button" class="first-run-cta onboard-next me-auth-primary" data-onboard-enter data-i18n="onboard.enter">进入</button>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    <div class="app-shell" aria-label="月栖多端应用原型" data-i18n-attr="aria-label:brand.shellLabel">
+      <aside class="feature-sidebar" aria-label="主导航" data-i18n-attr="aria-label:nav.mainNav">
+        <div class="brand">
+          <strong data-i18n="brand.name">月栖</strong>
+          <span data-i18n="brand.tagline">AI Romance</span>
+        </div>
+
+        <section class="role-card" aria-label="当前陪伴角色" data-i18n-attr="aria-label:nav.currentCompanion">
+          <div class="role-avatar" aria-hidden="true" data-role-avatar>
+            <span class="role-avatar-fallback">角</span>
+            <span class="presence-indicator"></span>
+          </div>
+          <div class="role-card-copy">
+            <strong data-role-name>角色</strong>
+            <span data-capability-status>—</span>
+            <small data-role-status>平静 · 天气不可用 · 等待状态</small>
+          </div>
+        </section>
+
+        <nav class="side-tabs" aria-label="主导航" data-i18n-attr="aria-label:nav.mainNav">
+          <button class="is-active" data-tab="chat"><i data-lucide="message-circle"></i><span class="icon-fallback">…</span><span data-i18n="nav.chat">聊天</span></button>
+          <button data-tab="companion" data-nav-diary><i data-lucide="heart"></i><span class="icon-fallback">♡</span><span data-i18n="nav.companion">陪伴</span></button>
+          <button data-tab="world"><i data-lucide="camera"></i><span class="icon-fallback">◎</span><span data-i18n="nav.world">朋友圈</span></button>
+          <button type="button" class="system-assist-nav" data-assist-nav aria-label="栖机助手" data-i18n-attr="aria-label:nav.assist"><i data-lucide="bot"></i><span class="icon-fallback">✦</span><span data-i18n="nav.assist">栖机助手</span><em>AI</em></button>
+          <button data-tab="me"><i data-lucide="user-round"></i><span class="icon-fallback">◎</span><span data-i18n="nav.me">我的</span></button>
+          <button type="button" data-contact-menu><i data-lucide="circle-ellipsis"></i><span class="icon-fallback">•••</span><span data-i18n="nav.more">更多</span></button>
+          <button data-tab="api" data-byok-only><i data-lucide="plug-zap"></i><span class="icon-fallback">⌁</span><span data-i18n="nav.api">接口</span></button>
+          <button type="button" class="side-mode-switch" data-ui-mode-switch="phone" data-haptic="medium-light"><i data-lucide="smartphone"></i><span class="icon-fallback">▯</span><span data-i18n="nav.phoneMode">小手机界面</span><em data-i18n="nav.phoneModeHint">切换</em></button>
+        </nav>
+              </aside>
+
+      <header class="mobile-header">
+        <button type="button" class="icon-button mobile-menu-button" data-drawer-open aria-label="侧边栏" data-i18n-attr="aria-label:nav.sidebar"><i data-lucide="menu"></i><span class="icon-fallback">☰</span></button>
+        <span class="mobile-header-brand" aria-label="月栖 · Nyra" data-i18n-attr="aria-label:brand.mobileHeader">
+          <strong data-i18n="brand.name">月栖</strong>
+          <small data-i18n="brand.privateTerminal">私人陪伴终端</small>
+        </span>
+        <button type="button" class="mobile-role-entry" data-global-character-entry aria-label="打开角色" data-i18n-attr="aria-label:nav.openCharacter">
+          <span class="mobile-role-avatar" aria-hidden="true" data-role-avatar><span class="role-avatar-fallback">角</span></span>
+          <span class="mobile-role-presence" aria-hidden="true"></span>
+        </button>
+      </header>
+
+      <main class="content-shell">
+        <section class="app-page is-active" data-panel="chat">
+          <header class="chat-sticky">
+            <button type="button" class="chat-sticky__menu" data-drawer-open aria-label="侧边栏" data-i18n-attr="aria-label:nav.sidebar">
+              <i data-lucide="menu"></i><span class="icon-fallback">☰</span>
+            </button>
+            <div class="chat-identity">
+              <span class="chat-identity-avatar" aria-hidden="true" data-role-avatar><span class="role-avatar-fallback">角</span></span>
+              <span class="chat-identity-copy">
+                <strong data-role-name>角色</strong>
+                <small data-ai-mood>平静</small>
+              </span>
+            </div>
+            <section class="parameter-strip" aria-label="状态参数" data-i18n-attr="aria-label:nav.statusParams">
+              <span data-user-weather>雨 20°</span>
+              <span data-ai-sleep>睡眠 6h</span>
+              <span data-ai-bpm>76bpm</span>
+              <span data-life-context>生活 · —</span>
+            </section>
+            <div class="chat-quick-actions" role="group" data-i18n-attr="aria-label:chat.quickActions">
+              <button class="chat-quick-action" type="button" data-session-summary-open data-i18n-attr="title:chat.summarizeMemory|aria-label:chat.summarizeMemory">
+                <i data-lucide="bookmark"></i><span class="icon-fallback" aria-hidden="true">✎</span>
+              </button>
+              <button class="chat-quick-action" type="button" data-open-voice-call data-i18n-attr="title:chat.voiceCall|aria-label:chat.voiceCall">
+                <i data-lucide="phone"></i><span class="icon-fallback" aria-hidden="true">☎</span>
+              </button>
+              <button class="chat-quick-action" type="button" data-open-video-call data-i18n-attr="title:chat.videoCall|aria-label:chat.videoCall">
+                <i data-lucide="video"></i><span class="icon-fallback" aria-hidden="true">▻</span>
+              </button>
+              <button type="button" class="chat-pet-toggle chat-quick-action" data-chat-pet-toggle data-desktop-pet-power aria-pressed="false" data-i18n-attr="title:chat.petToggleTitle|aria-label:chat.petToggleTitle">
+                <i data-lucide="sparkles"></i><span class="icon-fallback" aria-hidden="true">✦</span>
+                <span class="chat-pet-toggle__lamp" aria-hidden="true"></span>
+                <span class="chat-pet-toggle__label" data-i18n="chat.petToggle">桌宠</span>
+              </button>
+            </div>
+          </header>
+
+          <section class="chat-panel">
+            <div class="chat-conversation">
+              <div class="message-list" id="messageList" aria-live="polite">
+                <details class="thought-chain" id="summaryPanel">
+                  <summary data-i18n="chat.basis.title">回应依据</summary>
+                  <div>
+                    <span data-i18n="chat.basis.mood">正在留意你此刻的情绪</span>
+                    <span data-i18n="chat.basis.memory">会参考近期对话与共同记忆</span>
+                    <span data-i18n="chat.basis.listen">先听你说，再回应</span>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </section>
+
+          <div class="composer-stack pop-composer" data-composer-stack>
+            <form class="composer pop-composer__bar" id="composerForm">
+              <button type="button" class="composer-tool" data-composer-attach aria-label="更多" aria-expanded="false" data-i18n-attr="aria-label:phone.pop.more">
+                <i data-lucide="plus"></i><span class="icon-fallback">+</span>
+              </button>
+              <button type="button" class="composer-tool composer-speak" data-composer-speak aria-label="续聊" title="再让ta回一句" data-i18n-attr="aria-label:phone.pop.charReply|title:phone.pop.charReplyTitle">
+                <i data-lucide="message-circle"></i><span class="icon-fallback">💬</span>
+              </button>
+              <div class="composer-field">
+                <textarea id="messageInput" rows="1" placeholder="输入消息" autocomplete="off" enterkeyhint="send" data-composer-text data-i18n-attr="placeholder:chat.placeholder"></textarea>
+                <button type="button" class="composer-hold" data-composer-hold hidden aria-label="按住说话" data-i18n="phone.pop.holdToTalkShort" data-i18n-attr="aria-label:phone.pop.holdToTalk">按住 说话</button>
+              </div>
+              <button type="button" class="composer-tool composer-mic" data-composer-mic aria-label="语音输入" data-i18n-attr="aria-label:phone.pop.voiceInput">
+                <i data-lucide="mic"></i><span class="icon-fallback">🎤</span>
+              </button>
+              <button type="button" class="composer-tool composer-retry-stt" data-retry-stt hidden aria-label="重试转写" data-i18n-attr="aria-label:appShell.chat.retryTranscription">
+                <i data-lucide="rotate-cw"></i><span class="icon-fallback">↻</span>
+              </button>
+              <button type="button" class="composer-tool composer-send" data-composer-send data-haptic="none" aria-label="发送" data-i18n-attr="aria-label:chat.send">
+                <i data-lucide="send"></i><span class="icon-fallback">➤</span>
+              </button>
+            </form>
+            <div class="composer-sheet composer-plus-sheet" data-composer-plus-sheet hidden>
+              <button type="button" class="composer-plus-tile" data-composer-plus-action="sticker">
+                <span class="composer-plus-tile__icon"><i data-lucide="smile"></i></span>
+                <span data-i18n="phone.pop.sticker">表情</span>
+              </button>
+              <button type="button" class="composer-plus-tile" data-composer-plus-action="game">
+                <span class="composer-plus-tile__icon"><i data-lucide="puzzle"></i></span>
+                <span data-i18n="phone.pop.playTogether">一起玩</span>
+              </button>
+              <button type="button" class="composer-plus-tile" data-composer-plus-action="transfer">
+                <span class="composer-plus-tile__icon"><i data-lucide="arrow-left-right"></i></span>
+                <span data-i18n="phone.pop.transfer">转账</span>
+              </button>
+              <button type="button" class="composer-plus-tile" data-composer-plus-action="gift">
+                <span class="composer-plus-tile__icon"><i data-lucide="gift"></i></span>
+                <span data-i18n="phone.pop.sendGift">送礼物</span>
+              </button>
+              <button type="button" class="composer-plus-tile" data-composer-plus-action="location">
+                <span class="composer-plus-tile__icon"><i data-lucide="map-pin"></i></span>
+                <span data-i18n="phone.pop.location">定位</span>
+              </button>
+              <button type="button" class="composer-plus-tile" data-composer-plus-action="image">
+                <span class="composer-plus-tile__icon"><i data-lucide="image"></i></span>
+                <span data-i18n="phone.pop.image">图片</span>
+              </button>
+              <button type="button" class="composer-plus-tile" data-composer-plus-action="voice">
+                <span class="composer-plus-tile__icon"><i data-lucide="mic"></i></span>
+                <span data-i18n="phone.pop.voice">语音</span>
+              </button>
+            </div>
+            <div class="composer-sheet composer-sticker-sheet" data-composer-sticker-sheet hidden></div>
+            <input type="file" data-composer-attach-input accept="image/jpeg,image/png,image/webp,image/gif,application/pdf,text/*,.txt,.md,.json,.pdf" hidden />
+          </div>
+          <div class="pop-token-sheet" data-token-compose="transfer" hidden>
+            <button type="button" class="pop-token-sheet__scrim" data-token-compose-close></button>
+            <div class="pop-token-sheet__panel" role="dialog" aria-label="转账" data-i18n-attr="aria-label:phone.pop.transferSheet">
+              <header><button type="button" data-token-compose-close data-i18n="common.cancel">取消</button><strong data-i18n="phone.pop.transferTo">转账给对方</strong><span></span></header>
+              <label class="pop-token-field"><span data-i18n="phone.pop.amount">金额</span><input type="number" min="0.01" step="0.01" inputmode="decimal" data-token-amount placeholder="0.00" /><em data-i18n="phone.pop.coin">栖币</em></label>
+              <label class="pop-token-field is-note"><span data-i18n="phone.pop.note">备注</span><input type="text" data-token-note data-i18n-attr="placeholder:phone.pop.transferNotePlaceholder" placeholder="转账给对方" /></label>
+              <button type="button" class="pop-token-submit" data-token-compose-submit="transfer" data-i18n="phone.pop.transfer">转账</button>
+            </div>
+          </div>
+          <div class="pop-token-sheet" data-gift-compose hidden>
+            <button type="button" class="pop-token-sheet__scrim" data-gift-compose-close aria-label="关闭" data-i18n-attr="aria-label:common.close"></button>
+            <div class="pop-token-sheet__panel" role="dialog" aria-label="送礼物" data-i18n-attr="aria-label:phone.pop.sendGiftSheet">
+              <header>
+                <button type="button" data-gift-compose-close data-i18n="common.cancel">取消</button>
+                <strong data-i18n="phone.pop.sendGiftSheet">送礼物</strong>
+                <span></span>
+              </header>
+              <p class="gift-compose-lead" data-i18n="phone.pop.sendGiftLead">从收藏柜里挑一件「礼物」送给当前角色</p>
+              <div class="gift-compose-list" data-gift-compose-list></div>
+            </div>
+          </div>
+          <div class="pop-token-sheet" data-composer-game-sheet hidden>
+            <button type="button" class="pop-token-sheet__scrim" data-composer-game-close aria-label="关闭" data-i18n-attr="aria-label:common.close"></button>
+            <div class="pop-token-sheet__panel" role="dialog" aria-label="一起玩" data-i18n-attr="aria-label:phone.pop.gameTitle">
+              <header>
+                <button type="button" data-composer-game-close data-i18n="common.cancel">取消</button>
+                <strong data-i18n="phone.pop.gameTitle">一起玩</strong>
+                <span></span>
+              </header>
+              <p class="composer-game-lead" data-i18n="phone.pop.gameLead">和 TA 在当前聊天里玩，沿用这条会话的上下文</p>
+              <div class="composer-game-list" data-composer-game-list></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="app-page companion-page" data-panel="companion">
+          <div class="companion-chrome">
+            <nav class="page-section-tabs" data-companion-tabs data-i18n-attr="aria-label:pages.companionChrome.tabsLabel">
+              <button type="button" class="is-active" data-companion-tab="memory" data-i18n="pages.memory">日记</button>
+              <button type="button" data-companion-tab="character" data-i18n="pages.character">桌宠</button>
+            </nav>
+          </div>
+
+          <div class="page-section is-active" data-companion-section="memory">
+          <div class="memory-layout memory-layout--gallery" data-memory-gallery>
+            <header class="memory-relation-head memory-relation-head--slim">
+              <h2 class="me-visually-hidden" data-i18n="memoryGallery.title">我们的记忆</h2>
+              <p class="memory-relation-days" data-memory-together-label data-i18n="memoryGallery.togetherDayOne">在一起第 1 天</p>
+              <div class="memory-relation-head__actions">
+                <button type="button" class="memory-icon-btn" data-memory-search-toggle data-i18n-attr="aria-label:memoryGallery.search">
+                  <i data-lucide="search"></i><span class="icon-fallback">⌕</span>
+                </button>
+                <button type="button" class="memory-avatar-btn" data-memory-open-character data-role-avatar data-i18n-attr="aria-label:pages.character" hidden>
+                  <span class="role-avatar-fallback">角</span>
+                </button>
+              </div>
+            </header>
+
+            <div class="memory-search-panel" data-memory-search-panel hidden>
+              <input type="search" data-memory-gallery-search data-i18n-attr="placeholder:memoryGallery.searchPlaceholder" placeholder="搜索日记与记忆" />
+            </div>
+
+            <section class="memory-week" data-memory-week aria-label="日历" data-i18n-attr="aria-label:memoryGallery.calendar">
+              <button type="button" class="memory-week__label" data-memory-week-label data-memory-open-calendar data-i18n-attr="aria-label:memoryGallery.openCalendar" aria-label="打开完整日历"></button>
+              <div class="memory-week__viewport" data-memory-week-viewport>
+                <div class="memory-week__track" data-memory-week-track></div>
+              </div>
+              <div class="memory-month-sheet" data-memory-month-sheet hidden>
+                <div class="memory-month-sheet__backdrop" data-memory-month-close></div>
+                <div class="memory-month-sheet__panel" role="dialog" aria-modal="true" data-i18n-attr="aria-label:memoryGallery.fullCalendar">
+                  <header class="memory-month-sheet__head">
+                    <button type="button" class="memory-month-nav" data-memory-month-prev data-i18n-attr="aria-label:pages.companionChrome.diaryPrevMonth">‹</button>
+                    <strong data-memory-month-title>—</strong>
+                    <button type="button" class="memory-month-nav" data-memory-month-next data-i18n-attr="aria-label:pages.companionChrome.diaryNextMonth">›</button>
+                    <button type="button" class="memory-month-close" data-memory-month-close data-i18n-attr="aria-label:common.close">×</button>
+                  </header>
+              <div class="memory-month-weekdays" data-memory-month-weekdays aria-hidden="true"></div>
+                  <div class="memory-month-grid" data-memory-month-grid></div>
+                  <button type="button" class="memory-month-today" data-memory-month-today data-i18n="memoryGallery.jumpToday">回到今天</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="memory-feed" data-memory-feed aria-label="日记" data-i18n-attr="aria-label:memoryGallery.diary"></section>
+
+            <section class="memory-recap" data-memory-recap hidden></section>
+
+            <div class="memory-compose-sheet" data-memory-compose-sheet hidden aria-hidden="true">
+              <div class="memory-compose-sheet__backdrop" data-memory-compose-close></div>
+              <div class="memory-compose-sheet__panel" role="dialog" aria-modal="true" data-i18n-attr="aria-label:memoryGallery.composeTitle">
+                <header class="memory-compose-sheet__head">
+                  <strong data-i18n="memoryGallery.composeTitle">请ta写日记</strong>
+                  <button type="button" class="memory-compose-close" data-memory-compose-close data-i18n-attr="aria-label:common.close">×</button>
+                </header>
+                <p class="memory-compose-sheet__hint" data-i18n="memoryGallery.composeHint">先选一种写法，再决定要不要配图。</p>
+                <div class="diary-style-grid memory-compose-styles" data-memory-compose-styles role="radiogroup" data-i18n-attr="aria-label:memoryGallery.composeStylesAria"></div>
+                <label class="memory-compose-image">
+                  <input type="checkbox" data-memory-compose-image />
+                  <span>
+                    <strong data-i18n="memoryGallery.composeImage">生成日记配图</strong>
+                    <em data-memory-compose-image-hint data-i18n="memoryGallery.composeImageHint">根据正文画一张封面场景</em>
+                  </span>
+                </label>
+                <div class="memory-compose-footer">
+                  <button type="button" class="memory-compose-confirm" data-memory-compose-confirm data-i18n="memoryGallery.composeConfirm">开始生成</button>
+                </div>
+              </div>
+            </div>
+
+            <section class="diary-book memory-diary-reader" data-diary-book hidden>
+              <div class="diary-book-shell">
+                <button type="button" class="diary-book-cover" data-diary-book-cover aria-expanded="false" hidden>
+                  <div class="diary-book-cover-face">
+                    <div class="diary-book-cover-frame">
+                      <span class="diary-book-label" data-i18n="pages.companionChrome.diaryCoverBrand">月栖 · Diary</span>
+                      <i class="diary-book-ornament" aria-hidden="true"></i>
+                      <h3 data-i18n="pages.companionChrome.diaryBookTitle">日记本</h3>
+                      <p data-diary-book-cover-meta>0 篇</p>
+                      <span class="diary-book-tap-hint" data-i18n="pages.companionChrome.diaryTapOpen">轻触翻开</span>
+                    </div>
+                  </div>
+                  <div class="diary-book-spine" aria-hidden="true"></div>
+                </button>
+
+                <div class="diary-book-interior" data-diary-book-interior>
+                  <header class="diary-book-toolbar">
+                    <button type="button" class="ghost-action" data-diary-book-close><i data-lucide="book-open"></i><span class="icon-fallback">↩</span><span data-i18n="pages.companionChrome.diaryClose">合上</span></button>
+                    <div class="diary-book-toolbar-actions">
+                      <button type="button" class="ghost-action" data-diary-generate><i data-lucide="sparkles"></i><span class="icon-fallback">✦</span><span data-i18n="pages.companionChrome.diaryGenerate">立即生成</span></button>
+                    </div>
+                  </header>
+
+                  <div class="diary-book-index" data-diary-book-calendar data-i18n-attr="aria-label:phone.diary.calendarIndex">
+                    <div class="diary-book-cal-head">
+                      <button type="button" class="diary-cal-nav" data-diary-cal-prev data-i18n-attr="aria-label:pages.companionChrome.diaryPrevMonth">‹</button>
+                      <strong data-diary-cal-title>—</strong>
+                      <button type="button" class="diary-cal-nav" data-diary-cal-next data-i18n-attr="aria-label:pages.companionChrome.diaryNextMonth">›</button>
+                    </div>
+                    <div class="diary-book-cal-grid" data-diary-cal-grid></div>
+                  </div>
+
+                  <div class="diary-book-stage" data-diary-book-stage>
+                    <button type="button" class="diary-page-turn diary-page-turn-prev" data-diary-page-prev data-i18n-attr="aria-label:pages.companionChrome.diaryPrevPage">‹</button>
+                    <div class="diary-flip-book" data-diary-flip-book aria-live="polite"></div>
+                    <button type="button" class="diary-page-turn diary-page-turn-next" data-diary-page-next data-i18n-attr="aria-label:pages.companionChrome.diaryNextPage">›</button>
+                  </div>
+
+                  <footer class="diary-page-footer" data-diary-page-footer hidden>
+                    <span data-diary-page-indicator>0 / 0</span>
+                    <div class="diary-page-actions">
+                      <button type="button" data-diary-page-edit data-i18n="pages.companionChrome.diaryEdit">编辑</button>
+                      <button type="button" data-diary-page-delete data-i18n="pages.companionChrome.diaryDelete">删除</button>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+            </section>
+
+            <section class="memory-tools memory-tools--backup-only" hidden aria-hidden="true">
+              <div class="memory-backup-actions">
+                <span class="memory-backup-label" data-i18n="pages.companionChrome.backupLabel">本机备份</span>
+                <button type="button" class="ghost-action" data-export-data>导出月栖数据</button>
+                <button type="button" class="ghost-action" data-import-data-trigger>导入月栖数据</button>
+                <button type="button" class="ghost-action" data-export-full-backup data-dev-only hidden>导出完整 ZIP</button>
+                <button type="button" class="ghost-action" data-export-backup-no-media data-dev-only hidden>导出 ZIP（无媒体）</button>
+                <button type="button" class="ghost-action" data-clear-local-app-events data-dev-only hidden>清除事件缓冲</button>
+                <input type="file" accept=".nyra,.json,.zip,application/json,application/zip,application/vnd.nyra.archive" data-import-data hidden />
+              </div>
+            </section>
+          </div>
+          </div>
+
+          <div class="page-section" data-companion-section="character">
+            <div class="pet-hub" data-pet-hub data-pet-view-active="home">
+
+              <section class="pet-hub__view is-active" data-pet-view="home" aria-label="桌宠首页" data-i18n-attr="aria-label:nav.petHome">
+                <header class="pet-hub__page-head">
+                  <p class="pet-hub__kicker" data-i18n="pages.petHub.kicker">桌宠</p>
+                  <h2 data-i18n="pages.petHub.title">陪伴在侧</h2>
+                  <p data-i18n="pages.petHub.lead">先看当前桌宠，再进外观或桌面设置。</p>
+                </header>
+
+                <article class="pet-hub-hero" data-pet-hub-hero data-desktop-presence>
+                  <div class="pet-hub-hero__preview" data-pet-hub-preview aria-hidden="true"></div>
+                  <div class="pet-hub-hero__copy">
+                    <p class="pet-hub-hero__eyebrow" data-i18n="pages.petHub.current">当前桌宠</p>
+                    <h3 data-pet-hub-name>—</h3>
+                    <p data-pet-hub-tagline></p>
+                    <p class="pet-hub-hero__status" data-desktop-status data-i18n="pages.companionChrome.petPowerLead">打开后角色会浮在桌面上；关掉即隐藏。</p>
+                  </div>
+                  <div class="pet-hub-hero__power">
+                    <button type="button" class="pet-power-switch" data-desktop-pet-power aria-pressed="false" data-i18n-attr="title:chat.petToggleTitle">
+                      <span class="pet-power-switch__track" aria-hidden="true">
+                        <span class="pet-power-switch__thumb"></span>
+                      </span>
+                      <span class="pet-power-switch__label" data-desktop-pet-power-label data-i18n="chat.petOffLabel">已关闭</span>
+                    </button>
+                  </div>
+                </article>
+
+                <nav class="pet-hub-nav" data-pet-hub-nav data-i18n-attr="aria-label:pages.petHub.navAria">
+                  <button type="button" class="pet-hub-nav__item" data-pet-open-view="library">
+                    <span class="pet-hub-nav__meta">
+                      <strong data-i18n="pages.petHub.navLibrary">桌宠库</strong>
+                      <small data-i18n="pages.petHub.navLibraryHint">更换外观 · 月栖·昼 / 夜 / 星梨 / 气泡</small>
+                    </span>
+                    <span class="pet-hub-nav__chev" aria-hidden="true">›</span>
+                  </button>
+                  <button type="button" class="pet-hub-nav__item" data-pet-open-view="desktop">
+                    <span class="pet-hub-nav__meta">
+                      <strong data-i18n="pages.petHub.navDesktop">桌面设置</strong>
+                      <small data-i18n="pages.petHub.navDesktopHint">大小、贴边与开机</small>
+                    </span>
+                    <span class="pet-hub-nav__chev" aria-hidden="true">›</span>
+                  </button>
+                  <button type="button" class="pet-hub-nav__item" data-pet-open-view="pack">
+                    <span class="pet-hub-nav__meta">
+                      <strong data-i18n="pages.petHub.navPack">角色包</strong>
+                      <small data-i18n="pages.petHub.navPackHint">导入 ZIP · 定制联系</small>
+                    </span>
+                    <span class="pet-hub-nav__chev" aria-hidden="true">›</span>
+                  </button>
+                </nav>
+              </section>
+
+              <section class="pet-hub__view" data-pet-view="library" hidden>
+                <header class="pet-hub__subhead">
+                  <button type="button" class="pet-hub-back" data-pet-open-view="home" data-i18n-attr="aria-label:pages.petHub.back">
+                    <span aria-hidden="true">‹</span>
+                    <span data-i18n="pages.petHub.back">返回</span>
+                  </button>
+                  <div class="pet-hub__subhead-copy">
+                    <p class="pet-hub__kicker" data-i18n="pages.petLibrary.kicker">外观</p>
+                    <h2 data-i18n="pages.petLibrary.title">桌宠库</h2>
+                    <p data-i18n="pages.petLibrary.lead">选一个现在要用的桌宠，点一下就能换。</p>
+                  </div>
+                </header>
+                <div class="pet-library" data-pet-library data-i18n-attr="aria-label:pages.petLibrary.title">
+                  <div class="pet-library__grid" data-pet-library-grid></div>
+                  <p class="pet-library__status" data-pet-library-status aria-live="polite"></p>
+                </div>
+              </section>
+
+              <section class="pet-hub__view" data-pet-view="desktop" hidden>
+                <header class="pet-hub__subhead">
+                  <button type="button" class="pet-hub-back" data-pet-open-view="home" data-i18n-attr="aria-label:pages.petHub.back">
+                    <span aria-hidden="true">‹</span>
+                    <span data-i18n="pages.petHub.back">返回</span>
+                  </button>
+                  <div class="pet-hub__subhead-copy">
+                    <p class="pet-hub__kicker" data-i18n="pages.companionChrome.petDesktopCompanion">桌面陪伴</p>
+                    <h2 data-i18n="pages.petHub.desktopTitle">桌面设置</h2>
+                    <p data-i18n="pages.petHub.desktopLead">调节悬浮大小与开机行为。</p>
+                  </div>
+                </header>
+                <div class="pet-desktop-panel">
+                  <label class="pet-size-control">
+                    <span data-i18n="pages.companionChrome.petSize">桌宠大小</span>
+                    <input type="range" min="48" max="96" step="4" value="64" data-pet-float-size data-i18n-attr="aria-label:pages.companionChrome.petSize" />
+                    <output data-pet-float-size-value data-i18n="pages.companionChrome.petSizeStandard">标准</output>
+                  </label>
+                  <small class="pet-dock-hint" data-i18n="pages.companionChrome.petDockHint">拖动松开后会自动贴边</small>
+                  <div class="pet-keepalive" data-overlay-presence data-overlay-android-only hidden>
+                    <p class="pet-keepalive__status" data-overlay-status data-i18n="phone.pet.keepAliveLead">系统可能清掉后台。请允许悬浮窗，并关掉电池限制。</p>
+                    <button type="button" class="ghost-action" data-overlay-request-permission data-i18n="phone.pet.overlayPermission">允许显示在其他应用上层</button>
+                    <button type="button" class="ghost-action" data-overlay-oem-battery data-i18n="phone.pet.oemBattery">忽略电池优化</button>
+                    <button type="button" class="ghost-action" data-overlay-oem-autostart data-i18n="phone.pet.oemAutostart">允许自启动</button>
+                    <div data-overlay-help>
+                      <button type="button" class="ghost-action" data-overlay-oem-app data-i18n="phone.pet.oemApp">应用详情 / 后台管理</button>
+                    </div>
+                  </div>
+                  <label class="pet-power-login" data-desktop-open-at-login-row>
+                    <input type="checkbox" data-desktop-open-at-login />
+                    <span data-i18n="pages.companionChrome.petOpenAtLogin">开机自动打开</span>
+                    <small data-desktop-open-at-login-hint hidden data-i18n="pages.companionChrome.petDesktopOnly">仅桌面版</small>
+                  </label>
+                </div>
+              </section>
+
+              <section class="pet-hub__view" data-pet-view="pack" hidden data-custom-contact data-i18n-attr="aria-label:pages.companionChrome.customContact.ariaLabel">
+                <header class="pet-hub__subhead">
+                  <button type="button" class="pet-hub-back" data-pet-open-view="home" data-i18n-attr="aria-label:pages.petHub.back">
+                    <span aria-hidden="true">‹</span>
+                    <span data-i18n="pages.petHub.back">返回</span>
+                  </button>
+                  <div class="pet-hub__subhead-copy">
+                    <p class="pet-hub__kicker" data-i18n="pages.companionChrome.customContact.kicker">角色包</p>
+                    <h2 data-custom-contact-title data-i18n="pages.companionChrome.customContact.title">角色包与定制服务</h2>
+                    <p data-custom-contact-blurb data-i18n="pages.companionChrome.customContact.blurb">已有角色包可直接导入；需要专属外表与动作时，再展开定制信息。</p>
+                  </div>
+                </header>
+                <div class="pet-pack-panel">
+                  <div class="pet-custom-notice__body">
+                    <div class="pet-custom-notice__grid">
+                      <div class="pet-custom-notice__row" data-custom-contact-discord-row>
+                        <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.discord">Discord</span>
+                        <strong class="pet-custom-notice__value" data-custom-contact-discord></strong>
+                        <button type="button" class="ghost-action" data-custom-contact-copy-discord data-i18n="pages.companionChrome.customContact.copy">复制</button>
+                      </div>
+                      <div class="pet-custom-notice__row">
+                        <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.wechat">微信</span>
+                        <strong class="pet-custom-notice__value" data-custom-contact-wechat></strong>
+                        <button type="button" class="ghost-action" data-custom-contact-copy-wechat data-i18n="pages.companionChrome.customContact.copy">复制</button>
+                      </div>
+                      <div class="pet-custom-notice__row" data-custom-contact-qq-group-row>
+                        <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.qqGroup">QQ群</span>
+                        <strong class="pet-custom-notice__value" data-custom-contact-qq-group></strong>
+                        <button type="button" class="ghost-action" data-custom-contact-copy-qq-group data-i18n="pages.companionChrome.customContact.copy">复制</button>
+                      </div>
+                      <div class="pet-custom-notice__row" data-custom-contact-email-row hidden>
+                        <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.email">邮箱</span>
+                        <strong class="pet-custom-notice__value" data-custom-contact-email></strong>
+                        <button type="button" class="ghost-action" data-custom-contact-copy-email data-i18n="pages.companionChrome.customContact.copy">复制</button>
+                      </div>
+                      <div class="pet-custom-notice__row" data-custom-contact-qq-row>
+                        <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.qq">QQ</span>
+                        <strong class="pet-custom-notice__value" data-custom-contact-qq></strong>
+                        <button type="button" class="ghost-action" data-custom-contact-copy-qq data-i18n="pages.companionChrome.customContact.copy">复制</button>
+                      </div>
+                      <div class="pet-custom-notice__row pet-custom-notice__row--note" data-custom-contact-note-row>
+                        <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.noteLabel">说明</span>
+                        <p class="pet-custom-notice__value" data-custom-contact-note></p>
+                      </div>
+                    </div>
+                    <footer class="pet-custom-notice__foot">
+                      <button type="button" class="primary-action" data-import-character-pack-trigger data-i18n="pages.companionChrome.customContact.importPack">导入角色包 ZIP</button>
+                      <input type="file" accept=".zip,application/zip" data-import-character-pack hidden />
+                      <p class="pet-custom-notice__status" data-custom-contact-status aria-live="polite"></p>
+                    </footer>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+
+            <!-- Keep avatar / sensing / editor host hooks off-page -->
+            <div hidden aria-hidden="true">
+              <div data-avatar-stage>
+                <div data-avatar-empty></div>
+                <img data-avatar-stage-image alt="" />
+                <canvas data-avatar-stage-canvas width="1" height="1"></canvas>
+                <div data-avatar-stage-layered></div>
+                <div data-avatar-stage-overlay><span data-current-outfit-label data-i18n="pages.companionChrome.petOutfitLabel">桌宠</span></div>
+                <p data-avatar-stage-meta></p>
+              </div>
+              <pre data-character-status></pre>
+              <input type="file" data-character-upload accept="image/*,.webp,image/webp" />
+              <div data-timeline-editor></div>
+              <div data-expression-list></div>
+              <div data-scene-list></div>
+              <div data-layered-parts></div>
+              <pre data-layered-status></pre>
+              <pre data-delivery-checklist></pre>
+              <select data-render-mode><option value="auto">auto</option></select>
+              <select data-layered-backend><option value="canvas">canvas</option></select>
+              <input type="checkbox" data-motion-breathe checked />
+              <input type="checkbox" data-motion-blink checked />
+              <input type="checkbox" data-motion-sway checked />
+              <input type="checkbox" data-lip-enabled checked />
+              <button type="button" data-layered-init></button>
+              <button type="button" data-layered-export-json></button>
+              <button type="button" data-layered-import-json-trigger></button>
+              <input type="file" accept="application/json,.json" data-layered-import-json hidden />
+              <button type="button" data-expression-add></button>
+              <button type="button" data-scene-add></button>
+              <strong data-pack-version-status>—</strong>
+              <button type="button" data-export-action-pack></button>
+              <button type="button" data-import-action-pack-trigger></button>
+              <input type="file" accept=".zip,application/zip" data-import-action-pack hidden />
+              <button type="button" data-bump-pack-version></button>
+              <select data-pack-history></select>
+              <button type="button" data-pack-rollback></button>
+              <button type="button" data-run-delivery-checklist></button>
+              <div data-desktop-sensing-host>
+                <p data-sensing-hint></p>
+                <input type="checkbox" data-sensing-screen />
+                <select data-sensing-screen-interval><option value="15" selected>15</option></select>
+                <input type="checkbox" data-sensing-voice />
+                <input type="checkbox" data-sensing-system-audio />
+              </div>
+              <div data-overlay-presence>
+                <div data-overlay-status></div>
+                <button type="button" data-overlay-request-permission></button>
+                <button type="button" data-overlay-start></button>
+                <button type="button" data-overlay-stop></button>
+                <div data-overlay-help>
+                  <button type="button" data-overlay-oem-battery></button>
+                  <button type="button" data-overlay-oem-autostart></button>
+                  <button type="button" data-overlay-oem-app></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="app-page moments-page" data-panel="world">
+          <div class="world-mode-tabs" role="tablist" data-i18n-attr="aria-label:pages.worldChrome.modeTabsLabel">
+            <button type="button" class="is-active" data-world-mode-tab="moments" data-i18n="pages.worldChrome.ourMoments">我们的动态</button>
+            <button type="button" data-world-mode-tab="viber" data-i18n="pages.worldChrome.characterWorld">角色世界</button>
+          </div>
+
+          <div class="social-surface social-surface--moments" data-world-mode-moments>
+            <form class="moments-compose" data-moments-compose>
+              <div class="social-compose-row">
+                <span class="social-compose-avatar" aria-hidden="true">你</span>
+                <textarea rows="2" maxlength="200" data-moments-input data-i18n-attr="placeholder:pages.worldChrome.composeHintPlaceholder" placeholder="有什么新鲜事？"></textarea>
+              </div>
+              <footer>
+                <span class="social-compose-caption" data-i18n="pages.worldChrome.inviteHintLead">提示可留空；点一下由角色自己写动态。</span>
+                <div class="compose-actions">
+                  <button type="submit" class="plain-button" data-moments-invite-submit>
+                    <span data-i18n="pages.worldChrome.inviteTaPost">让 TA 发</span>
+                  </button>
+                </div>
+              </footer>
+              <p class="world-compose__hint" data-moments-invite-status aria-live="polite"></p>
+            </form>
+
+            <main class="moments-feed" data-moments-feed aria-live="polite"></main>
+          </div>
+
+          <div class="social-surface social-surface--world" data-world-mode-viber hidden>
+            <div class="world-feed-toolbar">
+              <div
+                class="world-feed-segments"
+                role="radiogroup"
+                data-choice-for="world-feed-category"
+                data-i18n-attr="aria-label:pages.worldChrome.feedCategoryLabel"
+                aria-label="信息流类型"
+              >
+                <button type="button" role="radio" data-choice="discover" class="is-active" data-i18n="pages.worldChrome.feedDiscover">推荐</button>
+                <button type="button" role="radio" data-choice="following" data-i18n="pages.worldChrome.feedFollowing">关注</button>
+                <button type="button" role="radio" data-choice="ranking" data-i18n="pages.worldChrome.feedRanking">热搜</button>
+              </div>
+              <select
+                class="me-visually-hidden"
+                data-world-feed-category
+                data-choice-id="world-feed-category"
+                aria-hidden="true"
+                tabindex="-1"
+              >
+                <option value="discover" selected data-i18n="pages.worldChrome.feedDiscover">推荐</option>
+                <option value="following" data-i18n="pages.worldChrome.feedFollowing">关注</option>
+                <option value="ranking" data-i18n="pages.worldChrome.feedRanking">热搜</option>
+              </select>
+              <button type="button" class="ghost-action world-feed-refresh" data-world-feed-refresh aria-label="刷新" data-i18n-attr="aria-label:common.refresh">
+                <i data-lucide="refresh-cw"></i>
+              </button>
+            </div>
+            <p class="world-feed-status" data-world-feed-status hidden></p>
+
+            <form class="moments-compose world-compose" data-world-compose>
+              <div class="social-compose-row">
+                <span class="social-compose-avatar" data-world-compose-avatar aria-hidden="true">角</span>
+                <textarea rows="2" maxlength="200" data-world-compose-input data-i18n-attr="placeholder:pages.worldChrome.viberComposePlaceholder" placeholder="有什么新鲜事？"></textarea>
+              </div>
+              <footer>
+                <span class="world-compose__hint" data-i18n="pages.worldChrome.viberComposeLabel">提示可留空</span>
+                <button type="submit" class="plain-button" data-world-invite-submit>
+                  <span data-i18n="pages.worldChrome.inviteTaPostWorld">发布</span>
+                </button>
+              </footer>
+            </form>
+
+            <aside class="world-feed-aside world-hot-search" data-world-trends-host hidden>
+              <h3 data-i18n="pages.worldChrome.hotSearchTitle">月栖热搜</h3>
+              <ol data-world-trends></ol>
+            </aside>
+
+            <main class="world-feed-list" data-world-feed aria-live="polite"></main>
+            <p class="world-feed-empty" data-world-feed-empty hidden data-i18n="pages.worldChrome.feedEmpty">还没有动态</p>
+            <button type="button" class="ghost-action" data-world-feed-more hidden data-i18n="pages.worldChrome.loadMore">加载更多</button>
+          </div>
+        </section>
+
+        <section class="app-page library-page" data-panel="library">
+          <nav class="page-section-tabs" data-library-tabs data-i18n-attr="aria-label:pages.libraryChrome.tabsLabel">
+            <button type="button" class="is-active" data-library-tab="music" data-i18n="pages.listen">一起听</button>
+            <button type="button" data-library-tab="reading" data-i18n="pages.watch">一起看</button>
+            <button type="button" data-library-tab="album" data-i18n="pages.album">相册</button>
+          </nav>
+
+          <div class="page-section is-active" data-library-section="music">
+          <section class="library-editor music-library" data-music-view="player">
+            <div class="music-pane music-pane--player" data-music-pane="player">
+              <header class="library-head music-player-head">
+                <label class="co-listen-toggle" data-i18n-attr="title:listen.coListenHint">
+                  <span data-i18n="listen.coListenShort">共听</span>
+                  <input type="checkbox" data-co-listen checked data-i18n-attr="aria-label:listen.coListen" />
+                </label>
+                <div class="music-player-head__actions">
+                  <button class="ghost-action" type="button" data-add-track data-i18n-attr="aria-label:common.import">
+                    <i data-lucide="upload"></i><span class="icon-fallback">↑</span>
+                  </button>
+                  <button class="ghost-action" type="button" data-open-music-list data-i18n-attr="aria-label:listen.playlistTitle">
+                    <i data-lucide="list-music"></i><span class="icon-fallback">☰</span>
+                  </button>
+                </div>
+                <input type="file" data-track-file accept="audio/*" multiple hidden />
+              </header>
+
+              <section class="now-playing" data-i18n-attr="aria-label:pages.libraryChrome.nowPlaying">
+                <div class="vinyl-stage">
+                  <span class="vinyl-tonearm" aria-hidden="true"></span>
+                  <div class="vinyl" data-vinyl>
+                    <div class="vinyl-grooves" aria-hidden="true"></div>
+                    <div class="album-art" aria-hidden="true">
+                      <span class="vinyl-hole" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="now-playing-copy">
+                  <h3 data-now-title data-i18n="listen.notPlaying">未播放</h3>
+                  <p data-now-meta data-i18n="listen.importHint">导入本地音频后可一起听</p>
+                </div>
+
+                <div class="now-playing-progress">
+                  <p class="now-progress" data-now-progress>0:00 / 0:00</p>
+                  <label class="now-seek-label">
+                    <span class="visually-hidden" data-i18n="pages.libraryChrome.playProgress">播放进度</span>
+                    <input type="range" data-now-seek min="0" max="1000" value="0" step="1" disabled data-i18n-attr="aria-label:pages.libraryChrome.coListenProgress" />
+                  </label>
+                </div>
+
+                <div class="now-transport" role="group" data-i18n-attr="aria-label:pages.libraryChrome.playPause">
+                  <button class="now-transport__btn" type="button" data-audio-prev data-i18n-attr="aria-label:pages.libraryChrome.prevTrack" disabled>
+                    <i data-lucide="skip-back"></i><span class="icon-fallback">⏮</span>
+                  </button>
+                  <button class="now-transport__btn now-transport__btn--main" type="button" data-audio-toggle data-haptic="medium-light" data-i18n-attr="aria-label:pages.libraryChrome.playPause">
+                    <i data-lucide="play"></i><span class="icon-fallback">▶</span>
+                  </button>
+                  <button class="now-transport__btn" type="button" data-audio-next data-i18n-attr="aria-label:pages.libraryChrome.nextTrack" disabled>
+                    <i data-lucide="skip-forward"></i><span class="icon-fallback">⏭</span>
+                  </button>
+                </div>
+
+                <div class="co-listen-actions">
+                  <button class="ghost-action" type="button" data-co-listen-tell disabled>
+                    <i data-lucide="message-circle"></i><span class="icon-fallback">…</span><span data-i18n="listen.tellTa">把进度告诉 TA</span>
+                  </button>
+                  <em class="co-listen-sync-hint" data-co-listen-sync-hint hidden data-i18n="listen.syncHint">另一标签同步中</em>
+                </div>
+              </section>
+            </div>
+
+            <div class="music-pane music-pane--list" data-music-pane="list" hidden>
+              <header class="library-head music-library-head">
+                <button type="button" class="ghost-action music-back" data-music-back-player data-i18n-attr="aria-label:listen.backToPlayer">
+                  <i data-lucide="chevron-left"></i><span class="icon-fallback">‹</span><span data-i18n="listen.backToPlayer">正在播放</span>
+                </button>
+                <div class="music-library-head__center">
+                  <h2 data-i18n="listen.playlistTitle">本地歌单</h2>
+                  <p class="music-list-count" data-track-count hidden></p>
+                </div>
+                <button class="ghost-action" type="button" data-add-track>
+                  <i data-lucide="upload"></i><span class="icon-fallback">↑</span><span data-i18n="common.import">导入</span>
+                </button>
+              </header>
+
+              <p class="music-empty" data-music-empty data-i18n="listen.playlistEmpty">还没有歌曲，点右上角导入</p>
+              <div class="track-list" id="trackList"></div>
+
+              <div class="permission-bar" data-permission-bar="storage">
+                <div class="permission-bar-copy">
+                  <strong data-i18n="pages.libraryChrome.fileAccess">文件访问</strong>
+                  <p data-i18n="pages.libraryChrome.fileAccessAudio">导入音频保存在本机，需先授权文件访问。</p>
+                </div>
+                <span class="permission-badge" data-permission-badge="storage" data-i18n="pages.libraryChrome.permissionDenied">未授权</span>
+                <button type="button" class="ghost-action" data-request-permission="storage" data-i18n="pages.libraryChrome.openPermission">打开权限</button>
+              </div>
+            </div>
+
+            <audio data-audio-player></audio>
+          </section>
+          </div>
+
+          <div class="page-section" data-library-section="reading">
+          <section class="library-editor reading-library">
+            <header class="library-head">
+              <div>
+                <h2 data-i18n="sections.coRead">一起看</h2>
+              </div>
+              <button class="ghost-action" type="button" data-import-book><i data-lucide="upload"></i><span class="icon-fallback">↑</span><span data-i18n="common.import">导入</span></button>
+              <input type="file" data-book-file accept=".txt,.md,.epub,text/plain,text/markdown,application/epub+zip" hidden />
+            </header>
+            <p class="library-section-hint" data-i18n="pages.libraryChrome.readHint">点开书封面开始读，选中段落可陪读。</p>
+            <div class="book-list" id="bookList"></div>
+            <div class="permission-bar" data-permission-bar="storage">
+              <div class="permission-bar-copy">
+                <strong data-i18n="pages.libraryChrome.fileAccess">文件访问</strong>
+                <p data-i18n="pages.libraryChrome.fileAccessBooks">导入书籍保存在本机。</p>
+              </div>
+              <span class="permission-badge" data-permission-badge="storage" data-i18n="pages.libraryChrome.permissionDenied">未授权</span>
+              <button type="button" class="ghost-action" data-request-permission="storage" data-i18n="pages.libraryChrome.openPermission">打开权限</button>
+            </div>
+          </section>
+          </div>
+
+          <div class="page-section" data-library-section="album">
+          <section class="library-editor album-library app-gallery" data-app-gallery>
+            <header class="library-head app-gallery__head">
+              <button class="ghost-action" type="button" data-gallery-back data-i18n-attr="aria-label:common.cancel" hidden>
+                <i data-lucide="chevron-left"></i><span class="icon-fallback">‹</span>
+              </button>
+              <div>
+                <h2 data-i18n="pages.libraryChrome.ourAlbum">我们的相册</h2>
+                <span class="app-gallery__subtitle" data-gallery-title data-i18n="pages.libraryChrome.myGroups">我的分组</span>
+              </div>
+              <button class="ghost-action" type="button" data-gallery-action="add-group" data-i18n-attr="aria-label:pages.libraryChrome.addGroup">
+                <i data-lucide="folder-plus"></i><span class="icon-fallback">+</span><span data-i18n="pages.libraryChrome.addGroup">添加分组</span>
+              </button>
+            </header>
+
+            <div class="permission-bar" data-permission-bar="storage">
+              <div class="permission-bar-copy">
+                <strong data-i18n="pages.libraryChrome.fileAccess">文件访问</strong>
+                <p data-i18n="pages.libraryChrome.fileAccessPhotos">导入照片保存在本机，需先授权文件访问。</p>
+              </div>
+              <span class="permission-badge" data-permission-badge="storage" data-i18n="pages.libraryChrome.permissionDenied">未授权</span>
+              <button type="button" class="ghost-action" data-request-permission="storage" data-i18n="pages.libraryChrome.openPermission">打开权限</button>
+            </div>
+
+            <div class="app-gallery__body">
+              <div class="app-gallery__pane" data-gallery-pane="stacks">
+                <p class="mini-gallery-hint" data-i18n="pages.libraryChrome.galleryHint">只有「ta自己」是必需的身份参考（用来拍照画像）；其余分组是经历与关系，可后补。</p>
+                <div class="mini-album-stacks" data-phone-album-stacks></div>
+              </div>
+              <div class="app-gallery__pane" data-gallery-pane="grid" hidden>
+                <div class="mini-album-grid" data-phone-album-grid></div>
+              </div>
+            </div>
+            <input type="file" accept="image/*" multiple hidden data-gallery-file />
+            <div class="mini-album-lightbox" data-phone-album-lightbox hidden>
+              <button type="button" class="mini-album-lightbox__close" data-lightbox-close aria-label="关闭" data-i18n-attr="aria-label:common.close"><i data-lucide="x"></i></button>
+              <img data-lightbox-img alt="" />
+              <div class="mini-album-lightbox__qa" data-lightbox-qa hidden>
+                <button type="button" data-identity-qa="passed">通过画像</button>
+                <button type="button" data-identity-qa="failed">不通过</button>
+                <button type="button" data-identity-qa="pending">待审</button>
+              </div>
+              <div class="mini-album-lightbox__dots" data-lightbox-dots></div>
+            </div>
+          </section>
+          </div>
+        </section>
+
+        <section class="app-page" data-panel="calendar">
+          <header class="page-header">
+            <div>
+              <span>现实日历 · 约会提醒 · 主动消息</span>
+              <h1 data-i18n="pages.calendar">日历</h1>
+            </div>
+          </header>
+
+          <section class="library-editor calendar-library">
+            <header class="library-head">
+              <div>
+                <h2 data-calendar-heading data-i18n="appShell.calendar.thisMonth">本月</h2>
+              </div>
+              <div class="library-actions">
+                <button class="ghost-action" type="button" data-import-ics><i data-lucide="file-up"></i><span class="icon-fallback">↑</span><span>导入 ICS</span></button>
+                <button class="ghost-action" type="button" data-add-event><i data-lucide="calendar-plus"></i><span class="icon-fallback">+</span><span data-i18n="appShell.calendar.add">新增</span></button>
+              </div>
+              <input type="file" data-ics-file accept=".ics,text/calendar" hidden />
+            </header>
+
+            <div class="permission-bar" data-permission-bar="storage">
+              <div class="permission-bar-copy">
+                <strong>文件访问</strong>
+                <p>导入 .ics 日历备份需先授权文件访问。</p>
+              </div>
+              <span class="permission-badge" data-permission-badge="storage">未授权</span>
+              <button type="button" class="ghost-action" data-request-permission="storage">打开权限</button>
+            </div>
+
+            <div class="calendar-card">
+              <div class="calendar-toolbar">
+                <button type="button" data-calendar-prev><i data-lucide="chevron-left"></i><span class="icon-fallback">‹</span></button>
+                <strong data-calendar-month data-i18n="appShell.calendar.thisMonth">本月</strong>
+                <button type="button" data-calendar-next><i data-lucide="chevron-right"></i><span class="icon-fallback">›</span></button>
+              </div>
+              <div class="calendar-grid" data-calendar-grid aria-label="本月日历" data-i18n-attr="aria-label:appShell.calendar.monthAria">
+                <span class="weekday">一</span>
+                <span class="weekday">二</span>
+                <span class="weekday">三</span>
+                <span class="weekday">四</span>
+                <span class="weekday">五</span>
+                <span class="weekday">六</span>
+                <span class="weekday">日</span>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>10</button>
+                <button>11</button>
+                <button>12</button>
+                <button>13</button>
+                <button>14</button>
+                <button>15</button>
+                <button>16</button>
+                <button>17</button>
+                <button>18</button>
+                <button>19</button>
+                <button>20</button>
+                <button>21</button>
+                <button>22</button>
+                <button class="today has-event">23</button>
+                <button>24</button>
+                <button class="has-event">25</button>
+                <button>26</button>
+                <button>27</button>
+                <button>28</button>
+                <button>29</button>
+                <button>30</button>
+                <span class="calendar-empty"></span>
+                <span class="calendar-empty"></span>
+                <span class="calendar-empty"></span>
+                <span class="calendar-empty"></span>
+                <span class="calendar-empty"></span>
+              </div>
+            </div>
+
+            <section class="calendar-day-panel" data-calendar-day-panel hidden>
+              <header class="calendar-day-head">
+                <h3 data-calendar-day-title data-i18n="appShell.calendar.selectedDate">选中日期</h3>
+                <button type="button" class="ghost-action" data-add-calendar-day-event data-i18n="appShell.calendar.addSchedule">添加日程</button>
+              </header>
+              <div class="calendar-day-events" data-calendar-day-events></div>
+            </section>
+
+            <div class="event-list" id="eventList" aria-label="日程列表" data-i18n-attr="aria-label:appShell.calendar.scheduleList"></div>
+          </section>
+        </section>
+
+        <section class="app-page me-page" data-panel="me">
+          <div class="me-shell settings-shell" data-settings-shell>
+            <div class="me-home" data-settings-nav data-i18n-attr="aria-label:pages.me">
+              <header class="me-home-bar">
+                <div>
+                  <span class="me-home-bar__eyebrow">PRIVATE</span>
+                  <h1 data-i18n="pages.me" data-settings-title>我的</h1>
+                </div>
+                <button type="button" class="me-home-assist" data-settings-route="assist" data-assist-nav data-i18n-attr="aria-label:pages.meSettings.openAssist|title:pages.meSettings.openAssist">
+                  <i data-lucide="bot"></i>
+                  <span class="me-visually-hidden" data-i18n="nav.assistShort">助手</span>
+                </button>
+              </header>
+
+              <button type="button" class="me-profile me-profile--hero" data-settings-route="account" data-i18n-attr="aria-label:pages.meSettings.profileAria">
+                <span class="me-profile__avatar me-profile__avatar--user" aria-hidden="true">
+                  <span data-user-avatar-initial>我</span>
+                </span>
+                <span class="me-profile__copy">
+                  <strong data-user-name>本机</strong>
+                  <small class="me-profile__status"><span data-login-state>本机</span></small>
+                  <em class="me-profile__cta"><span data-i18n="pages.meSettings.manageAccount">数据只在本机</span></em>
+                </span>
+                <span class="me-profile__chevron" aria-hidden="true"></span>
+              </button>
+
+                            <div class="me-group-block">
+                <p class="me-group-title" data-i18n="pages.meSettings.groups.companion">陪伴</p>
+                <section class="me-group" data-i18n-attr-group="pages.meSettings.groups.companion" aria-label="陪伴">
+                  <button type="button" class="me-cell" data-settings-route="identity">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="sparkles"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.identity.label">角色设定</strong><small data-i18n="pages.meSettings.routes.identity.hint">身份、关系与人格</small></span>
+                    <em class="me-cell__value" data-role-name>角色</em>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="me-cell" data-settings-route="behavior">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="sliders-horizontal"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.behavior.label">日常行为</strong><small data-i18n="pages.meSettings.routes.behavior.hint">主动、记忆与语音</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="me-cell" data-settings-route="diary">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="notebook-pen"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.diary.label">日记</strong><small data-i18n="pages.meSettings.routes.diary.hint">风格与生成时间</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                </section>
+              </div>
+
+              <div class="me-group-block">
+                <p class="me-group-title" data-i18n="pages.meSettings.groups.experience">体验</p>
+                <section class="me-group" data-i18n-attr-group="pages.meSettings.groups.experience" aria-label="体验">
+                  <button type="button" class="me-cell" data-settings-route="theme">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="palette"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.theme.label">主题</strong><small data-i18n="pages.meSettings.routes.theme.hint">颜色与界面氛围</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="me-cell" data-settings-route="language">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="languages"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.language.label">语言</strong><small data-i18n="pages.meSettings.routes.language.hint">中文 / English</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="me-cell" data-settings-route="interface">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="smartphone"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.interface.label">界面模式</strong><small data-i18n="pages.meSettings.routes.interface.hint">App / 小手机</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                </section>
+              </div>
+
+              <div class="me-group-block">
+                <p class="me-group-title" data-i18n="pages.meSettings.groups.dataPrivacy">数据与隐私</p>
+                <section class="me-group" data-i18n-attr-group="pages.meSettings.groups.dataPrivacy" aria-label="数据与隐私">
+                  <button type="button" class="me-cell" data-settings-route="memory">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="brain"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.memory.label">记忆</strong><small data-i18n="pages.meSettings.routes.memory.hint">召回、范围与整理</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="me-cell" data-settings-route="cloud">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="cloud"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.cloud.label">备份与恢复</strong><small data-i18n="pages.meSettings.routes.cloud.hint">本机备份</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="me-cell" data-settings-route="external">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.external.label">日历与权限</strong><small data-i18n="pages.meSettings.routes.external.hint">授权、上下文与免打扰</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                </section>
+              </div>
+
+              <div class="me-group-block">
+                <p class="me-group-title" data-i18n="pages.meSettings.groups.creativeTools">创作工具</p>
+                <section class="me-group" data-i18n-attr-group="pages.meSettings.groups.creativeTools" aria-label="创作工具">
+                  <button type="button" class="me-cell" data-settings-route="worldbook">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="book-open"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.worldbook.label">世界书</strong><small data-i18n="pages.meSettings.routes.worldbook.hint">设定、地点与规则</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="me-cell" data-settings-route="presets">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="layers-3"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.presets.label">回复预设</strong><small data-i18n="pages.meSettings.routes.presets.hint">提示条目与注入顺序</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="me-cell" data-settings-route="regex">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="filter"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.regex.label">消息过滤</strong><small data-i18n="pages.meSettings.routes.regex.hint">收发内容处理规则</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                </section>
+              </div>
+
+              <div class="me-group-block me-group-block--full">
+                <p class="me-group-title" data-i18n="pages.meSettings.groups.about">关于</p>
+                <section class="me-group" data-i18n-attr-group="pages.meSettings.groups.about" aria-label="关于">
+                  <button type="button" class="me-cell" data-settings-route="update">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="download"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.update.label">检查更新</strong><small data-i18n="pages.meSettings.routes.update.hint">版本与发布通道</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="me-cell" data-settings-route="community">
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="messages-square"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.community.label">用户群</strong><small data-i18n="pages.meSettings.routes.community.hint">公告与社区入口</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="me-cell" data-settings-route="cutover" data-developer-only="cutover" hidden>
+                    <span class="me-cell__icon" aria-hidden="true"><i data-lucide="git-branch"></i></span>
+                    <span class="me-cell__copy"><strong data-i18n="pages.meSettings.routes.cutover.label">产品切流</strong><small data-i18n="pages.meSettings.routes.cutover.hint">开发者：legacy / internal / production</small></span>
+                    <span class="me-cell__chevron" aria-hidden="true"></span>
+                  </button>
+                </section>
+              </div>
+            </div>
+
+            <div class="me-stage settings-stage" data-settings-stage hidden aria-hidden="true">
+              <header class="me-detail-bar">
+                <button type="button" class="me-detail-back" data-settings-back data-i18n-attr="aria-label:common.back" aria-label="返回"><i data-lucide="chevron-left"></i></button>
+                <span class="me-detail-copy">
+                  <strong data-settings-crumb data-i18n="pages.me">我的</strong>
+                  <small data-settings-route-hint></small>
+                </span>
+              </header>
+              <div class="settings-editor">
+
+<section class="settings-panel me-panel" data-settings-view="account" data-account-card>
+              <article class="me-account-hero" data-i18n-attr="aria-label:mePanels.account.overviewAria" aria-label="账号概览">
+                <div class="me-account-hero__avatar me-account-hero__avatar--user" aria-hidden="true">
+                  <span data-user-avatar-initial>我</span>
+                </div>
+                <div class="me-account-hero__copy">
+                  <strong data-user-name>本机</strong>
+                  <small><span data-login-state>本机</span></small>
+                </div>
+              </article>
+
+              <p class="me-auth-panel__lead" data-i18n="onboard.offlineSettingsLead">当前为离线模式：不必登录，数据只在本机。</p>
+
+              <h3 class="me-section-title" data-i18n="mePanels.account.localStatus">本机状态</h3>
+              <div class="me-group">
+                <div class="me-cell me-cell--static" role="group">
+                  <span class="me-cell__icon" aria-hidden="true"><i data-lucide="hard-drive"></i></span>
+                  <span class="me-cell__label" data-i18n="mePanels.account.dataLocation">数据位置</span>
+                  <em class="me-cell__value" data-i18n="mePanels.account.localOnly">仅本机</em>
+                </div>
+                <div class="me-cell me-cell--static" role="group">
+                  <span class="me-cell__icon" aria-hidden="true"><i data-lucide="cloud"></i></span>
+                  <span class="me-cell__label" data-i18n="mePanels.account.cloudBackup">云备份</span>
+                  <em class="me-cell__value" data-cloud-state>未开启</em>
+                </div>
+              </div>
+            </section>
+<section data-settings-view="language" class="settings-panel me-panel" data-language-panel>
+              <header class="section-head">
+                <div>
+                  <h2 data-i18n="lang.settingsTitle">语言</h2>
+                </div>
+              </header>
+              <h3 class="me-section-title" data-i18n="lang.appTitle">应用语言</h3>
+              <p class="settings-hint" data-i18n="lang.appHint">控制按钮、设置和系统提示。</p>
+              <nav class="me-segment" data-locale-segment aria-label="App language">
+                <button type="button" class="is-active" data-set-locale="zh-CN" data-i18n="lang.zh">中文</button>
+                <button type="button" data-set-locale="en" data-i18n="lang.en">English</button>
+              </nav>
+              <select class="me-visually-hidden" data-locale-select aria-hidden="true" tabindex="-1">
+                <option value="zh-CN" data-i18n="lang.zh">中文</option>
+                <option value="en" data-i18n="lang.en">English</option>
+              </select>
+              <h3 class="me-section-title" data-i18n="lang.conversationTitle">对话语言</h3>
+              <p class="settings-hint" data-i18n="lang.conversationHint">控制角色通常用什么语言与你交流。</p>
+              <nav class="me-segment me-segment--wrap" data-conversation-mode-segment aria-label="Conversation language">
+                <button type="button" class="is-active" data-set-conversation-mode="follow-user" data-i18n="lang.modeFollowUser">跟随我说的语言</button>
+                <button type="button" data-set-conversation-mode="fixed-zh-CN" data-i18n="lang.modeFixedZh">始终中文</button>
+                <button type="button" data-set-conversation-mode="fixed-en-US" data-i18n="lang.modeFixedEn">始终英文</button>
+                <button type="button" data-set-conversation-mode="character-default" data-i18n="lang.modeCharacter">角色默认</button>
+              </nav>
+              <p class="settings-hint" data-i18n="onboard.resetHint">完全回到初次启动：重走语言、界面版本和首次点亮。不会删除聊天、角色或记忆。</p>
+              <button type="button" class="me-auth-secondary" data-reset-onboarding data-i18n="onboard.resetGuide">重新引导</button>
+              <p class="settings-hint" data-i18n="onboard.resetFirstLightHint">只重新走首次点亮（关系、性格、边界）。已有角色和聊天不会删除。</p>
+              <button type="button" class="me-auth-secondary" data-reset-first-light data-i18n="onboard.resetFirstLight">只重走首次点亮</button>
+            </section>
+<section class="settings-panel me-panel" data-settings-view="interface">
+              <header class="section-head">
+                <div>
+                  <h2 data-i18n="onboard.uiTitle">界面版本</h2>
+                </div>
+              </header>
+              <p class="settings-hint" data-i18n="onboard.uiHint">选择进入后的界面；之后可在设置中切换。</p>
+              <nav class="me-segment experience-mode-switch experience-mode-switch--in-settings" data-experience-mode-switch data-i18n-attr="aria-label:pages.meSettings.routes.interface.label" aria-label="界面模式">
+                <button type="button" data-app-mode="app" aria-pressed="false">App</button>
+                <button type="button" data-app-mode="phone" aria-pressed="false" data-i18n="onboard.uiPhone">小手机</button>
+              </nav>
+            </section>
+<section data-settings-view="update" class="settings-panel me-panel">
+              <header class="section-head">
+                <div>
+                  <h2 data-i18n="sections.update">检查更新</h2>
+                </div>
+                <button class="ghost-action" type="button" data-check-update-panel><i data-lucide="download-cloud"></i><span class="icon-fallback">↓</span><span data-i18n="mePanels.update.check">检查</span></button>
+                <button class="ghost-action" type="button" data-open-update hidden data-i18n="mePanels.update.openPage">打开更新页</button>
+              </header>
+              <p class="settings-hint" data-i18n="mePanels.update.hint">检查是否有新版本。</p>
+              <div class="me-status-line">
+                <span data-i18n="mePanels.update.channel">更新通道</span>
+                <em data-update-state>GitHub Releases</em>
+              </div>
+              <p class="me-soft-status" data-update-result data-i18n="mePanels.update.notChecked">尚未检查</p>
+            </section>
+<section data-settings-view="cloud" class="settings-panel me-panel">
+              <p class="me-foot-hint" data-i18n="mePanels.cloud.lead">聊天和日记默认只在本机；需要时再上传。</p>
+              <div class="me-group">
+                <div class="me-choice-block me-choice-block--card">
+                  <span class="me-choice-block__label" data-i18n="mePanels.cloud.conflictStrategy">冲突策略</span>
+                  <div class="me-chips me-chips--wrap" role="radiogroup" data-choice-for="sync-strategy" data-i18n-attr="aria-label:mePanels.cloud.conflictAria" aria-label="云同步冲突策略">
+                    <button type="button" role="radio" data-choice="local_wins" class="is-active" data-i18n="mePanels.cloud.localWins">本地优先</button>
+                    <button type="button" role="radio" data-choice="remote_wins" data-i18n="mePanels.cloud.remoteWins">云端优先</button>
+                    <button type="button" role="radio" data-choice="newest_wins" data-i18n="mePanels.cloud.newestWins">较新者优先</button>
+                  </div>
+                  <select class="me-visually-hidden" data-sync-strategy data-choice-id="sync-strategy" aria-hidden="true" tabindex="-1">
+                    <option value="local_wins" selected data-i18n="mePanels.cloud.localWins">本地优先</option>
+                    <option value="remote_wins" data-i18n="mePanels.cloud.remoteWins">云端优先</option>
+                    <option value="newest_wins" data-i18n="mePanels.cloud.newestWins">较新者优先</option>
+                  </select>
+                </div>
+
+              </div>
+              <div class="me-group">
+                <div class="me-cell me-cell--static" role="group">
+                  <span class="me-cell__label" data-i18n="mePanels.cloud.cloudStatus">云状态</span>
+                  <em class="me-cell__value" data-cloud-state>未开启</em>
+                </div>
+              </div>
+              <p class="me-foot-status" data-cloud-result>云备份未开启 · 数据只在本机</p>
+            </section>
+<section data-settings-view="community" class="settings-panel me-panel" data-custom-contact>
+              <header class="section-head">
+                <div>
+                  <h2 data-i18n="sections.community">联系与社群</h2>
+                </div>
+                <button class="ghost-action" type="button" data-join-community><i data-lucide="messages-square"></i><span class="icon-fallback">#</span><span data-i18n="mePanels.community.join">加入</span></button>
+              </header>
+              <p class="settings-hint" data-community-message>版本公告与分享。</p>
+              <div class="pet-custom-notice__grid">
+                <div class="pet-custom-notice__row" data-custom-contact-discord-row>
+                  <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.discord">Discord</span>
+                  <strong class="pet-custom-notice__value" data-custom-contact-discord></strong>
+                  <button type="button" class="ghost-action" data-custom-contact-copy-discord data-i18n="pages.companionChrome.customContact.copy">复制</button>
+                </div>
+                <div class="pet-custom-notice__row" data-custom-contact-wechat-row>
+                  <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.wechat">微信</span>
+                  <strong class="pet-custom-notice__value" data-custom-contact-wechat></strong>
+                  <button type="button" class="ghost-action" data-custom-contact-copy-wechat data-i18n="pages.companionChrome.customContact.copy">复制</button>
+                </div>
+                <div class="pet-custom-notice__row" data-custom-contact-qq-group-row>
+                  <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.qqGroup">QQ群</span>
+                  <strong class="pet-custom-notice__value" data-custom-contact-qq-group></strong>
+                  <button type="button" class="ghost-action" data-custom-contact-copy-qq-group data-i18n="pages.companionChrome.customContact.copy">复制</button>
+                </div>
+                <div class="pet-custom-notice__row" data-custom-contact-email-row>
+                  <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.email">邮箱</span>
+                  <strong class="pet-custom-notice__value" data-custom-contact-email></strong>
+                  <button type="button" class="ghost-action" data-custom-contact-copy-email data-i18n="pages.companionChrome.customContact.copy">复制</button>
+                </div>
+                <div class="pet-custom-notice__row" data-custom-contact-qq-row>
+                  <span class="pet-custom-notice__label" data-i18n="pages.companionChrome.customContact.qq">QQ</span>
+                  <strong class="pet-custom-notice__value" data-custom-contact-qq></strong>
+                  <button type="button" class="ghost-action" data-custom-contact-copy-qq data-i18n="pages.companionChrome.customContact.copy">复制</button>
+                </div>
+              </div>
+              <p class="pet-custom-notice__status" data-custom-contact-status aria-live="polite"></p>
+            </section>
+<section data-settings-view="cutover" class="settings-panel me-panel">
+              <header class="editor-head">
+                <div>
+                  <h2 data-i18n="pages.meSettings.routes.cutover.label">产品切流</h2>
+                </div>
+              </header>
+              <p class="settings-hint">开发者诊断：选择产品级切流 profile（非 12 个用户开关）。默认 <code>legacy</code>；<code>production_v1</code> 在 C2–C7 通过前不得作为安装默认。</p>
+              <label class="me-settings-row" style="display:flex;flex-direction:column;gap:0.5rem;margin:0.75rem 0;">
+                <span>Cutover profile</span>
+                <select data-cutover-profile-select aria-label="Cutover profile">
+                  <option value="legacy">legacy — 旧链 / 紧急回滚</option>
+                  <option value="internal_v1">internal_v1 — 新链全开（开发验收）</option>
+                  <option value="production_v1">production_v1 — 正式配置（可选，非默认）</option>
+                </select>
+              </label>
+              <p class="settings-hint">当前 profile：<strong data-cutover-profile-name>legacy</strong></p>
+              <h3 class="me-section-title">Effective flags</h3>
+              <pre class="mini-devtools-pre" data-cutover-effective-flags style="white-space:pre-wrap;font-size:12px;max-height:240px;overflow:auto;">—</pre>
+            </section>
+<section data-settings-view="behavior" class="settings-panel me-panel character-behavior-editor" data-settings-features>
+              <header class="editor-head">
+                <div>
+                  <h2 data-i18n="sections.behavior">日常行为</h2>
+                </div>
+              </header>
+              <p class="settings-hint" data-i18n="settings.behaviorHint">决定会不会主动找你、用不用记忆和语音。</p>
+              <h3 class="me-section-title" data-i18n="mePanels.behavior.capabilitySwitches">能力开关</h3>
+              <div class="feature-switches settings-feature-switches">
+                <label><span data-i18n="mePanels.behavior.featurePrompt">Prompt 组装</span><input type="checkbox" data-feature-prompt checked /></label>
+                <label><span data-i18n="mePanels.behavior.featureWorldbook">世界书写入</span><input type="checkbox" data-feature-worldbook checked /></label>
+                <label><span data-i18n="mePanels.behavior.featureRag">长期记忆检索</span><input type="checkbox" data-feature-rag checked /></label>
+                <label><span data-i18n="mePanels.behavior.featureSummary">思考摘要</span><input type="checkbox" data-summary-master checked /></label>
+                <label><span data-i18n="mePanels.behavior.featureProactive">主动找你</span><input type="checkbox" data-feature-proactive checked /></label>
+                <label><span data-i18n="mePanels.behavior.featureExternal">外部上下文</span><input type="checkbox" data-feature-external checked /></label>
+                <label><span data-i18n="mePanels.behavior.featureVoice">语音功能</span><input type="checkbox" data-feature-voice checked /></label>
+              </div>
+              <div class="status-workflow" data-proactive-wake-panel data-i18n-attr="aria-label:mePanels.behavior.proactiveAria" aria-label="主动找你参数">
+                <div class="editor-line-head">
+                  <span data-i18n="mePanels.behavior.proactiveTitle">主动找你</span>
+                  <small data-i18n="mePanels.behavior.proactiveHint">静默一段时间后按概率启动一次角色，由角色决定开口或安静，不是固定话术</small>
+                </div>
+                <div class="status-grid">
+                  <label><span><span data-i18n="mePanels.behavior.triggerProbability">触发概率</span> <em data-proactive-wake-out>100%</em></span><input type="range" min="0" max="100" step="5" value="100" data-proactive-wake="probability" data-i18n-attr="aria-label:mePanels.behavior.triggerProbability" aria-label="触发概率" /></label>
+                  <label><span><span data-i18n="mePanels.behavior.minSilence">最短静默</span> <em data-proactive-wake-out>120 分</em></span><input type="range" min="5" max="720" step="5" value="120" data-proactive-wake="silenceMinMin" data-i18n-attr="aria-label:mePanels.behavior.minSilence" aria-label="最短静默分钟" /></label>
+                  <label><span><span data-i18n="mePanels.behavior.maxSilence">最长静默</span> <em data-proactive-wake-out>120 分</em></span><input type="range" min="5" max="1440" step="5" value="120" data-proactive-wake="silenceMaxMin" data-i18n-attr="aria-label:mePanels.behavior.maxSilence" aria-label="最长静默分钟" /></label>
+                  <label><span><span data-i18n="mePanels.behavior.checkInterval">检查间隔</span> <em data-proactive-wake-out>5 分</em></span><input type="range" min="1" max="60" step="1" value="5" data-proactive-wake="checkEveryMin" data-i18n-attr="aria-label:mePanels.behavior.checkInterval" aria-label="检查间隔分钟" /></label>
+                </div>
+                <button class="ghost-action" type="button" data-proactive-wake-reset><i data-lucide="rotate-ccw"></i><span class="icon-fallback">↺</span><span data-i18n="mePanels.behavior.resetDefault">恢复默认</span></button>
+              </div>
+            </section>
+<section data-settings-view="memory" class="settings-panel me-panel memory-behavior-editor">
+              <header class="editor-head">
+                <div>
+                  <h2 data-i18n="sections.rag">记忆</h2>
+                </div>
+              </header>
+              <h3 class="me-section-title" data-i18n="mePanels.memory.recallRange">召回范围</h3>
+              <div class="me-choice-stack rag-settings">
+                <div class="me-choice-block">
+                  <span class="me-choice-block__label" data-i18n="mePanels.memory.recallCount">回忆条数</span>
+                  <div class="me-chips" role="radiogroup" data-choice-for="rag-topk" data-i18n-attr="aria-label:mePanels.memory.recallCount" aria-label="回忆条数">
+                    <button type="button" role="radio" data-choice="2">2</button>
+                    <button type="button" role="radio" data-choice="4" class="is-active">4</button>
+                    <button type="button" role="radio" data-choice="6">6</button>
+                    <button type="button" role="radio" data-choice="8">8</button>
+                    <button type="button" role="radio" data-choice="12">12</button>
+                  </div>
+                  <select class="me-visually-hidden" data-rag-topk data-choice-id="rag-topk" aria-hidden="true" tabindex="-1">
+                    <option value="2">2</option>
+                    <option value="4" selected>4</option>
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                    <option value="12">12</option>
+                  </select>
+                </div>
+                <div class="me-choice-block">
+                  <span class="me-choice-block__label" data-i18n="mePanels.memory.searchScope">检索范围</span>
+                  <div class="me-chips" role="radiogroup" data-choice-for="rag-scope" data-i18n-attr="aria-label:mePanels.memory.searchScope" aria-label="检索范围">
+                    <button type="button" role="radio" data-choice="all" class="is-active" data-i18n="mePanels.memory.scopeAll">全部</button>
+                    <button type="button" role="radio" data-choice="diary" data-i18n="mePanels.memory.scopeDiary">日记</button>
+                    <button type="button" role="radio" data-choice="chat" data-i18n="mePanels.memory.scopeChat">对话</button>
+                  </div>
+                  <select class="me-visually-hidden" data-rag-scope data-choice-id="rag-scope" aria-hidden="true" tabindex="-1">
+                    <option value="all" selected data-i18n="mePanels.memory.scopeAll">全部</option>
+                    <option value="diary" data-i18n="mePanels.memory.scopeDiary">日记</option>
+                    <option value="chat" data-i18n="mePanels.memory.scopeChat">对话</option>
+                  </select>
+                </div>
+                <div class="me-choice-block">
+                  <span class="me-choice-block__label" data-i18n="mePanels.memory.diaryStyle">日记风格</span>
+                  <div class="me-chips me-chips--wrap" role="radiogroup" data-choice-for="rag-diary-style" data-rag-diary-style-chips data-i18n-attr="aria-label:mePanels.memory.diaryStyleFilter" aria-label="日记风格筛选"></div>
+                  <select class="me-visually-hidden" data-rag-diary-style data-choice-id="rag-diary-style" aria-hidden="true" tabindex="-1"></select>
+                </div>
+              </div>
+              <section class="session-summary-entry">
+                <h3 class="me-section-title" data-i18n="mePanels.memory.summarizeTitle">总结记忆</h3>
+                <p class="settings-hint" data-i18n="mePanels.memory.summarizeLead">勾选当前对话里的若干轮，凝成一条可检索的共同记忆。原聊天不会被清空。</p>
+                <button type="button" class="ghost-action" data-session-summary-open data-i18n="mePanels.memory.summarizeOpen">勾选对话轮次</button>
+              </section>
+              <section class="palace-panel settings-palace-panel">
+                <header class="section-head">
+                  <div>
+                    <h2 data-i18n="sections.palace">记忆整理</h2>
+                    <p class="settings-hint" data-i18n="mePanels.memory.palaceHint">本机自动归类，点分区可查看。</p>
+                  </div>
+                  <label class="palace-enabled-toggle">
+                    <input type="checkbox" data-palace-enabled checked data-i18n-attr="aria-label:mePanels.memory.palaceEnableAria" aria-label="开启自动整理记忆" />
+                  </label>
+                </header>
+                <div class="me-choice-block me-choice-block--inset">
+                  <span class="me-choice-block__label" data-i18n="mePanels.memory.recallMode">调用方式</span>
+                  <div class="me-chips" role="radiogroup" data-choice-for="palace-recall" data-i18n-attr="aria-label:mePanels.memory.recallModeAria" aria-label="记忆调用方式">
+                    <button type="button" role="radio" data-choice="protocol" class="is-active" data-i18n="mePanels.memory.recallAsNeeded">按需要想起</button>
+                    <button type="button" role="radio" data-choice="always" data-i18n="mePanels.memory.recallEveryTurn">每轮都参考</button>
+                  </div>
+                  <select class="me-visually-hidden" data-palace-recall-mode data-choice-id="palace-recall" aria-hidden="true" tabindex="-1">
+                    <option value="protocol" selected data-i18n="mePanels.memory.recallAsNeeded">按需要想起</option>
+                    <option value="always" data-i18n="mePanels.memory.recallEveryTurn">每轮都参考</option>
+                  </select>
+                </div>
+                <div class="index-health" data-palace-stats data-i18n-attr="aria-label:mePanels.memory.statsAria" aria-label="记忆整理状态"></div>
+                <div class="palace-browse-head" data-palace-browse-head hidden>
+                  <button type="button" class="ghost-action" data-palace-browse-back data-i18n="mePanels.memory.browseBack">← 返回</button>
+                  <strong data-palace-browse-title></strong>
+                </div>
+                <p class="me-choice-block__label me-palace-map-label" data-palace-map-label data-i18n="mePanels.memory.partitions">分区</p>
+                <div class="palace-map" data-palace-map data-i18n-attr="aria-label:mePanels.memory.partitionsAria" aria-label="记忆分区"></div>
+                <div class="palace-drawer-list" data-palace-drawer-list hidden data-i18n-attr="aria-label:mePanels.memory.drawersAria" aria-label="记忆条目"></div>
+                <section class="palace-kg-panel" data-i18n-attr="aria-label:mePanels.memory.cluesAria" aria-label="自动线索" data-palace-kg-panel>
+                  <header class="editor-line-head">
+                    <span data-i18n="mePanels.memory.relationClues">关系线索</span>
+                    <small data-palace-kg-count></small>
+                  </header>
+                  <div class="palace-kg-list" data-palace-kg-list></div>
+                </section>
+              </section>
+              <p class="me-soft-status" data-storage-status hidden data-i18n="mePanels.memory.storagePreparing">本地存储准备中</p>
+            </section>
+<section data-settings-view="external" class="settings-panel me-panel external-editor">
+              <header class="editor-head">
+                <div>
+                  <h2 data-i18n="sections.external">日历与权限</h2>
+                </div>
+              </header>
+              <h3 class="me-section-title" data-i18n="mePanels.permissions.systemCapabilities">系统能力</h3>
+              <div class="permission-center-list" data-permission-center>
+                <button class="permission-center-row" type="button" data-permission-action="calendar.read">
+                  <i data-lucide="calendar-days"></i>
+                  <strong data-i18n="mePanels.permissions.calendar">日历</strong>
+                  <span class="permission-center-state" data-permission-state="calendar.read">未开启 ›</span>
+                </button>
+                <button class="permission-center-row" type="button" data-permission-action="location.current">
+                  <i data-lucide="map-pin"></i>
+                  <strong data-i18n="mePanels.permissions.location">位置</strong>
+                  <span class="permission-center-state" data-permission-state="location.current">未开启 ›</span>
+                </button>
+                <button class="permission-center-row" type="button" data-permission-action="notification.send">
+                  <i data-lucide="bell"></i>
+                  <strong data-i18n="mePanels.permissions.notification">通知</strong>
+                  <span class="permission-center-state" data-permission-state="notification.send">未开启 ›</span>
+                </button>
+                <button class="permission-center-row" type="button" data-permission-action="microphone">
+                  <i data-lucide="mic"></i>
+                  <strong data-i18n="mePanels.permissions.microphone">麦克风</strong>
+                  <span class="permission-center-state" data-permission-state="microphone">未开启 ›</span>
+                </button>
+                <button class="permission-center-row" type="button" data-permission-action="camera">
+                  <i data-lucide="camera"></i>
+                  <strong data-i18n="mePanels.permissions.camera">摄像头</strong>
+                  <span class="permission-center-state" data-permission-state="camera">未开启 ›</span>
+                </button>
+              </div>
+              <h3 class="me-section-title" data-i18n="mePanels.permissions.contentCapabilities">内容与媒体</h3>
+              <div class="permission-center-list">
+                <button class="permission-center-row" type="button" data-permission-action="media.audio">
+                  <i data-lucide="music"></i>
+                  <strong data-i18n="mePanels.external.music">音乐</strong>
+                  <span class="permission-center-state" data-permission-state="media.audio">使用时确认 ›</span>
+                </button>
+                <p class="permission-center-hint" data-permission-hint="media.audio" hidden></p>
+                <button class="permission-center-row" type="button" data-permission-action="media.photos">
+                  <i data-lucide="image"></i>
+                  <strong data-i18n="mePanels.external.album">相册</strong>
+                  <span class="permission-center-state" data-permission-state="media.photos">使用时确认 ›</span>
+                </button>
+                <p class="permission-center-hint" data-permission-hint="media.photos" hidden></p>
+              </div>
+              <h3 class="me-section-title" data-i18n="mePanels.permissions.advancedCapabilities">高级能力</h3>
+              <div class="permission-center-list">
+                <button class="permission-center-row" type="button" data-permission-action="screen.capture">
+                  <i data-lucide="scan-eye"></i>
+                  <strong data-i18n="mePanels.permissions.screen">看屏</strong>
+                  <span class="permission-center-state" data-permission-state="screen.capture">使用时确认 ›</span>
+                </button>
+                <p class="permission-center-hint" data-permission-hint="screen.capture" hidden></p>
+                <button class="permission-center-row" type="button" data-permission-action="desktop.overlay">
+                  <i data-lucide="picture-in-picture-2"></i>
+                  <strong data-i18n="mePanels.permissions.desktopOverlay">桌宠悬浮</strong>
+                  <span class="permission-center-state" data-permission-state="desktop.overlay">未开启 ›</span>
+                </button>
+              </div>
+              <h3 class="me-section-title" data-i18n="mePanels.external.dnd">免打扰</h3>
+              <div class="dnd-settings connection-grid">
+                <label><span data-i18n="mePanels.external.dndStart">免打扰开始</span><input type="time" value="22:00" data-dnd-start data-i18n-attr="aria-label:mePanels.external.dndStart" aria-label="免打扰开始" /></label>
+                <label><span data-i18n="mePanels.external.dndEnd">免打扰结束</span><input type="time" value="08:00" data-dnd-end data-i18n-attr="aria-label:mePanels.external.dndEnd" aria-label="免打扰结束" /></label>
+              </div>
+            </section>
+<section data-settings-view="identity" class="settings-panel me-panel identity-editor">
+              <div class="me-toolbar">
+                <button class="me-toolbar__btn" type="button" data-create-character><i data-lucide="user-plus"></i><span data-i18n="character.create">新建</span></button>
+                <button class="me-toolbar__btn" type="button" data-import-character><i data-lucide="upload"></i><span data-i18n="character.import">导入</span></button>
+                <button class="me-toolbar__btn" type="button" data-reset-profile><i data-lucide="rotate-ccw"></i><span data-i18n="character.reset">恢复</span></button>
+                <!-- Advanced authoring kept for deep links / assist; not product chrome. -->
+                <button class="me-toolbar__btn" type="button" data-open-qijian hidden aria-hidden="true"><i data-lucide="pen-line"></i><span data-i18n="character.qijian">栖笺</span></button>
+              </div>
+              <!-- Mode flag kept for editor-controller; UI no longer exposes Basic/Advanced. -->
+              <div class="character-editor-mode" hidden role="group" data-character-editor-mode data-i18n-attr="aria-label:character.editorMode" aria-label="编辑模式">
+                <button type="button" class="character-editor-mode__btn is-active" data-editor-mode="basic" data-i18n="character.modeBasic">基础</button>
+                <button type="button" class="character-editor-mode__btn" data-editor-mode="advanced" data-i18n="character.modeAdvanced">高级</button>
+              </div>
+
+              <article class="char-dossier" data-character-dossier>
+                <div class="char-dossier__photo" data-identity-avatar aria-hidden="true"></div>
+                <div class="char-dossier__copy">
+                  <span class="char-dossier__kicker" data-i18n="character.dossierKicker">角色档案</span>
+                  <strong class="char-dossier__name" data-identity-hero-name>—</strong>
+                  <span class="char-dossier__alias" data-identity-hero-alias></span>
+                </div>
+              </article>
+
+              <h3 class="me-section-title" data-i18n="character.chatIdentity">聊天身份</h3>
+              <div class="field-grid me-card-block character-identity-grid">
+                <label class="edit-field">
+                  <span data-i18n="character.nameLabel">角色名</span>
+                  <input type="text" value="" aria-label="角色姓名" data-i18n-attr="aria-label:character.nameLabel" data-identity-name-input />
+                </label>
+                <label class="edit-field">
+                  <span data-i18n="character.aliasLabel">你的称呼</span>
+                  <input type="text" value="" data-i18n-attr="aria-label:character.aliasAria|placeholder:character.aliasPlaceholder" aria-label="聊天里角色怎么叫你" placeholder="聊天里ta怎么叫你" data-identity-alias-input />
+                </label>
+                <label class="edit-field" data-hosted-voice-only hidden>
+                  <span data-i18n="character.hostedVoice">朗读音色</span>
+                  <select data-hosted-voice-select data-hosted-voice-scope="character" data-i18n-attr="aria-label:character.hostedVoice" aria-label="朗读音色"></select>
+                </label>
+                <p class="settings-hint" data-hosted-voice-setup-needed hidden data-i18n="character.hostedVoiceSetupNeeded">请先选择云端朗读音色，选好后才能朗读。</p>
+                <!-- Extended identity kept in DOM for save/load; not product fields. -->
+                <label class="identity-row" hidden>
+                  <span data-i18n="character.genderLabel">性别认同</span>
+                  <input type="text" data-character-gender data-i18n-attr="placeholder:character.genderPlaceholder" placeholder="女 / 男 / 非二元 / 暂不设定" aria-label="性别认同" />
+                </label>
+                <label class="identity-row" hidden>
+                  <span data-i18n="character.pronounsLabel">代词</span>
+                <input type="text" data-character-pronouns data-i18n-attr="placeholder:character.pronounsPlaceholder" placeholder="可选，例如：ta / they" aria-label="代词" />
+                </label>
+                <label class="identity-row identity-row--stack" hidden>
+                  <span data-i18n="character.ownBoundariesLabel">角色自身边界</span>
+                  <textarea rows="3" data-character-boundaries data-i18n-attr="placeholder:character.ownBoundariesPlaceholder" placeholder="每行一条。不会随用户偏好导出。" aria-label="角色自身边界"></textarea>
+                </label>
+                <!-- reserved field slots kept for profile index compatibility -->
+                <label class="edit-field" hidden>
+                  <span data-i18n="character.identityLabel">身份</span>
+                  <input type="text" value="" aria-label="角色身份" />
+                </label>
+                <label class="edit-field" hidden>
+                  <span data-i18n="character.modelLabel">对话模型</span>
+                  <select aria-label="对话模型" data-identity-model-select>
+                    <option selected>跟随接口页配置</option>
+                    <option>自定义供应商</option>
+                  </select>
+                </label>
+                <label class="edit-field span-2" hidden>
+                  <span>角色底色</span>
+                  <textarea rows="4" aria-label="角色底色"></textarea>
+                </label>
+              </div>
+
+              <h3 class="me-section-title" data-i18n="character.promptSection">Prompt</h3>
+              <button type="button" class="me-prompt-entry me-card-block" data-open-prompt-editor>
+                <span class="me-prompt-entry__copy">
+                  <strong data-i18n="character.promptEditTitle">编辑 Prompt</strong>
+                  <small data-prompt-summary data-i18n="character.promptEditHint">一份完整角色 Prompt · 点此编辑</small>
+                </span>
+                <span class="me-cell__chevron" aria-hidden="true"></span>
+              </button>
+              <p class="me-soft-status me-prompt-foot" data-i18n="character.promptFoot">人设写在这一份 Prompt 里；称呼会进入对话身份。</p>
+
+              <h3 class="me-section-title" data-i18n="character.originMemoriesTitle">角色记忆</h3>
+              <p class="settings-hint" data-i18n="character.originMemoriesHint">写 ta 自己的过去：多条记忆，每条都能设标题、内容和属性。这不是你们一起做过的事，检索时才可能被想起来。</p>
+              <div class="origin-memory-editor me-card-block" data-origin-memory-editor></div>
+              <!-- keep selects in DOM for settings code; hidden from product UI -->
+              <select data-prompt-budget hidden aria-hidden="true"><option value="1800" selected>1800</option></select>
+              <select data-prompt-order hidden aria-hidden="true"><option value="character,worldbook,memory,daily,external" selected></option></select>
+
+              <!-- Daily status / weather / anniversary: data retained, not on character page. -->
+              <details class="char-dossier-fold me-card-block" hidden aria-hidden="true">
+                <summary>
+                  <span data-i18n="character.dailyStatus">日常状态</span>
+                  <small data-i18n="character.scheduleWeatherHint">作息与天气会轻量注入聊天</small>
+                </summary>
+                <section class="status-workflow" data-i18n-attr="aria-label:character.dailyStatusAria" aria-label="AI日常状态">
+                  <div class="status-grid">
+                    <label><span data-i18n="character.sleepAt">入睡</span><input type="time" value="03:00" data-status-sleep-at /></label>
+                    <label><span data-i18n="character.wakeAt">起床</span><input type="time" value="10:30" data-status-wake-at /></label>
+                    <label><span data-i18n="character.weatherLocation">天气位置</span><input type="text" value="用户当前位置" data-status-location data-i18n-attr="placeholder:character.locationDefault" /></label>
+                    <div class="me-choice-block me-choice-block--inline">
+                      <span class="me-choice-block__label" data-i18n="character.statusSource">状态来源</span>
+                      <div class="me-chips me-chips--wrap" role="radiogroup" data-choice-for="status-weather-mode" data-i18n-attr="aria-label:character.statusSource" aria-label="状态来源">
+                        <button type="button" role="radio" data-choice="定位天气" class="is-active" data-i18n="character.weatherLocate">定位天气</button>
+                        <button type="button" role="radio" data-choice="手动天气" data-i18n="character.weatherManual">手动天气</button>
+                        <button type="button" role="radio" data-choice="不读取天气" data-i18n="character.weatherOff">不读取天气</button>
+                      </div>
+                      <select class="me-visually-hidden" data-status-weather-mode data-choice-id="status-weather-mode" aria-hidden="true" tabindex="-1">
+                        <option value="定位天气" selected data-i18n="character.weatherLocate">定位天气</option>
+                        <option value="手动天气" data-i18n="character.weatherManual">手动天气</option>
+                        <option value="不读取天气" data-i18n="character.weatherOff">不读取天气</option>
+                      </select>
+                    </div>
+                    <label><span data-i18n="character.manualWeather">手动天气</span><input type="text" value="雨 20°" data-status-manual-weather hidden /></label>
+                    <label class="me-date-field"><span data-i18n="character.anniversary">在一起纪念日</span>
+                      <div class="me-date-field__control">
+                        <input type="text" class="me-date-field__display" data-anniversary-display readonly tabindex="-1" data-i18n-attr="placeholder:character.anniversaryPlaceholder" placeholder="年 / 月 / 日" aria-hidden="true" />
+                        <input type="date" class="me-date-field__native" data-anniversary-date data-i18n-attr="aria-label:character.anniversary" aria-label="在一起纪念日" />
+                      </div>
+                    </label>
+                  </div>
+                  <label class="workflow-toggle"><input type="checkbox" checked data-status-injection /> <span data-i18n="character.statusInjection">写入今日状态、天气和作息到回复上下文</span></label>
+                  <p data-status-preview>今日状态会根据时间、昨日对话和天气刷新。</p>
+                </section>
+              </details>
+
+              <!-- legacy DOM stubs so save/reset code paths stay safe -->
+              <section class="range-editor" hidden aria-hidden="true">
+                <input type="range" min="0" max="100" value="50" data-range-value />
+                <input type="range" min="0" max="100" value="50" data-range-value />
+                <input type="range" min="0" max="100" value="50" data-range-value />
+                <input type="range" min="0" max="100" value="50" data-range-value />
+              </section>
+              <section class="token-editor" hidden aria-hidden="true" data-token-editor>
+                <div class="token-list" data-token-list></div>
+                <input type="text" data-token-input hidden />
+                <button type="button" data-token-add hidden></button>
+              </section>
+              <div class="character-editor-actions me-toolbar" data-character-editor-actions>
+                <span class="character-editor-unsaved" data-character-unsaved hidden data-i18n="character.unsaved">未保存</span>
+                <button class="me-toolbar__btn character-editor-save" type="button" data-character-save data-i18n="character.save">保存</button>
+                <button class="me-toolbar__btn character-editor-discard" type="button" data-character-discard data-i18n="character.discard">撤销本次修改</button>
+              </div>
+            </section>
+<section data-settings-view="prompt" class="settings-panel me-panel prompt-editor-panel">
+              <p class="settings-hint" data-i18n="character.promptEditorLead">一份完整角色 Prompt，保存后直接进入对话。</p>
+              <section class="prompt-lab me-card-block prompt-lab--editor">
+                <div class="prompt-grid">
+                  <label class="prompt-block prompt-block--single" data-character-prompt-primary>
+                    <span data-i18n="character.characterPrompt">角色 Prompt</span>
+                    <textarea rows="16" data-prompt-system data-i18n-attr="aria-label:character.characterPrompt|placeholder:character.promptSinglePlaceholder" aria-label="角色 Prompt" placeholder="在这里写完整人设与说话方式…"></textarea>
+                  </label>
+                </div>
+                <!-- Legacy slots kept for profile code paths; never shown (merged into one field above). -->
+                <textarea hidden data-prompt-developer aria-hidden="true" tabindex="-1"></textarea>
+                <textarea hidden data-post-history-instructions aria-hidden="true" tabindex="-1"></textarea>
+                <textarea hidden data-character-scenario aria-hidden="true" tabindex="-1"></textarea>
+                <textarea hidden data-character-greeting aria-hidden="true" tabindex="-1"></textarea>
+                <textarea hidden data-character-examples aria-hidden="true" tabindex="-1"></textarea>
+                <aside class="prompt-inspector" data-request-inspector hidden>
+                  <h3 data-i18n="character.requestInspector">请求检查</h3>
+                  <pre data-inspector-json></pre>
+                </aside>
+                <button class="me-toolbar__btn me-toolbar__btn--block" type="button" data-compile-prompt hidden aria-hidden="true">
+                  <i data-lucide="wand-sparkles"></i><span data-i18n="character.previewPrompt">预览 Prompt</span>
+                </button>
+                <p class="me-foot-status prompt-preview" data-prompt-preview hidden></p>
+              </section>
+              <div class="character-editor-actions me-toolbar" data-character-editor-actions>
+                <span class="character-editor-unsaved" data-character-unsaved hidden data-i18n="character.unsaved">未保存</span>
+                <button class="me-toolbar__btn character-editor-save" type="button" data-character-save data-i18n="character.save">保存</button>
+                <button class="me-toolbar__btn character-editor-discard" type="button" data-character-discard data-i18n="character.discard">撤销本次修改</button>
+              </div>
+            </section>
+<section data-settings-view="diary" class="settings-panel me-panel diary-settings-editor">
+              <header class="editor-head">
+                <div>
+                  <h2 data-i18n="sections.diarySettings">日记设置</h2>
+                </div>
+              </header>
+
+              <p class="settings-hint" data-i18n="diaryPanel.lead">汇总过去 24 小时的对话写成日记。</p>
+              <h3 class="me-section-title" data-i18n="diaryPanel.writingStyle">写作风格</h3>
+              <div class="me-choice-block me-choice-block--card">
+                <span class="me-choice-block__label" data-i18n="diaryPanel.nextStyle">下一次日记风格</span>
+                <div class="me-chips me-chips--wrap" role="radiogroup" data-choice-for="diary-style-pref" data-diary-style-chips data-i18n-attr="aria-label:diaryPanel.nextStyleAria" aria-label="下一次日记风格"></div>
+                <select class="me-visually-hidden" data-diary-style-preference data-choice-id="diary-style-pref" aria-hidden="true" tabindex="-1"></select>
+              </div>
+
+              <section class="diary-schedule" data-i18n-attr="aria-label:diaryPanel.scheduleAria" aria-label="定时生成日记">
+                <div class="editor-line-head">
+                  <span data-i18n="diaryPanel.schedule">定时生成</span>
+                  <small data-i18n="diaryPanel.scheduleHint">到点自动汇总过去 24 小时并写入日记本</small>
+                </div>
+                <label class="workflow-toggle">
+                  <span data-i18n="diaryPanel.scheduleDaily">每天定时自动生成</span>
+                  <input type="checkbox" data-diary-schedule-enabled data-i18n-attr="aria-label:diaryPanel.scheduleEnableAria" aria-label="启用定时生成日记" />
+                </label>
+                <label class="edit-field diary-schedule-time">
+                  <span data-i18n="diaryPanel.generateTime">生成时间</span>
+                  <input type="time" value="23:00" data-diary-schedule-time data-i18n-attr="aria-label:diaryPanel.generateTimeAria" aria-label="日记生成时间" />
+                </label>
+                <label class="workflow-toggle">
+                  <span data-i18n="diaryPanel.overwrite">定时时覆盖已有日记</span>
+                  <input type="checkbox" data-diary-schedule-overwrite checked data-i18n-attr="aria-label:diaryPanel.overwriteAria" aria-label="定时覆盖已有日记" />
+                </label>
+              </section>
+            </section>
+<section data-settings-view="worldbook" class="settings-panel me-panel world-editor">
+              <header class="editor-head">
+                <div>
+                  <h2 data-i18n="sections.worldbook">世界书</h2>
+                  <p class="me-soft-status" data-i18n="mePanels.worldbook.softStatus">关键词出现在对话里时，会把对应设定注入 prompt</p>
+                </div>
+                <div class="editor-head-actions">
+                  <button class="ghost-action" type="button" data-disable-all-world><span data-i18n="mePanels.worldbook.disableAll">全部禁用</span></button>
+                  <button class="ghost-action" type="button" data-add-world-entry><i data-lucide="plus"></i><span class="icon-fallback">+</span><span data-i18n="mePanels.worldbook.add">新增</span></button>
+                </div>
+              </header>
+
+              <h3 class="me-section-title" data-i18n="mePanels.worldbook.entries">设定条目</h3>
+              <div class="world-entry-list" id="worldEntryList"></div>
+            </section>
+<section data-settings-view="presets" class="settings-panel me-panel presets-editor">
+              <div data-presets-mount></div>
+            </section>
+<section data-settings-view="assist" class="settings-panel me-panel assist-editor">
+              <div data-assist-mount></div>
+            </section>
+<section data-settings-view="regex" class="settings-panel me-panel regex-editor">
+              <div data-regex-mount></div>
+            </section>
+<section data-settings-view="theme" class="settings-panel me-panel theme-editor">
+              <header class="editor-head">
+                <div>
+                  <h2 data-i18n="sections.theme">主题</h2>
+                </div>
+              </header>
+              <p class="settings-hint" data-i18n="mePanels.theme.hint">换一套聊天氛围，保存在本机。</p>
+              <div class="theme-grid" data-theme-grid>
+                <button type="button" class="theme-option is-active" data-theme-option="yueqi"><strong data-i18n="mePanels.theme.yueqi">月栖纸</strong><small data-i18n="mePanels.theme.yueqiHint">暖纸 + 绛色</small></button>
+                <button type="button" class="theme-option" data-theme-option="mist"><strong data-i18n="mePanels.theme.mist">青雾</strong><small data-i18n="mePanels.theme.mistHint">冷灰蓝雾面</small></button>
+                <button type="button" class="theme-option" data-theme-option="pine"><strong data-i18n="mePanels.theme.pine">松烟</strong><small data-i18n="mePanels.theme.pineHint">墨绿与浅米</small></button>
+                <button type="button" class="theme-option" data-theme-option="ink"><strong data-i18n="mePanels.theme.ink">墨夜</strong><small data-i18n="mePanels.theme.inkHint">深底琥珀点缀</small></button>
+              </div>
+            </section>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="app-page api-page" data-panel="api">
+          <header class="page-header">
+            <div>
+              <span>模型 · 语音</span>
+              <h1 data-i18n="pages.api">接口</h1>
+            </div>
+          </header>
+
+          <div class="api-workbench api-workbench--hub" data-api-workbench>
+            <div class="api-hub" data-api-hub>
+              <button type="button" class="api-entry" data-api-open="model">
+                <span class="api-entry__icon" aria-hidden="true"><i data-lucide="cpu"></i></span>
+                <span class="api-entry__copy">
+                  <strong data-i18n="sections.modelApi">模型接口</strong>
+                  <small>聊天、日记与摘要</small>
+                </span>
+                <em class="api-entry__status" data-api-status="model">未配置</em>
+                <span class="api-entry__chevron" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="api-entry" data-api-open="voice">
+                <span class="api-entry__icon" aria-hidden="true"><i data-lucide="audio-lines"></i></span>
+                <span class="api-entry__copy">
+                  <strong data-i18n="sections.voiceApi">语音接口</strong>
+                  <small>朗读、转写与麦克风</small>
+                </span>
+                <em class="api-entry__status" data-api-status="voice">未配置</em>
+                <span class="api-entry__chevron" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <section class="api-panel api-detail" data-api-detail="model" hidden>
+              <header class="api-detail-bar">
+                <button type="button" class="api-detail-back" data-api-back aria-label="返回"><i data-lucide="chevron-left"></i></button>
+                <div class="api-detail-bar__copy">
+                  <strong data-i18n="sections.modelApi">模型接口</strong>
+                  <small>OpenAI 兼容</small>
+                </div>
+                <button class="ghost-action" type="button" data-test-api><i data-lucide="radio"></i><span>测试</span></button>
+              </header>
+              <p class="settings-hint" data-provider-byok-only>免费开发者模式：Key 只保存在本机，用于聊天、日记与摘要。</p>
+              <p class="settings-hint" data-provider-managed-only hidden>BYOK 由月栖服务器统一选择模型，客户端不会显示或保存供应商 Key。</p>
+              <div class="connection-grid api-form-grid" data-provider-byok-only>
+                <label><span>供应商</span><select data-provider-kind><option selected>OpenAI Compatible</option><option>火山方舟</option><option>自定义反代</option></select></label>
+                <label><span>Base URL</span><input type="url" size="1" data-provider-base-url placeholder="https://api.openai.com/v1" /></label>
+                <label><span>API Key</span><input type="password" size="1" data-provider-api-key placeholder="ark-..." autocomplete="off" /></label>
+                <label><span>默认模型</span><input type="text" size="1" data-provider-model data-i18n-attr="placeholder:placeholders.providerModel" placeholder="ep-... / 接入点 ID" /></label>
+              </div>
+              <pre class="api-result" data-api-result>status: idle
+latency: -
+model: -</pre>
+            </section>
+
+            <section class="api-panel voice-api-panel api-detail" data-api-detail="voice" hidden>
+              <header class="api-detail-bar">
+                <button type="button" class="api-detail-back" data-api-back aria-label="返回"><i data-lucide="chevron-left"></i></button>
+                <div class="api-detail-bar__copy">
+                  <strong data-i18n="sections.voiceApi">语音接口</strong>
+                  <small data-i18n="voicePanel.subtitle">朗读与转写</small>
+                </div>
+                <button class="ghost-action" type="button" data-test-voice><i data-lucide="volume-2"></i><span data-i18n="voicePanel.testSpeak">试听当前声线</span></button>
+              </header>
+              <p class="settings-hint" data-i18n="voicePanel.hint">朗读和转写会发到你选的服务商。密钥只留在这台设备，不会进角色卡。</p>
+
+              <div class="voice-settings-block" data-voice-block="output">
+                <h3 class="voice-settings-block__title" data-i18n="voicePanel.output">朗读</h3>
+                <input type="hidden" data-voice-id />
+                <input type="hidden" data-voice-openai-voice />
+                <input type="hidden" data-voice-volc-voice-type />
+                <div class="connection-grid api-form-grid">
+                  <label><span data-i18n="voicePanel.ttsProvider">服务商</span><select data-voice-tts-provider><option value="ElevenLabs" selected>ElevenLabs</option><option value="OpenAI">OpenAI</option><option value="Volcengine">Volcengine</option></select></label>
+                  <label data-voice-cloud-key><span data-i18n="voicePanel.ttsKey">API Key</span><input type="password" size="1" data-voice-tts-api-key data-i18n-attr="placeholder:voicePanel.ttsKeyPlaceholder" placeholder="填入后即可拉取声线" autocomplete="off" /></label>
+                  <label class="span-2" data-voice-cloud-key><span data-i18n="voicePanel.ttsModel">朗读模型</span><select data-voice-tts-model></select></label>
+                  <label data-voice-volc-only hidden><span data-i18n="voicePanel.volcAppId">语音 App ID</span><input type="text" size="1" data-voice-volc-app-id placeholder="speech app id" data-i18n-attr="placeholder:lab.volcAppIdPlaceholder" autocomplete="off" /></label>
+                  <label data-voice-volc-only hidden><span data-i18n="voicePanel.volcToken">语音 Access Token</span><input type="password" size="1" data-voice-volc-access-token placeholder="speech token" data-i18n-attr="placeholder:lab.volcAccessTokenPlaceholder" autocomplete="off" /></label>
+                  <div class="span-2 voice-picker" data-voice-picker>
+                    <div class="voice-picker__selected">
+                      <div>
+                        <em data-i18n="voicePanel.current">当前声线</em>
+                        <strong data-voice-picker-name>还没选声线</strong>
+                        <span data-voice-picker-meta data-i18n="voicePanel.chooseHint">点喇叭试听，再点名字选用。</span>
+                      </div>
+                      <button type="button" class="ghost-action" data-voice-picker-preview><i data-lucide="play"></i><span data-i18n="voicePanel.preview">试听</span></button>
+                    </div>
+                    <div class="voice-picker__toolbar">
+                      <button type="button" class="ghost-action voice-picker__fetch" data-voice-picker-fetch><i data-lucide="refresh-cw"></i><span data-i18n="voicePanel.fetch">拉取声线</span></button>
+                      <input type="search" data-voice-picker-query data-i18n-attr="placeholder:voicePanel.search" placeholder="搜索名字" autocomplete="off" />
+                    </div>
+                    <p class="voice-picker__status" data-voice-picker-status hidden></p>
+                    <div class="voice-picker__list" data-voice-picker-list></div>
+                  </div>
+                  <label class="span-2" data-hosted-voice-only hidden>
+                    <span data-i18n="character.hostedVoice">云端朗读音色</span>
+                    <select data-voice-hosted-voice-type data-hosted-voice-select data-hosted-voice-scope="user"></select>
+                  </label>
+                  <p class="settings-hint settings-hint--warn span-2" data-hosted-voice-setup-needed hidden data-i18n="character.hostedVoiceSetupNeeded">请先选择云端朗读音色，选好后才能朗读。</p>
+                  <p class="settings-hint span-2" data-hosted-voice-only hidden data-i18n="character.hostedVoiceHint">订阅云端朗读时生效。角色页还可以给每位角色单独指定。</p>
+                  <label class="workflow-toggle voice-auto-speak span-2">
+                    <span data-i18n="voicePanel.autoSpeak">自动朗读回复</span>
+                    <input type="checkbox" data-voice-auto-speak />
+                  </label>
+                  <label class="span-2"><span data-i18n="voicePanel.sample">试听句子</span><input type="text" size="1" data-voice-test-sample value="我在。你可以直接说今天发生了什么。" /></label>
+                </div>
+              </div>
+
+              <div class="voice-settings-block" data-voice-block="input">
+                <h3 class="voice-settings-block__title" data-i18n="voicePanel.input">转写</h3>
+                <div class="connection-grid api-form-grid">
+                  <label><span data-i18n="voicePanel.sttProvider">服务商</span><select data-voice-stt-provider><option value="OpenAI Whisper" selected>OpenAI Whisper</option><option value="Volcengine">Volcengine</option></select></label>
+                  <label data-voice-stt-openai-only><span data-i18n="voicePanel.sttKey">转写 Key</span><input type="password" size="1" data-voice-stt-api-key data-i18n-attr="placeholder:placeholders.sttKeyShared" placeholder="可与朗读共用" autocomplete="off" /></label>
+                  <label data-voice-stt-openai-only><span data-i18n="voicePanel.sttModel">转写模型</span><select data-voice-stt-model></select></label>
+                </div>
+              </div>
+
+              <div class="voice-settings-block" data-voice-block="mic">
+                <h3 class="voice-settings-block__title" data-i18n="voicePanel.mic">麦克风</h3>
+                <div class="permission-bar permission-bar--voice" data-permission-bar="microphone">
+                  <div class="permission-bar-copy">
+                    <strong data-i18n="mePanels.permissions.microphone">麦克风</strong>
+                    <p data-i18n="mePanels.permissions.microphoneHint">按住说话与语音测试需要麦克风权限。</p>
+                  </div>
+                  <div class="permission-bar-actions">
+                    <span class="permission-badge" data-permission-badge="microphone" data-i18n="mePanels.notGranted">未授权</span>
+                    <button type="button" class="voice-perm-btn" data-request-permission="microphone" data-i18n="mePanels.grant">授权</button>
+                  </div>
+                  <p class="permission-bar-guide" data-permission-guide="microphone" data-i18n="mePanels.permissions.microphoneGuide">点「授权」会弹出系统麦克风权限。若无弹窗或点了拒绝，再点「去设置」打开应用权限页手动打开。</p>
+                </div>
+                <div class="voice-settings-tools">
+                  <button class="ghost-action" type="button" data-test-voice-record><i data-lucide="mic"></i><span data-i18n="voicePanel.testRecord">试录 3 秒</span></button>
+                  <button class="ghost-action" type="button" data-test-voice-stt hidden><i data-lucide="audio-lines"></i><span data-i18n="voicePanel.testStt">转写这段录音</span></button>
+                  <button class="ghost-action" type="button" data-retry-stt hidden><i data-lucide="rotate-cw"></i><span data-i18n="voicePanel.retryStt">重试转写</span></button>
+                </div>
+              </div>
+
+              <div class="voice-status" data-voice-result>
+                <p data-voice-status-line>朗读还差 API Key，或还没选声线。</p>
+              </div>
+            </section>
+
+            <!-- 角色世界：不对用户展示配置入口；表单保留供内部/既有逻辑读写 -->
+            <section class="api-panel" data-api-detail="viber" hidden aria-hidden="true">
+              <div class="connection-grid">
+                <label class="span-2"><span>启用 Viber 世界</span><input type="checkbox" data-viber-enabled /></label>
+                <label><span>Viber API Base</span><input type="url" size="1" data-viber-base-url placeholder="http://127.0.0.1:3001" /></label>
+                <label><span>API Key</span><input type="password" size="1" data-viber-api-key placeholder="viber_sk_…" autocomplete="off" /></label>
+                <label><span>Persona Version</span><input type="text" size="1" data-viber-persona-version data-i18n-attr="placeholder:placeholders.viberPersonaVersion" placeholder="发帖时必填，如 1" /></label>
+                <label class="span-2"><span>经本机服务转发（避 CORS）</span><input type="checkbox" data-viber-use-proxy checked /></label>
+              </div>
+              <p class="settings-hint" data-viber-status hidden>未启用</p>
+              <button class="ghost-action" type="button" data-viber-test hidden>测试连通</button>
+              <button class="ghost-action" type="button" data-viber-save hidden>保存</button>
+              <pre class="api-result" data-viber-result hidden>status: idle
+platform: preview</pre>
+            </section>
+          </div>
+        </section>
+
+        <section class="app-page companion-debug-page" data-panel="debug" hidden aria-hidden="true">
+          <header class="page-header">
+            <div>
+              <span>Prompt · Memory · Tools</span>
+              <h1>伴侣智能链路</h1>
+            </div>
+          </header>
+          <div data-companion-debug></div>
+        </section>
+      </main>
+
+      <nav class="bottom-tabs nyra-dock" aria-label="底部导航" role="navigation" data-i18n-attr="aria-label:nav.bottomNav">
+        <button type="button" class="is-active" data-tab="chat" aria-label="聊天" aria-current="page" data-i18n-attr="aria-label:nav.chat"><i data-lucide="message-circle" aria-hidden="true"></i><span class="icon-fallback" aria-hidden="true">…</span><span data-i18n="nav.chat">聊天</span></button>
+        <button type="button" class="nyra-dock__hub" data-nav-hub-toggle aria-label="打开功能" data-i18n-attr="aria-label:nav.openHub|title:nav.openHub" title="打开功能" aria-controls="nyraNavHub" aria-expanded="false">
+          <span class="nyra-dock__pulse" aria-hidden="true"><i data-lucide="audio-waveform"></i><span class="icon-fallback">✦</span></span>
+          <span class="nyra-dock__hub-label" data-i18n="nav.spaces">空间</span>
+        </button>
+        <button type="button" data-tab="companion" data-nav-diary aria-label="陪伴" data-i18n-attr="aria-label:nav.companion"><i data-lucide="heart" aria-hidden="true"></i><span class="icon-fallback" aria-hidden="true">♡</span><span data-i18n="nav.companion">陪伴</span></button>
+      </nav>
+
+      <section class="nyra-nav-hub" id="nyraNavHub" data-nav-hub hidden aria-hidden="true">
+        <button type="button" class="nyra-nav-hub__scrim" data-nav-hub-close aria-label="关闭" data-i18n-attr="aria-label:common.close"></button>
+        <div class="nyra-nav-hub__panel nyra-nav-hub__panel--compact" role="dialog" aria-modal="true" aria-labelledby="nyraNavHubTitle">
+          <header>
+            <span class="nyra-nav-hub__sr-title">
+              <small data-i18n="nav.hubEyebrow">月栖空间</small>
+              <strong id="nyraNavHubTitle" data-i18n="nav.hubTitle">选择要去的地方</strong>
+            </span>
+            <button type="button" class="nyra-nav-hub__close" data-nav-hub-close aria-label="关闭" data-i18n-attr="aria-label:common.close"><i data-lucide="x"></i><span class="icon-fallback">×</span></button>
+          </header>
+          <nav class="nyra-nav-hub__routes" aria-label="空间导航" data-i18n-attr="aria-label:nav.hubTitle">
+            <button type="button" data-tab="world">
+              <span class="nyra-nav-hub__icon"><i data-lucide="orbit"></i><span class="icon-fallback">◎</span></span>
+              <span><strong data-i18n="nav.world">角色世界</strong></span>
+            </button>
+            <button type="button" data-tab="library">
+              <span class="nyra-nav-hub__icon"><i data-lucide="headphones"></i><span class="icon-fallback">▣</span></span>
+              <span><strong data-i18n="nav.library">生活</strong></span>
+            </button>
+            <button type="button" data-tab="me">
+              <span class="nyra-nav-hub__icon"><i data-lucide="user-round"></i><span class="icon-fallback">○</span></span>
+              <span><strong data-i18n="nav.me">我的</strong></span>
+            </button>
+          </nav>
+        </div>
+      </section>
+
+      <section class="drawer" id="featureDrawer" aria-hidden="true">
+        <div class="drawer-backdrop" data-drawer-close></div>
+        <div class="drawer-panel">
+          <header>
+            <h2 data-i18n="nav.menu">菜单</h2>
+            <button class="icon-button" data-drawer-close aria-label="关闭" data-i18n-attr="aria-label:common.close"><i data-lucide="x"></i><span class="icon-fallback">×</span></button>
+          </header>
+          <nav class="drawer-nav" aria-label="快捷导航" data-i18n-attr="aria-label:nav.drawerQuick">
+            <button type="button" class="system-assist-nav" data-assist-nav aria-label="栖机助手" data-i18n-attr="aria-label:nav.assist"><i data-lucide="bot"></i><span data-i18n="nav.assist">栖机助手</span><em data-i18n="nav.assistHint">问设置 · 调工具</em></button>
+            <button type="button" data-drawer-nav="me"><i data-lucide="user-round"></i><span data-i18n="nav.me">我的</span><em data-login-state>本机</em></button>
+            <button type="button" data-drawer-nav="world"><i data-lucide="camera"></i><span data-i18n="nav.world">朋友圈</span></button>
+            <button type="button" data-drawer-nav="api" data-byok-only><i data-lucide="plug-zap"></i><span data-i18n="nav.api">接口</span></button>
+            <button type="button" data-drawer-nav="companion" data-nav-diary><i data-lucide="heart"></i><span data-i18n="nav.companion">陪伴</span></button>
+            <button type="button" data-contact-menu><i data-lucide="circle-ellipsis"></i><span data-i18n="nav.more">更多</span><em data-i18n="nav.moreHint">联系方式与社群</em></button>
+            <button type="button" class="drawer-mode-switch" data-ui-mode-switch="phone" data-haptic="medium-light"><i data-lucide="smartphone"></i><span data-i18n="nav.phoneMode">小手机界面</span><em data-i18n="nav.phoneModeHint">切换</em></button>
+          </nav>
+                  </div>
+      </section>
+
+      <section class="modal session-summary-modal" id="sessionSummaryModal" aria-hidden="true">
+        <div class="modal-backdrop" data-session-summary-close></div>
+        <div class="modal-panel session-summary-panel" role="dialog" aria-modal="true" aria-labelledby="session-summary-title">
+          <header>
+            <h2 id="session-summary-title" data-i18n="mePanels.memory.summarizeTitle">总结记忆</h2>
+            <button type="button" class="icon-button" data-session-summary-close data-i18n-attr="aria-label:common.close" aria-label="关闭"><i data-lucide="x"></i><span class="icon-fallback">×</span></button>
+          </header>
+          <p class="settings-hint" data-i18n="mePanels.memory.summarizeHint">仅已勾选且已落库的轮次会整理成一条长期记忆；本会话不会被清空。</p>
+          <div class="session-summary-list" data-session-summary-list></div>
+          <p class="me-soft-status" data-session-summary-status hidden></p>
+          <footer class="session-summary-footer">
+            <button type="button" class="ghost-action" data-session-summary-select-all data-i18n="mePanels.memory.summarizeSelectAll">全选可提交轮次</button>
+            <button type="button" class="ghost-action" data-session-summary-clear data-i18n="mePanels.memory.summarizeClear">全不选</button>
+            <button type="button" class="ghost-action" data-session-summary-close data-i18n="common.cancel">取消</button>
+            <button type="button" class="session-summary-write" data-session-summary-write data-i18n="mePanels.memory.summarizeWrite">写入记忆</button>
+          </footer>
+        </div>
+      </section>
+
+      <section class="modal diary-modal" id="diaryModal" aria-hidden="true">
+        <div class="modal-backdrop" data-diary-close></div>
+        <form class="modal-panel" id="diaryForm">
+          <header>
+            <h2 data-i18n="pages.diary">写日记</h2>
+            <button type="button" class="icon-button" data-diary-close aria-label="关闭"><i data-lucide="x"></i><span class="icon-fallback">×</span></button>
+          </header>
+          <div class="me-choice-block me-choice-block--inline diary-modal-style">
+            <span class="me-choice-block__label">本篇风格</span>
+            <div class="me-chips me-chips--wrap" role="radiogroup" data-choice-for="diary-modal-style" data-diary-modal-style-chips aria-label="本篇风格"></div>
+            <select class="me-visually-hidden" data-diary-style data-choice-id="diary-modal-style" aria-hidden="true" tabindex="-1" aria-label="本篇风格"></select>
+          </div>
+          <label><span>标题</span><input type="text" data-diary-title data-i18n-attr="placeholder:placeholders.diaryTitle" placeholder="给今天起个名字" /></label>
+          <label><span>内容</span><textarea rows="6" data-diary-body data-i18n-attr="placeholder:placeholders.diaryBody" placeholder="写下今天想被记住的事…"></textarea></label>
+          <footer>
+            <button type="button" class="ghost-action" data-diary-regenerate>重新生成</button>
+            <button type="button" class="ghost-action" data-diary-close>取消</button>
+            <button type="submit" class="send-button">保存日记</button>
+          </footer>
+        </form>
+      </section>
+
+      <section class="modal video-call-modal" id="videoCallModal" aria-hidden="true">
+        <div class="modal-backdrop" data-video-call-close></div>
+        <div class="modal-panel">
+          <header>
+            <h2 data-call-modal-title data-i18n="chat.videoCallTitle">视频通话</h2>
+            <button type="button" class="icon-button" data-video-call-close aria-label="关闭"><i data-lucide="x"></i><span class="icon-fallback">×</span></button>
+          </header>
+          <div class="video-call-stage" data-call-stage>
+            <div class="video-call-placeholder" data-video-call-placeholder>
+              <span class="video-call-placeholder__icon" aria-hidden="true"><i data-lucide="video"></i></span>
+              <span data-i18n="chat.videoPreviewHint">点「开始」开启摄像头预览</span>
+            </div>
+            <video data-video-call-preview playsinline muted hidden disablepictureinpicture disableremoteplayback></video>
+            <canvas data-video-call-canvas hidden></canvas>
+            <div class="voice-call-stage" data-voice-call-stage hidden>
+              <span class="voice-call-avatar" aria-hidden="true" data-role-avatar><span class="role-avatar-fallback">角</span></span>
+              <span class="voice-call-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+              <strong data-role-name>角色</strong>
+              <span data-voice-call-status data-i18n="chat.callWaiting">等待接通</span>
+              <time data-voice-call-duration>00:00</time>
+            </div>
+          </div>
+          <div class="video-call-actions">
+            <button class="ghost-action" type="button" data-video-call-start><i data-lucide="video" data-call-start-icon></i><span data-call-start-label data-i18n="chat.callStart">开始</span></button>
+            <button class="ghost-action" type="button" data-video-call-capture><i data-lucide="camera"></i><span data-i18n="chat.videoCapture">截帧问 TA</span></button>
+            <button class="ghost-action" type="button" data-video-call-auto><i data-lucide="timer"></i><span data-i18n="chat.videoAuto">每 8 秒自动</span></button>
+            <button class="ghost-action" type="button" data-voice-call-reply hidden><i data-lucide="audio-waveform"></i><span data-i18n="chat.callReply">让 TA 回应</span></button>
+            <button class="ghost-action video-call-stop" type="button" data-video-call-stop><i data-lucide="phone-off"></i><span data-i18n="chat.callHangUp">挂断</span></button>
+          </div>
+          <pre class="video-call-log" data-video-call-log data-i18n="chat.callNotStarted">未开始</pre>
+        </div>
+      </section>
+
+      <section class="book-reader" id="bookReader" hidden aria-hidden="true" data-ebook-theme="paper">
+        <header class="book-reader-bar book-reader-chrome" data-book-reader-chrome hidden>
+          <button type="button" class="book-reader-back" data-book-reader-close aria-label="返回书架">
+            <i data-lucide="chevron-left"></i><span class="icon-fallback">‹</span><span>书架</span>
+          </button>
+          <div class="book-reader-heading">
+            <strong data-book-reader-title>一起看</strong>
+            <em data-book-reader-progress>1 / 1</em>
+          </div>
+          <button type="button" class="ghost-action" data-book-reader-theme aria-label="阅读主题">
+            <i data-lucide="sun-moon"></i><span class="icon-fallback">◐</span>
+          </button>
+        </header>
+        <div class="book-reader-viewport reader-engine-viewport" data-book-reader-viewport>
+          <div class="reader-engine-pages" data-reader-pages data-book-reader-body tabindex="0"></div>
+        </div>
+        <div class="book-reader-footer book-reader-chrome" data-book-reader-chrome-footer hidden>
+          <span data-book-reader-page-label>1 / 1</span>
+        </div>
+        <div class="book-select-bar" data-book-select-bar hidden>
+          <button type="button" data-book-select-hl>划线</button>
+          <button type="button" data-book-select-share>TA说说</button>
+          <button type="button" data-book-select-copy>复制</button>
+        </div>
+      </section>
+
+      <section class="book-note-sheet" id="bookNoteSheet" hidden aria-hidden="true">
+        <div class="book-note-backdrop" data-book-note-close></div>
+        <div class="book-note-panel" role="dialog" aria-label="陪读看法">
+          <header>
+            <strong>陪读这段</strong>
+            <button type="button" class="icon-button" data-book-note-close aria-label="关闭"><i data-lucide="x"></i><span class="icon-fallback">×</span></button>
+          </header>
+          <blockquote data-book-note-quote></blockquote>
+          <label class="book-note-field">
+            <span>你的看法</span>
+            <textarea data-book-note-opinion rows="4" data-i18n-attr="placeholder:placeholders.bookNoteOpinion" placeholder="也可以不写，直接问 TA 怎么看…"></textarea>
+          </label>
+          <footer>
+            <button type="button" class="ghost-action" data-book-note-cancel>取消</button>
+            <button type="button" class="send-button" data-book-note-send>发给 TA</button>
+          </footer>
+        </div>
+      </section>
+
+      <section class="event-edit-sheet" id="eventEditSheet" hidden aria-hidden="true">
+        <div class="event-edit-backdrop" data-event-edit-close></div>
+        <div class="event-edit-panel" role="dialog" aria-modal="true" aria-label="编辑提醒">
+          <header>
+            <strong data-event-edit-heading>编辑提醒</strong>
+            <button type="button" class="icon-button" data-event-edit-close aria-label="关闭"><i data-lucide="x"></i><span class="icon-fallback">×</span></button>
+          </header>
+          <div class="event-edit-fields">
+            <label class="event-edit-field">
+              <span>时间</span>
+              <input type="time" data-event-edit-time value="21:00" />
+            </label>
+            <label class="event-edit-field">
+              <span>名称</span>
+              <input type="text" data-event-edit-title value="新提醒" maxlength="40" data-i18n-attr="placeholder:placeholders.eventTitle" placeholder="例如：下班提醒" />
+            </label>
+            <label class="event-edit-field event-edit-field--prompt">
+              <span>事件</span>
+              <textarea data-event-edit-prompt rows="4" data-i18n-attr="placeholder:placeholders.eventPrompt" placeholder="写给 AI 的事件提示，例如：今天晚上有空，到点后提醒我可以聊一会儿。"></textarea>
+            </label>
+            <div class="event-edit-field me-choice-block me-choice-block--inline">
+              <span class="me-choice-block__label">提醒方式</span>
+              <div class="me-chips me-chips--wrap" role="radiogroup" data-choice-for="event-edit-mode" aria-label="提醒方式">
+                <button type="button" role="radio" data-choice="可主动消息" class="is-active">AI 发消息提醒</button>
+                <button type="button" role="radio" data-choice="仅提醒">仅系统通知</button>
+                <button type="button" role="radio" data-choice="不联动">不提醒</button>
+              </div>
+              <select class="me-visually-hidden" data-event-edit-mode data-choice-id="event-edit-mode" aria-hidden="true" tabindex="-1" aria-label="提醒方式">
+                <option value="可主动消息" selected>AI 发消息提醒</option>
+                <option value="仅提醒">仅系统通知</option>
+                <option value="不联动">不提醒</option>
+              </select>
+            </div>
+          </div>
+          <footer class="event-edit-footer">
+            <button type="button" class="ghost-action event-edit-delete" data-event-edit-delete>删除</button>
+            <button type="button" class="send-button" data-event-edit-save>完成</button>
+          </footer>
+        </div>
+      </section>
+    </div>
+    <main class="small-phone-mode" data-small-phone-root hidden aria-label="月栖小手机模式" data-i18n-attr="aria-label:brand.phoneShellLabel"></main>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "clipId": "stand_to_sit",
+  "image": "stand_to_sit.png",
+  "size": {
+    "width": 833,
+    "height": 688
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "stand_to_sit_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 232,
+        "height": 687
+      },
+      "source": {
+        "x": 264,
+        "y": 47,
+        "width": 232,
+        "height": 687
+      },
+      "durationMs": 240
+    },
+    {
+      "id": "stand_to_sit_001",
+      "index": 1,
+      "atlas": {
+        "x": 234,
+        "y": 0,
+        "width": 303,
+        "height": 668
+      },
+      "source": {
+        "x": 230,
+        "y": 54,
+        "width": 303,
+        "height": 668
+      },
+      "durationMs": 520
+    },
+    {
+      "id": "stand_to_sit_002",
+      "index": 2,
+      "atlas": {
+        "x": 539,
+        "y": 0,
+        "width": 294,
+        "height": 688
+      },
+      "source": {
+        "x": 259,
+        "y": 41,
+        "width": 294,
+        "height": 688
+      },
+      "durationMs": 320
+    }
+  ]
+}

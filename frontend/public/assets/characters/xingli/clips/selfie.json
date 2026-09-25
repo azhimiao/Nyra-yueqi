@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "clipId": "selfie",
+  "image": "selfie.png",
+  "size": {
+    "width": 275,
+    "height": 676
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "selfie_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 275,
+        "height": 676
+      },
+      "source": {
+        "x": 227,
+        "y": 48,
+        "width": 275,
+        "height": 676
+      },
+      "durationMs": 1700
+    }
+  ]
+}

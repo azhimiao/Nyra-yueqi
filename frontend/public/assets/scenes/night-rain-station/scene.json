@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "night-rain-station",
+  "label": "夜雨车站",
+  "aliases": ["rain_station", "script-rain-station"],
+  "fallbackGradient": "radial-gradient(90% 70% at 50% 10%, rgb(90 120 150 / 35%), transparent 55%), linear-gradient(180deg, #1a2430 0%, #0c141c 55%, #070b10 100%)",
+  "layers": [
+    {
+      "id": "far-city",
+      "role": "far",
+      "src": "layers/far-city.svg",
+      "z": 1,
+      "parallax": 0.12,
+      "className": "scene-layer--far"
+    },
+    {
+      "id": "rain-mid",
+      "role": "mid",
+      "src": "layers/rain-mid.svg",
+      "z": 2,
+      "parallax": 0.28,
+      "className": "scene-layer--rain is-animated"
+    },
+    {
+      "id": "platform-near",
+      "role": "near",
+      "src": "layers/platform-near.svg",
+      "z": 3,
+      "parallax": 0.55,
+      "className": "scene-layer--near"
+    },
+    {
+      "id": "vignette",
+      "role": "vignette",
+      "src": "layers/vignette.svg",
+      "z": 8,
+      "parallax": 0,
+      "className": "scene-layer--vignette"
+    }
+  ]
+}

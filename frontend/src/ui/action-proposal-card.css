@@ -1,0 +1,158 @@
+/* ActionProposal cards — C2; match chat bubbles; touch ≥44px */
+
+.action-proposal-host {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 4px 0 10px;
+}
+
+.action-proposal-host[hidden] {
+  display: none !important;
+}
+
+.action-proposal-card {
+  box-sizing: border-box;
+  width: min(100%, 360px);
+  padding: 12px 14px;
+  border: 1px solid #dfe9e5;
+  border-radius: 14px;
+  background: #fff;
+  color: #1a2b2a;
+  box-shadow: 0 4px 14px rgb(1 15 29 / 6%);
+}
+
+/* Pop keeps the same card proportions as App — only host width may stretch. */
+.action-proposal-card.is-phone {
+  width: min(100%, 360px);
+}
+
+.action-proposal-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.action-proposal-card__title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.action-proposal-card__risk {
+  flex: 0 0 auto;
+  min-height: 22px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #d5e0dc;
+  color: #4d9187;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.action-proposal-card__risk[data-risk="R2"],
+.action-proposal-card__risk[data-risk="R3"] {
+  color: #9a5b32;
+  border-color: #ecd8c4;
+  background: #fff8f0;
+}
+
+.action-proposal-card__effect,
+.action-proposal-card__when,
+.action-proposal-card__target,
+.action-proposal-card__status {
+  margin: 0 0 4px;
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.action-proposal-card__when,
+.action-proposal-card__target {
+  color: #5c6d6a;
+}
+
+.action-proposal-card__status {
+  color: #7c8a87;
+  font-size: 12px;
+}
+
+.action-proposal-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.action-proposal-card__btn {
+  box-sizing: border-box;
+  min-width: 88px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: transform 80ms ease, opacity 80ms ease, background 80ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.action-proposal-card__btn.is-confirm {
+  color: #fff;
+  background: #4d9187;
+}
+
+.action-proposal-card__btn.is-reject {
+  color: #3d4f4c;
+  background: #eef3f1;
+  border-color: #d5e0dc;
+}
+
+.action-proposal-card__btn.is-undo {
+  color: #9a5b32;
+  background: #fff8f0;
+  border-color: #ecd8c4;
+}
+
+.action-proposal-card__btn:active,
+.action-proposal-card__btn.is-pressed {
+  transform: scale(0.97);
+  opacity: 0.88;
+}
+
+.action-proposal-card__btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.action-proposal-card.is-executing {
+  opacity: 0.92;
+}
+
+.action-proposal-card.is-completed .action-proposal-card__status {
+  color: #3d7a70;
+}
+
+.action-proposal-card.is-rejected .action-proposal-card__status,
+.action-proposal-card.is-expired .action-proposal-card__status,
+.action-proposal-card.is-failed .action-proposal-card__status,
+.action-proposal-card.is-undone .action-proposal-card__status {
+  color: #8a6a5a;
+}
+
+/* Shared thread density — App + Pop */
+body[data-app-mode="app"] .action-proposal-card,
+.mini-phone .action-proposal-card {
+  max-width: min(84%, 420px);
+}
+
+.mini-message-list .action-proposal-host {
+  align-self: stretch;
+  padding: 0;
+}

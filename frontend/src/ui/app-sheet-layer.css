@@ -1,0 +1,87 @@
+/**
+ * App dock is z-index 42. Any bottom sheet or modal below that loses its
+ * confirm / generate / save control under 聊天 / 空间 / 陪伴.
+ */
+
+body[data-app-mode="app"] {
+  --app-sheet-z: 80;
+}
+
+body[data-app-mode="app"] .memory-compose-sheet,
+body[data-app-mode="app"] .memory-month-sheet,
+body[data-app-mode="app"] .economy-sheet,
+body[data-app-mode="app"] .nyra-overlay,
+body[data-app-mode="app"] .modal,
+body[data-app-mode="app"] .assets-hub-overlay,
+body[data-app-mode="app"] .pop-token-sheet,
+body[data-app-mode="app"] .nyra-nav-hub {
+  z-index: var(--app-sheet-z);
+}
+
+body[data-app-mode="app"] .confirm-modal {
+  z-index: 140;
+}
+
+/* Calendar picker: same overlay contract as diary compose. */
+body > .memory-month-sheet,
+.companion-page .memory-month-sheet.is-viewport {
+  position: fixed;
+  inset: 0;
+  z-index: var(--app-sheet-z, 80);
+  display: grid;
+  align-items: end;
+  justify-items: stretch;
+  min-height: 0;
+  pointer-events: auto;
+}
+
+body > .memory-month-sheet[hidden],
+.companion-page .memory-month-sheet.is-viewport[hidden] {
+  display: none !important;
+}
+
+body > .memory-month-sheet .memory-month-sheet__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(2, 10, 18, 0.34);
+}
+
+body > .memory-month-sheet .memory-month-sheet__panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 440px);
+  max-height: min(78dvh, 560px);
+  margin: 0 auto;
+  padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+  border-radius: 18px 18px 0 0;
+  background: var(--nyra-paper, #fff);
+  box-shadow: 0 -16px 48px rgba(1, 15, 29, 0.2);
+}
+
+body > .memory-month-sheet .memory-month-grid,
+body > .memory-month-sheet .memory-month-weekdays {
+  flex: 0 0 auto;
+}
+
+body > .memory-month-sheet .memory-month-today {
+  flex-shrink: 0;
+  min-height: 44px;
+  margin-top: 10px;
+}
+
+/* Keep in-page diary actions above the dock when the feed is short. */
+body[data-app-mode="app"] .memory-layout--gallery {
+  padding-bottom: calc(20px + var(--nyra-dock-height, 72px));
+}
+
+body[data-app-mode="app"] .nyra-overlay__sheet {
+  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+}
+
+body[data-app-mode="app"] .nyra-nav-hub {
+  z-index: 50;
+}

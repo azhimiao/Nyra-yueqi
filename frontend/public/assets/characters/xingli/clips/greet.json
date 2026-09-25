@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "clipId": "greet",
+  "image": "greet.png",
+  "size": {
+    "width": 832,
+    "height": 674
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "greet_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 288,
+        "height": 674
+      },
+      "source": {
+        "x": 216,
+        "y": 47,
+        "width": 288,
+        "height": 674
+      },
+      "durationMs": 260
+    },
+    {
+      "id": "greet_001",
+      "index": 1,
+      "atlas": {
+        "x": 290,
+        "y": 0,
+        "width": 252,
+        "height": 652
+      },
+      "source": {
+        "x": 240,
+        "y": 59,
+        "width": 252,
+        "height": 652
+      },
+      "durationMs": 480
+    },
+    {
+      "id": "greet_002",
+      "index": 2,
+      "atlas": {
+        "x": 544,
+        "y": 0,
+        "width": 288,
+        "height": 674
+      },
+      "source": {
+        "x": 216,
+        "y": 47,
+        "width": 288,
+        "height": 674
+      },
+      "durationMs": 260
+    }
+  ]
+}

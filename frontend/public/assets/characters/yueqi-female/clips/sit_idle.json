@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "clipId": "sit_idle",
+  "image": "sit_idle.png",
+  "size": {
+    "width": 316,
+    "height": 689
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "sit_idle_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 316,
+        "height": 689
+      },
+      "source": {
+        "x": 206,
+        "y": 43,
+        "width": 316,
+        "height": 689
+      },
+      "durationMs": 1800
+    }
+  ]
+}

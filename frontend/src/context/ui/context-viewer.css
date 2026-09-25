@@ -1,0 +1,264 @@
+/* Personal Context Graph viewer — phone screen */
+
+.mini-context {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mini-context > [data-ctx-memory-view],
+.mini-context > [data-ctx-trace-view] {
+  grid-row: 3;
+  min-height: 0;
+}
+
+.mini-context > [data-ctx-memory-view] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.mini-context > [data-ctx-trace-view] {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mini-context .mini-appbar span {
+  display: block;
+  font-size: 11px;
+  opacity: 0.72;
+  margin-top: 2px;
+}
+
+.mini-context-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 12px 4px;
+}
+
+.mini-context-modes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 10px 14px 0;
+}
+
+.mini-context-modes button {
+  border: 0;
+  border-radius: 12px;
+  padding: 9px 12px;
+  color: var(--mini-muted, #7d7a82);
+  background: rgba(255, 255, 255, 0.56);
+  font: inherit;
+  font-size: 12px;
+}
+
+.mini-context-modes button.is-active {
+  color: #6d4c59;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(93, 67, 77, 0.1);
+}
+
+.mini-context-inspector {
+  padding: 10px 14px 24px;
+}
+
+.mini-context-trace-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.mini-context-trace-head p {
+  margin: 0;
+  color: #817982;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.mini-context-trace-head button {
+  flex: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: #9d5966;
+  background: #fff0f2;
+}
+
+.mini-context-detail h4 {
+  margin: 16px 0 8px;
+  font-size: 12px;
+  color: #6f646d;
+}
+
+.mini-context-trace-blocks details {
+  margin-bottom: 7px;
+  border: 1px solid rgba(113, 91, 101, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.mini-context-trace-blocks summary {
+  padding: 9px 10px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #725f69;
+}
+
+.mini-context-trace-blocks pre {
+  max-height: 180px;
+  overflow: auto;
+  margin: 0;
+  padding: 10px;
+  border-top: 1px solid rgba(113, 91, 101, 0.1);
+  white-space: pre-wrap;
+  word-break: break-word;
+  font: 10px/1.55 ui-monospace, SFMono-Regular, Consolas, monospace;
+  color: #4e474c;
+}
+
+.mini-context-source-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mini-context-source-list li {
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.62);
+  font-size: 10px;
+  color: #786f75;
+}
+
+.mini-context-filters button {
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  background: color-mix(in srgb, canvas 88%, transparent);
+  color: inherit;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.mini-context-filters button.is-active {
+  border-color: color-mix(in srgb, #2a6f6a 55%, transparent);
+  background: color-mix(in srgb, #2a6f6a 16%, canvas);
+}
+
+.mini-context-layout {
+  display: grid;
+  gap: 10px;
+  padding: 8px 12px 20px;
+  min-height: 0;
+}
+
+.mini-context-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mini-context-card {
+  text-align: left;
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  background: color-mix(in srgb, canvas 92%, transparent);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: inherit;
+  width: 100%;
+}
+
+.mini-context-card.is-selected {
+  border-color: color-mix(in srgb, #2a6f6a 50%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #2a6f6a 25%, transparent);
+}
+
+.mini-context-card strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.mini-context-card small,
+.mini-context-meta {
+  display: block;
+  font-size: 11px;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+.mini-context-empty {
+  opacity: 0.65;
+  font-size: 13px;
+  padding: 16px 4px;
+}
+
+.mini-context-detail {
+  border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+  padding-top: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.mini-context-detail h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.mini-context-detail dl {
+  margin: 0 0 12px;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 6px 8px;
+  font-size: 12px;
+}
+
+.mini-context-detail dt {
+  opacity: 0.65;
+}
+
+.mini-context-detail dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+.mini-context-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mini-context-actions button {
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  background: color-mix(in srgb, canvas 90%, transparent);
+  color: inherit;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.mini-context-actions button[data-ctx-danger] {
+  border-color: color-mix(in srgb, #b33 40%, transparent);
+  color: #a33;
+}
+
+.mini-context-badge {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}

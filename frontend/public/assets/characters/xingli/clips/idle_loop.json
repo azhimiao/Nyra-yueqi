@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "clipId": "idle_loop",
+  "image": "idle_loop.png",
+  "size": {
+    "width": 232,
+    "height": 687
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "idle_loop_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 232,
+        "height": 687
+      },
+      "source": {
+        "x": 264,
+        "y": 47,
+        "width": 232,
+        "height": 687
+      },
+      "durationMs": 1800
+    }
+  ]
+}

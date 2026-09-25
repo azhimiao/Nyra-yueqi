@@ -1,0 +1,366 @@
+/* E7 游戏大厅 */
+
+.games-app {
+  --g-ink: #243038;
+  --g-mint: #6b9080;
+  --g-coral: #c97b63;
+  height: 100%;
+  min-height: 0;
+  background:
+    radial-gradient(70% 45% at 0% 0%, rgb(107 144 128 / 18%), transparent 50%),
+    radial-gradient(60% 40% at 100% 20%, rgb(201 123 99 / 14%), transparent 45%),
+    linear-gradient(180deg, #eef3f1, #f6f1ea);
+  color: var(--g-ink);
+  font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+}
+
+.games-shell {
+  height: 100%;
+  min-height: 0;
+}
+
+.games-view {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  padding: 16px;
+  overflow: auto;
+  animation: games-fade 180ms ease both;
+}
+
+.games-view.is-active { display: flex; }
+
+@keyframes games-fade {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .games-view,
+  .tap-dot,
+  .match-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.games-brand {
+  margin: 0 0 4px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: rgb(36 48 56 / 55%);
+}
+
+.games-top h1 {
+  margin: 0 0 6px;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.games-lead {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: rgb(36 48 56 / 65%);
+}
+
+.games-lead--soft {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.games-section-label {
+  margin: 4px 0 0;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: .04em;
+  color: rgb(36 48 56 / 55%);
+}
+
+.games-card--soft {
+  opacity: 0.88;
+}
+
+.games-cta--ghost {
+  background: transparent !important;
+  color: var(--g-ink) !important;
+  box-shadow: inset 0 0 0 1px rgb(36 48 56 / 18%);
+}
+
+.games-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.games-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 18px 16px;
+  border-radius: 18px;
+  background: rgb(255 255 255 / 78%);
+  box-shadow: 0 1px 0 rgb(36 48 56 / 6%);
+}
+
+.games-card.tone-mint {
+  background: linear-gradient(135deg, rgb(107 144 128 / 22%), rgb(255 255 255 / 85%));
+}
+
+.games-card.tone-coral {
+  background: linear-gradient(135deg, rgb(201 123 99 / 20%), rgb(255 255 255 / 85%));
+}
+
+.games-card strong {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.games-card p {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: rgb(36 48 56 / 65%);
+}
+
+.games-card em {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--g-mint);
+}
+
+.games-mp {
+  margin-top: 16px;
+}
+
+.games-mp-card {
+  position: relative;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgb(36 48 56 / 5%);
+}
+
+.games-mp-card strong { font-size: 14px; }
+.games-mp-card p {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgb(36 48 56 / 62%);
+}
+
+.games-mp-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgb(36 48 56 / 8%);
+  font-size: 11px;
+  color: rgb(36 48 56 / 55%);
+}
+
+.games-bar {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.games-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.games-scorebar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding: 10px 4px;
+  font-size: 13px;
+  color: rgb(36 48 56 / 70%);
+}
+
+.match-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  flex: 1;
+  align-content: center;
+}
+
+.match-card {
+  aspect-ratio: 1;
+  min-height: 56px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #314249, #4f6670);
+  color: #f7f3ec;
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 150ms ease, background 150ms ease;
+}
+
+.match-card.is-up,
+.match-card.is-matched {
+  background: linear-gradient(160deg, #6b9080, #8fb5a6);
+}
+
+.match-card:active { transform: scale(0.96); }
+
+.tap-arena {
+  position: relative;
+  flex: 1;
+  min-height: 220px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 30% 20%, rgb(201 123 99 / 12%), transparent 40%),
+    rgb(255 255 255 / 55%);
+  overflow: hidden;
+}
+
+.tap-dot {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f0c4b4, var(--g-coral));
+  box-shadow: 0 6px 16px rgb(201 123 99 / 35%);
+  cursor: pointer;
+  transform: scale(0.6);
+  opacity: 0;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.tap-dot.is-show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.games-result {
+  margin-top: 32px;
+  text-align: left;
+}
+
+.games-result h2 {
+  margin: 0 0 10px;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+  font-size: 26px;
+}
+
+.games-result p {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: rgb(36 48 56 / 75%);
+}
+
+/* Host must own the scrollport — mini-view is overflow:hidden. */
+.mini-games-host {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mini-games-mount {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mini-games-mount.games-app,
+.mini-games-host .games-shell {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+}
+
+.mini-games-host .games-view {
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+/* Mini-phone product alignment: content can be playful; controls stay precise. */
+.mini-games-host .games-app {
+  --g-ink: #111b25;
+  --g-mint: #347aa9;
+  --g-coral: #102f49;
+  color: var(--g-ink);
+  background: #f2f6f9;
+}
+
+.mini-games-host .games-brand,
+.mini-games-host .games-lead,
+.mini-games-host .games-card p,
+.mini-games-host .games-section-label {
+  color: #6d7d89;
+  letter-spacing: 0;
+}
+
+.mini-games-host .games-card {
+  padding: 16px;
+  border: 1px solid rgb(16 47 73 / 11%);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgb(18 42 59 / 6%);
+}
+
+.mini-games-host .games-card.tone-mint {
+  border-left: 3px solid #4d9bd4;
+  background: #fff;
+}
+
+.mini-games-host .games-card.tone-coral,
+.mini-games-host .games-card.tone-ember {
+  border-left: 3px solid #102f49;
+  background: #fff;
+}
+
+.mini-games-host .games-cta {
+  min-height: 44px;
+  padding: 0 13px;
+  border: 1px solid #071827;
+  border-radius: 6px;
+  color: #fff;
+  background: #071827;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mini-games-host .games-top h1,
+.mini-games-host .games-result h2 {
+  font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+  font-weight: 750;
+  letter-spacing: 0;
+}
+
+.mini-games-host .games-cta--ghost {
+  border-color: rgb(16 47 73 / 16%);
+  color: #102f49 !important;
+  background: #fff !important;
+  box-shadow: none;
+}
+
+.mini-games-host .games-mp-card,
+.mini-games-host .tap-arena {
+  border: 1px solid rgb(16 47 73 / 10%);
+  border-radius: 8px;
+  background: #fff;
+}

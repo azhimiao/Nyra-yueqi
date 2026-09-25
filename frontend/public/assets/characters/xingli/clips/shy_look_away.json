@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "clipId": "shy_look_away",
+  "image": "shy_look_away.png",
+  "size": {
+    "width": 238,
+    "height": 662
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "shy_look_away_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 238,
+        "height": 662
+      },
+      "source": {
+        "x": 260,
+        "y": 59,
+        "width": 238,
+        "height": 662
+      },
+      "durationMs": 1500
+    }
+  ]
+}

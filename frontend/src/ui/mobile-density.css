@@ -1,0 +1,621 @@
+/* Mobile density contract: visual scale down, touch targets stay >= 44px.
+ * Scoped to mini-phone (native/compact) and call modal (app mode).
+ * Always on for native/compact — do not gate behind viewport media queries
+ * (desktop preview / wide WebView must still look like a phone product).
+ */
+
+html.is-native-app .mini-phone,
+html.is-compact-shell .mini-phone {
+  --mini-ui-radius: 14px;
+  --mini-density-title: 20px;
+  --mini-density-lead: 13px;
+  --mini-density-body: 14px;
+  --mini-density-btn: 13px;
+  --mini-density-gap: 10px;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+html.is-native-app .mini-phone,
+html.is-compact-shell .mini-phone,
+html.is-native-app .mini-phone *,
+html.is-compact-shell .mini-phone *,
+html.is-native-app .mini-phone *::before,
+html.is-compact-shell .mini-phone *::before,
+html.is-native-app .mini-phone *::after,
+html.is-compact-shell .mini-phone *::after {
+  box-sizing: border-box;
+}
+
+html.is-native-app .mini-phone__content,
+html.is-compact-shell .mini-phone__content {
+  min-width: 0;
+  max-width: 100%;
+  /* Both axes: overflow-x:hidden alone promotes overflow-y to auto and lets the whole phone scroll. */
+  overflow: hidden;
+}
+
+html.is-native-app .mini-view,
+html.is-compact-shell .mini-view,
+html.is-native-app .mini-home__page,
+html.is-compact-shell .mini-home__page {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+html.is-native-app .mini-app-scroll,
+html.is-compact-shell .mini-app-scroll,
+html.is-native-app .mini-profile__scroll,
+html.is-compact-shell .mini-profile__scroll,
+html.is-native-app .mini-settings-list,
+html.is-compact-shell .mini-settings-list,
+html.is-native-app .explore-host,
+html.is-compact-shell .explore-host {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html.is-native-app .mini-phone img,
+html.is-compact-shell .mini-phone img,
+html.is-native-app .mini-phone video,
+html.is-compact-shell .mini-phone video,
+html.is-native-app .mini-phone canvas,
+html.is-compact-shell .mini-phone canvas {
+  max-width: 100%;
+}
+
+html.is-native-app .mini-appbar,
+html.is-compact-shell .mini-appbar {
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  min-height: 52px;
+  padding: 6px 8px;
+  gap: 4px;
+}
+
+html.is-native-app .mini-appbar strong,
+html.is-compact-shell .mini-appbar strong {
+  font-size: 15px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+html.is-native-app .mini-appbar span,
+html.is-compact-shell .mini-appbar span {
+  margin-top: 2px;
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+html.is-native-app .mini-app-scroll,
+html.is-compact-shell .mini-app-scroll,
+html.is-native-app .mini-profile__scroll,
+html.is-compact-shell .mini-profile__scroll,
+html.is-native-app .mini-settings-list,
+html.is-compact-shell .mini-settings-list {
+  padding: 10px 12px calc(24px + env(safe-area-inset-bottom, 0px));
+}
+
+html.is-native-app .mini-app-lead,
+html.is-compact-shell .mini-app-lead,
+html.is-native-app .mini-form-hint,
+html.is-compact-shell .mini-form-hint,
+html.is-native-app .mini-profile-fold__hint,
+html.is-compact-shell .mini-profile-fold__hint,
+html.is-native-app .mini-read-hint,
+html.is-compact-shell .mini-read-hint,
+html.is-native-app .mini-gallery-hint,
+html.is-compact-shell .mini-gallery-hint {
+  font-size: var(--mini-density-lead);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+html.is-native-app .mini-phone h1,
+html.is-compact-shell .mini-phone h1,
+html.is-native-app .mini-phone h2,
+html.is-compact-shell .mini-phone h2 {
+  font-size: var(--mini-density-title);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+html.is-native-app .mini-phone h3,
+html.is-compact-shell .mini-phone h3 {
+  font-size: 16px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+html.is-native-app .mini-form input,
+html.is-compact-shell .mini-form input,
+html.is-native-app .mini-form textarea,
+html.is-compact-shell .mini-form textarea,
+html.is-native-app .mini-form select,
+html.is-compact-shell .mini-form select,
+html.is-native-app .mini-search,
+html.is-compact-shell .mini-search,
+html.is-native-app .mini-shop-search,
+html.is-compact-shell .mini-shop-search,
+html.is-native-app .mini-auth-field input,
+html.is-compact-shell .mini-auth-field input,
+html.is-native-app .mini-wallpaper-url input,
+html.is-compact-shell .mini-wallpaper-url input {
+  min-height: 44px;
+  max-width: 100%;
+  padding: 9px 11px;
+  font-size: var(--mini-density-body);
+  line-height: 1.35;
+}
+
+html.is-native-app .mini-form textarea,
+html.is-compact-shell .mini-form textarea {
+  min-height: 96px;
+}
+
+html.is-native-app .mini-app-cta,
+html.is-compact-shell .mini-app-cta,
+html.is-native-app .mini-pop-token-submit,
+html.is-compact-shell .mini-pop-token-submit,
+html.is-native-app .mini-moment-compose button[type="submit"],
+html.is-compact-shell .mini-moment-compose button[type="submit"] {
+  min-height: 44px;
+  max-width: 100%;
+  padding: 9px 13px;
+  border-radius: 12px;
+  font-size: var(--mini-density-btn);
+  line-height: 1.25;
+}
+
+html.is-native-app .mini-switch-row,
+html.is-compact-shell .mini-switch-row,
+html.is-native-app .mini-settings-row,
+html.is-compact-shell .mini-settings-row,
+html.is-native-app .mini-form__row,
+html.is-compact-shell .mini-form__row {
+  min-height: 48px;
+  max-width: 100%;
+  padding-block: 7px;
+  font-size: var(--mini-density-btn);
+  line-height: 1.35;
+}
+
+html.is-native-app .mini-home__page,
+html.is-compact-shell .mini-home__page {
+  padding: 8px 12px 4px;
+}
+
+html.is-native-app .mini-widgets,
+html.is-compact-shell .mini-widgets {
+  gap: 8px;
+  grid-template-rows: auto 112px 68px minmax(44px, 1fr) auto;
+}
+
+html.is-native-app .mini-home-greeting strong,
+html.is-compact-shell .mini-home-greeting strong {
+  font-size: 22px !important;
+  line-height: 1.2;
+}
+
+html.is-native-app .mini-home-greeting p,
+html.is-compact-shell .mini-home-greeting p {
+  font-size: 12px !important;
+  line-height: 1.4;
+}
+
+html.is-native-app .mini-home-relation,
+html.is-compact-shell .mini-home-relation {
+  min-height: 64px;
+  padding: 8px;
+  border-radius: var(--mini-ui-radius);
+}
+
+html.is-native-app .mini-widget--vinyl .mini-vinyl,
+html.is-compact-shell .mini-widget--vinyl .mini-vinyl,
+html.is-native-app .mini-widget--vinyl .mini-vinyl__disc,
+html.is-compact-shell .mini-widget--vinyl .mini-vinyl__disc {
+  width: 52px !important;
+  height: 52px !important;
+}
+
+html.is-native-app .mini-widget--vinyl .mini-vinyl__arm,
+html.is-compact-shell .mini-widget--vinyl .mini-vinyl__arm {
+  width: 1.5px !important;
+  height: 16px !important;
+  top: -2px !important;
+  left: 2px !important;
+  right: auto !important;
+  transform: rotate(36deg) !important;
+}
+
+html.is-native-app .mini-widget--vinyl .mini-vinyl__arm::before,
+html.is-compact-shell .mini-widget--vinyl .mini-vinyl__arm::before {
+  width: 5px !important;
+  height: 5px !important;
+}
+
+html.is-native-app .mini-widget--vinyl .mini-vinyl__arm::after,
+html.is-compact-shell .mini-widget--vinyl .mini-vinyl__arm::after {
+  width: 3px !important;
+  height: 5px !important;
+}
+
+html.is-native-app .mini-home-widget-action,
+html.is-compact-shell .mini-home-widget-action {
+  width: 20px;
+  height: 20px;
+  background: #3d95ed;
+}
+
+html.is-native-app .mini-home-shortcuts,
+html.is-compact-shell .mini-home-shortcuts {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px 6px;
+}
+
+html.is-native-app .mini-home-shortcut,
+html.is-compact-shell .mini-home-shortcut {
+  min-height: 0;
+  gap: 4px;
+}
+
+html.is-native-app .mini-home-shortcut > span,
+html.is-compact-shell .mini-home-shortcut > span {
+  width: 44px;
+  height: 44px;
+}
+
+html.is-native-app .mini-home-shortcut strong,
+html.is-compact-shell .mini-home-shortcut strong {
+  font-size: 13px;
+}
+
+html.is-native-app .mini-home-shortcut small,
+html.is-compact-shell .mini-home-shortcut small,
+html.is-native-app .mini-home-shortcut em,
+html.is-compact-shell .mini-home-shortcut em {
+  font-size: 10px;
+}
+
+html.is-native-app .mini-app-icon,
+html.is-compact-shell .mini-app-icon {
+  font-size: 11px;
+}
+
+html.is-native-app .mini-cal-day-sheet,
+html.is-compact-shell .mini-cal-day-sheet,
+html.is-native-app .mini-cal-grid,
+html.is-compact-shell .mini-cal-grid {
+  font-size: 13px;
+}
+
+html.is-native-app .mini-widget,
+html.is-compact-shell .mini-widget,
+html.is-native-app .mini-profile-block,
+html.is-compact-shell .mini-profile-block,
+html.is-native-app .mini-profile-fold,
+html.is-compact-shell .mini-profile-fold,
+html.is-native-app .mini-settings-block,
+html.is-compact-shell .mini-settings-block,
+html.is-native-app .mini-settings-fold,
+html.is-compact-shell .mini-settings-fold,
+html.is-native-app .mini-cal-day-sheet,
+html.is-compact-shell .mini-cal-day-sheet,
+html.is-native-app .mini-listen-sheet,
+html.is-compact-shell .mini-listen-sheet,
+html.is-native-app .mini-reader,
+html.is-compact-shell .mini-reader,
+html.is-native-app .mini-shop-hero,
+html.is-compact-shell .mini-shop-hero,
+html.is-native-app .mini-shop-card,
+html.is-compact-shell .mini-shop-card,
+html.is-native-app .mini-wb-card,
+html.is-compact-shell .mini-wb-card {
+  max-width: 100%;
+  margin-block: 0;
+  border-radius: var(--mini-ui-radius);
+  overflow-wrap: anywhere;
+}
+
+html.is-native-app .mini-profile-block + .mini-profile-block,
+html.is-compact-shell .mini-profile-block + .mini-profile-block,
+html.is-native-app .mini-settings-block + .mini-settings-block,
+html.is-compact-shell .mini-settings-block + .mini-settings-block,
+html.is-native-app .mini-shop-card + .mini-shop-card,
+html.is-compact-shell .mini-shop-card + .mini-shop-card,
+html.is-native-app .mini-wb-card + .mini-wb-card,
+html.is-compact-shell .mini-wb-card + .mini-wb-card {
+  margin-top: var(--mini-density-gap);
+}
+
+html.is-native-app .explore-host,
+html.is-compact-shell .explore-host,
+html.is-native-app .explore-host > *,
+html.is-compact-shell .explore-host > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+html.is-native-app .explore-host button,
+html.is-compact-shell .explore-host button,
+html.is-native-app .explore-host input,
+html.is-compact-shell .explore-host input,
+html.is-native-app .explore-host textarea,
+html.is-compact-shell .explore-host textarea {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* Explore: product density (was demo-scale titles / empty states). */
+html.is-native-app .mini-explore-host .explore-appbar__title strong,
+html.is-compact-shell .mini-explore-host .explore-appbar__title strong {
+  font-size: 16px !important;
+  line-height: 1.2;
+}
+
+html.is-native-app .mini-explore-host .explore-appbar__title span,
+html.is-compact-shell .mini-explore-host .explore-appbar__title span {
+  font-size: 11px !important;
+}
+
+html.is-native-app .mini-explore-host .explore-tabs--three button,
+html.is-compact-shell .mini-explore-host .explore-tabs--three button {
+  font-size: 13px !important;
+  min-height: 40px;
+}
+
+html.is-native-app .mini-explore-host .explore-chat-empty strong,
+html.is-compact-shell .mini-explore-host .explore-chat-empty strong,
+html.is-native-app .mini-explore-host .explore-tasks h3,
+html.is-compact-shell .mini-explore-host .explore-tasks h3,
+html.is-native-app .mini-explore-host .explore-market h3,
+html.is-compact-shell .mini-explore-host .explore-market h3 {
+  font-size: 16px !important;
+  line-height: 1.25;
+}
+
+html.is-native-app .mini-explore-host .explore-chat-empty p,
+html.is-compact-shell .mini-explore-host .explore-chat-empty p,
+html.is-native-app .mini-explore-host .explore-task-form > p,
+html.is-compact-shell .mini-explore-host .explore-task-form > p,
+html.is-native-app .mini-explore-host .explore-tasks p,
+html.is-compact-shell .mini-explore-host .explore-tasks p {
+  font-size: 12px !important;
+  line-height: 1.45;
+}
+
+html.is-native-app .mini-explore-host .explore-cta,
+html.is-compact-shell .mini-explore-host .explore-cta,
+html.is-native-app .mini-explore-host .explore-task-form > button,
+html.is-compact-shell .mini-explore-host .explore-task-form > button {
+  min-height: 44px;
+  font-size: 14px !important;
+}
+
+html.is-native-app .mini-explore-host .explore-session__composer input,
+html.is-compact-shell .mini-explore-host .explore-session__composer input {
+  min-height: 44px;
+  font-size: 14px !important;
+}
+
+/* Home icons / dock: keep hit ≥44, shrink visual tile. */
+html.is-native-app .mini-app-slot > i,
+html.is-compact-shell .mini-app-slot > i {
+  width: min(44px, 68%);
+}
+
+html.is-native-app .mini-app-icon,
+html.is-compact-shell .mini-app-icon {
+  font-size: 10px;
+  gap: 2px;
+}
+
+html.is-native-app .mini-dock,
+html.is-compact-shell .mini-dock {
+  padding: 6px 10px;
+  gap: 6px;
+}
+
+html.is-native-app .mini-dock-icon > span,
+html.is-compact-shell .mini-dock-icon > span,
+html.is-native-app .mini-dock .mini-app-icon > span,
+html.is-compact-shell .mini-dock .mini-app-icon > span {
+  width: 42px;
+  height: 42px;
+}
+
+html.is-native-app .mini-explore-host .explore-appbar__title strong,
+html.is-compact-shell .mini-explore-host .explore-appbar__title strong,
+html.is-native-app .mini-explore-host .explore-chat-empty strong,
+html.is-compact-shell .mini-explore-host .explore-chat-empty strong,
+html.is-native-app .mini-explore-host .explore-tasks h3,
+html.is-compact-shell .mini-explore-host .explore-tasks h3,
+html.is-native-app .mini-explore-host .explore-task-form + h3,
+html.is-compact-shell .mini-explore-host .explore-task-form + h3 {
+  font-size: 16px !important;
+  line-height: 1.25;
+}
+
+html.is-native-app .mini-explore-host .explore-appbar__title span,
+html.is-compact-shell .mini-explore-host .explore-appbar__title span,
+html.is-native-app .mini-explore-host .explore-chat-empty p,
+html.is-compact-shell .mini-explore-host .explore-chat-empty p,
+html.is-native-app .mini-explore-host .explore-tasks p,
+html.is-compact-shell .mini-explore-host .explore-tasks p {
+  font-size: 12px !important;
+  line-height: 1.4;
+}
+
+html.is-native-app .mini-explore-host .explore-tabs--three button,
+html.is-compact-shell .mini-explore-host .explore-tabs--three button {
+  font-size: 13px !important;
+  min-height: 40px;
+  padding: 8px 6px;
+}
+
+html.is-native-app .mini-explore-host .explore-cta,
+html.is-compact-shell .mini-explore-host .explore-cta,
+html.is-native-app .mini-explore-host .explore-task-form > button,
+html.is-compact-shell .mini-explore-host .explore-task-form > button {
+  min-height: 44px;
+  font-size: 13px !important;
+  padding: 10px 12px;
+}
+
+html.is-native-app .mini-explore-host .explore-task-form textarea,
+html.is-compact-shell .mini-explore-host .explore-task-form textarea {
+  min-height: 88px;
+  font-size: 13px !important;
+}
+
+html.is-native-app .mini-explore-host .explore-session__composer input,
+html.is-compact-shell .mini-explore-host .explore-session__composer input {
+  min-height: 40px;
+  font-size: 13px !important;
+}
+
+html.is-native-app .mini-dock,
+html.is-compact-shell .mini-dock {
+  gap: 8px;
+  padding: 6px 10px;
+}
+
+html.is-native-app .mini-dock-icon > span,
+html.is-compact-shell .mini-dock-icon > span,
+html.is-native-app .mini-app-icon > span,
+html.is-compact-shell .mini-app-icon > span {
+  width: 42px !important;
+  height: 42px !important;
+}
+
+html.is-native-app .mini-app-slot > i,
+html.is-compact-shell .mini-app-slot > i {
+  width: min(44px, 70%) !important;
+}
+
+html.is-native-app .mini-app-icon,
+html.is-compact-shell .mini-app-icon {
+  font-size: 10px !important;
+  gap: 2px;
+}
+
+html.is-native-app .mini-shop-search,
+html.is-compact-shell .mini-shop-search,
+html.is-native-app .mini-shop-buy,
+html.is-compact-shell .mini-shop-buy {
+  font-size: 12px !important;
+}
+
+/* Stage G: voice/video call modal — compact card, no oversized empty stage. */
+body[data-app-mode="app"] .video-call-modal.is-open {
+  z-index: 120;
+  align-items: center;
+  justify-items: center;
+  padding:
+    max(12px, env(safe-area-inset-top, 0px))
+    12px
+    calc(12px + var(--nyra-dock-height, 72px));
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel {
+  box-sizing: border-box;
+  width: min(100%, 340px);
+  max-width: 100%;
+  max-height: calc(100svh - 28px - var(--nyra-dock-height, 72px));
+  padding: 12px 12px 10px;
+  gap: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 18px;
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel > header {
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 2px;
+}
+
+body[data-app-mode="app"] .video-call-modal .modal-panel > header h2 {
+  font-size: 17px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+body[data-app-mode="app"] .video-call-stage {
+  max-width: 100%;
+  border-radius: 14px;
+}
+
+body[data-app-mode="app"] .video-call-modal:not([data-call-mode="voice"]) .video-call-stage {
+  aspect-ratio: 3 / 4;
+  max-height: min(40svh, 280px);
+}
+
+body[data-app-mode="app"] .video-call-stage video,
+body[data-app-mode="app"] .video-call-stage canvas {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+body[data-app-mode="app"] .voice-call-avatar img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+body[data-app-mode="app"] .video-call-modal[data-call-mode="voice"] .video-call-stage {
+  aspect-ratio: auto;
+  height: auto;
+  max-height: none;
+  min-height: 0;
+}
+
+body[data-app-mode="app"] .voice-call-stage {
+  gap: 6px;
+  padding: 18px 12px 14px;
+}
+
+body[data-app-mode="app"] .voice-call-avatar {
+  width: 76px;
+  height: 76px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.72), 0 10px 22px rgba(1, 15, 29, 0.12);
+}
+
+body[data-app-mode="app"] .voice-call-stage strong {
+  font-size: 18px;
+}
+
+body[data-app-mode="app"] .video-call-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 0;
+}
+
+body[data-app-mode="app"] .video-call-actions .ghost-action {
+  min-width: 0;
+  min-height: 44px;
+  padding-inline: 8px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+body[data-app-mode="app"] .video-call-actions .video-call-stop {
+  grid-column: 1 / -1;
+  min-height: 46px;
+}
+
+body[data-app-mode="app"] .video-call-modal:not([data-call-mode="voice"]) .video-call-actions [data-video-call-auto] {
+  grid-column: 1 / -1;
+}
+
+body[data-app-mode="app"] .video-call-log {
+  max-width: 100%;
+  max-height: 56px;
+  overflow: auto;
+  font-size: 12px;
+  text-align: center;
+}

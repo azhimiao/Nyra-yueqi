@@ -1,0 +1,1110 @@
+/* Compact product density for mini-phone apps. The OS home is out of scope. */
+
+.mini-phone .mini-view:not(.mini-home) {
+  --mini-inner-radius: 10px;
+  --mini-inner-gap: 9px;
+  min-width: 0;
+  max-width: 100%;
+  font-size: 13px;
+  line-height: 1.42;
+  overflow-x: hidden;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-appbar {
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  min-height: 52px;
+  padding: 4px 8px;
+  gap: 4px;
+  box-shadow: 0 1px 0 rgba(16, 36, 58, 0.05);
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-appbar strong {
+  font-size: 15px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-appbar span {
+  font-size: 10px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-icon-button,
+.mini-phone .mini-view:not(.mini-home) .explore-icon-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-color: transparent;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-icon-button svg,
+.mini-phone .mini-view:not(.mini-home) .explore-icon-btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-app-scroll,
+.mini-phone .mini-view:not(.mini-home) .mini-profile__scroll,
+.mini-phone .mini-view:not(.mini-home) .mini-settings-list,
+.mini-phone .mini-view:not(.mini-home) .explore-body {
+  padding: 10px 12px calc(22px + env(safe-area-inset-bottom, 0px));
+}
+
+.mini-phone .mini-view:not(.mini-home) h1,
+.mini-phone .mini-view:not(.mini-home) h2 {
+  font-size: 18px;
+  line-height: 1.24;
+}
+
+.mini-phone .mini-view:not(.mini-home) h3,
+.mini-phone .mini-view:not(.mini-home) .mini-form__title,
+.mini-phone .mini-view:not(.mini-home) summary {
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-app-lead,
+.mini-phone .mini-view:not(.mini-home) .mini-form-hint,
+.mini-phone .mini-view:not(.mini-home) .mini-profile-fold__hint,
+.mini-phone .mini-view:not(.mini-home) .mini-read-hint,
+.mini-phone .mini-view:not(.mini-home) .mini-gallery-hint {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-settings-block,
+.mini-phone .mini-view:not(.mini-home) .mini-profile-block,
+.mini-phone .mini-view:not(.mini-home) .mini-settings-fold,
+.mini-phone .mini-view:not(.mini-home) .mini-memory-card,
+.mini-phone .mini-view:not(.mini-home) .mini-shop-card,
+.mini-phone .mini-view:not(.mini-home) .mini-shop-detail-card,
+.mini-phone .mini-view:not(.mini-home) .mini-reader,
+.mini-phone .mini-view:not(.mini-home) .mini-cal-day-sheet,
+.mini-phone .mini-view:not(.mini-home) .mini-listen-sheet,
+.mini-phone .mini-view:not(.mini-home) .explore-market-hero,
+.mini-phone .mini-view:not(.mini-home) .explore-task-card,
+.mini-phone .mini-view:not(.mini-home) .explore-market-row,
+.mini-phone .mini-view:not(.mini-home) .explore-cap-card {
+  max-width: 100%;
+  border-radius: var(--mini-inner-radius);
+  box-shadow: 0 4px 14px rgba(20, 49, 78, 0.055);
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-settings-block,
+.mini-phone .mini-view:not(.mini-home) .mini-profile-block,
+.mini-phone .mini-view:not(.mini-home) .mini-settings-fold {
+  padding: 10px 12px;
+}
+
+.mini-phone .mini-settings-block > .mini-profile-fold,
+.mini-phone .mini-profile-block > .mini-profile-fold,
+.mini-phone .mini-profile-fold--in-card {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  border: 0;
+  border-top: 1px solid var(--mini-os-line, rgb(28 71 119 / 14%));
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-settings-block > .mini-profile-fold > summary,
+.mini-phone .mini-profile-block > .mini-profile-fold > summary,
+.mini-phone .mini-profile-fold--in-card > summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 0;
+  padding: 10px 28px 8px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-settings-block > .mini-profile-fold > summary::before,
+.mini-phone .mini-profile-block > .mini-profile-fold > summary::before,
+.mini-phone .mini-profile-fold--in-card > summary::before {
+  right: 2px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-settings-block + .mini-settings-block,
+.mini-phone .mini-view:not(.mini-home) .mini-profile-block + .mini-profile-block,
+.mini-phone .mini-view:not(.mini-home) .mini-memory-card + .mini-memory-card,
+.mini-phone .mini-view:not(.mini-home) .mini-shop-card + .mini-shop-card,
+.mini-phone .mini-view:not(.mini-home) .explore-market-row + .explore-market-row {
+  margin-top: var(--mini-inner-gap);
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-settings-row,
+.mini-phone .mini-view:not(.mini-home) .mini-switch-row,
+.mini-phone .mini-view:not(.mini-home) .mini-form__row {
+  min-height: 44px;
+  padding: 7px 8px;
+  font-size: 13px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-settings-row svg,
+.mini-phone .mini-view:not(.mini-home) .mini-switch-row svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-app-cta,
+.mini-phone .mini-view:not(.mini-home) .mini-form button,
+.mini-phone .mini-view:not(.mini-home) .mini-shop-send,
+.mini-phone .mini-view:not(.mini-home) .explore-cta,
+.mini-phone .mini-view:not(.mini-home) .explore-market-play,
+.mini-phone .mini-view:not(.mini-home) .explore-market-get {
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 9px;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+/* Catalog buy stays compact inside 2-col cards; product sheet keeps full CTA. */
+.mini-phone .mini-view:not(.mini-home) .mini-shop-grid .mini-shop-buy {
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-shop-product .mini-shop-buy,
+.mini-phone .mini-view:not(.mini-home) .mini-shop-product .mini-shop-send {
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 9px;
+  font-size: 13px;
+}
+
+.mini-phone .mini-view:not(.mini-home) input,
+.mini-phone .mini-view:not(.mini-home) select,
+.mini-phone .mini-view:not(.mini-home) textarea {
+  max-width: 100%;
+  font-size: 16px;
+}
+
+.mini-phone .mini-view:not(.mini-home) textarea {
+  min-height: 84px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-shop-tabs,
+.mini-phone .mini-view:not(.mini-home) .explore-tabs--three {
+  min-height: 44px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-shop-tab,
+.mini-phone .mini-view:not(.mini-home) .explore-tabs--three button {
+  min-height: 44px;
+  padding: 0 8px;
+  font-size: 13px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .explore-appbar {
+  min-height: 52px;
+  padding: 4px 8px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .explore-appbar__title strong {
+  font-size: 15px !important;
+}
+
+.mini-phone .mini-view:not(.mini-home) .explore-appbar__title span {
+  font-size: 10px !important;
+}
+
+.mini-phone .mini-view:not(.mini-home) .explore-market,
+.mini-phone .mini-view:not(.mini-home) .explore-tasks {
+  gap: 10px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .explore-market-hero,
+.mini-phone .mini-view:not(.mini-home) .explore-task-form,
+.mini-phone .mini-view:not(.mini-home) .explore-task-card,
+.mini-phone .mini-view:not(.mini-home) .explore-cap-card {
+  padding: 11px 12px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .explore-market-hero strong,
+.mini-phone .mini-view:not(.mini-home) .explore-market-section,
+.mini-phone .mini-view:not(.mini-home) .explore-tasks h3 {
+  font-size: 15px !important;
+}
+
+.mini-phone .mini-view:not(.mini-home) .explore-market-hero p,
+.mini-phone .mini-view:not(.mini-home) .explore-market-section-lead,
+.mini-phone .mini-view:not(.mini-home) .explore-task-form > p,
+.mini-phone .mini-view:not(.mini-home) .explore-market-row__meta {
+  font-size: 12px !important;
+  line-height: 1.45;
+}
+
+.mini-phone .mini-view:not(.mini-home) .explore-market-row {
+  gap: 9px;
+  padding: 10px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .explore-market-row__actions {
+  gap: 6px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-shop-grid {
+  gap: 9px;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-shop-card__body,
+.mini-phone .mini-view:not(.mini-home) .mini-shop-product__body,
+.mini-phone .mini-view:not(.mini-home) .mini-shop-detail-card__facts {
+  padding: 10px;
+}
+
+/* Diary: the book is the object; do not frame it inside another full-screen card. */
+.mini-phone .mini-diary .mini-diary-host {
+  place-items: start center;
+  padding: 10px 12px 14px;
+}
+
+.mini-phone .mini-diary .diary-book {
+  place-items: start center;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-diary .diary-book:not(.is-open) .diary-book-shell {
+  padding-top: 18px;
+}
+
+.mini-phone .mini-diary .diary-book:not(.is-open) .diary-book-cover {
+  width: min(68vw, 248px);
+  max-height: none;
+  box-shadow: 0 14px 28px rgba(20, 49, 78, 0.14);
+}
+
+.mini-phone .mini-diary .diary-book-cover-face {
+  padding: 11px 10px;
+}
+
+.mini-phone .mini-diary .diary-book-cover-face h3 {
+  font-size: 18px;
+}
+
+.mini-phone .mini-diary .diary-book-tap-hint,
+.mini-phone .mini-diary .diary-book-cover-face p {
+  font-size: 11px;
+}
+
+.mini-phone .mini-diary .diary-book-index {
+  border-radius: 9px;
+}
+
+.mini-phone .mini-diary .diary-flip-page-inner {
+  min-height: 250px;
+  padding: 15px 14px 12px;
+}
+
+/* Shop: shorten the visual cover and keep actions touchable without tall cards. */
+.mini-phone .mini-shop .mini-shop-hero {
+  margin-bottom: 8px;
+  padding: 9px 11px;
+}
+
+.mini-phone .mini-shop .mini-shop-search {
+  min-height: 42px;
+  margin-bottom: 8px;
+}
+
+.mini-phone .mini-shop .mini-shop-cats {
+  gap: 6px;
+  padding-block: 2px 8px;
+}
+
+.mini-phone .mini-shop .mini-shop-cat {
+  min-height: 44px;
+  padding-inline: 10px;
+  font-size: 11px;
+}
+
+.mini-phone .mini-shop .mini-shop-grid {
+  gap: 8px;
+}
+
+.mini-phone .mini-shop .mini-shop-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(20, 49, 78, 0.055);
+}
+
+.mini-phone .mini-shop .mini-shop-card__cover {
+  aspect-ratio: 1.28;
+  height: auto;
+  min-height: 72px;
+  max-height: none;
+  font-size: 40px;
+}
+
+.mini-phone .mini-shop .mini-shop-card__body {
+  gap: 2px;
+  padding: 7px 8px 8px;
+}
+
+.mini-phone .mini-shop .mini-shop-card__body strong {
+  font-size: 12px;
+  -webkit-line-clamp: 1;
+}
+
+.mini-phone .mini-shop .mini-shop-card__body em {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mini-phone .mini-shop .mini-shop-card__row {
+  margin-top: 2px;
+}
+
+.mini-phone .mini-shop .mini-shop-buy {
+  min-width: 40px;
+  min-height: 28px;
+  padding-inline: 10px;
+  border-radius: 8px;
+}
+
+/* Settings: one grouped surface with dividers, not cards nested inside cards. */
+.mini-phone .mini-settings .mini-settings-block > .mini-settings-row,
+.mini-phone .mini-settings .mini-settings-block > .mini-switch-row {
+  margin: 0;
+  padding: 7px 0;
+  border: 0;
+  border-top: 1px solid var(--nyra-phone-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-settings .mini-settings-block > strong {
+  font-size: 15px;
+}
+
+.mini-phone .mini-settings .mini-settings-block > .mini-app-lead,
+.mini-phone .mini-settings .mini-settings-block > .mini-form-hint {
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.mini-phone .mini-settings .mini-segmented {
+  gap: 2px;
+  padding: 2px;
+  border-radius: 9px;
+  box-shadow: none;
+}
+
+.mini-phone .mini-settings .mini-segment {
+  min-height: 42px;
+  padding: 6px 8px;
+  border-radius: 7px;
+  font-size: 13px;
+}
+
+/* Calendar: keep the month scannable without dedicating half the viewport to it. */
+.mini-phone .mini-calendar .mini-cal-toolbar {
+  min-height: 42px;
+  margin-bottom: 6px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-calendar .mini-cal-grid {
+  gap: 0 2px;
+  margin-bottom: 10px;
+}
+
+.mini-phone .mini-calendar .mini-cal-weekday,
+.mini-phone .mini-calendar .mini-cal-pad {
+  min-height: 24px;
+}
+
+.mini-phone .mini-calendar .mini-cal-day {
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  aspect-ratio: auto;
+}
+
+.mini-phone .mini-calendar .mini-cal-day-sheet {
+  padding: 10px 11px;
+  border-radius: 10px;
+}
+
+.mini-phone .mini-calendar .mini-cal-event {
+  padding: 7px 0;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .mini-phone .mini-view:not(.mini-home) button:active,
+  .mini-phone .mini-view:not(.mini-home) [role="button"]:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Release touch contract for every app opened inside the small-phone shell. */
+.mini-phone .mini-moment-compose button,
+.mini-phone [data-moment-compose],
+.mini-phone .mini-listen-sheet__toggle,
+.mini-phone .mini-album-empty__btn,
+.mini-phone .mini-memory-empty button,
+.mini-phone .mini-profile .mini-segment,
+.mini-phone .mini-settings .mini-segment,
+.mini-phone .mini-qishi-tabs button,
+.mini-phone .mini-market-cat,
+.mini-phone .explore-suggest__chip {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+.mini-phone .mini-switch-row {
+  min-height: 44px;
+}
+
+.mini-phone .mini-listen-colisten {
+  min-height: 36px;
+}
+
+.mini-phone .mini-listen-colisten .mini-switch::after {
+  inset: -13px -8px;
+}
+
+.mini-phone .mini-shop-search,
+.mini-phone .mini-market-search {
+  min-height: 44px;
+}
+
+.mini-phone .mini-shop-search input,
+.mini-phone .mini-market-search input,
+.mini-phone .explore-session__composer input {
+  min-height: 40px;
+}
+
+.mini-phone .mini-assist .assist-icon-button,
+.mini-phone .mini-assist .assist-send {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.mini-phone .mini-calendar .mini-cal-day {
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
+}
+
+.mini-phone .mini-text-btn {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.mini-phone .mini-home-indicator {
+  display: none !important;
+}
+
+.mini-phone .mini-profile .mini-profile-block > .mini-segmented .mini-segment,
+.mini-phone .mini-settings-list .mini-settings-block > .mini-segmented .mini-segment,
+.mini-phone .mini-segment {
+  min-height: 44px;
+}
+
+.mini-phone .mini-cal-grid .mini-cal-day {
+  position: relative;
+  height: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+}
+
+.mini-phone .mini-cal-grid .mini-cal-day::before {
+  content: "";
+  position: absolute;
+  inset: -2px 0;
+}
+
+.mini-phone .mini-market-get {
+  min-height: 44px;
+}
+
+.mini-phone .mini-explore-host input:not([type="hidden"]) {
+  min-height: 52px;
+}
+
+.mini-phone [data-phone-screen="explore"] input:not([type="hidden"]) {
+  min-height: 44px !important;
+}
+
+.mini-phone .mini-view:not(.mini-home) .mini-app-scroll,
+.mini-phone .mini-view:not(.mini-home) .mini-profile__scroll,
+.mini-phone .mini-view:not(.mini-home) .mini-settings-list,
+.mini-phone .mini-view:not(.mini-home) .explore-body {
+  padding-bottom: calc(42px + env(safe-area-inset-bottom, 0px));
+  scroll-padding-bottom: calc(42px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Page-one widgets are movable app surfaces. DOM order is the visual order;
+ * wide/half spans keep the composition balanced after a user reorder. */
+.mini-phone .mini-widgets {
+  grid-template-areas: none;
+  grid-template-rows: none;
+  grid-auto-flow: row dense;
+  grid-auto-rows: max-content;
+  touch-action: pan-y;
+}
+
+.mini-phone .mini-widgets > [data-widget] {
+  grid-area: auto;
+  touch-action: pan-y;
+}
+
+.mini-phone .mini-widgets > [data-widget][data-widget-span="wide"] {
+  grid-column: 1 / -1;
+}
+
+.mini-phone .mini-widgets > [data-widget][data-widget-span="half"] {
+  grid-column: span 1;
+  min-height: 118px;
+}
+
+.mini-phone .mini-widgets > [data-widget].is-widget-lifted {
+  transform: scale(.985);
+  opacity: .42;
+}
+
+.mini-phone .mini-widgets > [data-widget].is-widget-drop-predict {
+  outline: 1px solid rgb(61 149 237 / 38%);
+  outline-offset: 2px;
+}
+
+@media (max-height: 820px) {
+  .mini-phone .mini-widgets > [data-widget][data-widget-span="half"] {
+    min-height: 110px;
+  }
+}
+
+
+/* —— Settings subpages: scroll-safe fields, pill switches, quiet focus —— */
+.mini-phone .mini-autonomy,
+.mini-phone .mini-agent-perms,
+.mini-phone .mini-devtools,
+.mini-phone .mini-activity,
+.mini-phone .mini-backup,
+.mini-phone .mini-worldbook,
+.mini-phone .mini-presets,
+.mini-phone .mini-regex,
+.mini-phone .mini-lab,
+.mini-phone .mini-settings {
+  min-height: 0;
+}
+
+.mini-phone .mini-settings-block > .mini-settings-row,
+.mini-phone .mini-settings-block > .mini-switch-row,
+.mini-phone .mini-settings-list > .mini-settings-row {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--mini-os-line, rgb(28 71 119 / 14%));
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-settings-block > .mini-settings-row:first-of-type,
+.mini-phone .mini-settings-block > .mini-switch-row:first-of-type {
+  border-top: 0;
+}
+
+.mini-phone label.mini-settings-row.mini-switch-row {
+  display: flex !important;
+  grid-template-columns: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.mini-phone label.mini-settings-row--field,
+.mini-phone label.mini-settings-row:has(> select),
+.mini-phone label.mini-settings-row:has(> input:not([type="checkbox"])) {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.1fr) minmax(110px, 1.35fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.mini-phone label.mini-settings-row--field > span,
+.mini-phone label.mini-settings-row:has(> select) > span,
+.mini-phone label.mini-settings-row:has(> input:not([type="checkbox"])) > span {
+  min-width: 0;
+  color: var(--mini-os-ink, #0c1f3a);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.mini-phone label.mini-settings-row--field > input,
+.mini-phone label.mini-settings-row--field > select,
+.mini-phone label.mini-settings-row:has(> select) > select,
+.mini-phone label.mini-settings-row:has(> input:not([type="checkbox"])) > input {
+  width: 100%;
+  min-width: 0;
+  min-height: 36px;
+  padding: 0 11px;
+  border: 1px solid var(--mini-os-line, rgb(28 71 119 / 18%));
+  border-radius: 10px;
+  color: var(--mini-os-ink, #0c1f3a);
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  text-align: right;
+}
+
+.mini-phone label.mini-settings-row--field > select,
+.mini-phone label.mini-settings-row:has(> select) > select {
+  text-align: left;
+  text-align-last: right;
+}
+
+.mini-phone .mini-switch-row input[type="checkbox"],
+.mini-phone .regex-switch input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #c5d2cd;
+  box-shadow: inset 0 0 0 1px rgb(12 31 58 / 6%);
+  cursor: pointer;
+  accent-color: transparent;
+  transition: background 0.18s ease;
+}
+
+.mini-phone .mini-switch-row input[type="checkbox"]::before,
+.mini-phone .regex-switch input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgb(36 54 58 / 22%);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mini-phone .mini-switch-row input[type="checkbox"]:checked,
+.mini-phone .regex-switch input[type="checkbox"]:checked {
+  background: var(--mini-os-navy, #14375e);
+}
+
+.mini-phone .mini-switch-row input[type="checkbox"]:checked::before,
+.mini-phone .regex-switch input[type="checkbox"]:checked::before {
+  transform: translateX(18px);
+}
+
+.mini-phone .regex-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  min-height: 44px;
+  margin: 0;
+}
+
+.mini-phone .regex-card {
+  border: 1px solid var(--mini-os-line, rgb(28 71 119 / 14%));
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.mini-phone .mini-task-filters button,
+.mini-phone .mini-context-modes button,
+.mini-phone .mini-context-filters button {
+  min-height: 36px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--mini-os-ink-soft, #304a6d);
+  background: rgb(255 255 255 / 72%);
+}
+
+.mini-phone .mini-task-filters button.is-active,
+.mini-phone .mini-context-modes button.is-active,
+.mini-phone .mini-context-filters button.is-active {
+  color: #fff;
+  background: var(--mini-os-navy, #14375e);
+  box-shadow: none;
+}
+
+.mini-phone .mini-assist .assist-shell {
+  min-height: 0 !important;
+  max-height: 100%;
+  height: 100%;
+}
+
+.mini-phone .mini-assist__body {
+  overflow: hidden;
+}
+
+.mini-phone .mini-settings-block input:not([type="checkbox"]):not([type="range"]):focus-visible,
+.mini-phone .mini-settings-block select:focus-visible,
+.mini-phone .mini-settings-block textarea:focus-visible,
+.mini-phone .mini-form input:not([type="checkbox"]):focus-visible,
+.mini-phone .mini-form select:focus-visible,
+.mini-phone .mini-form textarea:focus-visible {
+  outline: 0 !important;
+  border-color: rgb(20 55 94 / 38%) !important;
+  box-shadow: 0 0 0 3px rgb(20 55 94 / 8%) !important;
+}
+
+.mini-phone .mini-pet-scroll {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mini-phone .mini-pet-library .pet-library-card {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-auto-flow: row !important;
+  align-items: start !important;
+  justify-items: stretch !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+
+.mini-phone .mini-pet-library .pet-library-card__preview {
+  width: 100% !important;
+  height: 84px !important;
+}
+
+.mini-phone .mini-pet-library .pet-library-card__copy,
+.mini-phone .mini-pet-library .pet-library-card__copy strong,
+.mini-phone .mini-pet-library .pet-library-card__copy small,
+.mini-phone .mini-pet-library .pet-library-card__badge {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  white-space: normal;
+}
+
+.mini-phone .mini-pet-library .pet-library-card__badge {
+  justify-self: start !important;
+  white-space: nowrap !important;
+}
+
+
+/* —— Phone controls lock: switches + settings segmented + presets —— */
+.mini-phone button.mini-switch,
+.mini-phone .mini-switch[role="switch"] {
+  position: relative !important;
+  display: inline-block !important;
+  box-sizing: border-box !important;
+  width: 46px !important;
+  height: 28px !important;
+  min-width: 46px !important;
+  min-height: 28px !important;
+  max-width: 46px !important;
+  max-height: 28px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: #c5d0d8 !important;
+  box-shadow: inset 0 0 0 1px rgb(12 31 58 / 8%) !important;
+  flex: 0 0 46px !important;
+  aspect-ratio: auto !important;
+  overflow: visible !important;
+  transform: none !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+.mini-phone button.mini-switch.is-on,
+.mini-phone .mini-switch[aria-checked="true"] {
+  background: var(--mini-os-navy, #14375e) !important;
+  box-shadow: none !important;
+}
+
+.mini-phone button.mini-switch > i,
+.mini-phone button.mini-switch > .mini-switch__knob,
+.mini-phone .mini-switch > i,
+.mini-phone .mini-switch > .mini-switch__knob {
+  position: absolute !important;
+  top: 3px !important;
+  left: 3px !important;
+  display: block !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  box-shadow: 0 2px 5px rgb(12 31 58 / 20%) !important;
+  transform: translateX(0) !important;
+  pointer-events: none !important;
+}
+
+.mini-phone button.mini-switch.is-on > i,
+.mini-phone button.mini-switch.is-on > .mini-switch__knob,
+.mini-phone .mini-switch[aria-checked="true"] > i,
+.mini-phone .mini-switch[aria-checked="true"] > .mini-switch__knob {
+  transform: translateX(18px) !important;
+}
+
+.mini-phone button.mini-switch::before,
+.mini-phone button.mini-switch::after {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-switch-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  min-height: 48px !important;
+  padding: 10px 2px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-switch-row > span {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--mini-os-ink, #0c1f3a);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+/* Settings / profile diary style chips: soft pill grid, not tab underlines */
+.mini-phone .mini-settings-block > .mini-segmented,
+.mini-phone .mini-profile-block > .mini-segmented,
+.mini-phone .mini-settings-list .mini-settings-block > .mini-segmented {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 4px !important;
+  margin: 4px 0 8px !important;
+  padding: 4px !important;
+  min-height: 0 !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  border-radius: 12px !important;
+  background: var(--mini-os-ice-soft, #e1efff) !important;
+  overflow: hidden !important;
+}
+
+.mini-phone .mini-settings-block > .mini-segmented .mini-segment,
+.mini-phone .mini-profile-block > .mini-segmented .mini-segment,
+.mini-phone .mini-settings-list .mini-settings-block > .mini-segmented .mini-segment {
+  position: relative !important;
+  min-height: 38px !important;
+  max-height: none !important;
+  padding: 8px 10px !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+  color: var(--mini-os-ink-soft, #304a6d) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 12px !important;
+  font-weight: 550 !important;
+  line-height: 1.25 !important;
+  white-space: normal !important;
+}
+
+.mini-phone .mini-settings-block > .mini-segmented .mini-segment.is-active,
+.mini-phone .mini-settings-block > .mini-segmented .mini-segment[aria-selected="true"],
+.mini-phone .mini-profile-block > .mini-segmented .mini-segment.is-active,
+.mini-phone .mini-profile-block > .mini-segmented .mini-segment[aria-selected="true"] {
+  color: var(--mini-os-navy-deep, #071b35) !important;
+  background: #fff !important;
+  box-shadow: 0 2px 8px rgb(28 68 111 / 10%) !important;
+  font-weight: 650 !important;
+}
+
+.mini-phone .mini-settings-block > .mini-segmented .mini-segment.is-active::after,
+.mini-phone .mini-profile-block > .mini-segmented .mini-segment.is-active::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Prompt layer / presets mount inside phone */
+.mini-phone .mini-presets .mini-settings-mount,
+.mini-phone .mini-regex .mini-settings-mount {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.mini-phone .preset-card,
+.mini-phone .regex-card {
+  margin: 0 !important;
+  padding: 14px 14px 12px !important;
+  border: 1px solid var(--mini-os-line, rgb(28 71 119 / 14%)) !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .preset-card.is-active {
+  border-color: rgb(20 55 94 / 28%) !important;
+  box-shadow: 0 0 0 1px rgb(20 55 94 / 8%) !important;
+}
+
+.mini-phone .preset-card strong,
+.mini-phone .regex-card strong {
+  font-size: 15px;
+  color: var(--mini-os-ink, #0c1f3a);
+}
+
+.mini-phone .preset-card p,
+.mini-phone .regex-card__blurb {
+  margin: 6px 0 0;
+  color: var(--mini-os-muted, #7386a1);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.mini-phone .preset-pill {
+  margin-left: 6px;
+  border-radius: 999px;
+  background: var(--mini-os-ice-soft, #e1efff);
+  color: var(--mini-os-navy, #14375e);
+  font-size: 10px;
+}
+
+.mini-phone .preset-pill--on {
+  background: rgb(20 55 94 / 12%);
+  color: var(--mini-os-navy-deep, #071b35);
+}
+
+.mini-phone .preset-card .preset-actions,
+.mini-phone .preset-card__actions,
+.mini-phone .preset-card footer,
+.mini-phone .preset-card .row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.mini-phone .preset-card button,
+.mini-phone .regex-card button:not(.regex-switch) {
+  min-height: 36px !important;
+  padding: 0 12px !important;
+  border: 1px solid var(--mini-os-line, rgb(28 71 119 / 18%)) !important;
+  border-radius: 10px !important;
+  color: var(--mini-os-ink, #0c1f3a) !important;
+  background: var(--mini-os-bg, #f3f7fd) !important;
+  box-shadow: none !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+.mini-phone .preset-card button.is-active,
+.mini-phone .preset-card .preset-action.is-on,
+.mini-phone .preset-card button[disabled] {
+  color: #fff !important;
+  border-color: transparent !important;
+  background: var(--mini-os-navy, #14375e) !important;
+}
+
+
+/* —— Diary prefs sheet (overlay; stays reachable while reading) —— */
+.mini-phone .mini-diary-prefs {
+  inset: 8px 10px auto;
+  max-height: min(76%, 440px);
+}
+
+.mini-phone .mini-diary-prefs .mini-switch-row {
+  padding: 8px 2px !important;
+  border-top: 0 !important;
+  min-height: 44px !important;
+}
+
+.mini-phone .mini-diary-style-card {
+  min-height: 70px;
+}
+
+.mini-phone .mini-diary-time-rail .mini-time-chip {
+  min-height: 34px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+/* —— Scroll fix: calendar / worldbook / agent-perms ——
+   Only when visible: `display: … !important` must not beat HTML [hidden]
+   (otherwise every open app still shows the last forced screen, e.g. autonomy). */
+.mini-phone .mini-calendar:not([hidden]),
+.mini-phone .mini-worldbook:not([hidden]),
+.mini-phone .mini-agent-perms:not([hidden]),
+.mini-phone .mini-presets:not([hidden]),
+.mini-phone .mini-regex:not([hidden]),
+.mini-phone .mini-backup:not([hidden]),
+.mini-phone .mini-autonomy:not([hidden]) {
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+.mini-phone .mini-calendar[hidden],
+.mini-phone .mini-worldbook[hidden],
+.mini-phone .mini-agent-perms[hidden],
+.mini-phone .mini-presets[hidden],
+.mini-phone .mini-regex[hidden],
+.mini-phone .mini-backup[hidden],
+.mini-phone .mini-autonomy[hidden] {
+  display: none !important;
+}
+
+/* All direct scroll panes share row 2; hidden panes leave the layout */
+.mini-phone .mini-calendar > .mini-app-scroll,
+.mini-phone .mini-worldbook > .mini-app-scroll,
+.mini-phone .mini-agent-perms > .mini-app-scroll,
+.mini-phone .mini-presets > .mini-app-scroll,
+.mini-phone .mini-regex > .mini-app-scroll,
+.mini-phone .mini-backup > .mini-app-scroll,
+.mini-phone .mini-autonomy > .mini-app-scroll,
+.mini-phone .mini-agent-perms > .mini-settings-list {
+  grid-row: 2;
+  min-height: 0 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.mini-phone .mini-calendar > .mini-app-scroll[hidden],
+.mini-phone .mini-worldbook > .mini-app-scroll[hidden] {
+  display: none !important;
+}
+
+.mini-phone .mini-app-scroll,
+.mini-phone .mini-settings-list,
+.mini-phone .mini-profile__scroll {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}

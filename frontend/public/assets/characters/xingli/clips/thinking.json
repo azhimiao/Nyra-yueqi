@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "clipId": "thinking",
+  "image": "thinking.png",
+  "size": {
+    "width": 220,
+    "height": 660
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "thinking_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 220,
+        "height": 660
+      },
+      "source": {
+        "x": 271,
+        "y": 60,
+        "width": 220,
+        "height": 660
+      },
+      "durationMs": 1600
+    }
+  ]
+}

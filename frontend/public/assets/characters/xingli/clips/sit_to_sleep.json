@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "clipId": "sit_to_sleep",
+  "image": "sit_to_sleep.png",
+  "size": {
+    "width": 1206,
+    "height": 688
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "sit_to_sleep_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 294,
+        "height": 688
+      },
+      "source": {
+        "x": 259,
+        "y": 41,
+        "width": 294,
+        "height": 688
+      },
+      "durationMs": 260
+    },
+    {
+      "id": "sit_to_sleep_001",
+      "index": 1,
+      "atlas": {
+        "x": 296,
+        "y": 0,
+        "width": 326,
+        "height": 564
+      },
+      "source": {
+        "x": 221,
+        "y": 167,
+        "width": 326,
+        "height": 564
+      },
+      "durationMs": 620
+    },
+    {
+      "id": "sit_to_sleep_002",
+      "index": 2,
+      "atlas": {
+        "x": 624,
+        "y": 0,
+        "width": 582,
+        "height": 281
+      },
+      "source": {
+        "x": 93,
+        "y": 275,
+        "width": 582,
+        "height": 281
+      },
+      "durationMs": 420
+    }
+  ]
+}

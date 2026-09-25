@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024">
+  <defs><linearGradient id="s" x2="0" y2="1"><stop stop-color="#17252d"/><stop offset=".68" stop-color="#304148"/><stop offset="1" stop-color="#171f22"/></linearGradient><pattern id="rr" width="54" height="68" patternUnits="userSpaceOnUse"><path d="M18 0L6 42M46 18L32 65" stroke="#d3e8e8" stroke-opacity=".27" stroke-width="3"/></pattern><filter id="g"><feGaussianBlur stdDeviation="14"/></filter></defs>
+  <rect width="1536" height="1024" fill="url(#s)"/>
+  <g fill="#10181d"><path d="M0 130H310V780H0Z"/><path d="M1220 80H1536V790H1220Z"/><path d="M325 230H540V710H325Z"/><path d="M1000 190H1200V735H1000Z"/></g>
+  <g filter="url(#g)" opacity=".8"><circle cx="370" cy="380" r="32" fill="#e8a85f"/><circle cx="1110" cy="338" r="40" fill="#dd7e66"/><circle cx="786" cy="318" r="22" fill="#71b6b1"/></g>
+  <path d="M600 500H930L1150 1024H380Z" fill="#27363a"/><path d="M694 532H844L900 1024H624Z" fill="#9ba9a5" opacity=".17"/>
+  <path d="M0 806C340 740 536 742 768 804C1010 866 1230 826 1536 750V1024H0Z" fill="#11191c"/>
+  <g stroke="#d3b76f" stroke-opacity=".45" stroke-width="6"><path d="M455 850L1090 850"/><path d="M355 932L1190 932"/></g>
+  <rect width="1536" height="1024" fill="url(#rr)"/>
+</svg>

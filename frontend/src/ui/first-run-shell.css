@@ -1,0 +1,733 @@
+/**
+ * Shared first-run shell for Product Onboarding + First Light.
+ * Light, thin, private. Not a shared state machine.
+ */
+
+:root {
+  --first-run-ink: #1a2430;
+  --first-run-muted: rgba(26, 36, 48, 0.58);
+  --first-run-line: rgba(26, 36, 48, 0.12);
+  --first-run-line-strong: rgba(26, 36, 48, 0.22);
+  --first-run-paper: #f7f5f1;
+  --first-run-card: #fffcf8;
+  --first-run-selected: #f3eee6;
+  --first-run-warm: rgba(214, 196, 172, 0.35);
+  --first-run-cool: rgba(176, 188, 196, 0.28);
+  --first-run-cta: #1a2430;
+  --first-run-cta-ink: #f7f5f1;
+  --first-run-radius: 14px;
+  --first-run-pad: clamp(12px, 4.8vw, 22px);
+}
+
+.lang-gate.onboard-gate,
+.first-light {
+  --first-run-pad: clamp(12px, 4.8vw, 22px);
+}
+
+.lang-gate {
+  box-sizing: border-box;
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  height: 100dvh;
+  min-height: 100svh;
+  padding:
+    max(12px, env(safe-area-inset-top, 0px))
+    0
+    max(12px, env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+  overscroll-behavior: none;
+  background:
+    linear-gradient(180deg, var(--first-run-warm), transparent 42%),
+    linear-gradient(180deg, #fbfaf7 0%, var(--first-run-paper) 46%, #eef1f3 100%);
+  color: var(--first-run-ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.lang-gate.is-open,
+.lang-gate:not([hidden]) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lang-gate[hidden] {
+  display: none !important;
+}
+
+.first-run-shell,
+.lang-gate .onboard-card,
+.lang-gate .lang-gate-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 430px);
+  max-width: 100%;
+  min-width: 0;
+  height: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  color: var(--first-run-ink);
+  background: transparent;
+  text-align: center;
+}
+
+.lang-gate .onboard-step {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  animation: onboard-step-in 180ms cubic-bezier(.2, 0, 0, 1);
+}
+
+.lang-gate .onboard-step[hidden] {
+  display: none !important;
+}
+
+.first-run-nav {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-height: 48px;
+  padding: 4px var(--first-run-pad) 0;
+}
+
+.first-run-back:active,
+.lang-gate .onboard-back:active {
+  transform: scale(0.94);
+}
+
+.first-run-back,
+.lang-gate .onboard-back {
+  position: static;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  border: 0;
+  border-radius: 12px;
+  color: var(--first-run-ink);
+  background: transparent;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+  transition: transform 120ms cubic-bezier(.2, 0, 0, 1);
+}
+
+.first-run-back-spacer {
+  width: 44px;
+  height: 44px;
+}
+
+.first-run-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.first-run-progress-label {
+  color: var(--first-run-muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.first-run-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.first-run-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--first-run-line-strong);
+  opacity: 0.45;
+}
+
+.first-run-dot.is-done {
+  opacity: 0.7;
+}
+
+.first-run-dot.is-current {
+  width: 16px;
+  border-radius: 99px;
+  opacity: 1;
+  background: var(--first-run-ink);
+}
+
+.first-run-header {
+  flex: 0 0 auto;
+  margin-top: auto;
+  padding: 4px var(--first-run-pad) 12px;
+  text-align: center;
+}
+
+.first-run-header h1,
+.lang-gate .onboard-step > .first-run-header h1,
+.lang-gate-card h1 {
+  margin: 0 auto 8px;
+  max-width: 18em;
+  color: var(--first-run-ink);
+  font-size: clamp(1.28rem, 5.2vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.lang-gate-brand {
+  margin: 0 0 12px;
+  color: var(--first-run-muted);
+  font-family: "Cormorant Garamond", "Songti SC", serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.lang-gate-hint,
+.first-run-header p {
+  margin: 0 auto;
+  max-width: 28em;
+  color: var(--first-run-muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.first-run-main {
+  flex: 0 1 auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  align-items: stretch;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding: 10px var(--first-run-pad) 12px;
+}
+
+.first-run-main:empty {
+  display: none;
+  padding: 0;
+}
+
+.first-run-footer {
+  flex: 0 0 auto;
+  display: grid;
+  gap: 8px;
+  margin-bottom: auto;
+  padding:
+    8px var(--first-run-pad)
+    calc(12px + env(safe-area-inset-bottom, 0px));
+  background: transparent;
+}
+
+.first-run-cta,
+.lang-gate .onboard-next,
+.lang-gate .me-auth-primary {
+  appearance: none;
+  width: 100%;
+  min-height: 48px;
+  margin: 0;
+  border: 0;
+  border-radius: var(--first-run-radius);
+  background: var(--first-run-cta);
+  color: var(--first-run-cta-ink);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(26, 36, 48, 0.16);
+  transition:
+    transform 120ms cubic-bezier(.2, 0, 0, 1),
+    box-shadow 160ms ease,
+    filter 160ms ease,
+    opacity 160ms ease;
+}
+
+.first-run-cta:disabled,
+.lang-gate .onboard-next:disabled,
+.lang-gate .me-auth-primary:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.first-run-cta:not(:disabled):active,
+.lang-gate .onboard-next:not(:disabled):active,
+.lang-gate .me-auth-primary:not(:disabled):active {
+  transform: scale(0.985);
+  box-shadow: 0 3px 10px rgba(26, 36, 48, 0.18);
+}
+
+.first-run-cta:focus-visible,
+.first-run-back:focus-visible,
+.lang-gate .onboard-next:focus-visible,
+.lang-choice:focus-visible,
+.fl-option:focus-visible,
+.fl-lang-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--first-run-ink) 55%, transparent);
+  outline-offset: 2px;
+}
+
+.first-run-text-action {
+  appearance: none;
+  width: 100%;
+  min-height: 42px;
+  margin: 0;
+  border: 1px solid var(--first-run-line);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--first-run-muted);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.lang-gate .onboard-offline-hint {
+  margin: 0;
+  color: rgba(26, 36, 48, 0.42);
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.lang-gate-actions,
+.first-run-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+@media (max-width: 420px) {
+  .first-run-choices {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lang-choice {
+  appearance: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 108px;
+  padding: 22px 16px 20px;
+  border: 1px solid var(--first-run-line);
+  border-radius: var(--first-run-radius);
+  background: var(--first-run-card);
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.lang-choice.is-active {
+  border-color: var(--first-run-line-strong);
+  background: var(--first-run-selected);
+}
+
+.lang-choice.is-active::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--first-run-ink);
+}
+
+.lang-choice strong {
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+.lang-choice span {
+  font-size: 0.8rem;
+  line-height: 1.35;
+  opacity: 0.68;
+}
+
+.onboard-project-link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--first-run-line);
+  border-radius: var(--first-run-radius);
+  background: color-mix(in srgb, var(--first-run-card) 82%, transparent);
+  text-align: left;
+}
+
+.onboard-project-link[hidden] {
+  display: none;
+}
+
+.onboard-project-link__mark {
+  padding: 5px 7px;
+  border-radius: 7px;
+  background: var(--first-run-ink);
+  color: var(--first-run-cta-ink);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+.onboard-project-link__copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.onboard-project-link__copy strong {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.onboard-project-link__copy span {
+  color: var(--first-run-muted);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.onboard-project-link > a {
+  color: var(--first-run-ink);
+  font-size: 0.76rem;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+@media (max-width: 350px) {
+  .onboard-project-link {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .onboard-project-link > a {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+.onboard-step--account .first-run-header {
+  margin-top: 8px;
+  padding-bottom: 4px;
+}
+
+.onboard-step--account .first-run-header h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.18rem, 4.6vw, 1.42rem);
+}
+
+.onboard-step--account .first-run-main {
+  justify-content: flex-start;
+  padding-top: 6px;
+}
+
+.onboard-step--account .first-run-footer {
+  margin-bottom: 0;
+  gap: 6px;
+}
+
+.onboard-step--account .onboard-segment:not(.onboard-segment--compact) {
+  margin-bottom: 8px;
+  padding: 2px;
+  border-radius: 10px;
+}
+
+.onboard-step--account .onboard-segment:not(.onboard-segment--compact) button {
+  min-height: 34px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.onboard-step--account .onboard-login {
+  gap: 12px;
+}
+
+.onboard-step--account .me-auth-eye {
+  min-width: 44px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.onboard-step--account .first-run-cta,
+.onboard-step--account .me-auth-primary {
+  min-height: 40px;
+  border-radius: 8px;
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.onboard-step--account .onboard-auth-hint {
+  max-width: none;
+  font-size: 11px;
+}
+
+.onboard-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.onboard-segment {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3px;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto 10px;
+  padding: 3px;
+  border: 1px solid var(--first-run-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.46);
+}
+
+.onboard-segment--compact {
+  max-width: 220px;
+  margin: 0 auto 8px;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.onboard-segment button {
+  appearance: none;
+  min-height: 40px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--first-run-muted);
+  font: inherit;
+  font-weight: 600;
+  transition:
+    transform 120ms cubic-bezier(.2, 0, 0, 1),
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.onboard-segment--compact button {
+  min-height: 32px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.onboard-segment button.is-active {
+  background: #fff;
+  color: var(--first-run-ink);
+  box-shadow: 0 4px 12px rgba(26, 36, 48, 0.08);
+}
+
+.onboard-segment button:active {
+  transform: scale(0.97);
+}
+
+.onboard-auth-hint {
+  margin: 0 auto;
+  max-width: 360px;
+  color: var(--first-run-muted);
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.onboard-login {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  max-width: min(360px, 100%);
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+
+/* Register mode stacks three fields inside one wrapper; without its own gap
+ * they collide while the sibling fields keep the .onboard-login rhythm. */
+.onboard-login > [data-onboard-register-only] {
+  display: grid;
+  gap: 10px;
+}
+
+.onboard-login > [data-onboard-register-only][hidden] {
+  display: none;
+}
+
+/* .me-auth-input paints its border and fill from --me-* tokens, which are only
+ * declared under .me-page. Unresolved var() drops the whole shorthand, so the
+ * gate fields render as bare placeholder text. */
+.lang-gate {
+  --me-bg: var(--first-run-card);
+  --me-cell: var(--first-run-card);
+  --me-field: var(--first-run-card);
+  --me-line: var(--first-run-line-strong);
+  --me-action: var(--first-run-ink);
+}
+
+.lang-gate .me-auth-input,
+.lang-gate .me-auth-input input,
+.lang-gate .me-auth-input__pass,
+.lang-gate .auth-phone-input {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.lang-gate .me-auth-input input,
+.lang-gate .me-auth-input__pass,
+.lang-gate .auth-phone-input {
+  min-height: 44px;
+  border-radius: 10px;
+}
+
+.lang-gate .auth-phone-input {
+  overflow: visible;
+}
+
+.lang-gate .me-auth-input > span {
+  color: var(--first-run-muted);
+}
+
+.lang-gate .me-auth-input__pass {
+  overflow: hidden;
+  background-clip: padding-box;
+}
+
+.lang-gate .me-auth-input input:focus,
+.lang-gate .me-auth-input input:focus-visible,
+.lang-gate .me-auth-input__pass:focus-within,
+.lang-gate .auth-phone-input:focus-within {
+  outline: none;
+  border-color: var(--first-run-ink);
+  box-shadow: none;
+}
+
+.lang-gate .me-auth-input__pass input:focus,
+.lang-gate .me-auth-input__pass input:focus-visible {
+  box-shadow: none;
+}
+
+.onboard-field-error {
+  margin: 4px 0 0;
+  color: #8a3a3a;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.onboard-auth-status {
+  margin: 4px 0 0;
+  min-height: 1.2em;
+  color: #5c6a74;
+  font-size: 12px;
+}
+
+html.onboarding-open,
+html.onboarding-open body,
+html.first-light-active {
+  height: 100%;
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
+html.onboarding-open body {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+}
+
+html.is-keyboard-open .lang-gate,
+html.is-keyboard-open .first-light {
+  bottom: var(--vv-offset-bottom, 0px);
+  height: auto;
+  min-height: 0;
+  max-height: none;
+}
+
+html.is-keyboard-open .first-run-header,
+html.is-keyboard-open .first-run-footer {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+html.is-keyboard-open .first-run-main {
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  /* The scroll box shrinks to a few hundred px next to the keyboard; without
+   * this the field the browser scrolls to is sliced by the footer edge. */
+  padding-bottom: 20px;
+  scroll-padding: 12px 0 20px;
+}
+
+html.is-keyboard-open .lang-gate .me-auth-input {
+  scroll-margin: 12px 0;
+}
+
+/* Small print is not worth a field while typing. */
+html.is-keyboard-open .lang-gate .onboard-offline-hint {
+  display: none;
+}
+
+@keyframes onboard-step-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lang-gate .me-auth-eye:active {
+  transform: scale(0.96);
+  opacity: 0.72;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-gate .onboard-step,
+  .lang-gate,
+  .lang-choice,
+  .onboard-segment button,
+  .first-run-cta,
+  .lang-gate .onboard-next,
+  .lang-gate .me-auth-primary,
+  .first-run-back,
+  .lang-gate .onboard-back {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,597 @@
+/*
+ * App information architecture and memory surface.
+ * This is deliberately App-only: the mini-phone owns a separate visual system.
+ */
+
+body[data-app-mode="app"] .feature-sidebar,
+body[data-app-mode="app"] .drawer-panel {
+  color: var(--nyra-ink);
+  background: #f7fafc;
+  border-color: rgba(7, 27, 46, 0.13);
+}
+
+body[data-app-mode="app"] .feature-sidebar {
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.9);
+}
+
+body[data-app-mode="app"] .side-tabs {
+  gap: 3px !important;
+}
+
+body[data-app-mode="app"] .side-tabs button {
+  min-height: 46px !important;
+  border: 1px solid transparent;
+  border-radius: 10px !important;
+  color: var(--nyra-muted);
+  background: transparent;
+}
+
+body[data-app-mode="app"] .side-tabs button:hover {
+  color: var(--nyra-ink);
+  background: #eef5f9;
+}
+
+body[data-app-mode="app"] .side-tabs button.is-active {
+  color: var(--nyra-navy) !important;
+  border-color: rgba(8, 121, 199, 0.18);
+  background: #e8f3fa !important;
+  box-shadow: inset 3px 0 0 var(--nyra-electric);
+}
+
+body[data-app-mode="app"] .side-tabs .system-assist-nav {
+  border-color: rgba(85, 200, 251, 0.35);
+  color: var(--nyra-navy);
+  background: #eef8fd;
+}
+
+body[data-app-mode="app"] .side-tabs .system-assist-nav em,
+body[data-app-mode="app"] .side-tabs .side-mode-switch em {
+  color: var(--nyra-blue);
+  background: transparent;
+}
+
+body[data-app-mode="app"] .side-tabs .side-mode-switch {
+  margin-top: 10px;
+  border-color: rgba(7, 27, 46, 0.16);
+  color: var(--nyra-navy);
+  background: #ffffff;
+  box-shadow: 0 7px 18px rgba(1, 16, 29, 0.07), inset 0 1px 0 #ffffff;
+}
+
+body[data-app-mode="app"] .side-tabs .side-mode-switch:hover {
+  border-color: rgba(8, 121, 199, 0.35);
+  background: #edf7fc;
+}
+
+body[data-app-mode="app"] .drawer {
+  z-index: 60;
+}
+
+body[data-app-mode="app"] .drawer-backdrop {
+  background: rgba(3, 10, 17, 0.44);
+}
+
+body[data-app-mode="app"] .drawer-panel {
+  width: min(84vw, 348px);
+  padding: calc(18px + env(safe-area-inset-top, 0px)) 16px calc(20px + env(safe-area-inset-bottom, 0px));
+  border-right: 1px solid rgba(85, 200, 251, 0.42);
+  box-shadow: 18px 0 46px rgba(1, 16, 29, 0.24), inset -1px 0 0 rgba(255, 255, 255, 0.9);
+}
+
+body[data-app-mode="app"] .drawer-panel header {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(7, 27, 46, 0.12);
+}
+
+body[data-app-mode="app"] .drawer-panel h2 {
+  color: var(--nyra-navy);
+  font-family: var(--nyra-display);
+  font-size: 24px;
+  letter-spacing: 0.04em;
+}
+
+body[data-app-mode="app"] .drawer-nav {
+  align-content: start;
+  gap: 0;
+}
+
+body[data-app-mode="app"] .drawer-nav button {
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 54px;
+  padding: 0 6px;
+  border: 0;
+  border-bottom: 1px solid rgba(7, 27, 46, 0.1);
+  border-radius: 0;
+  color: var(--nyra-ink);
+  background: transparent;
+}
+
+body[data-app-mode="app"] .drawer-nav button:hover,
+body[data-app-mode="app"] .drawer-nav button:focus-visible {
+  background: #edf6fb;
+}
+
+body[data-app-mode="app"] .drawer-nav button > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .drawer-nav button em {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--nyra-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-app-mode="app"] .drawer-nav .system-assist-nav {
+  min-height: 58px;
+  margin-bottom: 5px;
+  padding: 0 12px;
+  border: 1px solid rgba(85, 200, 251, 0.38);
+  border-radius: 10px;
+  color: var(--nyra-navy);
+  background: #eef8fd;
+}
+
+body[data-app-mode="app"] .drawer-nav .system-assist-nav em {
+  color: var(--nyra-blue);
+}
+
+body[data-app-mode="app"] .drawer-nav .drawer-mode-switch {
+  min-height: 56px;
+  margin-top: 0;
+  padding: 0 12px;
+  border: 1px solid rgba(7, 27, 46, 0.24);
+  border-radius: 10px;
+  color: #f8fcff;
+  background: var(--nyra-navy);
+  box-shadow: 0 12px 24px rgba(1, 16, 29, 0.2), inset 0 1px 0 rgba(184, 230, 250, 0.26);
+}
+
+body[data-app-mode="app"] .drawer-nav .drawer-mode-switch:hover,
+body[data-app-mode="app"] .drawer-nav .drawer-mode-switch:focus-visible {
+  color: #ffffff;
+  background: #0a426f;
+}
+
+body[data-app-mode="app"] .drawer-nav .drawer-mode-switch em {
+  color: #9cdbf7;
+}
+
+body[data-app-mode="app"][data-active-panel="companion"] {
+  background: #eef5f9;
+}
+
+body[data-app-mode="app"] .content-shell {
+  background: var(--nyra-bg);
+}
+
+body[data-app-mode="app"] .companion-page:has([data-companion-section="memory"].is-active),
+body[data-app-mode="phone"] .mini-diary-host.companion-page {
+  --mg-cream: #eef5f9;
+  --mg-sage: var(--nyra-blue);
+  --mg-ink: var(--nyra-ink);
+  --mg-muted: var(--nyra-muted);
+  background: #eef5f9;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-layout--gallery {
+  gap: 10px;
+  padding: 2px 0 16px;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-relation-head,
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-relation-head--slim {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 36px;
+  padding: 2px 2px 0;
+  border: 0;
+  border-bottom: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-relation-head__titles {
+  display: none;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-relation-head h2:not(.me-visually-hidden) {
+  display: none;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-relation-head__leaf {
+  display: none;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-relation-days {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid rgba(8, 121, 199, 0.16);
+  border-radius: 999px;
+  color: var(--nyra-navy);
+  background: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-relation-days strong {
+  margin: 0 2px;
+  color: var(--nyra-blue);
+  font-family: var(--nyra-display);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  color: var(--nyra-navy);
+  background: transparent;
+  box-shadow: none;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-avatar-btn {
+  display: none !important;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-avatar-btn img,
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-avatar-btn .role-avatar-fallback {
+  color: var(--nyra-navy);
+  background: #edf7fc;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-search-panel input {
+  border-color: rgba(7, 27, 46, 0.16);
+  border-radius: 10px;
+  color: var(--nyra-ink);
+  background: #ffffff;
+  box-shadow: inset 0 1px 4px rgba(1, 16, 29, 0.05);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week {
+  gap: 8px;
+  padding: 6px 6px 4px;
+  border: 1px solid rgba(7, 27, 46, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: none;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__label {
+  min-width: 62px;
+  padding-left: 4px;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__label strong,
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__num {
+  color: var(--nyra-navy);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__day {
+  min-height: 58px;
+  border-radius: 10px;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__day.has-entry .memory-week__dot {
+  background: var(--nyra-cyan);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__day.is-active {
+  color: #f8fcff;
+  background: var(--nyra-navy);
+  box-shadow: 0 10px 20px rgba(1, 16, 29, 0.2), inset 0 1px 0 rgba(184, 230, 250, 0.24);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__day.is-active .memory-week__num,
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__day.is-active .memory-week__weekday {
+  color: #f8fcff;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__day.is-active .memory-week__dot {
+  background: var(--nyra-cyan);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-month-sheet__panel {
+  border-color: var(--nyra-line);
+  background: var(--nyra-paper);
+  box-shadow: 0 18px 42px rgba(1, 15, 29, 0.16);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-month-sheet__head strong {
+  color: var(--nyra-navy);
+  font-family: var(--nyra-display);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page, body) .memory-compose-sheet__panel {
+  background: var(--nyra-paper);
+  box-shadow: 0 -16px 48px rgba(1, 15, 29, 0.2);
+  max-height: min(72dvh, 520px);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-compose-sheet__head strong {
+  color: var(--nyra-navy);
+  font-family: var(--nyra-display);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-compose-styles .diary-style-card {
+  background: color-mix(in srgb, var(--nyra-paper-soft, #f3f7fb) 88%, #fff);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page, body) .memory-compose-confirm {
+  background: var(--nyra-navy);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-month-nav,
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-month-close {
+  color: var(--nyra-navy);
+  background: var(--nyra-paper-soft);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-month-day.is-active {
+  background: var(--nyra-navy);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-month-day.has-entry i {
+  background: var(--nyra-cyan);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-month-today {
+  color: var(--nyra-navy);
+  background: var(--nyra-ice);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-feed {
+  gap: 14px;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-diary-generate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 46px;
+  padding: 0 16px;
+  border: 1px solid rgba(7, 27, 46, 0.18);
+  border-radius: 8px;
+  color: #fff;
+  background: var(--nyra-navy);
+  box-shadow: 0 8px 18px rgba(1, 16, 29, 0.12);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-diary-generate svg {
+  width: 18px;
+  height: 18px;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-diary-generate:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .editorial-journal-card {
+  min-height: 168px;
+  padding: 21px 22px 18px;
+  border: 1px solid rgba(7, 27, 46, 0.14);
+  border-radius: 14px;
+  color: var(--nyra-ink);
+  background: linear-gradient(145deg, #ffffff 0%, #f5faff 100%);
+  box-shadow: 0 18px 42px rgba(1, 16, 29, 0.12), 0 2px 4px rgba(1, 16, 29, 0.06), inset 0 1px 0 #ffffff;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .editorial-journal-card--empty {
+  min-height: 0;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .editorial-journal-card::before {
+  position: absolute;
+  inset: 18px auto 18px 0;
+  width: 2px;
+  content: "";
+  border-radius: 0 2px 2px 0;
+  background: var(--nyra-cyan);
+  opacity: 0.86;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .editorial-journal-card::after {
+  right: 18px;
+  bottom: 10px;
+  color: rgba(7, 27, 46, 0.05);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-meta,
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-footer {
+  color: var(--nyra-muted);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-index {
+  color: var(--nyra-blue);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-title {
+  color: var(--nyra-navy);
+  font-family: var(--nyra-display);
+  font-weight: 650;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-kicker,
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-body {
+  color: #2d4356;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-rule {
+  background: rgba(7, 27, 46, 0.16);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-tag {
+  padding: 5px 9px;
+  color: var(--nyra-blue);
+  background: #e7f4fb;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-cta {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid rgba(47, 140, 196, 0.28);
+  border-radius: 999px;
+  color: var(--nyra-blue);
+  background: rgba(232, 244, 251, 0.92);
+  box-shadow: none;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-cta:hover,
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-cta:focus-visible {
+  color: var(--nyra-navy);
+  border-color: rgba(47, 140, 196, 0.45);
+  background: #dff0fa;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .scene-journal-card {
+  border: 1px solid rgba(7, 27, 46, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 18px 42px rgba(1, 16, 29, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap,
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-tools {
+  border-color: rgba(7, 27, 46, 0.13);
+  border-radius: 14px;
+  background: #f8fbfd;
+  box-shadow: 0 14px 32px rgba(1, 16, 29, 0.08), inset 0 1px 0 #ffffff;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap__cta {
+  width: auto;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid rgba(47, 140, 196, 0.28);
+  border-radius: 999px;
+  color: var(--nyra-blue);
+  background: rgba(232, 244, 251, 0.92);
+  box-shadow: none;
+  font-size: 12px;
+  font-weight: 550;
+}
+
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap__cta:hover,
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap__cta:focus-visible {
+  color: var(--nyra-navy);
+  border-color: rgba(47, 140, 196, 0.45);
+  background: #dff0fa;
+}
+
+@media (max-width: 520px) {
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-relation-head h2 {
+    font-size: 25px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week {
+    gap: 5px;
+    padding: 6px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__label {
+    min-width: 52px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-week__day {
+    min-height: 55px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .editorial-journal-card {
+    padding-right: 18px;
+    padding-left: 19px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .editorial-journal-card--empty {
+    padding: 10px 12px 10px 14px;
+    border-radius: 10px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .editorial-journal-card--empty .journal-card-title {
+    margin-top: 2px;
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .editorial-journal-card--empty .journal-card-body {
+    margin-top: 2px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .editorial-journal-card--empty .journal-card-footer {
+    margin-top: 8px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-cta {
+    min-height: 28px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "lead cta"
+      "stats stats";
+    gap: 5px 8px;
+    padding: 8px 10px 8px 11px;
+    border-radius: 10px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap__lead {
+    grid-area: lead;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap__stats {
+    grid-area: stats;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+    text-align: left;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap__stats > div {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap__stats strong {
+    display: inline;
+    font-size: 13px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap__stats span {
+    display: inline;
+    margin-top: 0;
+    font-size: 10px;
+  }
+
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .memory-recap__cta {
+    grid-area: cta;
+    min-height: 26px;
+    padding: 0 9px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .editorial-journal-card,
+  body[data-app-mode="app"] .drawer-nav button {
+    transition: none !important;
+  }
+}

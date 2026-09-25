@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "clipId": "comfort",
+  "image": "comfort.png",
+  "size": {
+    "width": 244,
+    "height": 687
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "frames": [
+    {
+      "id": "comfort_000",
+      "index": 0,
+      "atlas": {
+        "x": 0,
+        "y": 0,
+        "width": 244,
+        "height": 687
+      },
+      "source": {
+        "x": 258,
+        "y": 47,
+        "width": 244,
+        "height": 687
+      },
+      "durationMs": 1700
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+name: 缺陷
+description: 网页或 Android 上的可复现问题
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      placeholder: 实际结果 / 期望结果
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: 怎么复现
+      placeholder: 1. npm start 2. 打开… 3. …
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: 环境
+      placeholder: Windows / Android，Node 版本，浏览器或 APK
+  - type: markdown
+    attributes:
+      value: 不要粘贴 API Key、聊天原文或备份文件。
