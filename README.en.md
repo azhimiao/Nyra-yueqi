@@ -11,7 +11,7 @@
   <a href="./README.en.md">English</a>
 </p>
 
-Chat, characters, and memory stay on your device. Bring your own OpenAI-compatible API. No cloud login. No paid credits.
+Chat, characters, and memory stay on your device. Bring your own OpenAI-compatible API. This source tree has no cloud login and no paid credits.
 
 ---
 
@@ -44,11 +44,11 @@ npm run dev
 
 ### Install
 
-Official Android package:
+The store / website APK is the commercial build (login, hosted models, Credits). It is not built from this source:
 
 https://download.memprism.com/nyra-latest.apk
 
-Build a debug APK from source:
+Build a debug APK from this repo:
 
 ```bash
 npm run build:android
@@ -70,9 +70,9 @@ Output: `android/app/build/outputs/apk/debug/app-debug.apk` (`app.yueqi.open`).
 - Cloud login / register
 - Hosted models
 - BillingCredit
-- The paid edition (hosted models, cloud login, BillingCredit)
+- The paid edition (that is the website APK)
 
-This is a standalone free product, not a deleted-source dump of the paid edition.
+This is a standalone free source tree, not a deleted-source dump of the paid edition.
 
 ### Docs
 

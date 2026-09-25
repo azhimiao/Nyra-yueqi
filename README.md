@@ -11,7 +11,7 @@
   <a href="./README.en.md">English</a>
 </p>
 
-聊天、角色、记忆都在你自己的设备上。模型接口你自带（OpenAI 兼容）。没有云登录，没有付费积分。
+聊天、角色、记忆都在你自己的设备上。模型接口你自带（OpenAI 兼容）。这份源码没有云登录，也没有付费积分。
 
 ---
 
@@ -44,11 +44,11 @@ npm run dev
 
 ### 安装包
 
-官方 Android 包：
+商店 / 官网安装包是商业版（登录、托管、Credits 等），不是这份源码打出来的包：
 
 https://download.memprism.com/nyra-latest.apk
 
-自己从源码打 Debug 包：
+要从这份开源码自己打 Debug 包：
 
 ```bash
 npm run build:android
@@ -69,9 +69,9 @@ npm run build:android
 
 - 云登录 / 注册
 - 托管模型与 BillingCredit
-- 付费完整版
+- 付费完整版（官网 APK 才是）
 
-这是可以独立交付的免费产品形态，不是付费版的删减备份。
+这是可以独立交付的免费源码形态，不是付费版的删减备份。
 
 ### 文档
 
