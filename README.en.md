@@ -65,7 +65,7 @@ Output: `android/app/build/outputs/apk/debug/app-debug.apk` (`app.yueqi.open`).
 - **Two shells** — App and Mini Phone
 - **Scenario theater** — its own cast and relationship, not a continuation of daily chat
 - **Character World and market** — local, no cloud account
-- **BYOK** — the gateway forwards your request; keys are not stored in a server DB
+- **BYOK** — requests go from the device to your own API
 
 ### What this is not
 
@@ -73,8 +73,7 @@ Output: `android/app/build/outputs/apk/debug/app-debug.apk` (`app.yueqi.open`).
 - Hosted models
 - BillingCredit
 - The paid edition (that is the website APK)
-
-This is a standalone free source tree, not a deleted-source dump of the paid edition.
+- Memory palace, retrieval, and turn orchestration. Chat uses the character card and recent messages. See [OPEN_SOURCE.md](./OPEN_SOURCE.md)
 
 ### Docs
 

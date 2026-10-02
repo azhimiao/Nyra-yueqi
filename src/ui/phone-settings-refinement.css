@@ -1,0 +1,370 @@
+/* Settings are destinations; forms appear only within the chosen category. */
+.mini-phone .mini-settings [hidden],
+.mini-phone .mini-profile [hidden] { display: none !important; }
+
+.mini-phone .mini-settings .mini-settings-list {
+  display: block !important;
+  padding: 16px 14px 28px !important;
+}
+.mini-phone details.mini-settings-group {
+  display: block;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 1px solid var(--mini-os-line, #d9e2ee);
+  border-radius: 18px;
+  background: var(--mini-os-surface, #fff);
+  overflow: hidden;
+}
+.mini-phone .mini-settings-group__summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 86px;
+  padding: 16px 14px;
+  list-style: none;
+  cursor: pointer;
+  color: var(--mini-os-ink, #153451);
+}
+.mini-phone .mini-settings-group__summary::-webkit-details-marker { display: none; }
+.mini-phone .mini-settings-group__summary > svg:first-child {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  color: #325b80;
+}
+.mini-phone .mini-settings-group__summary > span { flex: 1; min-width: 0; }
+.mini-phone .mini-settings-group__summary strong { display: block; font-size: 15px; font-weight: 650; }
+.mini-phone .mini-settings-group__summary small { display: block; margin-top: 5px; color: #65798e; font-size: 11px; line-height: 1.55; }
+.mini-phone .mini-settings-group__summary > svg:last-child { width: 16px; height: 16px; flex: 0 0 16px; transition: transform .18s ease; }
+.mini-phone .mini-settings-group[open] > summary { background: #edf3f9; border-bottom: 1px solid #dce5ef; }
+.mini-phone .mini-settings-group[open] > summary > svg:last-child { transform: rotate(180deg); }
+.mini-phone .mini-settings-group > .mini-settings-block,
+.mini-phone .mini-settings-group > .mini-settings-advanced {
+  margin: 0 !important;
+  padding: 16px 14px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+.mini-phone .mini-settings-group > .mini-settings-block + .mini-settings-block { border-top: 1px solid #e4eaf2 !important; }
+.mini-phone .mini-settings-group .mini-settings-row { min-height: 48px !important; }
+.mini-phone .mini-settings-group .mini-form--auth { padding: 12px 0 0 !important; border: 0 !important; background: transparent !important; box-shadow: none !important; }
+.mini-phone .mini-settings-group .mini-auth-field > .mini-auth-phone,
+.mini-phone .mini-settings-group .mini-auth-field > .mini-auth-pass { display: flex !important; align-items: stretch; gap: 8px; min-width: 0; width: 100%; }
+.mini-phone .mini-settings-group .mini-auth-field > span > input { flex: 1; min-width: 0; width: 0; }
+.mini-phone .mini-settings-group .mini-auth-phone > select { flex: 0 0 76px; width: 76px; }
+.mini-phone .mini-settings-group .mini-auth-eye { flex: 0 0 auto; width: auto; min-height: 44px; padding: 0 10px; border-radius: 10px; }
+.mini-phone .mini-settings-group .mini-auth-mode-tabs,
+.mini-phone .mini-settings-group .mini-auth-field input,
+.mini-phone .mini-settings-group .mini-auth-field select,
+.mini-phone .mini-settings-group .mini-auth-eye,
+.mini-phone .mini-profile input:not([type="range"]):not([type="checkbox"]),
+.mini-phone .mini-profile select,
+.mini-phone .mini-profile textarea { background: #f6f9fd; border-color: #d8e3ef; color: #193b5a; }
+.mini-phone .mini-settings-group summary:focus-visible,
+.mini-phone .mini-profile summary:focus-visible { outline: 2px solid #356c9d; outline-offset: -4px; }
+.mini-phone .mini-profile .mini-profile-fold-card { padding: 0 !important; }
+.mini-phone .mini-profile .mini-profile-fold-card > summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 60px;
+  margin: 0;
+  padding: 16px !important;
+  cursor: pointer;
+  list-style: none;
+}
+.mini-phone .mini-profile .mini-profile-fold-card > summary::-webkit-details-marker { display: none; }
+.mini-phone .mini-profile .mini-profile-fold-card > summary:has(> svg)::before { display: none; }
+.mini-phone .mini-profile .mini-profile-fold-card > summary > svg { width: 17px; height: 17px; }
+.mini-phone .mini-profile .mini-profile-fold-card[open] > summary > svg { transform: rotate(180deg); }
+.mini-phone .mini-profile .mini-profile-fold__hint { flex-basis: 100%; margin: 0; font-size: 11px; line-height: 1.65; }
+.mini-phone .mini-profile .mini-profile-fold__body { padding: 0 16px 16px; }
+.mini-phone .mini-char-card__edit-label { display: block !important; margin-top: 7px; color: #356c9d; font-size: 11px; }
+.mini-phone .mini-char-card__meta { min-width: 0; }
+.mini-phone .mini-char-card__meta > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mini-phone .mini-char-card__form > .mini-settings-row {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100% !important;
+  min-height: 48px;
+  padding: 12px !important;
+  border: 1px solid #d8e3ef;
+  border-radius: 12px;
+  background: #f3f7fc;
+  text-align: left;
+}
+.mini-phone .mini-char-card__form > .mini-settings-row > span {
+  flex: 1;
+  width: auto !important;
+  min-width: 0;
+  white-space: normal;
+  word-break: normal;
+}
+.mini-phone .mini-char-card__form > .mini-settings-row > svg { width: 17px; height: 17px; flex: 0 0 17px; }
+@media (prefers-reduced-motion: reduce) {
+  .mini-phone .mini-settings-group__summary > svg:last-child { transition: none; }
+}
+
+/* Phone authoring surfaces: let the writing breathe. These views are editors,
+ * not dashboards, so grouping comes from rhythm and rules instead of nested
+ * framed cards. The controls and data attributes stay unchanged. */
+.mini-phone .mini-profile__scroll {
+  padding-inline: 16px !important;
+  padding-top: 12px !important;
+}
+
+.mini-phone .mini-profile .mini-char-library {
+  margin-bottom: 20px;
+}
+
+.mini-phone .mini-profile .mini-profile-fold-card {
+  margin: 0 !important;
+  border: 0 !important;
+  border-top: 1px solid color-mix(in srgb, var(--mini-os-line, #d9e2ee) 78%, transparent) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-profile .mini-profile-fold-card:last-child {
+  border-bottom: 1px solid color-mix(in srgb, var(--mini-os-line, #d9e2ee) 78%, transparent) !important;
+}
+
+.mini-phone .mini-profile .mini-profile-fold-card > summary {
+  min-height: 56px;
+  padding: 15px 2px !important;
+  color: var(--mini-os-ink, #153451);
+}
+
+.mini-phone .mini-profile .mini-profile-fold-card[open] > summary {
+  background: transparent;
+  border-bottom: 0;
+}
+
+.mini-phone .mini-profile .mini-profile-fold__body {
+  padding: 0 2px 18px !important;
+}
+
+.mini-phone .mini-profile .mini-char-card {
+  border: 0 !important;
+  border-top: 1px solid color-mix(in srgb, var(--mini-os-line, #d9e2ee) 78%, transparent) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-profile .mini-char-card.is-companion {
+  border-color: color-mix(in srgb, var(--mini-os-ice, #a9c9e4) 76%, transparent) !important;
+  box-shadow: none !important;
+}
+
+.mini-phone .mini-profile .mini-char-card__head {
+  padding-inline: 2px;
+  background: transparent;
+}
+
+.mini-phone .mini-profile .mini-char-card__body {
+  border-top-color: color-mix(in srgb, var(--mini-os-line, #d9e2ee) 72%, transparent);
+}
+
+.mini-phone .mini-profile .mini-book-feed {
+  gap: 0;
+  margin-block: 2px 12px;
+}
+
+.mini-phone .mini-profile .mini-book-card {
+  padding: 13px 2px 14px;
+  border-top: 1px solid color-mix(in srgb, var(--mini-os-line, #d9e2ee) 66%, transparent);
+  border-radius: 0;
+  background: transparent;
+}
+
+.mini-phone .mini-profile .mini-book-feed > .mini-empty {
+  padding-inline: 2px;
+  border-radius: 0;
+  background: transparent;
+}
+
+.mini-phone .mini-profile .mini-profile-fold--in-card {
+  margin-top: 8px;
+  border-top: 1px solid color-mix(in srgb, var(--mini-os-line, #d9e2ee) 66%, transparent);
+}
+
+.mini-phone .mini-profile .mini-profile-fold--in-card > summary {
+  padding-inline: 0;
+}
+
+/* Prompt / worldbook / memory are shared author editors. Reduce the card
+ * treatment only inside the phone route; App keeps its wider reading sheet. */
+.mini-phone .mini-view.author-route .author-mount {
+  padding-inline: 18px !important;
+}
+
+.mini-phone .mini-view.author-route .prompt-author-editor .author-field {
+  margin: 0;
+  padding: 17px 0 16px;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--author-line, #d5e0e8) 72%, transparent);
+  border-radius: 0;
+  background: transparent;
+}
+
+.mini-phone .mini-view.author-route .prompt-author-editor .author-field:first-of-type {
+  border-top: 0;
+}
+
+.mini-phone .mini-view.author-route .prompt-author-editor .author-field > span {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.mini-phone .mini-view.author-route .prompt-author-editor .author-field > small {
+  border-top: 0;
+  padding-top: 4px;
+  font-size: 12px;
+}
+
+.mini-phone .mini-view.author-route .prompt-author-editor > .prompt-tabs {
+  margin-inline: -4px;
+  margin-bottom: 14px;
+  padding: 3px;
+  border-radius: 9px;
+}
+
+.mini-phone .mini-view.author-route .prompt-author-editor .prompt-layout-row {
+  padding-block: 14px 16px;
+}
+
+.mini-phone .mini-view.author-route .worldbook-editor .wb-heading {
+  padding-block: 14px 20px;
+}
+
+.mini-phone .mini-view.author-route .worldbook-editor .wb-orbit {
+  flex-basis: 48px;
+  width: 48px;
+  height: 46px;
+  opacity: .55;
+}
+
+.mini-phone .mini-view.author-route .worldbook-editor .wb-browse-tools {
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.mini-phone .mini-view.author-route .worldbook-editor .wb-browse-tools button {
+  min-height: 44px;
+  border-color: color-mix(in srgb, var(--wb-edge, #c6d5e1) 72%, transparent);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.mini-phone .mini-view.author-route .worldbook-editor [data-wb-list] {
+  padding-inline: 2px;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--wb-edge, #c6d5e1) 78%, transparent);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-view.author-route .worldbook-editor .wb-entry-open {
+  padding-block: 19px 17px;
+}
+
+.mini-phone .mini-view.author-route .worldbook-editor .wb-entry-open strong {
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.mini-phone .mini-view.author-route .worldbook-editor .wb-entry-excerpt {
+  line-height: 1.72;
+}
+
+.mini-phone .mini-view.author-route .worldbook-editor .wb-reading {
+  padding-bottom: 20px;
+}
+
+.mini-phone .mini-view.author-route .memory-editor__timeline {
+  padding: 10px 2px 0;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--reading-edge, #c6d5e1) 78%, transparent);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-view.author-route .memory-editor__event {
+  padding-bottom: 22px;
+  padding-inline-start: 18px;
+}
+
+.mini-phone .mini-view.author-route .memory-editor__event .memory-editor__paper {
+  padding-bottom: 17px;
+}
+
+.mini-phone .mini-view.author-route .memory-editor__row strong {
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.mini-phone .mini-view.author-route .memory-editor__preview {
+  line-height: 1.85;
+}
+
+.mini-phone .mini-view.author-route .memory-editor__body {
+  margin-block: 16px 20px;
+  line-height: 1.9;
+}
+
+.mini-phone .mini-view.author-route .memory-editor :is(.memory-editor__source, .memory-editor__management) > summary {
+  border-color: color-mix(in srgb, var(--reading-edge, #c6d5e1) 72%, transparent);
+  background: transparent;
+}
+
+/* The in-phone memory browser is one continuous record, with cards reserved
+ * for the few projections that need an affordance. */
+.mini-phone .mini-memory .mini-stat-card {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  min-height: 0;
+  margin-bottom: 18px;
+  padding: 4px 2px 12px;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--mini-os-line, #d9e2ee) 78%, transparent);
+  border-left: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-memory .mini-stat-card strong {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.mini-phone .mini-memory .mini-memory-card {
+  padding: 16px 2px;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--mini-os-line, #d9e2ee) 72%, transparent);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mini-phone .mini-memory .mini-memory-card.is-projection {
+  padding-inline: 12px;
+  border: 1px solid color-mix(in srgb, var(--mini-os-ice, #a9c9e4) 68%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--mini-os-ice-soft, #e8f1f8) 52%, transparent);
+}
+
+.mini-phone .mini-memory .mini-memory-card + .mini-memory-card {
+  margin-top: 0;
+}

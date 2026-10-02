@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra.app/schemas/nychar-actions-v1.schema.json",
+  "title": "Nyra Character Declarative Actions v1",
+  "description": "Presentation cues only; no scripts, commands, tools, or permission grants.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "actions"],
+  "properties": {
+    "schema": {
+      "const": "nyra.character.actions"
+    },
+    "version": {
+      "const": 1
+    },
+    "actions": {
+      "type": "array",
+      "maxItems": 128,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 1000
+          },
+          "triggerTags": {
+            "type": "array",
+            "maxItems": 32,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          },
+          "assetPath": {
+            "type": "string",
+            "pattern": "^assets/pet/[A-Za-z0-9._-]+$",
+            "maxLength": 240
+          }
+        }
+      }
+    }
+  }
+}

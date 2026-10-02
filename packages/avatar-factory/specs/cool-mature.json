@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "characterId": "cool_mature",
+  "displayName": "成熟冷淡",
+  "visual": {
+    "artStyle": "日系赛璐璐",
+    "bodyProportion": "semi_chibi_adult",
+    "hair": "银灰中长",
+    "eyes": "冰蓝",
+    "face": "清冷短中庭",
+    "outfit": "深色风衣内搭",
+    "accessories": ["耳钉"],
+    "palette": ["#b8c0cc", "#6a8fd4", "#1c2030"]
+  },
+  "personalityMotion": {
+    "energy": 0.35,
+    "shyness": 0.4,
+    "expressiveness": 0.3,
+    "blinkRate": 0.35,
+    "gazeAvoidance": 0.35,
+    "reactionSpeed": 0.45
+  },
+  "provider": { "imageProvider": "fixture", "seed": 33 }
+}

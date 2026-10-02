@@ -1,0 +1,25 @@
+{
+  "payload": {
+    "schemaVersion": 2,
+    "channel": "stable",
+    "latestVersion": "1.0.0",
+    "minimumVersion": "1.0.0",
+    "mandatory": false,
+    "downloadUrl": "https://download.memprism.com/nyra-latest.apk",
+    "publishedAt": "2026-08-17T00:00:00.000Z",
+    "apk": {
+      "sha256": "REPLACED_BY_RELEASE_ANDROID",
+      "size": 0,
+      "certificateSha256": "REPLACED_BY_SECURITY_INIT_RELEASE"
+    },
+    "notes": {
+      "zh-CN": "该文件仅展示结构；正式清单必须由 npm run release:android 生成并签名。",
+      "en": "Schema example only. Production manifests must be generated and signed by npm run release:android."
+    }
+  },
+  "signature": {
+    "algorithm": "Ed25519",
+    "keyId": "REPLACED_BY_RELEASE_ANDROID",
+    "value": "REPLACED_BY_RELEASE_ANDROID"
+  }
+}

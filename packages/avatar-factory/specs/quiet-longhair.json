@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "characterId": "quiet_longhair",
+  "displayName": "文静长发",
+  "visual": {
+    "artStyle": "日系赛璐璐",
+    "bodyProportion": "semi_chibi_adult",
+    "hair": "黑色长直发",
+    "eyes": "深琥珀",
+    "face": "短圆脸",
+    "outfit": "奶白连衣裙粉腰带",
+    "accessories": ["书签"],
+    "palette": ["#2a2a32", "#c48a3a", "#fff6f0"]
+  },
+  "personalityMotion": {
+    "energy": 0.25,
+    "shyness": 0.75,
+    "expressiveness": 0.35,
+    "blinkRate": 0.45,
+    "gazeAvoidance": 0.55,
+    "reactionSpeed": 0.35
+  },
+  "provider": { "imageProvider": "fixture", "seed": 11 }
+}

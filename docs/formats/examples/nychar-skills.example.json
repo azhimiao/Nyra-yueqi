@@ -1,0 +1,16 @@
+{
+  "schema": "nyra.character.skills",
+  "version": 1,
+  "activation": "manual",
+  "skills": [
+    {
+      "id": "constellation-guide",
+      "name": "Constellation Guide",
+      "description": "Offers simple, non-executable guidance for identifying common constellations.",
+      "tags": [
+        "astronomy",
+        "education"
+      ]
+    }
+  ]
+}

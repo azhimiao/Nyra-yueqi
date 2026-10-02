@@ -1,0 +1,791 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "lock_candidate_1": {
+      "fingerprint": "10d673429b3d21962acb5f4e671f1e50aed0d0971165ee6ef405a60c3475cb07",
+      "promptHash": "cb92d59338fe61e6d2b68899b2c015a9e3e47070ae14181ae3f68ad5abd54927",
+      "inputHashes": [],
+      "outputHash": "d93c7b6278b5968b7d441a45bec49b5c30eb9398c43507c17ffc2999123518bd",
+      "output": "character/lock_candidate_1.png",
+      "model": "doubao-seedream-4-5-251128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1737,
+        "transparentRatio": 0.823,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 271,
+          "y": 54,
+          "width": 1104,
+          "height": 1451
+        },
+        "cleanup": {
+          "segmentation": "local-keying",
+          "chroma": {
+            "mode": "magenta-edge-flood",
+            "background": [
+              255,
+              0,
+              255
+            ]
+          },
+          "backdrop": {
+            "mode": "uniform-edge-flood",
+            "background": [
+              200,
+              189,
+              189
+            ],
+            "edgeSupport": 1
+          },
+          "neutralShadow": null,
+          "subjectScale": null,
+          "subjectRegistration": null
+        }
+      },
+      "completedAt": "2026-08-03T03:53:15.212Z"
+    },
+    "lock_candidate_2": {
+      "fingerprint": "bae31d108d3b7d3332af926a2cbf4ec52f6bce1b8ce4c222cdc877c1ac480547",
+      "promptHash": "4fa6617bcb2334101e63548fd194ef53c0770699973f9c26adf0d3f6d57188b1",
+      "inputHashes": [],
+      "outputHash": "31bc3fe7626eeb8ece5833ff621eb41b000682c27e783f9432ec1a1569a90d13",
+      "output": "character/lock_candidate_2.png",
+      "model": "doubao-seedream-4-5-251128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.3635,
+        "transparentRatio": 0.5962,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 30,
+          "y": 30,
+          "width": 1475,
+          "height": 1475
+        },
+        "cleanup": {
+          "segmentation": "local-keying",
+          "chroma": {
+            "mode": "magenta-edge-flood",
+            "background": [
+              255,
+              0,
+              255
+            ]
+          },
+          "backdrop": {
+            "mode": "uniform-edge-flood",
+            "background": [
+              191,
+              179,
+              180
+            ],
+            "edgeSupport": 0.7442
+          },
+          "neutralShadow": null,
+          "subjectScale": null,
+          "subjectRegistration": null
+        }
+      },
+      "completedAt": "2026-08-03T03:53:59.487Z"
+    },
+    "lock_candidate_3": {
+      "fingerprint": "c761f8c1db7c7740e428a5d3935296d543de7983a40ea17da91ea2b3b4854fe1",
+      "promptHash": "2e574456cf384b32a7b7bda92d44c4bbb4f9b28e8512bdfd8e1cd11113094755",
+      "inputHashes": [],
+      "outputHash": "fcdcf0cff00f5f804e1bc9ad2b46ee330ba3459c3922518376d7a1f2e30b03cb",
+      "output": "character/lock_candidate_3.png",
+      "model": "doubao-seedream-4-5-251128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1643,
+        "transparentRatio": 0.8339,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 485,
+          "y": 46,
+          "width": 492,
+          "height": 1459
+        },
+        "cleanup": {
+          "segmentation": "local-keying",
+          "chroma": {
+            "mode": "magenta-edge-flood",
+            "background": [
+              255,
+              0,
+              255
+            ]
+          },
+          "backdrop": {
+            "mode": "uniform-edge-flood",
+            "background": [
+              207,
+              200,
+              202
+            ],
+            "edgeSupport": 1
+          },
+          "neutralShadow": null,
+          "subjectScale": null,
+          "subjectRegistration": null
+        }
+      },
+      "completedAt": "2026-08-03T03:54:52.277Z"
+    },
+    "pose:talk_0": {
+      "fingerprint": "0938347f28f0f2839ee9796efc968e799e69753eb635fd5661415dd40c43e620",
+      "promptHash": "81edc34501aaafa679bf975a6d17c19e9a28e974ec1fe98e7ea2f8db9e4a375b",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "cff875ff017e731dd87ca480fe24c53ccdce8b161b38a37957fe9eb2a23ca596",
+      "output": "poses/talk_0.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1443,
+        "transparentRatio": 0.8556,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 455,
+          "y": 120,
+          "width": 526,
+          "height": 1319
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:06:50.179Z"
+    },
+    "pose:talk_1": {
+      "fingerprint": "4fa5f587a40d1e9a80474fbdc6ce28c50bd6162b23dad7d487e51dc1d1968b3a",
+      "promptHash": "bbb162fdafeaf33a7fc081e6b6d330a272764acfed21c512c9527b35348a4c58",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758",
+        "cff875ff017e731dd87ca480fe24c53ccdce8b161b38a37957fe9eb2a23ca596"
+      ],
+      "outputHash": "53c19a5fb1f30c8b98aeee3ac2948ea6c681bdbc01152a67dd7b2c7b9a23a8fc",
+      "output": "poses/talk_1.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1436,
+        "transparentRatio": 0.8562,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 457,
+          "y": 120,
+          "width": 523,
+          "height": 1319
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null,
+          "neutralShadow": null,
+          "subjectScale": null,
+          "subjectRegistration": {
+            "mode": "transparent-subject-registration",
+            "factor": 1.032081,
+            "sourceBounds": {
+              "x": 465,
+              "y": 140,
+              "width": 507,
+              "height": 1278
+            },
+            "referenceBounds": {
+              "x": 455,
+              "y": 120,
+              "width": 526,
+              "height": 1319
+            },
+            "targetBounds": {
+              "x": 457,
+              "y": 120,
+              "width": 523,
+              "height": 1319
+            }
+          }
+        }
+      },
+      "completedAt": "2026-07-23T16:27:22.499Z"
+    },
+    "pose:listen": {
+      "fingerprint": "0e1033c56f8f4b82bcb12df11fb8a09ae8745640351f6888e7e8529efadb491e",
+      "promptHash": "2e2487aca1bd4aa88eb2a4c2df0e97e6e3ce6caf71ea217d84e4b732aae4674b",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "72c5d35f051ddc18e4035de71a7a46f2b4df9772a733c8deb024515e29160df7",
+      "output": "poses/listen.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1422,
+        "transparentRatio": 0.8577,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 532,
+          "y": 120,
+          "width": 471,
+          "height": 1319
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:08:15.331Z"
+    },
+    "pose:thinking": {
+      "fingerprint": "f5ecac6dda2e49e9b9da1095abd940aa73e6f8703ab195563110ebf7dcbc73f5",
+      "promptHash": "56ccc90c9c52ad39b56199fd6990456f756c74b0cbbfc922a414183dd428be47",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "bf5855bd5858c59a178c4fa00146a6277d55d9cafba09e6748cb3fd3fa198da0",
+      "output": "poses/thinking.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.139,
+        "transparentRatio": 0.8609,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 542,
+          "y": 120,
+          "width": 439,
+          "height": 1319
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:08:58.281Z"
+    },
+    "pose:greet_0": {
+      "fingerprint": "e90824333e83dbc8ded95adc9dfc610a140a840d3a16700945045d8fc4755230",
+      "promptHash": "26fd24f213123434421101044aaa1d04835cb9c3147c6979768b9d045ab22a4e",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "d3d5dc4b4803930b830c472dcf5913d4f70577ffff91adc15896a82628b1a58c",
+      "output": "poses/greet_0.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1743,
+        "transparentRatio": 0.8256,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 433,
+          "y": 95,
+          "width": 574,
+          "height": 1346
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:09:39.971Z"
+    },
+    "pose:greet_1": {
+      "fingerprint": "838e70a9f8da97c6980f948a3ae64a439386e172f2bf6d20a081c98e94f99fb7",
+      "promptHash": "1577a1cc12319c2aba2cfa7f784c62c24d6905a38edab01d3939b858775b0d31",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758",
+        "d3d5dc4b4803930b830c472dcf5913d4f70577ffff91adc15896a82628b1a58c"
+      ],
+      "outputHash": "0df7ba81f455c3234943a1085f1f425d23049b3644de9521c807114ee0243089",
+      "output": "poses/greet_1.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1408,
+        "transparentRatio": 0.8591,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 480,
+          "y": 118,
+          "width": 503,
+          "height": 1303
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:10:22.500Z"
+    },
+    "pose:react_0": {
+      "fingerprint": "6a922aab32bf1f8c6e698f9992d02ed554411d44ab62e1051e930b655985f088",
+      "promptHash": "81e729ed558e08bd9fa5c4ff2078314f9a3be1d595b2f94fa15a962829c30773",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "ed010587bded75c0a482915f64c70dd0adafc120cdb4b8075788d78b53bd96a4",
+      "output": "poses/react_0.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1449,
+        "transparentRatio": 0.855,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 519,
+          "y": 120,
+          "width": 495,
+          "height": 1319
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:11:10.981Z"
+    },
+    "pose:react_1": {
+      "fingerprint": "2936a915bd4c1609a8f2394dafed7f87578f903aa7e9ecff05fe0f98d99e99f7",
+      "promptHash": "7df08ca5a70b833c85aac1dbece05df2dd82f67be6f4c4cd4adf130638eda223",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758",
+        "ed010587bded75c0a482915f64c70dd0adafc120cdb4b8075788d78b53bd96a4"
+      ],
+      "outputHash": "96d163b1c903122317cb2578c234f9d7f54dcd50b0c10e4155a6939eb3e21209",
+      "output": "poses/react_1.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1422,
+        "transparentRatio": 0.8577,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 491,
+          "y": 143,
+          "width": 548,
+          "height": 1274
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:11:52.693Z"
+    },
+    "pose:comfort": {
+      "fingerprint": "7c807f272255d0f1d8d5ab0e0896c258e1446af48cd36fc47d50d8c59318a5ae",
+      "promptHash": "9a58de505f76c679d979d96c00ccdf420c0d23b0b9e0df966310cbc303203c65",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "d7bb52d2a0ce5b15110604219cb1bb227a69d5baacefd1dc16effc116d8cc45f",
+      "output": "poses/comfort.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1555,
+        "transparentRatio": 0.8443,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 516,
+          "y": 94,
+          "width": 488,
+          "height": 1374
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null,
+          "neutralShadow": null,
+          "subjectScale": null,
+          "subjectRegistration": {
+            "mode": "transparent-subject-registration",
+            "factor": 1.037764,
+            "sourceBounds": {
+              "x": 534,
+              "y": 118,
+              "width": 470,
+              "height": 1324
+            },
+            "referenceBounds": {
+              "x": 529,
+              "y": 94,
+              "width": 462,
+              "height": 1374
+            },
+            "targetBounds": {
+              "x": 516,
+              "y": 94,
+              "width": 488,
+              "height": 1374
+            }
+          }
+        }
+      },
+      "completedAt": "2026-07-23T16:28:05.257Z"
+    },
+    "pose:welcome_home": {
+      "fingerprint": "3cc861dd5ba70e3e95be39554c53d9659bb67e5bec8c0658a0262e126b5e779c",
+      "promptHash": "1f3fc103e113f507ede10f5767be150726d6ed289a393e871d9585589b32112c",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "2291f8e1a8b5e9c7d94eef50dc99d52984bdcecc6ec35cc80860aa81d740c3d1",
+      "output": "poses/welcome_home.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1488,
+        "transparentRatio": 0.851,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 323,
+          "y": 120,
+          "width": 888,
+          "height": 1320
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:13:12.916Z"
+    },
+    "pose:lean_close": {
+      "fingerprint": "00d28aeb0eddcaab7974492f648b035d14cb1c3f3d318ba09268bba6e5f181b4",
+      "promptHash": "5cc70059142d790f97f2691b81aeb1772f510ce8e1069b76e7442b631e09086f",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "7809d71b8e72469c625df4ad0e4c5fc3ee637378229d24ad68568bffb6f82975",
+      "output": "poses/lean_close.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.2413,
+        "transparentRatio": 0.7586,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 444,
+          "y": 69,
+          "width": 634,
+          "height": 1405
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:13:56.182Z"
+    },
+    "pose:shy": {
+      "fingerprint": "b9acb7a9368a8b0fafedf9dcb59232fbaa38dc460fcf5e5d20c9e5e4568337c7",
+      "promptHash": "acfd76e1643fa068509119d8e441caeac09dd2391531f3b058b82b6acb69a9eb",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "2093359766c77aca7dd1ddef7a483562058038fd4cfa0b9903c55a9b51841301",
+      "output": "poses/shy.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1484,
+        "transparentRatio": 0.8515,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 521,
+          "y": 118,
+          "width": 474,
+          "height": 1323
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:14:36.809Z"
+    },
+    "pose:selfie": {
+      "fingerprint": "df43dc92a5f97d65485e0a833a1a636498608af596fb8074935c2bf0a11fac36",
+      "promptHash": "0ae232e3f4e3489dd36e22a60d97b1dfd363b6aa2d7072cfcdd21fb0df8e0c1a",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "191a39a085e1e213ecf201c3e128aa94caff73f7ac81818809662fc6679b9317",
+      "output": "poses/selfie.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1575,
+        "transparentRatio": 0.8424,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 455,
+          "y": 97,
+          "width": 549,
+          "height": 1350
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:15:17.760Z"
+    },
+    "pose:sit": {
+      "fingerprint": "9d4139e25aa082d305e51a3aa898ca368cd90072d023f41653913724d454af9d",
+      "promptHash": "dc03bda5fe3e8d1271f75ddf2b7badcb1d1079f6e685e5cddccc7a678a3ba107",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "119d357f9f5dca604a7d766926e3fdedf362c84474571362a62626b14b344b3d",
+      "output": "poses/sit.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1758,
+        "transparentRatio": 0.824,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 519,
+          "y": 83,
+          "width": 587,
+          "height": 1374
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:58:35.989Z"
+    },
+    "pose:sleep": {
+      "fingerprint": "1b0f7effe5b6a6afda6912f27143523e270f8f2181f18691366399c46c3ae6ff",
+      "promptHash": "e6cb2c4d33631efcba9ba0255f07ae1f3375edca8d46f6b513d99a0f446287da",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "d168ff6cd2b6545bb9a93e3c7ce713f1b5340818b35cb93e439c1bd7adce72e9",
+      "output": "poses/sleep.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1301,
+        "transparentRatio": 0.8697,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 187,
+          "y": 551,
+          "width": 1163,
+          "height": 561
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null,
+          "neutralShadow": {
+            "mode": "neutral-shadow-strip",
+            "removedPixels": 19032
+          },
+          "subjectScale": {
+            "mode": "transparent-subject-scale",
+            "factor": 0.8,
+            "sourceBounds": {
+              "x": 47,
+              "y": 411,
+              "width": 1454,
+              "height": 701
+            },
+            "targetBounds": {
+              "x": 187,
+              "y": 551,
+              "width": 1163,
+              "height": 561
+            }
+          },
+          "subjectRegistration": null
+        }
+      },
+      "completedAt": "2026-07-23T16:28:46.871Z"
+    },
+    "pose:drag": {
+      "fingerprint": "0d45e41b966dcb0199e0f62e33f293569a87470e92cc07006a8790928bf78f76",
+      "promptHash": "5d6731b559c687430fa67e4067c17cc29506b6d7cab695209eeba243dd8376d4",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "fa7839d48bfd9bfe598258c42edae68d75cd4ef297d9128e41a8a53764a34d6c",
+      "output": "poses/drag.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1466,
+        "transparentRatio": 0.8533,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 528,
+          "y": 119,
+          "width": 462,
+          "height": 1317
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null
+        }
+      },
+      "completedAt": "2026-07-23T15:17:30.697Z"
+    },
+    "pose:stand_to_sit_mid": {
+      "fingerprint": "97fe64b2a82754a18688272eb675aa58e505b651800b4d50521383c0c54a2d77",
+      "promptHash": "06e76a71543e2c72a3c11bb85aba8f226c9aee87eac1e913c8208365643173e0",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758"
+      ],
+      "outputHash": "bd0d8dca144a24b907e8f8fc9af85d873497b46d622409df78018251dedcad31",
+      "output": "poses/stand_to_sit_mid.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.2048,
+        "transparentRatio": 0.7951,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 460,
+          "y": 108,
+          "width": 606,
+          "height": 1336
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null,
+          "neutralShadow": null,
+          "subjectScale": null
+        }
+      },
+      "completedAt": "2026-07-23T16:11:05.997Z"
+    },
+    "pose:sit_to_sleep_mid": {
+      "fingerprint": "eb6b5565401cac288478c3ca34bcdf1cddad8bfc592bc6518e9150da058446dc",
+      "promptHash": "f25a0cf23b9fb727a3379131658ebb75ca08d0d715d2f1261bde09609e40a797",
+      "inputHashes": [
+        "91edc91d1c69c985c65ef1147d3e23f25cfaa285115499410e04aebe84aee758",
+        "119d357f9f5dca604a7d766926e3fdedf362c84474571362a62626b14b344b3d"
+      ],
+      "outputHash": "a24485ddae91b17f9e34b80c3281ac380b90071f7facede940875ed8c3c6b409",
+      "output": "poses/sit_to_sleep_mid.png",
+      "model": "doubao-seedream-5-0-260128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1238,
+        "transparentRatio": 0.8759,
+        "magentaResidue": 0,
+        "bounds": {
+          "x": 443,
+          "y": 334,
+          "width": 651,
+          "height": 1128
+        },
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null,
+          "neutralShadow": {
+            "mode": "neutral-shadow-strip",
+            "removedPixels": 7578
+          },
+          "subjectScale": {
+            "mode": "transparent-subject-scale",
+            "factor": 0.82,
+            "sourceBounds": {
+              "x": 383,
+              "y": 86,
+              "width": 794,
+              "height": 1376
+            },
+            "targetBounds": {
+              "x": 443,
+              "y": 334,
+              "width": 651,
+              "height": 1128
+            }
+          },
+          "subjectRegistration": null
+        }
+      },
+      "completedAt": "2026-07-23T16:33:57.333Z"
+    }
+  }
+}

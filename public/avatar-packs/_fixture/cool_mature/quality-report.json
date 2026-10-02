@@ -1,0 +1,141 @@
+{
+  "result": "DEGRADED_PASS",
+  "qualityTier": "D",
+  "publishable": false,
+  "checks": {
+    "fixture_marked": true,
+    "duplicate_frames": "PASS",
+    "matting": "DEGRADED_PASS",
+    "registration": "PASS",
+    "face_pack": "DEGRADED_PASS"
+  },
+  "matting": {
+    "primaryMode": "fallback_matting",
+    "usedIsnet": 0,
+    "usedFallback": 39
+  },
+  "registration": {
+    "mode": "js_alpha_bbox",
+    "thresholds": {
+      "footPx": 4,
+      "centerPx": 8,
+      "heightPct": 3
+    },
+    "actions": {
+      "idle": {
+        "keyframes": 2,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png",
+          "frame-02.png"
+        ],
+        "retryFlags": []
+      },
+      "listening": {
+        "keyframes": 2,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png",
+          "frame-02.png"
+        ],
+        "retryFlags": []
+      },
+      "thinking": {
+        "keyframes": 2,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png",
+          "frame-02.png"
+        ],
+        "retryFlags": []
+      },
+      "speaking": {
+        "keyframes": 2,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png",
+          "frame-02.png"
+        ],
+        "retryFlags": []
+      },
+      "happy": {
+        "keyframes": 2,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png",
+          "frame-02.png"
+        ],
+        "retryFlags": []
+      },
+      "concerned": {
+        "keyframes": 2,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png",
+          "frame-02.png"
+        ],
+        "retryFlags": []
+      },
+      "sleeping": {
+        "keyframes": 2,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png",
+          "frame-02.png"
+        ],
+        "retryFlags": []
+      },
+      "tap_react": {
+        "keyframes": 2,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png",
+          "frame-02.png"
+        ],
+        "retryFlags": []
+      },
+      "show_artifact": {
+        "keyframes": 2,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png",
+          "frame-02.png"
+        ],
+        "retryFlags": []
+      },
+      "enter": {
+        "keyframes": 1,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png"
+        ],
+        "retryFlags": []
+      },
+      "exit": {
+        "keyframes": 1,
+        "degraded": false,
+        "result": "PASS",
+        "frames": [
+          "frame-01.png"
+        ],
+        "retryFlags": []
+      }
+    }
+  },
+  "duplicates": [],
+  "face": {
+    "qualityTier": "D",
+    "missing": []
+  },
+  "note": "Fixture packs are never publishable"
+}

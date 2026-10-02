@@ -14,9 +14,13 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 
 import org.json.JSONObject;
 
+/**
+ * Android Keystore-backed secret vault via EncryptedSharedPreferences.
+ * API 22 (minSdk) cannot use this backend; JS falls back to Preferences.
+ */
 @CapacitorPlugin(name = "NativeSecureStore")
 public class NativeSecureStorePlugin extends Plugin {
-    private static final String PREFS_NAME = "yueqi_open_secure_store";
+    private static final String PREFS_NAME = "yueqi_secure_store";
     private static final int MIN_API = Build.VERSION_CODES.M;
 
     private SharedPreferences prefs;

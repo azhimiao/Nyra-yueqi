@@ -1,8 +1,11 @@
+// This is the website repository's live GitHub Pages deployment. The branded
+// memprism.com /legal/ route currently returns 404 and must not be shipped as
+// a registration link until that deployment is repaired.
 export const LEGAL_CENTER_URL = "https://azhimiao.github.io/legal/";
 
 export const CURRENT_LEGAL_VERSIONS = Object.freeze({
-  terms: "0.1.0",
-  privacy: "0.1.0",
+  terms: "0.2.0",
+  privacy: "0.2.0",
 });
 
 export function legalDocumentUrl(document, locale = "zh-CN") {
@@ -36,12 +39,10 @@ export function requireCurrentLegalConsent(input) {
     input?.termsVersion !== CURRENT_LEGAL_VERSIONS.terms
     || input?.privacyVersion !== CURRENT_LEGAL_VERSIONS.privacy
   ) {
-    throw legalConsentError("legal_consent_stale", "请重新阅读并同意最新的用户协议和隐私政策。");
+    throw legalConsentError(
+      "legal_consent_outdated",
+      "条款已更新，请重新阅读并同意后再注册。",
+    );
   }
-  return {
-    accepted: true,
-    termsVersion: CURRENT_LEGAL_VERSIONS.terms,
-    privacyVersion: CURRENT_LEGAL_VERSIONS.privacy,
-    acceptedAt: new Date().toISOString(),
-  };
+  return buildRegistrationLegalConsent(true);
 }

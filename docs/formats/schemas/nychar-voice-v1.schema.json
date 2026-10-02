@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra.app/schemas/nychar-voice-v1.schema.json",
+  "title": "Nyra Character Voice v1",
+  "description": "Provider-independent voice presentation; no provider identifiers, keys, or automatic network fetch.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version"],
+  "properties": {
+    "schema": {
+      "const": "nyra.character.voice"
+    },
+    "version": {
+      "const": 1
+    },
+    "displayName": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "language": {
+      "type": "string",
+      "maxLength": 35
+    },
+    "styleDescription": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "traits": {
+      "type": "array",
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      }
+    },
+    "samplePaths": {
+      "type": "array",
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^assets/voice/[A-Za-z0-9._-]+$",
+        "maxLength": 240
+      }
+    }
+  }
+}

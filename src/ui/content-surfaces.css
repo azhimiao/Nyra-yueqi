@@ -1,0 +1,199 @@
+/* Content has its own shape: a chat invitation, a record player, photo collections. */
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note {
+  margin: 4px auto 14px;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--chat-ui-line) 65%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--chat-ui-bg) 74%, var(--chat-ui-surface, #fff));
+}
+/* The folded letter is a small invitation in the transcript. Its title and
+ * signature share a line so the conversation remains the first-screen focus. */
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note.is-collapsed .chat-intro-note__identity {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note.is-collapsed h2 {
+  order: -1;
+  font: 600 17px/1.4 var(--nyra-display, Georgia, serif);
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note.is-collapsed .chat-intro-note__from {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__from { color: var(--chat-ui-muted); }
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__summary {
+  margin: 5px 0 0;
+  color: var(--chat-ui-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.chat-intro-note__actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__compose,
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  margin: 0;
+  padding: 0 11px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.4;
+  font-size: 13px;
+  color: var(--chat-ui-ink);
+  background: transparent;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__compose {
+  color: var(--chat-ui-accent, #254a69);
+  background: color-mix(in srgb, var(--chat-ui-accent, #254a69) 8%, var(--chat-ui-surface, #fff));
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__toggle {
+  color: var(--chat-ui-muted);
+  font-weight: 500;
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__toggle::after {
+  content: "⌃";
+  font-size: 14px;
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note.is-collapsed .chat-intro-note__toggle::after {
+  content: "⌄";
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__compose:active,
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__toggle:active {
+  background: color-mix(in srgb, var(--chat-ui-accent, #254a69) 14%, var(--chat-ui-surface, #fff));
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__compose,
+  :is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__toggle { transition: none; }
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__body {
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid var(--chat-ui-line);
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__body[hidden] { display: none; }
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 5px;
+}
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note__links { white-space: normal; }
+:is(body[data-app-mode="app"], .mini-phone) .chat-intro-note button:focus-visible {
+  outline: 2px solid var(--chat-ui-accent, #3b718f);
+  outline-offset: 3px;
+}
+
+/* Collections are destinations. Empty groups use small symbols, never fake photographs. */
+:is(.app-gallery, .mini-gallery) .mini-album-stacks.is-collection-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  padding: 0;
+}
+body[data-app-mode="app"] .album-library .mini-album-stacks.is-collection-list {
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 0 !important;
+}
+.gallery-collection-head {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 8px 2px 18px;
+  color: var(--mini-os-ink, var(--nyra-ink, #243d51));
+}
+.gallery-collection-head__mark { display: grid; place-items: center; color: #7794ab; }
+.gallery-collection-head__mark svg { width: 32px; height: 32px; stroke-width: 1; }
+.gallery-collection-head strong { font: 600 21px/1.4 var(--nyra-display, Georgia, serif); }
+.gallery-collection-head p { margin: 4px 0 0; color: var(--mini-os-ink-soft, var(--nyra-muted, #536b7e)); font-size: 13px; line-height: 1.55; }
+:is(.app-gallery, .mini-gallery) .is-collection-list .mini-album-stack-card {
+  gap: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--mini-os-line, var(--nyra-line, #d7e0e7));
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  animation: none;
+}
+:is(.app-gallery, .mini-gallery) .is-collection-list .mini-album-stack {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 14px;
+  min-height: 84px;
+  padding: 12px 2px;
+  border-radius: 8px;
+}
+:is(.app-gallery, .mini-gallery) .is-collection-list .mini-album-stack__fan {
+  width: 58px;
+  height: 58px;
+  aspect-ratio: 1;
+  border-radius: 9px;
+  background: var(--mini-os-surface, var(--nyra-paper-soft, #edf3f7));
+}
+:is(.app-gallery, .mini-gallery) .is-collection-list .mini-album-stack__fan img { border-radius: 9px; }
+:is(.app-gallery, .mini-gallery) .is-collection-list .mini-album-stack__placeholder {
+  color: #55738b;
+  background: color-mix(in srgb, var(--mini-os-line, #cad8e2) 30%, transparent);
+  border-radius: 9px;
+}
+:is(.app-gallery, .mini-gallery) .is-collection-list .mini-album-stack__placeholder svg { width: 24px; height: 24px; stroke-width: 1.35; }
+:is(.app-gallery, .mini-gallery) .is-collection-list .mini-album-stack__meta { display: grid; gap: 5px; min-width: 0; }
+:is(.app-gallery, .mini-gallery) .is-collection-list .mini-album-stack__meta strong { color: var(--mini-os-ink, var(--nyra-ink, #243d51)); font-size: 15px; line-height: 1.4; }
+:is(.app-gallery, .mini-gallery) .is-collection-list .mini-album-stack__meta span { color: var(--mini-os-ink-soft, var(--nyra-muted, #536b7e)); font-size: 13px; line-height: 1.5; }
+.gallery-collection-open { color: #7890a3; font-size: 25px; font-weight: 300; }
+.mini-album-stack__manage { padding-left: 74px; }
+.mini-album-stack__manage summary { width: fit-content; min-height: 44px; display: flex; align-items: center; gap: 6px; color: var(--mini-os-ink-soft, var(--nyra-muted, #536b7e)); cursor: pointer; font-size: 12px; }
+.mini-album-stack__manage summary::after { content: "⌄"; }
+:is(.app-gallery, .mini-gallery) .mini-album-stack__actions { padding-bottom: 12px; }
+:is(.app-gallery, .mini-gallery) .mini-album-stack__actions button { min-height: 44px; padding: 0 14px; font-size: 13px; }
+:is(.app-gallery, .mini-gallery) .mini-album-stack:focus-visible { outline: 2px solid #5483a4; outline-offset: 2px; }
+:is(.app-gallery, .mini-gallery) .mini-album-stack:active { background: color-mix(in srgb, #9dbbd1 12%, transparent); }
+.gallery-group-empty { grid-column: 1 / -1; display: grid; justify-items: center; gap: 10px; padding: 32px 18px 22px; text-align: center; }
+.gallery-group-empty > svg { width: 42px; height: 42px; color: #7896ac; stroke-width: 1.15; }
+.gallery-group-empty strong { font: 600 21px/1.4 var(--nyra-display, Georgia, serif); }
+.gallery-group-empty p { max-width: 32em; margin: 0; color: var(--mini-os-ink-soft, var(--nyra-muted, #536b7e)); font-size: 14px; line-height: 1.65; }
+:is(.app-gallery, .mini-gallery) .mini-album-grid:has(.gallery-group-empty) .mini-album-cell--add { grid-column: 1 / -1; aspect-ratio: auto; min-height: 48px; display: flex; justify-content: center; gap: 8px; border: 1px solid #aec2d1 !important; border-radius: 8px; color: #254a69; background: #edf4f8; }
+:is(.app-gallery, .mini-gallery) .mini-album-grid:has(.gallery-group-empty) .mini-album-cell--add span { font-size: 14px; }
+
+/* The record stays the focal point; controls carry explicit actions. */
+.mini-phone .mini-listen-stage { padding-top: 14px; }
+.mini-phone .mini-listen-now strong { font-size: 19px; }
+.mini-phone .mini-listen-controls { grid-template-columns: minmax(0, 1fr) 112px; column-gap: 12px; }
+.mini-phone .mini-listen-play { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: auto; min-width: 112px; height: 48px; margin-inline: auto; padding: 0 22px; border-radius: 999px; }
+.mini-phone .mini-listen-play span { font-size: 14px; font-weight: 600; }
+.mini-phone .mini-listen-sheet__actions .mini-icon-button[data-listen-import] { display: inline-flex; align-items: center; gap: 5px; width: auto; min-width: 74px; height: 44px; min-height: 44px; padding-inline: 9px; border: 1px solid var(--mini-os-line); border-radius: 7px; font-size: 13px; white-space: nowrap; flex: 0 0 auto; }
+.mini-phone .mini-listen-sheet__actions .mini-icon-button[data-listen-import] svg { width: 18px; height: 18px; flex: 0 0 auto; }
+.mini-phone .mini-listen-sheet__toggle { min-width: 0; }
+.mini-phone .mini-listen-companion { min-height: 62px; padding: 9px 10px; border: 0; border-left: 2px solid #8eabc1; border-radius: 0; background: transparent; box-shadow: none; }
+.mini-phone .mini-listen-companion strong { flex-wrap: wrap; font-size: 14px; }
+.mini-phone .mini-listen-companion strong em { color: var(--mini-os-ink-soft); font-size: 12px; }
+.mini-phone .mini-listen-companion p { overflow: visible; white-space: normal; color: var(--mini-os-ink-soft); font-size: 12px; line-height: 1.5; }
+body[data-app-mode="app"] .music-player-head__actions .ghost-action { width: auto; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; padding-inline: 10px; border: 1px solid var(--nyra-line); border-radius: 7px; }
+body[data-app-mode="app"] .music-player-head__actions .ghost-action span:not(.icon-fallback) { display: inline; font-size: 13px; }
+:is(body[data-app-mode="app"] .companion-page, body[data-app-mode="phone"] .mini-diary-host.companion-page) .journal-card-open { min-height: 44px; position: relative; z-index: 1; color: #254a69; background: #edf4f8; }
+
+/* The phone reader is a sheet over the diary, with an opaque reading surface. */
+body[data-app-mode="phone"] .mini-diary-host.companion-page { position: relative; }
+body[data-app-mode="phone"] .mini-diary-host.companion-page .memory-diary-reader.is-open {
+  margin: 0;
+  padding: 10px 12px !important;
+  overflow-y: auto;
+  background: var(--mini-os-bg, #f3f7fb) !important;
+  border: 0 !important;
+}
+body[data-app-mode="phone"] .mini-diary-host.companion-page .diary-book-toolbar .ghost-action,
+body[data-app-mode="phone"] .mini-diary-host.companion-page .diary-page-actions button {
+  min-height: 44px;
+  color: var(--mini-os-ink, #254a69) !important;
+}

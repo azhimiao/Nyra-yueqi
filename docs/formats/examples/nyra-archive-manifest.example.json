@@ -1,0 +1,26 @@
+{
+  "schema": "nyra.archive.manifest",
+  "version": 1,
+  "archiveId": "00000000-0000-4000-8000-000000000001",
+  "createdAt": "2026-01-15T12:00:00Z",
+  "producer": {
+    "name": "Nyra Desktop",
+    "version": "1.0.0",
+    "platform": "windows"
+  },
+  "entries": [
+    {
+      "path": "data/user-data.json",
+      "category": "user-data",
+      "mediaType": "application/json",
+      "size": 384,
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "required": true,
+      "authority": "authoritative"
+    }
+  ],
+  "restore": {
+    "strategy": "staged-atomic",
+    "minimumAppVersion": "1.0.0"
+  }
+}

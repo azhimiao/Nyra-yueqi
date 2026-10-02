@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "columns": 3,
+  "rows": 1,
+  "items": [
+    {
+      "index": 1,
+      "row": 1,
+      "column": 1,
+      "id": "lock_candidate_1",
+      "frame": "",
+      "path": "character/lock_candidate_1.png"
+    },
+    {
+      "index": 2,
+      "row": 1,
+      "column": 2,
+      "id": "lock_candidate_2",
+      "frame": "",
+      "path": "character/lock_candidate_2.png"
+    },
+    {
+      "index": 3,
+      "row": 1,
+      "column": 3,
+      "id": "lock_candidate_3",
+      "frame": "",
+      "path": "character/lock_candidate_3.png"
+    }
+  ]
+}

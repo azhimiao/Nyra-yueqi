@@ -1,0 +1,29 @@
+{
+  "schema": "yueqi.companion_state.v1",
+  "emotions": [
+    "warm",
+    "calm",
+    "sharp",
+    "playful",
+    "sleepy",
+    "neutral"
+  ],
+  "actions": [
+    "greet",
+    "idle_loop",
+    "sleep_loop",
+    "talk_loop"
+  ],
+  "inputs": {
+    "emotion": "enum",
+    "intensity": "number 0..1",
+    "action_id": "catalog id",
+    "mouth": "number 0..1",
+    "asleep": "boolean"
+  },
+  "mappingHint": {
+    "talking_default": "talk_loop",
+    "idle": "idle_loop",
+    "sleep": "sleep_loop"
+  }
+}

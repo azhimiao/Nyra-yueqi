@@ -1,0 +1,16 @@
+{
+  "name": "@yueqi/avatar-factory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "avatar-factory": "./cli/avatar.mjs"
+  },
+  "dependencies": {
+    "jpeg-js": "^0.4.4",
+    "pngjs": "^7.0.0"
+  },
+  "scripts": {
+    "test:provider-failure": "node tests/provider-failure.test.mjs"
+  }
+}

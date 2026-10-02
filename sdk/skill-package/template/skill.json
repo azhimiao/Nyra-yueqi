@@ -1,0 +1,17 @@
+{
+  "schemaId": "yueqi.skill.package.v1",
+  "sdkVersion": 1,
+  "id": "local-echo-status",
+  "name": "本地状态回声",
+  "version": "1.0.0",
+  "description": "低风险示例：把用户提供的本地状态文案格式化为可读摘要，无网络/文件/剪贴板/凭证权限。",
+  "risk": "R0",
+  "permissions": [],
+  "entry": "index.js",
+  "uiSlots": ["task_center_row"],
+  "capabilities": ["local-echo-status"],
+  "author": "yueqi-first-party-template",
+  "minHostSdk": 1,
+  "maxHostSdk": 1,
+  "characterMemoryAccess": "none"
+}

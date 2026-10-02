@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "columns": 1,
+  "rows": 1,
+  "items": [
+    {
+      "index": 1,
+      "row": 1,
+      "column": 1,
+      "id": "lock_candidate_1",
+      "frame": "",
+      "path": "character/lock_candidate_1.png"
+    }
+  ]
+}

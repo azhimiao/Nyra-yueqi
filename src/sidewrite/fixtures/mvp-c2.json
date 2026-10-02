@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "appKey": "c2",
+  "threads": [
+    {
+      "id": "sms-bank",
+      "contactName": "栖行银行",
+      "contactHint": "955****8812",
+      "lastPreview": "您尾号 4821 账户支出 26.50 元",
+      "lastAt": "2026-03-12T12:08:00.000Z",
+      "unread": 1
+    },
+    {
+      "id": "sms-mom",
+      "contactName": "妈妈",
+      "contactHint": "138****4721",
+      "lastPreview": "到家了吗？",
+      "lastAt": "2026-03-11T21:30:00.000Z",
+      "unread": 0
+    }
+  ],
+  "messagesByThread": {
+    "sms-bank": [
+      {
+        "id": "sb1",
+        "direction": "in",
+        "body": "【栖行银行】您尾号 4821 账户支出 26.50 元，余额 ****。",
+        "sentAt": "2026-03-12T12:08:00.000Z"
+      }
+    ],
+    "sms-mom": [
+      {
+        "id": "sm1",
+        "direction": "in",
+        "body": "记得带伞。",
+        "sentAt": "2026-03-11T08:10:00.000Z"
+      },
+      {
+        "id": "sm2",
+        "direction": "out",
+        "body": "带了，放心。",
+        "sentAt": "2026-03-11T08:22:00.000Z"
+      },
+      {
+        "id": "sm3",
+        "direction": "in",
+        "body": "到家了吗？",
+        "sentAt": "2026-03-11T21:30:00.000Z"
+      }
+    ]
+  }
+}

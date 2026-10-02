@@ -1,0 +1,22 @@
+{
+  "schema": "nyra.resource.metadata",
+  "version": 1,
+  "id": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "kind": "music",
+  "title": "Rooftop at Midnight",
+  "creator": "Example Artist",
+  "language": "zxx",
+  "importedAt": "2026-01-15T12:00:00Z",
+  "source": {
+    "type": "local-file",
+    "label": "User-selected audio"
+  },
+  "original": {
+    "filename": "rooftop-at-midnight.flac",
+    "mediaType": "audio/flac",
+    "size": 8388608,
+    "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "immutable": true
+  },
+  "durationMs": 184000
+}

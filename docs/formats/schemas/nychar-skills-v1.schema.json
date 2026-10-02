@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra.app/schemas/nychar-skills-v1.schema.json",
+  "title": "Nyra Character Declarative Skills v1",
+  "description": "Discovery metadata only; no executable content, packages, permissions, tools, or auto-install directives.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "activation", "skills"],
+  "properties": {
+    "schema": {
+      "const": "nyra.character.skills"
+    },
+    "version": {
+      "const": 1
+    },
+    "activation": {
+      "const": "manual"
+    },
+    "skills": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "tags": {
+            "type": "array",
+            "maxItems": 32,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          }
+        }
+      }
+    }
+  }
+}

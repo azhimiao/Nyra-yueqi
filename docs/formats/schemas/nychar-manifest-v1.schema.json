@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra.app/schemas/nychar-manifest-v1.schema.json",
+  "title": "Nyra Character Package Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "formatVersion", "packageId", "characterId", "createdAt", "components", "assets"],
+  "properties": {
+    "schema": {
+      "const": "nyra.character-package.manifest"
+    },
+    "formatVersion": {
+      "const": 1
+    },
+    "packageId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "characterId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["character", "worldbook", "relationship", "appearance", "actions", "voice", "skills"],
+      "properties": {
+        "character": {
+          "allOf": [
+            { "$ref": "#/$defs/component" },
+            { "properties": { "path": { "const": "character.json" } } }
+          ]
+        },
+        "worldbook": {
+          "allOf": [
+            { "$ref": "#/$defs/component" },
+            { "properties": { "path": { "const": "worldbook.json" } } }
+          ]
+        },
+        "relationship": {
+          "allOf": [
+            { "$ref": "#/$defs/component" },
+            { "properties": { "path": { "const": "relationship.json" } } }
+          ]
+        },
+        "appearance": {
+          "allOf": [
+            { "$ref": "#/$defs/component" },
+            { "properties": { "path": { "const": "appearance.json" } } }
+          ]
+        },
+        "actions": {
+          "allOf": [
+            { "$ref": "#/$defs/component" },
+            { "properties": { "path": { "const": "actions.json" } } }
+          ]
+        },
+        "voice": {
+          "allOf": [
+            { "$ref": "#/$defs/component" },
+            { "properties": { "path": { "const": "voice.json" } } }
+          ]
+        },
+        "skills": {
+          "allOf": [
+            { "$ref": "#/$defs/component" },
+            { "properties": { "path": { "const": "skills.json" } } }
+          ]
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "maxItems": 248,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "mediaType", "size", "sha256"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "maxLength": 240,
+            "pattern": "^assets/(avatar\\.png|portrait\\.png|pet/[A-Za-z0-9._-]+|voice/[A-Za-z0-9._-]+)$"
+          },
+          "mediaType": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 127,
+            "pattern": "^(image|audio)/[a-z0-9!#$&^_.+-]+$"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 67108864
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "mediaType", "size", "sha256", "schemaVersion"],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "mediaType": {
+          "const": "application/json"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 262144
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "schemaVersion": {
+          "const": 1
+        }
+      }
+    }
+  }
+}

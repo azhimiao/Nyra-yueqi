@@ -1,0 +1,89 @@
+{
+  "schemaId": "yueqi.world.package.v1",
+  "sdkVersion": 1,
+  "id": "template-shared-world",
+  "name": "模板共同世界",
+  "version": "1.0.0",
+  "description": "世界书 / 地点 / 事件 / 道具 / 背景 / 叙事剧本 / 共同经历模板。能力仅能通过 Skill Package 依赖获得。",
+  "author": "yueqi-studio",
+  "minHostSdk": 1,
+  "maxHostSdk": 1,
+  "skillDependencies": ["local-echo-status"],
+  "worldbook": {
+    "entries": [
+      {
+        "id": "wb-cafe",
+        "title": "街角咖啡馆",
+        "body": "你们常去的安静角落，窗外有梧桐。",
+        "triggers": ["咖啡", "街角", "梧桐"],
+        "enabled": true
+      }
+    ]
+  },
+  "places": [
+    {
+      "id": "place-cafe",
+      "name": "街角咖啡馆",
+      "description": "午后阳光斜进来的双人座。",
+      "backgroundId": "bg-cafe"
+    },
+    {
+      "id": "place-balcony",
+      "name": "家里阳台",
+      "description": "晚风和远处城市灯火。",
+      "backgroundId": "bg-balcony"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-first-rain",
+      "title": "第一场雨",
+      "description": "一起躲雨，分享一把伞。",
+      "placeId": "place-cafe",
+      "relationEventHint": "shared_experience"
+    }
+  ],
+  "props": [
+    {
+      "id": "prop-umbrella",
+      "name": "旧伞",
+      "description": "伞骨有点松，但仍能挡住雨。",
+      "assetRef": "assets/props/umbrella.png"
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "bg-cafe",
+      "label": "咖啡馆窗边",
+      "assetRef": "assets/bg/cafe.png",
+      "mood": "warm"
+    },
+    {
+      "id": "bg-balcony",
+      "label": "阳台夜色",
+      "assetRef": "assets/bg/balcony.png",
+      "mood": "calm"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "script-rain-day",
+      "title": "躲雨的下午",
+      "beats": [
+        "雨突然下大了",
+        "TA 把伞偏向你",
+        "你们决定在咖啡馆多坐一会"
+      ],
+      "body": "叙事节拍模板，不可执行代码。"
+    }
+  ],
+  "sharedExperienceTemplates": [
+    {
+      "id": "sx-rain",
+      "title": "雨天共伞",
+      "summary": "一场突然的雨，成为可回看的共同记忆。",
+      "placeId": "place-cafe",
+      "eventId": "ev-first-rain"
+    }
+  ]
+}

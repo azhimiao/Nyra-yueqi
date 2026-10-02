@@ -1,0 +1,174 @@
+{
+  "schemaId": "yueqi.character.package.v1",
+  "sdkVersion": 1,
+  "id": "template-companion",
+  "name": "模板伙伴",
+  "version": "1.0.0",
+  "description": "创作者模板：含 6+ 动作、8+ 表情、声音映射与关系策略。本地导入导出，无私有商城。",
+  "author": "yueqi-studio",
+  "minHostSdk": 1,
+  "maxHostSdk": 1,
+  "skillDependencies": [],
+  "previewAspects": {
+    "desk_pet": "1:1",
+    "pop": "3:4",
+    "app": "9:16",
+    "scenario": "16:9",
+    "notification": "1:1"
+  },
+  "identity": {
+    "displayName": "模板伙伴",
+    "alias": "小模",
+    "summary": "温和、可靠的日常搭档，擅长陪伴与轻任务反馈。",
+    "relationMode": "partner",
+    "identityKey": "template-companion",
+    "boundaries": [
+      "不替用户做未授权的外部操作",
+      "不主动追问敏感隐私",
+      "不冒充其他角色身份"
+    ],
+    "speechStyle": {
+      "tone": "warm",
+      "formality": "casual",
+      "quirks": ["句末轻声确认", "任务完成时简短汇报"]
+    },
+    "values": ["诚实", "尊重边界", "持续陪伴"]
+  },
+  "appearance": {
+    "portraitRef": "assets/portrait.png",
+    "actions": [
+      {
+        "id": "idle",
+        "label": "待机",
+        "assetRef": "assets/actions/idle.png",
+        "loop": true,
+        "aspect": "1:1",
+        "transparentBg": true,
+        "characterId": "template-companion"
+      },
+      {
+        "id": "talk",
+        "label": "说话",
+        "assetRef": "assets/actions/talk.png",
+        "loop": true,
+        "aspect": "1:1",
+        "transparentBg": true,
+        "characterId": "template-companion"
+      },
+      {
+        "id": "think",
+        "label": "思考",
+        "assetRef": "assets/actions/think.png",
+        "aspect": "1:1",
+        "transparentBg": true,
+        "characterId": "template-companion"
+      },
+      {
+        "id": "celebrate",
+        "label": "成功",
+        "assetRef": "assets/actions/celebrate.png",
+        "aspect": "1:1",
+        "transparentBg": true,
+        "characterId": "template-companion"
+      },
+      {
+        "id": "comfort",
+        "label": "安慰",
+        "assetRef": "assets/actions/comfort.png",
+        "aspect": "1:1",
+        "transparentBg": true,
+        "characterId": "template-companion"
+      },
+      {
+        "id": "wave",
+        "label": "挥手",
+        "assetRef": "assets/actions/wave.png",
+        "aspect": "1:1",
+        "transparentBg": true,
+        "characterId": "template-companion"
+      }
+    ],
+    "expressions": [
+      { "id": "neutral", "label": "平静", "assetRef": "assets/expressions/neutral.png", "aspect": "1:1", "transparentBg": true, "characterId": "template-companion" },
+      { "id": "smile", "label": "微笑", "assetRef": "assets/expressions/smile.png", "aspect": "1:1", "transparentBg": true, "characterId": "template-companion" },
+      { "id": "happy", "label": "开心", "assetRef": "assets/expressions/happy.png", "aspect": "1:1", "transparentBg": true, "characterId": "template-companion" },
+      { "id": "sad", "label": "难过", "assetRef": "assets/expressions/sad.png", "aspect": "1:1", "transparentBg": true, "characterId": "template-companion" },
+      { "id": "surprised", "label": "惊讶", "assetRef": "assets/expressions/surprised.png", "aspect": "1:1", "transparentBg": true, "characterId": "template-companion" },
+      { "id": "focused", "label": "专注", "assetRef": "assets/expressions/focused.png", "aspect": "1:1", "transparentBg": true, "characterId": "template-companion" },
+      { "id": "shy", "label": "害羞", "assetRef": "assets/expressions/shy.png", "aspect": "1:1", "transparentBg": true, "characterId": "template-companion" },
+      { "id": "worried", "label": "担心", "assetRef": "assets/expressions/worried.png", "aspect": "1:1", "transparentBg": true, "characterId": "template-companion" }
+    ],
+    "actionStateMachine": {
+      "initial": "idle",
+      "transitions": [
+        { "from": "idle", "to": "talk", "on": "start_chat" },
+        { "from": "talk", "to": "idle", "on": "end_chat" },
+        { "from": "idle", "to": "think", "on": "start_task" },
+        { "from": "think", "to": "celebrate", "on": "task_success" },
+        { "from": "think", "to": "comfort", "on": "task_failure" },
+        { "from": "celebrate", "to": "idle", "on": "reset" },
+        { "from": "comfort", "to": "idle", "on": "reset" },
+        { "from": "idle", "to": "wave", "on": "greet" },
+        { "from": "wave", "to": "idle", "on": "reset" }
+      ]
+    },
+    "lipSync": {
+      "enabled": true,
+      "hookId": "lipsync.default",
+      "visemeMap": {
+        "A": "assets/visemes/A.png",
+        "E": "assets/visemes/E.png",
+        "rest": "assets/visemes/rest.png"
+      }
+    },
+    "voice": {
+      "defaultVoiceId": "voice.default",
+      "fallbackVoiceId": "voice.silent",
+      "mapping": {
+        "chat": "voice.chat",
+        "task": "voice.task",
+        "waiting": "voice.waiting",
+        "success": "voice.success",
+        "failure": "voice.failure",
+        "voice.default": "assets/voice/default.wav",
+        "voice.silent": "assets/voice/silent.wav",
+        "voice.chat": "assets/voice/chat.wav",
+        "voice.task": "assets/voice/task.wav",
+        "voice.waiting": "assets/voice/waiting.wav",
+        "voice.success": "assets/voice/success.wav",
+        "voice.failure": "assets/voice/failure.wav"
+      }
+    },
+    "fallbackAssets": {
+      "idle": "assets/actions/idle.png",
+      "portrait": "assets/portrait.png",
+      "silentVoice": "assets/voice/silent.wav"
+    }
+  },
+  "actionVoiceMap": {
+    "chat": { "actionId": "talk", "expressionId": "smile", "voiceLineId": "voice.chat" },
+    "task": { "actionId": "think", "expressionId": "focused", "voiceLineId": "voice.task" },
+    "waiting": { "actionId": "idle", "expressionId": "neutral", "voiceLineId": "voice.waiting" },
+    "success": { "actionId": "celebrate", "expressionId": "happy", "voiceLineId": "voice.success" },
+    "failure": { "actionId": "comfort", "expressionId": "worried", "voiceLineId": "voice.failure" }
+  },
+  "memoryPolicy": {
+    "allowRemember": ["relation", "preference", "shared_experience", "milestone"],
+    "denyRemember": ["credentials", "payment"],
+    "proactivity": "medium",
+    "sensitiveTopics": [
+      { "topic": "finance", "policy": "ask" },
+      { "topic": "health", "policy": "soft" },
+      { "topic": "trauma", "policy": "avoid" }
+    ],
+    "maxProactivePerDay": 4,
+    "retainRelationMemoryOnUpgrade": true
+  },
+  "relationPolicy": {
+    "defaultMode": "partner",
+    "allowSceneWrites": true,
+    "intimacyPace": "gentle",
+    "openTopics": ["daily", "goals", "shared_experience"],
+    "notes": "场景写入关系事件前必须经过运行时规则验证。"
+  }
+}

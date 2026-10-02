@@ -1,0 +1,14 @@
+{
+  "schema": "nyra.character.voice",
+  "version": 1,
+  "displayName": "Quiet Stargazer",
+  "language": "en-US",
+  "styleDescription": "A clear, unhurried voice with a warm conversational tone.",
+  "traits": [
+    "warm",
+    "measured"
+  ],
+  "samplePaths": [
+    "assets/voice/greeting.ogg"
+  ]
+}

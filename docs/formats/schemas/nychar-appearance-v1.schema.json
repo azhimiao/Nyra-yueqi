@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra.app/schemas/nychar-appearance-v1.schema.json",
+  "title": "Nyra Character Appearance v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version"],
+  "properties": {
+    "schema": {
+      "const": "nyra.character.appearance"
+    },
+    "version": {
+      "const": 1
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 10000
+    },
+    "avatarPath": {
+      "const": "assets/avatar.png"
+    },
+    "portraitPath": {
+      "const": "assets/portrait.png"
+    },
+    "pet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 5000
+        },
+        "assetPaths": {
+          "type": "array",
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^assets/pet/[A-Za-z0-9._-]+$",
+            "maxLength": 240
+          }
+        }
+      }
+    },
+    "styleTags": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      }
+    }
+  }
+}

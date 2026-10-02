@@ -1,0 +1,18 @@
+{
+  "schema": "nyra.character.appearance",
+  "version": 1,
+  "description": "A young astronomer with dark curls, a navy coat, and a silver star pin.",
+  "avatarPath": "assets/avatar.png",
+  "pet": {
+    "label": "Pocket Comet",
+    "description": "A tiny luminous comet used only as Mira's optional pet appearance.",
+    "assetPaths": [
+      "assets/pet/wave.webp"
+    ]
+  },
+  "styleTags": [
+    "starlight",
+    "navy",
+    "soft-watercolor"
+  ]
+}

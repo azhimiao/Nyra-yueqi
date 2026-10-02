@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "avatarId": "lively_shorthair_v1",
+  "characterId": "lively_shorthair",
+  "identityVersion": 1,
+  "renderer": "sprite_motion_pack",
+  "qualityTier": "D",
+  "publishable": false,
+  "canvas": {
+    "width": 1024,
+    "height": 1024,
+    "baselineY": 880,
+    "centerX": 512
+  },
+  "actions": {
+    "idle": {
+      "playback": "loop",
+      "returnAction": null,
+      "frames": [
+        "actions/idle/frame-01.png",
+        "actions/idle/frame-02.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    },
+    "listening": {
+      "playback": "loop",
+      "returnAction": null,
+      "frames": [
+        "actions/listening/frame-01.png",
+        "actions/listening/frame-02.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    },
+    "thinking": {
+      "playback": "loop",
+      "returnAction": null,
+      "frames": [
+        "actions/thinking/frame-01.png",
+        "actions/thinking/frame-02.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    },
+    "speaking": {
+      "playback": "loop",
+      "returnAction": null,
+      "frames": [
+        "actions/speaking/frame-01.png",
+        "actions/speaking/frame-02.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    },
+    "happy": {
+      "playback": "once",
+      "returnAction": "idle",
+      "frames": [
+        "actions/happy/frame-01.png",
+        "actions/happy/frame-02.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    },
+    "concerned": {
+      "playback": "once",
+      "returnAction": "idle",
+      "frames": [
+        "actions/concerned/frame-01.png",
+        "actions/concerned/frame-02.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    },
+    "sleeping": {
+      "playback": "loop",
+      "returnAction": null,
+      "frames": [
+        "actions/sleeping/frame-01.png",
+        "actions/sleeping/frame-02.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    },
+    "tap_react": {
+      "playback": "once",
+      "returnAction": "idle",
+      "frames": [
+        "actions/tap_react/frame-01.png",
+        "actions/tap_react/frame-02.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    },
+    "show_artifact": {
+      "playback": "once",
+      "returnAction": "idle",
+      "frames": [
+        "actions/show_artifact/frame-01.png",
+        "actions/show_artifact/frame-02.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    },
+    "enter": {
+      "playback": "once",
+      "returnAction": "idle",
+      "frames": [
+        "actions/enter/frame-01.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    },
+    "exit": {
+      "playback": "once",
+      "returnAction": "idle",
+      "frames": [
+        "actions/exit/frame-01.png"
+      ],
+      "fps": 8,
+      "degraded": false
+    }
+  },
+  "face": {
+    "qualityTier": "D",
+    "anchors": {
+      "faceAnchor": {
+        "x": 512,
+        "y": 420
+      },
+      "leftEyeAnchor": {
+        "x": 470,
+        "y": 400
+      },
+      "rightEyeAnchor": {
+        "x": 554,
+        "y": 400
+      },
+      "mouthAnchor": {
+        "x": 512,
+        "y": 460
+      }
+    },
+    "layers": {
+      "base": "face/base.png",
+      "eyesOpen": "face/eyes/open.png",
+      "eyesClosed": "face/eyes/closed.png",
+      "mouthClosed": "face/mouth/closed.png",
+      "mouthOpen": "face/mouth/open.png"
+    }
+  },
+  "props": {
+    "diary": {
+      "atlas": "props/diary.png",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.55
+      }
+    },
+    "photo": {
+      "atlas": "props/photo.png",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.55
+      }
+    },
+    "book": {
+      "atlas": "props/book.png",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.55
+      }
+    },
+    "gift": {
+      "atlas": "props/gift.png",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.55
+      }
+    }
+  },
+  "hitboxes": [
+    {
+      "id": "body",
+      "x": 300,
+      "y": 200,
+      "w": 424,
+      "h": 700
+    }
+  ],
+  "motionProfile": {
+    "breathAmp": 0.0182,
+    "swayAmp": 0.012,
+    "blinkRate": 0.7,
+    "gazeAvoidance": 0.15,
+    "reactionSpeed": 0.8
+  },
+  "assetsHash": "955c525b206fa052904cad19"
+}

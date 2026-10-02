@@ -1,0 +1,15 @@
+{
+  "schema": "nyra.character.actions",
+  "version": 1,
+  "actions": [
+    {
+      "id": "gentle-wave",
+      "label": "Gentle wave",
+      "description": "Mira gives a small greeting wave.",
+      "triggerTags": [
+        "greeting"
+      ],
+      "assetPath": "assets/pet/wave.webp"
+    }
+  ]
+}

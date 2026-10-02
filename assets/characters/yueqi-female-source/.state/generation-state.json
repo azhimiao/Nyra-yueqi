@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "lock_candidate_1": {
+      "fingerprint": "0fdc8212356c5c45f33c6a4257cf91db5fb4a75f28352eb27c96facb0447f1e4",
+      "promptHash": "5f14ebe7066a848c893079f791200ac8bf8b798545d4f13fea1ab8b94add6f3d",
+      "inputHashes": [
+        "97ea075e09d6113c4cc459b8abbb3f6ee59ad633d53e34a242c8fc408fb1e89d"
+      ],
+      "outputHash": "8835fae030b62bee59c91cc8ab78dc71f8d0293a690a79b1785674576993d7c7",
+      "output": "character/lock_candidate_1.png",
+      "model": "doubao-seedream-4-5-251128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.181,
+        "transparentRatio": 0.8189,
+        "magentaResidue": 0,
+        "checkerboardHits": 0,
+        "bounds": {
+          "x": 494,
+          "y": 87,
+          "width": 549,
+          "height": 1357
+        },
+        "centerX": 768,
+        "footY": 1443,
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null,
+          "neutralShadow": null,
+          "alphaEdge": {
+            "mode": "straight-alpha-neutral-despill",
+            "correctedPixels": 4982,
+            "clearedPixels": 1931622
+          },
+          "subjectScale": null,
+          "subjectRegistration": null
+        }
+      },
+      "completedAt": "2026-08-12T09:26:01.419Z"
+    },
+    "pose:talk_0": {
+      "fingerprint": "26a22744866f9711d2fad0de7d03208f4f6a1225ebb3074fb5fdaee8a376f241",
+      "promptHash": "e2c247a405ea0509eb4e3db51cc08874fde2249796bae3c34b016e0a6b162766",
+      "inputHashes": [
+        "8d2f5b7a32ff0b8fc24ebe0a21f587a3e750da017db4c5e9dd58854ab7d67dec"
+      ],
+      "outputHash": "538c7bf6b4543ee717cc64cfedd1047ed1b7a48c09a544d72a2f1a4d942817f9",
+      "output": "poses/talk_0.png",
+      "model": "doubao-seedream-4-5-251128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.2159,
+        "transparentRatio": 0.7838,
+        "magentaResidue": 0,
+        "checkerboardHits": 0,
+        "bounds": {
+          "x": 453,
+          "y": 54,
+          "width": 630,
+          "height": 1444
+        },
+        "centerX": 767.5,
+        "footY": 1497,
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null,
+          "neutralShadow": null,
+          "alphaEdge": {
+            "mode": "straight-alpha-neutral-despill",
+            "correctedPixels": 12560,
+            "clearedPixels": 1847867
+          },
+          "subjectScale": null,
+          "subjectRegistration": {
+            "mode": "transparent-subject-registration",
+            "factor": 1.041096,
+            "sourceBounds": {
+              "x": 466,
+              "y": 82,
+              "width": 605,
+              "height": 1387
+            },
+            "referenceBounds": {
+              "x": 454,
+              "y": 54,
+              "width": 628,
+              "height": 1444
+            },
+            "targetBounds": {
+              "x": 453,
+              "y": 54,
+              "width": 630,
+              "height": 1444
+            }
+          }
+        }
+      },
+      "completedAt": "2026-08-12T09:42:06.038Z"
+    },
+    "pose:greet_0": {
+      "fingerprint": "99d706f1788be5657fd5eccc000145723b0c65bbea1fbdb628de8f56a1694f48",
+      "promptHash": "def7156aef0a1ca538e872aa359026558cca1e4f7628d51498fdd0f5491f03c7",
+      "inputHashes": [
+        "8d2f5b7a32ff0b8fc24ebe0a21f587a3e750da017db4c5e9dd58854ab7d67dec"
+      ],
+      "outputHash": "c710c5aca4bf68cd08c2f3d529539a181138f5c1d3fb7a930a517160cd711c4d",
+      "output": "poses/greet_0.png",
+      "model": "doubao-seedream-4-5-251128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.2188,
+        "transparentRatio": 0.7809,
+        "magentaResidue": 0,
+        "checkerboardHits": 0,
+        "bounds": {
+          "x": 449,
+          "y": 54,
+          "width": 639,
+          "height": 1444
+        },
+        "centerX": 768,
+        "footY": 1497,
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null,
+          "neutralShadow": null,
+          "alphaEdge": {
+            "mode": "straight-alpha-neutral-despill",
+            "correctedPixels": 12703,
+            "clearedPixels": 1841024
+          },
+          "subjectScale": null,
+          "subjectRegistration": {
+            "mode": "transparent-subject-registration",
+            "factor": 1.038849,
+            "sourceBounds": {
+              "x": 464,
+              "y": 80,
+              "width": 615,
+              "height": 1390
+            },
+            "referenceBounds": {
+              "x": 454,
+              "y": 54,
+              "width": 628,
+              "height": 1444
+            },
+            "targetBounds": {
+              "x": 449,
+              "y": 54,
+              "width": 639,
+              "height": 1444
+            }
+          }
+        }
+      },
+      "completedAt": "2026-08-12T09:42:32.266Z"
+    },
+    "pose:sit": {
+      "fingerprint": "7ead9f63246f361bd4a766ffd2924534bbeaace470484d992a4c4290e5256e6c",
+      "promptHash": "ad5888375e28ea8c0c7879c7faf22a2d07d832c2a795e348f1e81a90eba903c4",
+      "inputHashes": [
+        "8d2f5b7a32ff0b8fc24ebe0a21f587a3e750da017db4c5e9dd58854ab7d67dec"
+      ],
+      "outputHash": "94f0f2502aad167a77235028df2933dc3e89b2ef8baa18670aaf930c717a7551",
+      "output": "poses/sit.png",
+      "model": "doubao-seedream-4-5-251128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.2089,
+        "transparentRatio": 0.7911,
+        "magentaResidue": 0,
+        "checkerboardHits": 0,
+        "interiorTransparency": {
+          "components": 18,
+          "pixels": 2366,
+          "largest": 375
+        },
+        "bounds": {
+          "x": 412,
+          "y": 86,
+          "width": 632,
+          "height": 1378
+        },
+        "centerX": 727.5,
+        "footY": 1463,
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null,
+          "neutralShadow": {
+            "mode": "neutral-shadow-strip",
+            "removedPixels": 14197
+          },
+          "interiorAlphaRepair": {
+            "mode": "source-guided-interior-alpha-repair",
+            "restoredPixels": 6163
+          },
+          "smallHoleRepair": {
+            "mode": "small-interior-alpha-hole-repair",
+            "maxArea": 64,
+            "repairedComponents": 2362,
+            "repairedPixels": 8941
+          },
+          "alphaEdge": {
+            "mode": "straight-alpha-neutral-despill",
+            "correctedPixels": 3777,
+            "clearedPixels": 1866089
+          },
+          "subjectScale": null,
+          "subjectRegistration": null
+        }
+      },
+      "completedAt": "2026-08-12T10:12:35.083Z"
+    },
+    "pose:sleep": {
+      "fingerprint": "80082a353227a2dc6fbc31990f95ce55327d795945332e5dc7c33edacf1c396d",
+      "promptHash": "b8f9f6b12d3e0bdecaa56867d7ccf59fe599c2981b2599e47fc804157f55579c",
+      "inputHashes": [
+        "8d2f5b7a32ff0b8fc24ebe0a21f587a3e750da017db4c5e9dd58854ab7d67dec"
+      ],
+      "outputHash": "6d89c34c78e40f3e96303d87e50c348cda672db86fad050c8d784ac9d36de2d3",
+      "output": "poses/sleep.png",
+      "model": "doubao-seedream-4-5-251128",
+      "inputDimensions": "2048x2048",
+      "qa": {
+        "foregroundRatio": 0.1154,
+        "transparentRatio": 0.8845,
+        "magentaResidue": 0,
+        "checkerboardHits": 1,
+        "interiorTransparency": {
+          "components": 0,
+          "pixels": 0,
+          "largest": 0,
+          "fragmentedComponents": 0,
+          "fragmentedPixels": 0
+        },
+        "bounds": {
+          "x": 209,
+          "y": 578,
+          "width": 1118,
+          "height": 402
+        },
+        "centerX": 767.5,
+        "footY": 979,
+        "cleanup": {
+          "segmentation": "rembg-isnet-anime",
+          "chroma": {
+            "mode": "already-transparent",
+            "background": null
+          },
+          "backdrop": null,
+          "neutralShadow": {
+            "mode": "neutral-shadow-strip",
+            "removedPixels": 13162
+          },
+          "interiorAlphaRepair": {
+            "mode": "source-guided-interior-alpha-repair",
+            "restoredPixels": 1416
+          },
+          "smallHoleRepair": {
+            "mode": "small-interior-alpha-hole-repair",
+            "maxArea": 512,
+            "repairedComponents": 618,
+            "repairedPixels": 1623
+          },
+          "alphaEdge": {
+            "mode": "straight-alpha-neutral-despill",
+            "correctedPixels": 19168,
+            "clearedPixels": 2086237
+          },
+          "subjectScale": {
+            "mode": "transparent-subject-scale",
+            "factor": 0.8,
+            "sourceBounds": {
+              "x": 64,
+              "y": 478,
+              "width": 1398,
+              "height": 502
+            },
+            "targetBounds": {
+              "x": 209,
+              "y": 578,
+              "width": 1118,
+              "height": 402
+            }
+          },
+          "subjectRegistration": null
+        }
+      },
+      "completedAt": "2026-08-12T10:39:49.153Z"
+    }
+  }
+}

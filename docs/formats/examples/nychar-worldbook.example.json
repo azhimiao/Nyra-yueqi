@@ -1,0 +1,18 @@
+{
+  "schema": "nyra.character.worldbook",
+  "version": 1,
+  "entries": [
+    {
+      "id": "rooftop-observatory",
+      "name": "Rooftop Observatory",
+      "content": "A small observatory above the city library, with a brass telescope and a kettle near the window.",
+      "keywords": [
+        "observatory",
+        "telescope",
+        "rooftop"
+      ],
+      "enabled": true,
+      "priority": 10
+    }
+  ]
+}

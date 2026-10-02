@@ -19,6 +19,7 @@ function run(command, args, cwd = root) {
 
 run("npm", ["run", "build"]);
 run("npx", ["cap", "sync", "android"]);
+run("node", ["scripts/ensure-android-overlay.mjs"]);
 run(gradlew, ["assembleDebug"], androidDir);
 
 console.log("Android debug APK ready under android/app/build/outputs/apk/debug/");

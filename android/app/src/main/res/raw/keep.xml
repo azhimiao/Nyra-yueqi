@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@xml/file_paths,@xml/network_security_config,@xml/data_extraction_rules,@xml/backup_rules,@mipmap/ic_launcher,@mipmap/ic_launcher_round,@drawable/ic_launcher_background,@drawable/ic_launcher_foreground,@string/app_name,@string/title_activity_main,@style/AppTheme,@style/AppTheme.NoActionBar,@style/AppTheme.NoActionBarLaunch,@style/AppTheme.ScreenCapture" />

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "kind": "yueqi-game",
+  "id": "sample-first-scene",
+  "name": "第一幕",
+  "version": "1.0.0",
+  "author": "月栖示例",
+  "description": "选一个角色，让 TA 陪你走进门后的第一句。",
+  "contentRating": "general",
+  "entry": "game.html",
+  "icon": "icon.svg",
+  "category": "game",
+  "tags": ["示例", "互动"],
+  "minHostVersion": "1.0.0",
+  "permissions": [
+    "character.list",
+    "character.package.light",
+    "llm.character",
+    "game.save",
+    "game.event",
+    "profile.read"
+  ],
+  "game": {
+    "viewport": "phone",
+    "allowExternalControl": false,
+    "singleFilePreferred": true
+  }
+}

@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>消息样式陈列 · 月栖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/src/ui/product-shell.css" />
+    <link rel="stylesheet" href="/src/overlay/boy-character.css" />
+    <link rel="stylesheet" href="/src/ui/phone-shell.css" />
+    <link rel="stylesheet" href="/src/ui/phone-glass-icons.css" />
+    <link rel="stylesheet" href="/src/agent/ui/task-center.css" />
+    <link rel="stylesheet" href="/src/context/ui/context-viewer.css" />
+    <link rel="stylesheet" href="/src/ui/scenario-theater.css" />
+    <link rel="stylesheet" href="/src/ui/scenario-story.css" />
+    <link rel="stylesheet" href="/src/ui/assets-hub.css" />
+    <link rel="stylesheet" href="/src/ui/games-app.css" />
+    <link rel="stylesheet" href="/src/ui/adventure-app.css" />
+    <link rel="stylesheet" href="/src/cocreate/cocreate-app.css" />
+    <link rel="stylesheet" href="/src/ui/action-proposal-card.css" />
+    <link rel="stylesheet" href="/src/ui/companion-debug-console.css" />
+    <link rel="stylesheet" href="/src/ui/first-run-shell.css" />
+    <link rel="stylesheet" href="/src/first-light/first-light.css" />
+    <link rel="stylesheet" href="/src/ui/nyra-app.css" />
+    <link rel="stylesheet" href="/src/ui/interaction-motion.css" />
+    <link rel="stylesheet" href="/src/ui/app-memory-shell.css" />
+    <link rel="stylesheet" href="/src/ui/mobile-density.css" />
+    <link rel="stylesheet" href="/src/ui/app-density-final.css" />
+    <link rel="stylesheet" href="/src/ui/phone-product-final.css" />
+    <link rel="stylesheet" href="/src/ui/phone-inner-density.css" />
+    <link rel="stylesheet" href="/src/ui/phone-memory-bridge.css" />
+    <link rel="stylesheet" href="/src/ui/product-restraint.css" />
+    <link rel="stylesheet" href="/src/ui/nyra-system.css" />
+    <link rel="stylesheet" href="/src/ui/nyra-refactor.css" />
+    <link rel="stylesheet" href="/src/ui/message-composer-unified.css" />
+    <link rel="stylesheet" href="/src/ui/moments.css" />
+    <link rel="stylesheet" href="/src/ui/economy.css" />
+    <link rel="stylesheet" href="/src/billing/ui/billing-panel.css" />
+    <link rel="stylesheet" href="/src/ui/compact-subpage.css" />
+    <link rel="stylesheet" href="/src/ui/pop-im-layout.css" />
+    <link rel="stylesheet" href="/src/ui/chat-message-visual.css" />
+    <style>
+      .gal-bar {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        z-index: 9999;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        padding: 6px;
+        border-radius: 999px;
+        background: rgba(15, 23, 32, 0.92);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+        font: 500 12px/1.2 "Noto Sans SC", system-ui, sans-serif;
+      }
+      .gal-bar button {
+        padding: 7px 14px;
+        border: 0;
+        border-radius: 999px;
+        color: rgba(232, 238, 246, 0.72);
+        background: transparent;
+        cursor: pointer;
+        font: inherit;
+      }
+      .gal-bar button[aria-pressed="true"] {
+        color: #0f1720;
+        background: #e8eef6;
+      }
+      .gal-stage[hidden] {
+        display: none !important;
+      }
+      /* 陈列页只放开容器的高度与滚动约束，让整页自然铺开；气泡本身的样式一律不碰。 */
+      html,
+      body {
+        height: auto !important;
+        overflow: visible !important;
+      }
+      [data-gal-stage="app"] .app-shell,
+      [data-gal-stage="app"] .content-shell,
+      [data-gal-stage="app"] .app-page,
+      [data-gal-stage="app"] .chat-panel,
+      [data-gal-stage="app"] .chat-conversation,
+      [data-gal-stage="app"] .message-list,
+      [data-gal-stage="pop"] .small-phone-mode,
+      [data-gal-stage="pop"] .mini-phone,
+      [data-gal-stage="pop"] .mini-phone__screen,
+      [data-gal-stage="pop"] .mini-phone__content,
+      [data-gal-stage="pop"] .mini-view,
+      [data-gal-stage="pop"] .mini-pop__body,
+      [data-gal-stage="pop"] .mini-pop-panel,
+      [data-gal-stage="pop"] .mini-pop-chat-thread,
+      [data-gal-stage="pop"] .mini-message-list {
+        height: auto !important;
+        max-height: none !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+      }
+      /* 小手机外壳默认垂直居中，内容一旦超过一屏，顶部会被推到画布外，改成顶部对齐。 */
+      [data-gal-stage="pop"] .small-phone-mode {
+        place-items: start center !important;
+        padding: 24px 12px 48px !important;
+      }
+      @media (max-width: 540px) {
+        [data-gal-stage="pop"] .small-phone-mode {
+          place-items: start stretch !important;
+          padding: 0 !important;
+        }
+      }
+      /* 真实桌面布局是「侧栏 + 内容」两列；陈列页没有侧栏，撤掉侧栏列避免内容被挤扁。 */
+      [data-gal-stage="app"] .app-shell {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+      .gal-note {
+        align-self: stretch !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 20px 0 4px !important;
+        padding: 0 !important;
+        border: 0 !important;
+        background: none !important;
+        box-shadow: none !important;
+        color: rgba(120, 134, 152, 0.95) !important;
+        font: 600 11px/1.6 "Noto Sans SC", system-ui, sans-serif !important;
+        letter-spacing: 0.06em;
+        text-align: left !important;
+      }
+      .gal-note:first-child {
+        margin-top: 4px !important;
+      }
+      .gal-note small {
+        display: block;
+        font-weight: 400;
+        color: rgba(120, 134, 152, 0.7);
+        letter-spacing: 0;
+      }
+      .gal-stage .message-menu__trigger {
+        opacity: 1 !important;
+      }
+      .gal-note em {
+        font-style: normal;
+        color: #c2410c;
+      }
+      /* 关系横幅在真实线程里被 display:none !important 永久隐藏，这里强制显形以便查看。
+         线程的 grid-template-areas 只声明了 messages / composer，横幅会被挤到末尾，一并放开。 */
+      html body .mini-pop-chat-thread > .mini-pop-relation.gal-force {
+        display: flex !important;
+      }
+      [data-gal-stage="pop"] .mini-pop-chat-thread {
+        grid-template-areas: none !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        grid-template-rows: auto auto !important;
+      }
+      [data-gal-stage="pop"] .mini-pop-chat-thread > .mini-pop-relation,
+      [data-gal-stage="pop"] .mini-pop-chat-thread > .mini-message-list {
+        grid-area: auto !important;
+      }
+      .gal-extras {
+        display: flex;
+        gap: 28px;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 24px;
+        overflow: auto;
+        min-height: 100dvh;
+      }
+      .gal-extras > figure {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        justify-items: center;
+      }
+      .gal-extras figcaption {
+        color: rgba(120, 134, 152, 0.95);
+        font: 600 11px/1.6 "Noto Sans SC", system-ui, sans-serif;
+        letter-spacing: 0.06em;
+      }
+    </style>
+  </head>
+  <body data-active-panel="chat" data-app-mode="app">
+    <div class="gal-bar" role="group" aria-label="切换陈列">
+      <button type="button" data-gal-switch="app" aria-pressed="true">App 主聊天</button>
+      <button type="button" data-gal-switch="pop" aria-pressed="false">小手机 Pop</button>
+      <button type="button" data-gal-switch="extras" aria-pressed="false">空态与弹层</button>
+    </div>
+
+    <!-- ============ App 主聊天 ============ -->
+    <div class="gal-stage" data-gal-stage="app">
+      <div class="app-shell" aria-label="App 消息样式陈列">
+        <main class="content-shell">
+          <section class="app-page is-active" data-panel="chat">
+            <section class="chat-panel">
+              <div class="chat-conversation">
+                <div class="message-list" id="messageList" aria-live="polite">
+                  <div class="gal-note">01 时间分隔 .chat-time-separator<small>首条、跨天或相隔至少 5 分钟时显示</small></div>
+                  <time class="chat-time-separator" datetime="2026-08-15T14:30:00.000Z">14:30</time>
+
+                  <div class="gal-note">02 用户文字气泡 .message.user（气泡内不再重复时间与打勾）</div>
+                  <article class="message user" data-message-id="app-user-delivered" data-delivery-state="delivered">
+                    <p>今天下班早，想跟你说点事。</p>
+                  </article>
+
+                  <div class="gal-note">02A 引用、反应与三点菜单（编辑 / 回复 / 重新生成 / 回应 / 删除）</div>
+                  <article class="message ai" data-message-id="app-ai-quoted">
+                    <blockquote class="message-reply-preview"><strong>你</strong><span>今天下班早，想跟你说点事。</span></blockquote>
+                    <p>好，我在听。慢慢说就好。</p>
+                    <div class="message-reactions"><span class="message-reaction">❤️ 1</span></div>
+                    <div class="message-menu" data-message-menu>
+                      <button type="button" class="message-menu__trigger" data-message-menu-trigger aria-haspopup="menu" aria-expanded="false" aria-label="更多操作"><i data-lucide="more-horizontal" aria-hidden="true"></i></button>
+                      <div class="message-menu__list" data-message-menu-list role="menu">
+                        <button type="button" role="menuitem" data-message-action="edit"><i data-lucide="pencil" aria-hidden="true"></i><span>编辑</span></button>
+                        <button type="button" role="menuitem" data-message-action="reply"><i data-lucide="reply" aria-hidden="true"></i><span>回复</span></button>
+                        <button type="button" role="menuitem" data-message-action="regenerate"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>重新生成</span></button>
+                        <button type="button" role="menuitem" data-message-action="react"><i data-lucide="smile-plus" aria-hidden="true"></i><span>回应</span></button>
+                        <button type="button" role="menuitem" data-message-action="delete"><i data-lucide="trash-2" aria-hidden="true"></i><span>删除</span></button>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="message user is-recalled" data-message-id="app-user-recalled">
+                    <p class="message-recalled-copy">你撤回了一条消息</p>
+                    <div class="message-menu" data-message-menu>
+                      <button type="button" class="message-menu__trigger" data-message-menu-trigger aria-haspopup="menu" aria-expanded="false" aria-label="更多操作"><i data-lucide="more-horizontal" aria-hidden="true"></i></button>
+                      <div class="message-menu__list" data-message-menu-list role="menu" hidden>
+                        <button type="button" role="menuitem" data-message-action="edit"><i data-lucide="pencil" aria-hidden="true"></i><span>编辑</span></button>
+                        <button type="button" role="menuitem" data-message-action="reply"><i data-lucide="reply" aria-hidden="true"></i><span>回复</span></button>
+                        <button type="button" role="menuitem" data-message-action="react"><i data-lucide="smile-plus" aria-hidden="true"></i><span>回应</span></button>
+                        <button type="button" role="menuitem" data-message-action="delete"><i data-lucide="trash-2" aria-hidden="true"></i><span>删除</span></button>
+                      </div>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">02B 用户消息 · 发送中</div>
+                  <article class="message user is-pending" data-message-id="app-user-pending" data-delivery-state="sending">
+                    <p>这条消息正在发送。</p>
+                    <span class="message-delivery is-sending" aria-label="发送中" data-message-delivery><i data-lucide="clock-3" aria-hidden="true"></i><span>发送中…</span></span>
+                  </article>
+
+                  <div class="gal-note">02B 用户消息 · 失败与重试</div>
+                  <article class="message user is-failed" data-message-id="app-user-failed" data-delivery-state="failed">
+                    <p>这条消息暂时没有发出去。</p>
+                    <span class="message-delivery is-failed" aria-label="发送失败" data-message-delivery><i data-lucide="circle-alert" aria-hidden="true"></i><span>发送失败</span></span>
+                    <button type="button" class="message-retry" data-message-retry="app-user-failed">重试</button>
+                  </article>
+
+                  <div class="gal-note">03 角色文字气泡 .message.ai（含朗读按钮）</div>
+                  <article class="message ai">
+                    <div class="message-row">
+                      <p>我在。你慢慢说，我听着。</p>
+                      <button type="button" class="message-speak" data-speak-message="true" aria-label="朗读" title="朗读">
+                        <i data-lucide="volume-2"></i><span class="icon-fallback">🔊</span>
+                      </button>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">04 系统提示 .message.system<small>Conversation V2 / IDB 历史现在会恢复</small></div>
+                  <article class="message system"><p>一起听 · 已切到《夜航》</p></article>
+
+                  <div class="gal-note">05 日记结果卡 .message-diary-card<small>日记写入使用专属卡，不再降级为通用产物</small></div>
+                  <article class="message system is-activity is-diary-activity" data-message-id="activity-diary-demo">
+                    <button type="button" class="message-diary-card" data-deep-link="yueqi://artifact/diary:entry-001" data-delivery-id="delivery-001" data-artifact-id="diary:entry-001">
+                      <span class="message-diary-card__head">
+                        <span><i data-lucide="book-open"></i>日记</span>
+                        <time datetime="2026-08-15">2026-08-15</time>
+                      </span>
+                      <strong>雨停以后</strong>
+                      <p>我们沿着湿漉漉的路慢慢走，谁也没有催谁。</p>
+                      <span class="message-diary-card__action">查看日记</span>
+                    </button>
+                  </article>
+
+                  <div class="gal-note">05A 普通活动通知 .message.is-activity<small>非日记领域继续使用轻量状态胶囊</small></div>
+                  <article class="message system is-activity" data-message-id="activity-demo">
+                    <div class="chat-activity-note">
+                      <span>共同章节已经整理好</span>
+                      <button type="button" data-deep-link="yueqi://chapter/entry-001" data-delivery-id="delivery-002" data-artifact-id="chapter-001">查看</button>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">05B 游戏事件卡 · 开始 / 回合 / 结果 / 结束</div>
+                  <article class="message system is-game-event is-game-start" data-message-id="game-start-demo">
+                    <div class="message-game-card is-start">
+                      <span class="message-game-card__head"><span><i data-lucide="gamepad-2"></i>一起玩</span><em>进行中</em></span>
+                      <strong>默契一刻</strong>
+                      <p>猜心与默契：比的是懂不懂彼此。</p>
+                      <span class="message-game-card__actions"><button type="button" data-game-end="game-demo">结束本局</button></span>
+                    </div>
+                  </article>
+                  <article class="message system is-game-event is-game-round" data-message-id="game-round-demo">
+                    <div class="message-game-card is-round">
+                      <span class="message-game-card__head"><span><i data-lucide="gamepad-2"></i>第 1 回合</span><em>进行中</em></span>
+                      <strong>默契一刻</strong>
+                    </div>
+                  </article>
+                  <article class="message system is-game-event is-game-result" data-message-id="game-result-demo">
+                    <div class="message-game-card is-result">
+                      <span class="message-game-card__head"><span><i data-lucide="gamepad-2"></i>回合结果</span><em>进行中</em></span>
+                      <strong>默契一刻</strong>
+                      <p>第 1 回合完成</p>
+                    </div>
+                  </article>
+                  <article class="message system is-game-event is-game-end" data-message-id="game-end-demo">
+                    <div class="message-game-card is-end">
+                      <span class="message-game-card__head"><span><i data-lucide="flag"></i>本局结束</span><em>已结束</em></span>
+                      <strong>默契一刻</strong>
+                      <p>完成 1 回合</p>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">05C 通话记录卡 .message-call-card<small>挂断后写入 Conversation V2，空通话也会留下记录</small></div>
+                  <article class="message system is-call-record" data-message-id="call-record-demo">
+                    <div class="message-call-card is-voice">
+                      <span class="message-call-card__icon"><i data-lucide="phone"></i></span>
+                      <span class="message-call-card__body">
+                        <span class="message-call-card__head"><strong>语音通话</strong><em>通话结束</em></span>
+                        <strong class="message-call-card__duration">03:12</strong>
+                        <small>14:20 · 4 轮</small>
+                      </span>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">06 产物卡片 .message-artifact</div>
+                  <article class="message ai has-artifact">
+                    <button type="button" class="message-artifact" data-deep-link="yueqi://diary/artifact-001" data-delivery-id="delivery-001" data-artifact-id="artifact-001">
+                      <strong>日记</strong>
+                      <span>八月十五日 · 关于你今天提到的那件事</span>
+                    </button>
+                  </article>
+
+                  <div class="gal-note">07 位置卡片 .message-location</div>
+                  <article class="message user has-location">
+                    <div class="message-location-wrap">
+                      <div class="message-location" role="group" aria-label="位置 上海市静安区">
+                        <span class="message-location__pin" aria-hidden="true"><i data-lucide="map-pin"></i></span>
+                        <div class="message-location__body">
+                          <strong>上海市静安区</strong>
+                          <span>南京西路附近</span>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">08 语音消息 .voice-message（用户）</div>
+                  <article class="message user voice-message" data-voice-text="今天真的有点累" data-voice-duration="5200">
+                    <button type="button" class="voice-bar" data-voice-bar="true" aria-label="播放语音条">
+                      <span class="voice-bar-wave" aria-hidden="true"></span>
+                      <span class="voice-bar-meta"><strong>语音</strong><em>5"</em></span>
+                    </button>
+                    <p class="voice-transcript">今天真的有点累</p>
+                  </article>
+
+                  <div class="gal-note">09 语音消息 .voice-message（角色）</div>
+                  <article class="message ai voice-message" data-voice-text="那就先什么都别做，坐一会儿" data-voice-duration="65000">
+                    <button type="button" class="voice-bar" data-voice-bar="true" aria-label="播放语音条">
+                      <span class="voice-bar-wave" aria-hidden="true"></span>
+                      <span class="voice-bar-meta"><strong>语音回复</strong><em>1:05</em></span>
+                    </button>
+                    <p class="voice-transcript">那就先什么都别做，坐一会儿</p>
+                  </article>
+
+                  <div class="gal-note">10 表情包 .message-sticker</div>
+                  <article class="message user is-sticker">
+                    <div class="message-sticker">
+                      <img alt="笑脸表情" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='22' fill='rgb(255,224,178)'/><circle cx='44' cy='50' r='7' fill='rgb(70,50,40)'/><circle cx='76' cy='50' r='7' fill='rgb(70,50,40)'/><path d='M40 76 Q60 92 80 76' stroke='rgb(70,50,40)' stroke-width='6' fill='none' stroke-linecap='round'/></svg>" />
+                    </div>
+                  </article>
+
+                  <div class="gal-note">11 转账卡 · 已到账 mini-token-card--transfer</div>
+                  <article class="message user has-token">
+                    <div class="message-token">
+                      <div class="mini-token-card mini-token-card--transfer is-flat is-settled is-out" data-token-message-id="tx-1" role="group" aria-label="转账 12.50 栖币">
+                        <span class="mini-token-card__badge" aria-hidden="true"><i data-lucide="arrow-left-right"></i></span>
+                        <div class="mini-token-card__main">
+                          <div class="mini-token-card__money">
+                            <span class="mini-token-card__currency">¥</span>
+                            <strong class="mini-token-card__figure">12<small>.50</small></strong>
+                          </div>
+                          <span class="mini-token-card__note">喝杯奶茶</span>
+                        </div>
+                        <span class="mini-token-card__done">已到账</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">12 转账卡 · 待收款<small><em>缺陷</em>：App 画得出按钮，但 click handler 只绑在小手机，点了没反应</small></div>
+                  <article class="message ai has-token">
+                    <div class="message-token">
+                      <div class="mini-token-card mini-token-card--transfer is-flat is-in" data-token-message-id="tx-2" role="group" aria-label="转账 88.00 栖币">
+                        <span class="mini-token-card__badge" aria-hidden="true"><i data-lucide="arrow-left-right"></i></span>
+                        <div class="mini-token-card__main">
+                          <div class="mini-token-card__money">
+                            <span class="mini-token-card__currency">¥</span>
+                            <strong class="mini-token-card__figure">88<small>.00</small></strong>
+                          </div>
+                          <span class="mini-token-card__note">今晚的奶茶</span>
+                        </div>
+                        <button type="button" class="mini-token-card__action" data-token-action="confirm" data-token-message-id="tx-2" aria-label="收款 88.00 栖币">收款</button>
+                      </div>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">13 收款请求卡 · 待支付 mini-token-card--collect</div>
+                  <article class="message ai has-token">
+                    <div class="message-token">
+                      <div class="mini-token-card mini-token-card--collect" data-token-message-id="cl-1" role="group" aria-label="收款 20.00 栖币">
+                        <span class="mini-token-card__tag">向你收款</span>
+                        <strong class="mini-token-card__amount">20.00 栖币</strong>
+                        <p class="mini-token-card__note">晚餐</p>
+                        <button type="button" class="mini-token-card__action" data-token-action="pay" data-token-message-id="cl-1" aria-label="确认支付 20.00 栖币">确认支付</button>
+                      </div>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">14 收款请求卡 · 已支付</div>
+                  <article class="message ai has-token">
+                    <div class="message-token">
+                      <div class="mini-token-card mini-token-card--collect is-settled" data-token-message-id="cl-2" role="group" aria-label="收款 20.00 栖币">
+                        <span class="mini-token-card__tag">向你收款</span>
+                        <strong class="mini-token-card__amount">20.00 栖币</strong>
+                        <p class="mini-token-card__note">电影票</p>
+                        <span class="mini-token-card__done">已支付</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">15 原生图片 / 文本 / PDF 附件 .message-attachment-card</div>
+                  <article class="message user has-attachment is-attachment-image" data-message-id="attachment-image-app">
+                    <figure class="message-attachment-card is-image" data-media-id="media-image-001">
+                      <img alt="晚霞照片" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop stop-color='rgb(119,164,207)'/><stop offset='.58' stop-color='rgb(244,181,146)'/><stop offset='1' stop-color='rgb(75,93,119)'/></linearGradient></defs><rect width='400' height='300' fill='url(%23g)'/><circle cx='310' cy='90' r='38' fill='rgb(255,225,171)'/><path d='M0 225 Q90 175 180 225 T400 218 V300 H0Z' fill='rgb(45,64,80)'/></svg>" />
+                      <figcaption><strong>今天的晚霞.webp</strong><span>842 KB</span></figcaption>
+                    </figure>
+                  </article>
+                  <article class="message user has-attachment is-attachment-text" data-message-id="attachment-text-app">
+                    <div class="message-attachment-card is-text" data-media-id="media-text-001">
+                      <span class="message-attachment-card__icon"><i data-lucide="file-text"></i></span>
+                      <span class="message-attachment-card__body">
+                        <strong>旅行清单.md</strong>
+                        <span>文本附件 · 12 KB</span>
+                        <p>周六早上出发，记得带相机、充电器和那本蓝色封面的书……</p>
+                      </span>
+                    </div>
+                  </article>
+                  <article class="message user has-attachment is-attachment-file" data-message-id="attachment-file-app">
+                    <div class="message-attachment-card is-file" data-media-id="media-file-001">
+                      <span class="message-attachment-card__icon"><i data-lucide="file"></i></span>
+                      <span class="message-attachment-card__body"><strong>行程.pdf</strong><span>文件附件 · 1.4 MB</span></span>
+                    </div>
+                  </article>
+
+                  <div class="gal-note">16 回应依据面板 #summaryPanel.thought-chain<small>不是气泡，但活在消息流内部</small></div>
+                  <details class="thought-chain" id="summaryPanel" open>
+                    <summary>回应依据</summary>
+                    <div>
+                      <span>今日状态：疲惫，语速偏慢</span>
+                      <span>记忆检索：命中 3 条近期对话</span>
+                      <span>世界书：未命中</span>
+                      <span>上下文回合数：12</span>
+                    </div>
+                  </details>
+
+                  <div class="gal-note">17 动作提案卡 .action-proposal-host<small>真实产品里是消息流的兄弟节点，不是消息本体；feature flag 默认关</small></div>
+                  <div class="action-proposal-host" data-action-proposal-host="app">
+                    <article class="action-proposal-card is-app is-proposed" data-action-proposal-card data-proposal-id="proposal-demo" data-status="proposed" aria-live="polite">
+                      <header class="action-proposal-card__head">
+                        <strong class="action-proposal-card__title">创建提醒</strong>
+                        <span class="action-proposal-card__risk" data-risk="R2">R2</span>
+                      </header>
+                      <p class="action-proposal-card__effect">将在明天下午创建一条提醒</p>
+                      <p class="action-proposal-card__when">2026-08-16 · 15:00 · Asia/Shanghai</p>
+                      <p class="action-proposal-card__target">将修改：本地日历</p>
+                      <p class="action-proposal-card__status">待确认</p>
+                      <div class="action-proposal-card__actions">
+                        <button type="button" class="action-proposal-card__btn is-confirm" data-apc-action="confirm" data-proposal-id="proposal-demo">确认</button>
+                        <button type="button" class="action-proposal-card__btn is-reject" data-apc-action="reject" data-proposal-id="proposal-demo">拒绝</button>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- ============ 小手机 Pop ============ -->
+    <div class="gal-stage" data-gal-stage="pop" hidden>
+      <main class="small-phone-mode" data-small-phone-root aria-label="小手机消息样式陈列">
+        <section class="mini-phone" data-phone-view="pop" data-phone-locked="false" data-wallpaper="dawn">
+          <div class="mini-phone__hardware" aria-hidden="true"><span></span><i></i></div>
+          <div class="mini-phone__screen">
+            <div class="mini-phone__content">
+              <section class="mini-view mini-pop is-active is-thread" data-phone-screen="pop">
+                <div class="mini-pop__body">
+                  <section class="mini-pop-panel is-active is-thread" data-pop-panel="chat">
+                    <div class="mini-pop-chat-thread" data-pop-chat-mode="thread">
+                      <section class="mini-pop-relation gal-force" data-pop-relation>
+                        <div class="mini-pop-relation__moon" aria-hidden="true"><i data-lucide="moon"></i></div>
+                        <div class="mini-pop-relation__copy">
+                          <strong data-pop-relation-title>今晚的房间很安静</strong>
+                          <span data-pop-relation-sub>她把你说过的话，留在了这里。</span>
+                        </div>
+                        <em class="mini-pop-relation__day" data-pop-relation-day>第 12 天</em>
+                      </section>
+
+                      <div class="mini-message-list" data-phone-messages aria-live="polite">
+                        <div class="mini-message-list__pin">
+                          <div class="gal-note">01 时间分隔 .mini-chat-time-separator</div>
+                          <time class="mini-chat-time-separator" datetime="2026-08-15T14:30:00.000Z">14:30</time>
+
+                          <div class="gal-note">02 用户消息（时间 + 已送达双勾）</div>
+                          <article class="mini-message is-user" data-message-id="p-001">
+                            <p>今天下班早，想跟你说点事。</p>
+                          </article>
+
+                          <div class="gal-note">02A 引用、反应、撤回与已读</div>
+                          <article class="mini-message is-ai" data-message-id="p-quoted">
+                            <blockquote class="message-reply-preview"><strong>你</strong><span>今天下班早，想跟你说点事。</span></blockquote>
+                            <p>好，我在听。慢慢说就好。</p>
+                            <div class="message-reactions"><span class="message-reaction">❤️ 1</span></div>
+                            <div class="message-menu" data-message-menu>
+                              <button type="button" class="message-menu__trigger" data-message-menu-trigger aria-haspopup="menu" aria-expanded="false" aria-label="更多操作"><i data-lucide="more-horizontal" aria-hidden="true"></i></button>
+                              <div class="message-menu__list" data-message-menu-list role="menu" hidden>
+                                <button type="button" role="menuitem" data-message-action="edit"><i data-lucide="pencil" aria-hidden="true"></i><span>编辑</span></button>
+                                <button type="button" role="menuitem" data-message-action="reply"><i data-lucide="reply" aria-hidden="true"></i><span>回复</span></button>
+                                <button type="button" role="menuitem" data-message-action="react"><i data-lucide="smile-plus" aria-hidden="true"></i><span>回应</span></button>
+                                <button type="button" role="menuitem" data-message-action="delete"><i data-lucide="trash-2" aria-hidden="true"></i><span>删除</span></button>
+                              </div>
+                            </div>
+                          </article>
+                          <article class="mini-message is-user is-recalled" data-message-id="p-recalled">
+                            <p class="message-recalled-copy">你撤回了一条消息</p>
+                            <div class="message-menu" data-message-menu>
+                              <button type="button" class="message-menu__trigger" data-message-menu-trigger aria-haspopup="menu" aria-expanded="false" aria-label="更多操作"><i data-lucide="more-horizontal" aria-hidden="true"></i></button>
+                              <div class="message-menu__list" data-message-menu-list role="menu" hidden>
+                                <button type="button" role="menuitem" data-message-action="edit"><i data-lucide="pencil" aria-hidden="true"></i><span>编辑</span></button>
+                                <button type="button" role="menuitem" data-message-action="reply"><i data-lucide="reply" aria-hidden="true"></i><span>回复</span></button>
+                                <button type="button" role="menuitem" data-message-action="react"><i data-lucide="smile-plus" aria-hidden="true"></i><span>回应</span></button>
+                                <button type="button" role="menuitem" data-message-action="delete"><i data-lucide="trash-2" aria-hidden="true"></i><span>删除</span></button>
+                              </div>
+                            </div>
+                          </article>
+
+                          <div class="gal-note">03 AI 消息（朗读）</div>
+                          <article class="mini-message is-ai" data-message-id="p-002">
+                            <p>我在。你慢慢说，我听着。</p>
+                            <footer>
+                              <button type="button" class="mini-icon-button mini-speak-btn" data-phone-speak aria-label="朗读" title="朗读"><i data-lucide="volume-2"></i></button>
+                            </footer>
+                          </article>
+
+                          <div class="gal-note">04 群聊发言者名 .mini-message__speaker<small>App 写入了 speaker 元数据，但从不渲染</small></div>
+                          <article class="mini-message is-ai" data-message-id="p-003">
+                            <header class="mini-message__speaker">星璃</header>
+                            <p>我也在，插一句。</p>
+                            <footer>
+                              <button type="button" class="mini-icon-button mini-speak-btn" data-phone-speak aria-label="朗读" title="朗读"><i data-lucide="volume-2"></i></button>
+                            </footer>
+                          </article>
+
+                          <div class="gal-note">05 系统消息（居中）</div>
+                          <article class="mini-message is-system" data-message-id="p-004">
+                            <div class="mini-activity-note"><span>一起听 · 已切到《夜航》</span></div>
+                          </article>
+
+                          <div class="gal-note">06 日记结果卡 .message-diary-card</div>
+                          <article class="mini-message is-system has-activity is-diary-activity" data-message-id="p-diary">
+                            <button type="button" class="message-diary-card" data-artifact-open data-deep-link="yueqi://artifact/diary:entry-001" data-delivery-id="delivery-001" data-artifact-id="diary:entry-001">
+                              <span class="message-diary-card__head">
+                                <span><i data-lucide="book-open"></i>日记</span>
+                                <time datetime="2026-08-15">2026-08-15</time>
+                              </span>
+                              <strong>雨停以后</strong>
+                              <p>我们沿着湿漉漉的路慢慢走，谁也没有催谁。</p>
+                              <span class="message-diary-card__action">查看日记</span>
+                            </button>
+                          </article>
+
+                          <div class="gal-note">06A 普通活动通知 .mini-activity-note</div>
+                          <article class="mini-message is-system has-activity" data-message-id="p-005">
+                            <div class="mini-activity-note">
+                              <span>共同章节已经整理好</span>
+                              <button type="button" class="mini-activity-action" data-artifact-open data-deep-link="yueqi://chapter/entry-001" data-delivery-id="delivery-002" data-artifact-id="chapter-001">查看</button>
+                            </div>
+                          </article>
+
+                          <div class="gal-note">06B 游戏事件卡 · 开始 / 回合 / 结果 / 结束</div>
+                          <article class="mini-message is-system is-game-event is-game-start" data-message-id="p-game-start">
+                            <div class="message-game-card is-start">
+                              <span class="message-game-card__head"><span><i data-lucide="gamepad-2"></i>一起玩</span><em>进行中</em></span>
+                              <strong>默契一刻</strong>
+                              <p>猜心与默契：比的是懂不懂彼此。</p>
+                              <span class="message-game-card__actions"><button type="button" data-game-end="game-demo">结束本局</button></span>
+                            </div>
+                          </article>
+                          <article class="mini-message is-system is-game-event is-game-round" data-message-id="p-game-round">
+                            <div class="message-game-card is-round">
+                              <span class="message-game-card__head"><span><i data-lucide="gamepad-2"></i>第 1 回合</span><em>进行中</em></span>
+                              <strong>默契一刻</strong>
+                            </div>
+                          </article>
+                          <article class="mini-message is-system is-game-event is-game-result" data-message-id="p-game-result">
+                            <div class="message-game-card is-result">
+                              <span class="message-game-card__head"><span><i data-lucide="gamepad-2"></i>回合结果</span><em>进行中</em></span>
+                              <strong>默契一刻</strong>
+                              <p>第 1 回合完成</p>
+                            </div>
+                          </article>
+                          <article class="mini-message is-system is-game-event is-game-end" data-message-id="p-game-end">
+                            <div class="message-game-card is-end">
+                              <span class="message-game-card__head"><span><i data-lucide="flag"></i>本局结束</span><em>已结束</em></span>
+                              <strong>默契一刻</strong>
+                              <p>完成 1 回合</p>
+                            </div>
+                          </article>
+
+                          <div class="gal-note">06C 通话记录卡 .message-call-card</div>
+                          <article class="mini-message is-system is-call-record" data-message-id="p-call-record">
+                            <div class="message-call-card is-video">
+                              <span class="message-call-card__icon"><i data-lucide="video"></i></span>
+                              <span class="message-call-card__body">
+                                <span class="message-call-card__head"><strong>视频通话</strong><em>通话结束</em></span>
+                                <strong class="message-call-card__duration">08:47</strong>
+                                <small>14:20 · 6 轮</small>
+                              </span>
+                            </div>
+                          </article>
+
+                          <div class="gal-note">07 发送中 .mini-message__state</div>
+                          <article class="mini-message is-user is-pending" data-message-id="p-006">
+                            <p>正在发送的内容</p>
+                            <span class="mini-message__state">发送中</span>
+                          </article>
+
+                          <div class="gal-note">08 发送失败与重试 .mini-message__retry</div>
+                          <article class="mini-message is-user is-failed" data-message-id="p-007">
+                            <p>这条没发出去</p>
+                            <button type="button" class="mini-message__retry" data-phone-retry>发送失败，点击重试</button>
+                          </article>
+
+                          <div class="gal-note">09 表情包 .mini-message__sticker</div>
+                          <article class="mini-message is-user is-sticker" data-message-id="p-008">
+                            <div class="mini-message__sticker">
+                              <img alt="笑脸表情" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='22' fill='rgb(255,224,178)'/><circle cx='44' cy='50' r='7' fill='rgb(70,50,40)'/><circle cx='76' cy='50' r='7' fill='rgb(70,50,40)'/><path d='M40 76 Q60 92 80 76' stroke='rgb(70,50,40)' stroke-width='6' fill='none' stroke-linecap='round'/></svg>" />
+                            </div>
+                          </article>
+
+                          <div class="gal-note">10 位置卡片</div>
+                          <article class="mini-message is-user has-location" data-message-id="p-009">
+                            <div class="message-location" role="group" aria-label="位置 上海外滩">
+                              <span class="message-location__pin" aria-hidden="true"><i data-lucide="map-pin"></i></span>
+                              <div class="message-location__body">
+                                <strong>上海外滩</strong>
+                                <span>中山东一路</span>
+                              </div>
+                            </div>
+                          </article>
+
+                          <div class="gal-note">10A 原生图片与文件附件 .message-attachment-card</div>
+                          <article class="mini-message is-user has-attachment is-attachment-image" data-message-id="p-attachment-image">
+                            <figure class="message-attachment-card is-image" data-media-id="media-image-001">
+                              <img alt="晚霞照片" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop stop-color='rgb(119,164,207)'/><stop offset='.58' stop-color='rgb(244,181,146)'/><stop offset='1' stop-color='rgb(75,93,119)'/></linearGradient></defs><rect width='400' height='300' fill='url(%23g)'/><circle cx='310' cy='90' r='38' fill='rgb(255,225,171)'/><path d='M0 225 Q90 175 180 225 T400 218 V300 H0Z' fill='rgb(45,64,80)'/></svg>" />
+                              <figcaption><strong>今天的晚霞.webp</strong><span>842 KB</span></figcaption>
+                            </figure>
+                          </article>
+                          <article class="mini-message is-user has-attachment is-attachment-file" data-message-id="p-attachment-file">
+                            <div class="message-attachment-card is-file" data-media-id="media-file-001">
+                              <span class="message-attachment-card__icon"><i data-lucide="file"></i></span>
+                              <span class="message-attachment-card__body"><strong>行程.pdf</strong><span>文件附件 · 1.4 MB</span></span>
+                            </div>
+                          </article>
+
+                          <div class="gal-note">11 语音时长标记 .mini-message__voice<small><em>缺陷</em>：只显示秒数，不可播放，与 App 的 voice-bar 协议不兼容</small></div>
+                          <article class="mini-message is-ai" data-message-id="p-010">
+                            <p>那就先什么都别做，坐一会儿</p>
+                            <span class="mini-message__voice"><i data-lucide="audio-lines"></i><em>8s</em></span>
+                            <footer>
+                              <button type="button" class="mini-icon-button mini-speak-btn" data-phone-speak aria-label="朗读" title="朗读"><i data-lucide="volume-2"></i></button>
+                            </footer>
+                          </article>
+
+                          <div class="gal-note">12 产物卡片 .mini-artifact-card</div>
+                          <article class="mini-message is-ai has-artifact" data-message-id="p-011">
+                            <button type="button" class="mini-artifact-card" data-artifact-open data-deep-link="yueqi://diary/artifact-001" data-delivery-id="delivery-001" data-artifact-id="artifact-001">
+                              <strong>日记</strong>
+                              <span>八月十五日 · 关于你今天提到的那件事</span>
+                            </button>
+                          </article>
+
+                          <div class="gal-note">13 转账卡 · 待收款</div>
+                          <article class="mini-message is-ai has-token" data-message-id="p-012">
+                            <div class="mini-token-card mini-token-card--transfer is-flat is-in" data-token-message-id="p-012" role="group" aria-label="转账 88.00 栖币">
+                              <span class="mini-token-card__badge" aria-hidden="true"><i data-lucide="arrow-left-right"></i></span>
+                              <div class="mini-token-card__main">
+                                <div class="mini-token-card__money">
+                                  <span class="mini-token-card__currency">¥</span>
+                                  <strong class="mini-token-card__figure">88<small>.00</small></strong>
+                                </div>
+                                <span class="mini-token-card__note">今晚的奶茶</span>
+                              </div>
+                              <button type="button" class="mini-token-card__action" data-token-action="confirm" data-token-message-id="p-012" aria-label="收款 88.00 栖币">收款</button>
+                            </div>
+                          </article>
+
+                          <div class="gal-note">14 转账卡 · 已到账</div>
+                          <article class="mini-message is-user has-token" data-message-id="p-013">
+                            <div class="mini-token-card mini-token-card--transfer is-flat is-settled is-out" data-token-message-id="p-013" role="group" aria-label="转账 12.50 栖币">
+                              <span class="mini-token-card__badge" aria-hidden="true"><i data-lucide="arrow-left-right"></i></span>
+                              <div class="mini-token-card__main">
+                                <div class="mini-token-card__money">
+                                  <span class="mini-token-card__currency">¥</span>
+                                  <strong class="mini-token-card__figure">12<small>.50</small></strong>
+                                </div>
+                                <span class="mini-token-card__note">喝杯奶茶</span>
+                              </div>
+                              <span class="mini-token-card__done">已到账</span>
+                            </div>
+                          </article>
+
+                          <div class="gal-note">15 收款请求卡 .mini-token-card--collect</div>
+                          <article class="mini-message is-ai has-token" data-message-id="p-014">
+                            <div class="mini-token-card mini-token-card--collect" data-token-message-id="p-014" role="group" aria-label="收款 20.00 栖币">
+                              <span class="mini-token-card__tag">向你收款</span>
+                              <strong class="mini-token-card__amount">20.00 栖币</strong>
+                              <p class="mini-token-card__note">电影票</p>
+                              <button type="button" class="mini-token-card__action" data-token-action="pay" data-token-message-id="p-014" aria-label="确认支付 20.00 栖币">确认支付</button>
+                            </div>
+                          </article>
+
+                          <div class="gal-note">16 信物提醒卡 .mini-token-card--reminder<small><em>缺陷</em>：只写 phone 本地 state，不进 Conversation V2，刷新可能丢</small></div>
+                          <article class="mini-message is-ai has-token" data-message-id="p-015">
+                            <div class="mini-token-card mini-token-card--reminder" data-token-message-id="p-015" role="group" aria-label="信物提醒 纪念日提醒">
+                              <span class="mini-token-card__tag">信物 · 提醒</span>
+                              <strong class="mini-token-card__amount">纪念日提醒</strong>
+                              <p class="mini-token-card__note">明天是相识一周年</p>
+                            </div>
+                          </article>
+
+                          <div class="gal-note">17 任务待确认卡 .mini-pop-task-card<small><em>缺陷</em>：App 只显示一句「请确认」，没有审批按钮</small></div>
+                          <article class="mini-message is-ai" data-message-id="p-016">
+                            <p>我准备为你创建日程。</p>
+                            <section class="mini-pop-task-card" data-pop-task-card="task-001">
+                              <header><strong>创建日程</strong><span>待确认</span></header>
+                              <p class="mini-pop-task-card__effect">确认后会向本地日历写入一条记录</p>
+                              <div class="mini-pop-task-card__actions">
+                                <button type="button" class="mini-text-btn" data-pop-task-reject="task-001">拒绝</button>
+                                <button type="button" class="mini-app-cta" data-pop-task-approve="task-001">允许执行</button>
+                                <button type="button" class="mini-text-btn" data-pop-task-open-center="task-001">任务中心</button>
+                              </div>
+                            </section>
+                          </article>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ============ 空态与弹层 ============ -->
+    <div class="gal-stage gal-extras" data-gal-stage="extras" hidden>
+      <figure>
+        <figcaption>空会话提示 .mini-chat-empty</figcaption>
+        <section class="mini-phone" data-phone-view="pop" data-phone-locked="false" data-wallpaper="dawn">
+          <div class="mini-phone__hardware" aria-hidden="true"><span></span><i></i></div>
+          <div class="mini-phone__screen">
+            <div class="mini-phone__content">
+              <section class="mini-view mini-pop is-active is-thread" data-phone-screen="pop">
+                <div class="mini-pop__body">
+                  <section class="mini-pop-panel is-active is-thread" data-pop-panel="chat">
+                    <div class="mini-pop-chat-thread" data-pop-chat-mode="thread">
+                      <div class="mini-message-list" data-phone-messages aria-live="polite">
+                        <div class="mini-chat-empty">
+                          <strong>还没有消息</strong>
+                          <span>发一句话，让这里成为你们故事的开始。</span>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </figure>
+
+      <figure>
+        <figcaption>游戏选择卡 .mini-pop-game-card（sheet 弹层，不在消息流内）</figcaption>
+        <section class="mini-phone" data-phone-view="pop" data-phone-locked="false" data-wallpaper="dawn">
+          <div class="mini-phone__hardware" aria-hidden="true"><span></span><i></i></div>
+          <div class="mini-phone__screen">
+            <div class="mini-phone__content">
+              <section class="mini-view mini-pop is-active is-thread" data-phone-screen="pop">
+                <div class="mini-pop__body">
+                  <section class="mini-pop-panel is-active is-thread" data-pop-panel="chat">
+                    <div class="mini-pop-chat-thread" data-pop-chat-mode="thread">
+                      <div class="mini-message-list" data-phone-messages aria-live="polite">
+                        <div class="mini-message-list__pin">
+                          <article class="mini-message is-user" data-message-id="g-001">
+                            <p>要不要玩点什么？</p>
+                          </article>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </section>
+
+              <div class="mini-pop-sheet" data-pop-game-sheet>
+                <button type="button" class="mini-pop-sheet__scrim" data-pop-game-close aria-label="关闭"></button>
+                <div class="mini-pop-sheet__panel mini-pop-game-panel" role="dialog" aria-modal="true" aria-label="一起玩">
+                  <header>
+                    <strong>一起玩</strong>
+                    <button type="button" class="mini-icon-button" data-pop-game-close aria-label="关闭"><i data-lucide="x"></i></button>
+                  </header>
+                  <p class="mini-pop-dice-lead">和 TA 在当前聊天里玩，沿用这条会话的上下文</p>
+                  <div class="mini-pop-game-list" data-pop-game-list>
+                    <button type="button" class="mini-pop-game-card tone-mint" data-pop-start-game="truth-or-dare">
+                      <strong>真心话</strong><span>轮流回答一个问题</span>
+                    </button>
+                    <button type="button" class="mini-pop-game-card tone-coral" data-pop-start-game="story-relay">
+                      <strong>故事接龙</strong><span>一人一句，编下去</span>
+                    </button>
+                    <button type="button" class="mini-pop-game-card tone-ember" data-pop-start-game="dice">
+                      <strong>掷骰子</strong><span>让运气替你们决定</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </figure>
+    </div>
+
+    <script type="module">
+      import { createIcons, icons } from "lucide";
+
+      const MODES = { app: "app", pop: "phone", extras: "phone" };
+      const stages = new Map(
+        [...document.querySelectorAll("[data-gal-stage]")].map((node) => [node.dataset.galStage, node]),
+      );
+
+      function show(stage) {
+        for (const [key, node] of stages) node.hidden = key !== stage;
+        for (const btn of document.querySelectorAll("[data-gal-switch]")) {
+          btn.setAttribute("aria-pressed", String(btn.dataset.galSwitch === stage));
+        }
+        document.body.dataset.appMode = MODES[stage] || "app";
+        location.hash = stage;
+      }
+
+      document.querySelector(".gal-bar").addEventListener("click", (event) => {
+        const btn = event.target.closest("[data-gal-switch]");
+        if (btn) show(btn.dataset.galSwitch);
+      });
+
+      const fromHash = () => (stages.has(location.hash.slice(1)) ? location.hash.slice(1) : "app");
+      window.addEventListener("hashchange", () => show(fromHash()));
+
+      show(fromHash());
+      createIcons({ icons });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,259 @@
+/**
+ * Home screen icons, dock, and widgets in the iOS system language:
+ * saturated squircles, white glyphs, a caption-free frosted dock,
+ * and borderless widget material.
+ */
+
+.mini-phone .mini-app-icon > span.mini-app-face,
+.mini-phone .mini-app-folder-face,
+.mini-phone .mini-dock .mini-app-face,
+.mini-phone .mini-dock-icon > span.mini-app-face {
+  width: 60px !important;
+  height: 60px !important;
+  border: 0 !important;
+  border-radius: 22.5% !important;
+  color: #fff !important;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 36%),
+    0 1px 1px rgb(0 0 0 / 8%),
+    0 8px 16px rgb(0 0 0 / 12%) !important;
+}
+
+.mini-phone .mini-app-face::before,
+.mini-phone .mini-app-folder-face::before,
+.mini-phone .mini-dock-icon > span::before {
+  display: none !important;
+}
+
+.mini-phone .mini-app-face:not([data-tone="white"]):not([data-tone="yellow"]):not([data-tone="foam"]) svg,
+.mini-phone .mini-dock .mini-app-face:not([data-tone="white"]):not([data-tone="yellow"]):not([data-tone="foam"]) svg,
+.mini-phone .mini-app-folder-face svg {
+  width: 28px !important;
+  height: 28px !important;
+  color: #fff !important;
+  stroke: #fff !important;
+  stroke-width: 2.25 !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mini-phone .mini-app-face[data-tone="white"] svg,
+.mini-phone .mini-app-face[data-tone="yellow"] svg,
+.mini-phone .mini-app-face[data-tone="foam"] svg {
+  width: 28px !important;
+  height: 28px !important;
+  color: #1c1c1e !important;
+  stroke: #1c1c1e !important;
+  stroke-width: 2.25 !important;
+}
+
+.mini-phone .mini-app-icon em,
+.mini-phone .mini-app-icon > b {
+  max-width: 74px;
+  margin-top: 1px;
+  color: rgb(16 36 58 / 88%) !important;
+  font-size: 11px !important;
+  font-weight: 520 !important;
+  letter-spacing: 0 !important;
+  text-shadow: 0 1px 0 rgb(255 255 255 / 35%);
+}
+
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="sea"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="sea"] {
+  background: linear-gradient(180deg, #3ec6d4 0%, #0c7f92 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="sky"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="sky"] {
+  background: linear-gradient(180deg, #7ec8f8 0%, #1d7ec8 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="blush"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="blush"] {
+  background: linear-gradient(180deg, #ff8fa8 0%, #e23b62 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="rose"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="rose"] {
+  background: linear-gradient(180deg, #f48cc0 0%, #c42b78 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="lilac"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="lilac"] {
+  background: linear-gradient(180deg, #c9a6ff 0%, #7a45d6 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="amber"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="amber"] {
+  background: linear-gradient(180deg, #ffc14d 0%, #e08612 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="lemon"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="lemon"] {
+  background: linear-gradient(180deg, #d6ef6a 0%, #7eae1c 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="yellow"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="yellow"] {
+  background: linear-gradient(180deg, #ffe14a 0%, #f0b000 100%) !important;
+  color: #3a2a00 !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="moss"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="moss"] {
+  background: linear-gradient(180deg, #8ed45a 0%, #2f8a28 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="sage"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="sage"] {
+  background: linear-gradient(180deg, #9dceb4 0%, #3d8a68 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="mint"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="mint"] {
+  background: linear-gradient(180deg, #5ee0c8 0%, #12967f 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="foam"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="foam"] {
+  background: linear-gradient(180deg, #b7efe8 0%, #3aada8 100%) !important;
+  color: #08343a !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="dusk"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="dusk"] {
+  background: linear-gradient(180deg, #8b7cff 0%, #3a2e9a 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="ember"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="ember"] {
+  background: linear-gradient(180deg, #ff8a4c 0%, #d63a16 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="peach"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="peach"] {
+  background: linear-gradient(180deg, #ffb087 0%, #ef6a3a 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="coral"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="coral"] {
+  background: linear-gradient(180deg, #ff8d78 0%, #e23d32 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="blue"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="blue"] {
+  background: linear-gradient(180deg, #5aa8f0 0%, #1464c8 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="slate"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="slate"] {
+  background: linear-gradient(180deg, #8e9aab 0%, #3d4c63 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="ink"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="ink"],
+.mini-phone .mini-app-folder-face {
+  background: linear-gradient(180deg, #8e8e93 0%, #3a3a3c 100%) !important;
+}
+.mini-phone .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="white"],
+.mini-phone .mini-dock .mini-app-face:not(.is-image):not(.is-clear):not(.is-custom)[data-tone="white"] {
+  background: linear-gradient(180deg, #f5f5f7 0%, #d1d1d6 100%) !important;
+  color: #1c1c1e !important;
+}
+
+.mini-phone .mini-app-face.is-custom {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--icon-face-color, #4aa8b0) 78%, #fff), var(--icon-face-color, #4aa8b0)) !important;
+}
+
+.mini-phone .mini-app-face.is-image,
+.mini-phone .mini-dock .mini-app-face.is-image {
+  background: #e5e5ea !important;
+  box-shadow:
+    inset 0 0 0 0.5px rgb(0 0 0 / 8%),
+    0 8px 16px rgb(0 0 0 / 12%) !important;
+}
+
+.mini-phone .mini-app-face.is-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.mini-phone .mini-app-face.is-clear,
+.mini-phone .mini-dock .mini-app-face.is-clear {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+/* Dock is a frosted capsule of the same icons. Captions stay on the grid. */
+.mini-phone .mini-dock,
+.mini-phone .mini-home .mini-dock,
+.mini-phone .mini-dock[data-dock-count="1"],
+.mini-phone .mini-dock[data-dock-count="2"],
+.mini-phone .mini-dock[data-dock-count="3"],
+.mini-phone .mini-dock[data-dock-count="4"],
+.mini-phone .mini-dock.is-editing-dock[data-dock-count="1"],
+.mini-phone .mini-dock.is-editing-dock[data-dock-count="2"],
+.mini-phone .mini-dock.is-editing-dock[data-dock-count="3"] {
+  width: max-content !important;
+  max-width: calc(100% - 24px) !important;
+  min-height: 0 !important;
+  column-gap: 16px !important;
+  margin: 0 auto !important;
+  padding: 10px 14px !important;
+  border: 0 !important;
+  border-radius: 36px !important;
+  background: rgb(255 255 255 / 42%) !important;
+  box-shadow:
+    inset 0 0.5px 0 rgb(255 255 255 / 70%),
+    0 10px 28px rgb(0 0 0 / 12%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  backdrop-filter: blur(28px) saturate(1.8);
+}
+
+.mini-phone .mini-dock[data-dock-count="1"] { grid-template-columns: 60px !important; }
+.mini-phone .mini-dock[data-dock-count="2"] { grid-template-columns: repeat(2, 60px) !important; }
+.mini-phone .mini-dock[data-dock-count="3"] { grid-template-columns: repeat(3, 60px) !important; }
+.mini-phone .mini-dock[data-dock-count="4"],
+.mini-phone .mini-dock { grid-template-columns: repeat(4, 60px) !important; }
+
+.mini-phone .mini-home .mini-dock .mini-dock-icon > em,
+.mini-phone .mini-dock .mini-app-icon em,
+.mini-phone .mini-dock .mini-app-icon > b {
+  display: none !important;
+}
+
+.mini-phone .mini-home .mini-dock::before {
+  display: none !important;
+}
+
+/* Widgets: one continuous material, no card stroke, system type. */
+.mini-phone .mini-home :is(.mini-widget--today, .mini-widget--vinyl, .mini-widget--calendar) {
+  border: 0 !important;
+  border-radius: 22px !important;
+  background: rgb(255 255 255 / 58%) !important;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 8%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  backdrop-filter: blur(28px) saturate(1.6);
+}
+
+.mini-phone .mini-home :is(.mini-widget--today, .mini-widget--vinyl, .mini-widget--calendar)::before,
+.mini-phone .mini-home .mini-widget--today::after,
+.mini-phone .mini-home .mini-home-widget-title strong::before {
+  display: none !important;
+}
+
+.mini-phone .mini-home .mini-today__action-label {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #007aff !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+}
+
+.mini-phone .mini-home .mini-cal-widget__label strong {
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.mini-phone .mini-home .mini-cal-widget__action {
+  color: #007aff !important;
+  font-weight: 560;
+}
+
+.mini-phone .mini-home .mini-cal-widget__grid button.is-today {
+  width: 32px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  justify-self: center;
+  margin-inline: auto;
+  border-radius: 999px !important;
+  color: #fff !important;
+  background: #ff3b30 !important;
+  box-shadow: none !important;
+}

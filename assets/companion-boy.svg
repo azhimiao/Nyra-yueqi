@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" role="img" aria-labelledby="boy-title boy-desc">
+  <title id="boy-title">Original floating companion boy</title>
+  <desc id="boy-desc">A cheerful original character with charcoal hair, a sea-green jacket, and coral details.</desc>
+
+  <defs>
+    <linearGradient id="boy-skin" x1="0" y1="0" x2="0.82" y2="1">
+      <stop offset="0" stop-color="#ffe6d5" />
+      <stop offset="1" stop-color="#f2bfa8" />
+    </linearGradient>
+    <linearGradient id="boy-hair" x1="0.18" y1="0" x2="0.78" y2="1">
+      <stop offset="0" stop-color="#3b4a53" />
+      <stop offset="1" stop-color="#1e2930" />
+    </linearGradient>
+    <linearGradient id="boy-jacket" x1="0" y1="0.1" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#75b6aa" />
+      <stop offset="1" stop-color="#3e827c" />
+    </linearGradient>
+    <linearGradient id="boy-shirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdf8" />
+      <stop offset="1" stop-color="#eaf3ef" />
+    </linearGradient>
+    <filter id="boy-soft-shadow" x="-30%" y="-80%" width="160%" height="260%">
+      <feGaussianBlur stdDeviation="5" />
+    </filter>
+    <filter id="boy-soft-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="2.4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <ellipse data-part="ground-shadow" cx="160" cy="421" rx="71" ry="10" fill="#243038" opacity="0.14" filter="url(#boy-soft-shadow)" />
+
+  <g data-part="effects-thinking" fill="#5aa197" filter="url(#boy-soft-glow)" opacity="0">
+    <circle cx="245" cy="102" r="6" />
+    <circle cx="264" cy="82" r="8" />
+    <circle cx="288" cy="54" r="11" />
+  </g>
+
+  <g data-part="effects-listening" fill="none" stroke="#f18b77" stroke-linecap="round" opacity="0">
+    <path d="M246 114c13 6 20 17 21 31" stroke-width="4" />
+    <path d="M254 99c22 9 34 27 35 49" stroke-width="3" opacity="0.62" />
+  </g>
+
+  <g data-part="effects-reacting" fill="#f5c95f" filter="url(#boy-soft-glow)" opacity="0">
+    <path d="M67 76l5 11 12 2-9 8 2 12-10-6-11 6 3-12-9-8 12-2z" />
+    <path d="M259 65l3 8 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z" />
+    <circle cx="45" cy="132" r="5" fill="#f18b77" />
+    <circle cx="278" cy="132" r="5" fill="#72b9ae" />
+  </g>
+
+  <g data-part="character">
+    <g data-part="hood-back">
+      <path d="M101 183c9-30 30-48 59-48s51 18 60 48l-17 31h-86z" fill="#315e5b" />
+      <path d="M116 183c8-19 23-31 44-31s37 12 45 31" fill="none" stroke="#9bd1c7" stroke-width="5" opacity="0.5" />
+    </g>
+
+    <g data-part="legs">
+      <path d="M128 325l-5 66" fill="none" stroke="#f2c3ad" stroke-width="26" stroke-linecap="round" />
+      <path d="M192 325l6 66" fill="none" stroke="#f2c3ad" stroke-width="26" stroke-linecap="round" />
+      <path d="M127 361l-4 37" fill="none" stroke="#eef6f3" stroke-width="24" stroke-linecap="round" />
+      <path d="M194 361l4 37" fill="none" stroke="#eef6f3" stroke-width="24" stroke-linecap="round" />
+      <path d="M106 397c8-8 23-9 35-3l6 10c2 5-1 10-7 11h-36c-8 0-10-10-4-14z" fill="#f9fbfa" stroke="#53616a" stroke-width="3" />
+      <path d="M176 395c12-6 27-5 36 3l6 4c6 5 3 14-5 14h-37c-6-1-9-7-6-12z" fill="#f9fbfa" stroke="#53616a" stroke-width="3" />
+      <path d="M103 405h40M176 405h39" stroke="#f18b77" stroke-width="4" stroke-linecap="round" />
+      <path d="M119 388h18M183 388h19" stroke="#cbdcd7" stroke-width="3" stroke-linecap="round" />
+    </g>
+
+    <g data-part="arm-default">
+      <path d="M112 219c-18 17-26 42-27 69" fill="none" stroke="url(#boy-jacket)" stroke-width="29" stroke-linecap="round" />
+      <path d="M208 219c18 17 26 42 27 69" fill="none" stroke="url(#boy-jacket)" stroke-width="29" stroke-linecap="round" />
+      <circle cx="84" cy="293" r="13" fill="url(#boy-skin)" />
+      <circle cx="236" cy="293" r="13" fill="url(#boy-skin)" />
+      <path d="M75 289l-7 6M245 289l7 6" stroke="#db9f8b" stroke-width="3" stroke-linecap="round" />
+    </g>
+
+    <g data-part="arm-thinking" opacity="0">
+      <path d="M112 221c-17 19-23 42-22 66" fill="none" stroke="url(#boy-jacket)" stroke-width="29" stroke-linecap="round" />
+      <circle cx="90" cy="291" r="13" fill="url(#boy-skin)" />
+      <path d="M207 220c17 9 25 20 26 33 1 13-11 17-23 6l-25-25" fill="none" stroke="url(#boy-jacket)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="184" cy="218" r="12" fill="url(#boy-skin)" />
+      <path d="M180 209l-2-11M187 209l3-11" stroke="#db9f8b" stroke-width="3" stroke-linecap="round" />
+    </g>
+
+    <g data-part="arm-listening" opacity="0">
+      <path d="M109 222c-16 19-21 43-19 65" fill="none" stroke="url(#boy-jacket)" stroke-width="29" stroke-linecap="round" />
+      <circle cx="90" cy="291" r="13" fill="url(#boy-skin)" />
+      <path d="M209 224c21 3 32-9 31-35" fill="none" stroke="url(#boy-jacket)" stroke-width="28" stroke-linecap="round" />
+      <circle cx="239" cy="180" r="12" fill="url(#boy-skin)" />
+      <path d="M241 171l5-9M234 172l1-11" stroke="#db9f8b" stroke-width="3" stroke-linecap="round" />
+    </g>
+
+    <g data-part="arm-reacting" opacity="0">
+      <path d="M112 224c-25-5-38-24-39-50" fill="none" stroke="url(#boy-jacket)" stroke-width="28" stroke-linecap="round" />
+      <path d="M208 224c25-5 38-24 39-50" fill="none" stroke="url(#boy-jacket)" stroke-width="28" stroke-linecap="round" />
+      <circle cx="72" cy="164" r="13" fill="url(#boy-skin)" />
+      <circle cx="248" cy="164" r="13" fill="url(#boy-skin)" />
+      <path d="M64 157l-7-8M72 153v-11M80 157l7-8M240 157l-7-8M248 153v-11M256 157l7-8" stroke="#db9f8b" stroke-width="3" stroke-linecap="round" />
+    </g>
+
+    <g data-part="torso">
+      <path d="M110 203c10-20 28-30 50-30s40 10 50 30l13 117c-18 13-108 13-126 0z" fill="url(#boy-jacket)" stroke="#315e5b" stroke-width="3" stroke-linejoin="round" />
+      <path d="M135 183l25 19 25-19 14 24-9 103h-60l-9-103z" fill="url(#boy-shirt)" />
+      <path d="M160 202v112" stroke="#d8e8e3" stroke-width="3" />
+      <path d="M145 184l15 18-21 18-17-28M175 184l-15 18 21 18 17-28" fill="#9bd1c7" stroke="#315e5b" stroke-width="2.5" stroke-linejoin="round" />
+      <path d="M148 216c6 4 18 4 24 0" fill="none" stroke="#f18b77" stroke-width="5" stroke-linecap="round" />
+      <circle cx="148" cy="216" r="4" fill="#f18b77" />
+      <circle cx="172" cy="216" r="4" fill="#f18b77" />
+      <path d="M116 285h88" stroke="#315e5b" stroke-width="3" opacity="0.45" />
+      <path d="M127 292c7 9 20 13 33 13s26-4 33-13" fill="none" stroke="#315e5b" stroke-width="3" opacity="0.45" />
+      <path d="M124 314c16 4 56 4 72 0l-4 36c-15 7-49 7-64 0z" fill="#46545d" stroke="#2f3a41" stroke-width="3" />
+      <path d="M160 316v35" stroke="#2f3a41" stroke-width="3" />
+      <g data-part="jacket-patch">
+        <circle cx="195" cy="253" r="11" fill="#f5c95f" stroke="#fff8d9" stroke-width="2" />
+        <path d="M195 246l2 5 5 1-4 3 1 5-4-3-5 3 2-5-4-3 5-1z" fill="#56646c" />
+      </g>
+    </g>
+
+    <path data-part="neck" d="M145 160h30v32c-7 8-23 8-30 0z" fill="url(#boy-skin)" stroke="#dfa58e" stroke-width="2" />
+
+    <g data-part="head">
+      <path data-part="hair-back" d="M83 102c0-49 32-82 78-82 49 0 79 34 79 83v55c-11 27-36 43-79 43-42 0-67-16-78-43z" fill="url(#boy-hair)" />
+      <path d="M92 147c-12 1-20-6-20-18 0-11 7-20 18-20l11 8-1 25z" fill="url(#boy-skin)" stroke="#dfa58e" stroke-width="2" />
+      <path d="M228 147c12 1 20-6 20-18 0-11-7-20-18-20l-11 8 1 25z" fill="url(#boy-skin)" stroke="#dfa58e" stroke-width="2" />
+      <path d="M82 127c1-53 31-88 79-88 47 0 77 34 78 87-2 46-32 73-78 73s-77-27-79-72z" fill="url(#boy-skin)" stroke="#dfa58e" stroke-width="3" />
+
+      <g data-part="face-blush" fill="#ee8f8f" opacity="0.32">
+        <ellipse cx="111" cy="150" rx="17" ry="8" />
+        <ellipse cx="210" cy="150" rx="17" ry="8" />
+      </g>
+
+      <g data-part="eyebrows" fill="none" stroke="#48545b" stroke-width="5" stroke-linecap="round">
+        <path data-part="brow-left" d="M111 110c8-5 17-5 25-1" />
+        <path data-part="brow-right" d="M184 109c8-4 17-4 25 1" />
+      </g>
+
+      <g data-part="eyes-open">
+        <ellipse cx="126" cy="127" rx="18" ry="15" fill="#fffdf9" stroke="#526068" stroke-width="3" />
+        <ellipse cx="195" cy="127" rx="18" ry="15" fill="#fffdf9" stroke="#526068" stroke-width="3" />
+        <g data-part="iris-left">
+          <ellipse cx="128" cy="128" rx="9" ry="10" fill="#3f8580" />
+          <ellipse cx="128" cy="129" rx="5" ry="7" fill="#24383c" />
+          <circle cx="131" cy="124" r="2.4" fill="#fff" />
+        </g>
+        <g data-part="iris-right">
+          <ellipse cx="197" cy="128" rx="9" ry="10" fill="#3f8580" />
+          <ellipse cx="197" cy="129" rx="5" ry="7" fill="#24383c" />
+          <circle cx="200" cy="124" r="2.4" fill="#fff" />
+        </g>
+      </g>
+
+      <g data-part="eyes-closed" fill="none" stroke="#526068" stroke-width="4" stroke-linecap="round" opacity="0">
+        <path d="M110 128c9 8 21 8 31 0" />
+        <path d="M180 128c9 8 21 8 31 0" />
+      </g>
+
+      <g data-part="eyes-happy" fill="none" stroke="#526068" stroke-width="5" stroke-linecap="round" opacity="0">
+        <path d="M109 132c9-11 22-11 33 0" />
+        <path d="M179 132c9-11 22-11 33 0" />
+      </g>
+
+      <path data-part="nose" d="M158 136l-3 6 7 1" fill="none" stroke="#d99682" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path data-part="mouth-smile" d="M148 157c7 7 17 7 25 0" fill="none" stroke="#a95d60" stroke-width="4" stroke-linecap="round" />
+      <path data-part="mouth-neutral" d="M151 159h19" fill="none" stroke="#a95d60" stroke-width="4" stroke-linecap="round" opacity="0" />
+      <path data-part="mouth-sad" d="M150 165c7-7 15-7 22 0" fill="none" stroke="#a95d60" stroke-width="4" stroke-linecap="round" opacity="0" />
+      <ellipse data-part="mouth-talk" cx="160" cy="160" rx="10" ry="8" fill="#9e5458" opacity="0" />
+      <ellipse data-part="mouth-o" cx="160" cy="160" rx="8" ry="10" fill="#9e5458" opacity="0" />
+
+      <path data-part="hair-front" d="M87 108c0-58 33-91 78-91 47 0 78 35 77 91-13-22-31-38-50-48 2 13-8 25-25 35 2-10-1-21-8-28-9 17-29 31-56 39 2-12-4-21-16-28z" fill="url(#boy-hair)" />
+      <path d="M104 75c13-27 34-42 60-43M201 51c16 10 26 24 31 43" fill="none" stroke="#53636d" stroke-width="5" stroke-linecap="round" opacity="0.52" />
+
+      <g data-part="hair-tuft" fill="url(#boy-hair)">
+        <path d="M151 26c-2-18 8-25 21-22-6 7-6 14 2 23z" />
+        <path d="M169 27c6-17 18-20 29-12-9 3-13 9-11 18z" />
+      </g>
+
+      <g data-part="hair-clip" transform="rotate(-18 105 78)">
+        <rect x="91" y="70" width="28" height="8" rx="4" fill="#8bd2c6" stroke="#dff8f2" stroke-width="2" />
+        <circle cx="114" cy="74" r="3" fill="#f5c95f" />
+      </g>
+    </g>
+  </g>
+</svg>

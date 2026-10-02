@@ -1,0 +1,5 @@
+Pillow>=10.0.0
+numpy>=1.26.0
+opencv-python-headless>=4.8.0
+rembg[cpu]>=2.0.50
+onnxruntime>=1.16.0

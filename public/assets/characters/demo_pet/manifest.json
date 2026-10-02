@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "id": "demo_pet",
+  "name": "示例桌宠",
+  "version": "1.0.0",
+  "renderer": "canvas2d-atlas",
+  "portrait": "portrait.png",
+  "sourceCleanup": {
+    "method": "factory-export-alpha-crop",
+    "discardedAlphaPixels": 0
+  },
+  "logicalSize": {
+    "width": 768,
+    "height": 768
+  },
+  "revision": "dae14edb68bf4f0a",
+  "defaultClip": "idle_loop",
+  "totalFrames": 4,
+  "clips": {
+    "greet": {
+      "id": "greet",
+      "atlas": "clips/greet.json",
+      "image": "clips/greet.png",
+      "frameCount": 1,
+      "fps": 8,
+      "crossfadeMs": 96,
+      "playback": "once",
+      "returnClip": "idle_loop"
+    },
+    "idle_loop": {
+      "id": "idle_loop",
+      "atlas": "clips/idle_loop.json",
+      "image": "clips/idle_loop.png",
+      "frameCount": 1,
+      "fps": 8,
+      "crossfadeMs": 0,
+      "playback": "loop"
+    },
+    "sleep_loop": {
+      "id": "sleep_loop",
+      "atlas": "clips/sleep_loop.json",
+      "image": "clips/sleep_loop.png",
+      "frameCount": 1,
+      "fps": 8,
+      "crossfadeMs": 0,
+      "playback": "loop"
+    },
+    "talk_loop": {
+      "id": "talk_loop",
+      "atlas": "clips/talk_loop.json",
+      "image": "clips/talk_loop.png",
+      "frameCount": 1,
+      "fps": 8,
+      "crossfadeMs": 0,
+      "playback": "loop"
+    }
+  },
+  "factory": {
+    "packId": "demo_pet",
+    "mode": "fixture",
+    "contentHash": {
+      "greet": "eac584e890a66784",
+      "idle_loop": "f698bc3129a0ae5b",
+      "sleep_loop": "b85e9f6c3c4660e2",
+      "talk_loop": "3a4c20725cd62f47"
+    },
+    "sourceJob": "demo"
+  }
+}

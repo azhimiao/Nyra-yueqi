@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "igj-fixture-succeeded-1",
+  "status": "succeeded",
+  "prompt": "窗边的星梨，傍晚，柔光",
+  "revisedPrompt": "A soft evening portrait by the window",
+  "createdAt": "2026-07-25T10:00:00.000Z",
+  "finishedAt": "2026-07-25T10:00:08.000Z",
+  "error": null,
+  "mediaId": "image-fixture-1",
+  "photoId": "photo-fixture-1",
+  "width": 1024,
+  "height": 1024,
+  "model": "dall-e-3"
+}

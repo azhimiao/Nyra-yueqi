@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "avatars": [
+    {
+      "characterId": "cool_mature",
+      "avatarId": "cool_mature_v1",
+      "manifestUrl": "/avatar-packs/_fixture/cool_mature/manifest.json",
+      "publishable": false,
+      "fixture": true,
+      "qaResult": "PASS"
+    },
+    {
+      "characterId": "lively_shorthair",
+      "avatarId": "lively_shorthair_v1",
+      "manifestUrl": "/avatar-packs/_fixture/lively_shorthair/manifest.json",
+      "publishable": false,
+      "fixture": true,
+      "qaResult": "PASS"
+    },
+    {
+      "characterId": "quiet_longhair",
+      "avatarId": "quiet_longhair_v1",
+      "manifestUrl": "/avatar-packs/_fixture/quiet_longhair/manifest.json",
+      "publishable": false,
+      "fixture": true,
+      "qaResult": "PASS"
+    }
+  ]
+}

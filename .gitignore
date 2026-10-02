@@ -1,24 +1,62 @@
 node_modules/
-frontend/www/
-frontend/dist/
-backend/data/
+www/
+dist/
+server/data/
 .DS_Store
-Thumbs.db
 *.log
 .env
-.env.*
-!.env.example
 .env.local
 *.pem
+assets/pet-poses/_raw-jpg/
+assets/pet-poses/_ref-style.png
+assets/pet-poses/_character-lock.png
+assets/pet-poses/_sheet_handsome.png
+assets/pet-poses/_sheet_chibi.png
+
+# Local Cursor state — keep project Agent Skills in git
+.cursor/*
+!.cursor/skills/
+!.cursor/skills/**
+
+# Local reference clones / private notes — never publish
+_refs/
+*.local.md
+
+# Avatar Factory V2 job working trees (keep directory via .gitkeep)
+.avatar-factory/jobs/*
+!.avatar-factory/jobs/.gitkeep
+
+# Caches and local tooling junk
+.npm-cache/
+.cache/
+coverage/
+.tmp/
+spikes/**/artifacts/
+node_modules/@openclaw/
+node_modules/typebox/
+node_modules/json5/
+
+# Keep vendored OpenClaw mobile slice dist
+!vendor/openclaw-agent-mobile/dist/
+!vendor/openclaw-agent-mobile/dist/**
+
+
+# Bulky Playwright traces (too large for GitHub push; keep locally)
+docs/qa/paios/**/trace.zip
+docs/qa/paios/**/fatal-trace.zip
+docs/qa/paios/**/*-trace.zip
+docs/qa/paios/release-candidate/traces/
+
+android/app/build/
+android/.gradle/
+docs/qa/
+
+docs/session/
+
+# Nyra release secrets (public keys/fingerprints remain tracked)
 *.jks
 *.keystore
-local.properties
-
-artifacts/
-.tmp/
-coverage/
-*.apk
-*.aab
-
-# Local gateway token created on first run
-**/.local-token
+release.env
+*update-signing-private*
+.nyra-release/
+.official-open-build/

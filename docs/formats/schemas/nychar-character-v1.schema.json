@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra.app/schemas/nychar-character-v1.schema.json",
+  "title": "Nyra Character v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "id", "name", "persona"],
+  "properties": {
+    "schema": {
+      "const": "nyra.character"
+    },
+    "version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "alias": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "identity": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "persona": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100000
+        },
+        "personality": {
+          "type": "string",
+          "maxLength": 50000
+        },
+        "scenario": {
+          "type": "string",
+          "maxLength": 50000
+        }
+      }
+    },
+    "prompts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "system": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "developer": {
+          "type": "string",
+          "maxLength": 100000
+        }
+      }
+    },
+    "greetings": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 20000
+      }
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      }
+    },
+    "creator": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "license": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 2048
+        }
+      }
+    }
+  }
+}

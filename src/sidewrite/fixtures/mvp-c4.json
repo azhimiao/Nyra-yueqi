@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "appKey": "c4",
+  "albums": [
+    {
+      "id": "album-daily",
+      "title": "日常",
+      "coverHint": "☀️",
+      "count": 3,
+      "updatedAt": "2026-03-10T12:00:00.000Z"
+    },
+    {
+      "id": "album-trip",
+      "title": "旅行",
+      "coverHint": "🌊",
+      "count": 2,
+      "updatedAt": "2026-02-20T16:30:00.000Z"
+    }
+  ],
+  "itemsByAlbum": {
+    "album-daily": [
+      {
+        "id": "p1",
+        "caption": "窗边的一杯桂花茶",
+        "takenAt": "2026-03-09T08:12:00.000Z",
+        "placeholder": { "tone": "mint", "label": "茶" },
+        "locationHint": "宿舍阳台"
+      },
+      {
+        "id": "p2",
+        "caption": "实验记录本封面",
+        "takenAt": "2026-03-08T21:40:00.000Z",
+        "placeholder": { "tone": "ink", "label": "本" },
+        "locationHint": null
+      },
+      {
+        "id": "p3",
+        "caption": "路过的猫",
+        "takenAt": "2026-03-07T19:05:00.000Z",
+        "placeholder": { "tone": "coral", "label": "猫" },
+        "locationHint": "校园小路"
+      }
+    ],
+    "album-trip": [
+      {
+        "id": "t1",
+        "caption": "海边风太大了",
+        "takenAt": "2026-02-18T15:20:00.000Z",
+        "placeholder": { "tone": "blue", "label": "海" },
+        "locationHint": "某海湾"
+      },
+      {
+        "id": "t2",
+        "caption": "夜市灯牌",
+        "takenAt": "2026-02-19T21:10:00.000Z",
+        "placeholder": { "tone": "yellow", "label": "灯" },
+        "locationHint": null
+      }
+    ]
+  }
+}

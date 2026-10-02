@@ -1,0 +1,249 @@
+{
+  "id": "yueqi-male",
+  "character": "月栖·夜 (Yueqi Night)",
+  "version": "1.0",
+  "specs": {
+    "canvas_size": "1536x1536",
+    "transparent": true,
+    "style": "reference-locked chibi 2D companion",
+    "fps_target": "4fps",
+    "asset_kind": "curated-key-pose-pack"
+  },
+  "selected_lock": "character/lock_candidate_1.png",
+  "character_files": {
+    "character_lock.png": {
+      "dimensions": "1536x1536",
+      "mode": "RGBA"
+    },
+    "lock_candidate_1.png": {
+      "dimensions": "1536x1536",
+      "mode": "RGBA"
+    }
+  },
+  "animations": {
+    "idle_loop": {
+      "frame_count": 1,
+      "frames": [
+        "idle_loop_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        1800
+      ],
+      "hold_ms": 0,
+      "crossfade_ms": 0
+    },
+    "talk_loop": {
+      "frame_count": 2,
+      "frames": [
+        "talk_loop_000.png",
+        "talk_loop_001.png"
+      ],
+      "fps": 4,
+      "frame_durations_ms": [
+        520,
+        480
+      ],
+      "hold_ms": 0,
+      "crossfade_ms": 80
+    },
+    "listen": {
+      "frame_count": 1,
+      "frames": [
+        "listen_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        1400
+      ],
+      "hold_ms": 1400,
+      "crossfade_ms": 0
+    },
+    "thinking": {
+      "frame_count": 1,
+      "frames": [
+        "thinking_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        1600
+      ],
+      "hold_ms": 1600,
+      "crossfade_ms": 0
+    },
+    "greet": {
+      "frame_count": 3,
+      "frames": [
+        "greet_000.png",
+        "greet_001.png",
+        "greet_002.png"
+      ],
+      "fps": 4,
+      "frame_durations_ms": [
+        240,
+        520,
+        260
+      ],
+      "hold_ms": 520,
+      "crossfade_ms": 80
+    },
+    "react_tap": {
+      "frame_count": 2,
+      "frames": [
+        "react_tap_000.png",
+        "react_tap_001.png"
+      ],
+      "fps": 4,
+      "frame_durations_ms": [
+        220,
+        560
+      ],
+      "hold_ms": 560,
+      "crossfade_ms": 80
+    },
+    "comfort": {
+      "frame_count": 1,
+      "frames": [
+        "comfort_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        1700
+      ],
+      "hold_ms": 1700,
+      "crossfade_ms": 0
+    },
+    "welcome_home": {
+      "frame_count": 1,
+      "frames": [
+        "welcome_home_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        1600
+      ],
+      "hold_ms": 1600,
+      "crossfade_ms": 0
+    },
+    "lean_close": {
+      "frame_count": 1,
+      "frames": [
+        "lean_close_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        1500
+      ],
+      "hold_ms": 1500,
+      "crossfade_ms": 0
+    },
+    "shy_look_away": {
+      "frame_count": 1,
+      "frames": [
+        "shy_look_away_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        1500
+      ],
+      "hold_ms": 1500,
+      "crossfade_ms": 0
+    },
+    "selfie": {
+      "frame_count": 1,
+      "frames": [
+        "selfie_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        1700
+      ],
+      "hold_ms": 1700,
+      "crossfade_ms": 0
+    },
+    "sit_idle": {
+      "frame_count": 1,
+      "frames": [
+        "sit_idle_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        1800
+      ],
+      "hold_ms": 0,
+      "crossfade_ms": 0
+    },
+    "sleep_loop": {
+      "frame_count": 1,
+      "frames": [
+        "sleep_loop_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        2200
+      ],
+      "hold_ms": 0,
+      "crossfade_ms": 0
+    },
+    "drag": {
+      "frame_count": 1,
+      "frames": [
+        "drag_000.png"
+      ],
+      "fps": 1,
+      "frame_durations_ms": [
+        1200
+      ],
+      "hold_ms": 1200,
+      "crossfade_ms": 0
+    },
+    "stand_to_sit": {
+      "frame_count": 3,
+      "frames": [
+        "stand_to_sit_000.png",
+        "stand_to_sit_001.png",
+        "stand_to_sit_002.png"
+      ],
+      "fps": 4,
+      "frame_durations_ms": [
+        260,
+        460,
+        340
+      ],
+      "hold_ms": 460,
+      "crossfade_ms": 80
+    },
+    "sit_to_sleep": {
+      "frame_count": 3,
+      "frames": [
+        "sit_to_sleep_000.png",
+        "sit_to_sleep_001.png",
+        "sit_to_sleep_002.png"
+      ],
+      "fps": 4,
+      "frame_durations_ms": [
+        280,
+        580,
+        440
+      ],
+      "hold_ms": 580,
+      "crossfade_ms": 80
+    }
+  },
+  "total_frames": 24,
+  "idlePolicy": {
+    "base": "idle_loop",
+    "intervalMs": 14000,
+    "jitterMs": 8000,
+    "ambient": [
+      "thinking",
+      "shy_look_away"
+    ],
+    "activeOverridesAmbient": true
+  },
+  "matte": {
+    "method": "anime trimap plus GrabCut refinement",
+    "semanticSegmentationAllowed": true,
+    "hiddenRgbCleared": true
+  }
+}

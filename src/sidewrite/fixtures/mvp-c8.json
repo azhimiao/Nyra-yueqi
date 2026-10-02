@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "appKey": "c8",
+  "notes": [
+    {
+      "id": "note-pin",
+      "title": "本周待办",
+      "body": "1. 校对样本编号\n2. 回妈妈消息\n3. 买新的中性笔",
+      "updatedAt": "2026-03-12T10:00:00.000Z",
+      "pinned": true
+    },
+    {
+      "id": "note-idea",
+      "title": "忽然想到",
+      "body": "如果把观察日志写成日记，会不会更轻松一点？",
+      "updatedAt": "2026-03-11T22:18:00.000Z",
+      "pinned": false
+    },
+    {
+      "id": "note-pwd",
+      "title": "快递柜口令",
+      "body": "东门柜 · 取件码已短信（勿外传）",
+      "updatedAt": "2026-03-10T14:02:00.000Z",
+      "pinned": false
+    }
+  ]
+}

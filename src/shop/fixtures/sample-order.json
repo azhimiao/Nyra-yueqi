@@ -1,0 +1,22 @@
+{
+  "orderId": "ord-m2k3f1a-7c4e9b2d",
+  "amount": 28,
+  "currency": "nyra_coin",
+  "shopName": "栖店",
+  "status": "paid",
+  "items": [
+    {
+      "productId": "prd-night-lamp",
+      "title": "暖光夜灯",
+      "qty": 1,
+      "unitPrice": 28,
+      "coverTone": "coral",
+      "coverEmoji": "灯"
+    }
+  ],
+  "createdAt": "2026-07-25T12:00:00.000Z",
+  "updatedAt": "2026-07-25T12:00:00.000Z",
+  "characterId": "",
+  "ledgerId": "ldg-sample",
+  "note": "栖店 · 暖光夜灯"
+}

@@ -6,8 +6,8 @@ const root = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(root, "..");
 const npmCmd = process.platform === "win32" ? "npm.cmd" : "npm";
 
-function run(name, args) {
-  const child = spawn(npmCmd, args, {
+function run(name, script) {
+  const child = spawn(npmCmd, ["run", script], {
     cwd: projectRoot,
     stdio: "inherit",
     shell: process.platform === "win32",
@@ -21,12 +21,9 @@ function run(name, args) {
   return child;
 }
 
-console.log("Starting Yueqi (frontend + local gateway)…");
-const server = spawn(process.execPath, ["backend/index.mjs"], {
-  cwd: projectRoot,
-  stdio: "inherit",
-});
-const dev = run("dev", ["run", "dev"]);
+console.log("Starting 月栖 Companion (frontend + local service)…");
+const server = run("server", "server");
+const dev = run("dev", "dev");
 
 function shutdown() {
   server.kill();

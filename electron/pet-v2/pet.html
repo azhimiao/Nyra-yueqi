@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>月栖 Pet V2</title>
+    <style>
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: transparent;
+        font-family: "Segoe UI", "PingFang SC", sans-serif;
+        user-select: none;
+      }
+      #hud {
+        position: absolute;
+        left: 8px;
+        top: 8px;
+        z-index: 2;
+        background: rgba(0,0,0,.45);
+        color: #e8ecf7;
+        font-size: 11px;
+        padding: 6px 8px;
+        border-radius: 8px;
+        pointer-events: auto;
+      }
+      #stage {
+        display: block;
+        width: 100%;
+        height: 100%;
+        cursor: grab;
+        pointer-events: auto;
+      }
+      #stage.dragging { cursor: grabbing; }
+      select, button {
+        margin-top: 4px;
+        pointer-events: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hud">
+      <div id="status">loading…</div>
+      <select id="char"></select>
+      <button type="button" id="cycle">轮播状态</button>
+    </div>
+    <canvas id="stage" width="512" height="512"></canvas>
+    <script type="module" src="./pet-renderer.mjs"></script>
+  </body>
+</html>

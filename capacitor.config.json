@@ -1,7 +1,7 @@
 {
   "appId": "app.yueqi.open",
   "appName": "月栖",
-  "webDir": "frontend/www",
+  "webDir": "www",
   "server": {
     "androidScheme": "https",
     "cleartext": false
@@ -12,7 +12,19 @@
       "iconColor": "#9f5963"
     },
     "CapacitorSQLite": {
-      "androidIsEncryption": true
+      "iosDatabaseLocation": "Library/CapacitorDatabase",
+      "iosIsEncryption": true,
+      "iosKeychainPrefix": "yueqi-companion",
+      "iosBiometric": {
+        "biometricAuth": false,
+        "biometricTitle": "Unlock Yueqi database"
+      },
+      "androidIsEncryption": true,
+      "androidBiometric": {
+        "biometricAuth": false,
+        "biometricTitle": "Unlock Yueqi database",
+        "biometricSubTitle": "Confirm to open the encrypted local store"
+      }
     }
   }
 }

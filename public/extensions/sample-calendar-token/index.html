@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>日程信物助手</title>
+  <style>
+    :root { color-scheme: light; font-family: "Segoe UI", "PingFang SC", sans-serif; }
+    body { margin: 0; padding: 16px; background: #f4f7f5; color: #1f2a24; }
+    h1 { font-size: 18px; margin: 0 0 8px; }
+    .lead { color: #5a6b62; font-size: 13px; margin-bottom: 16px; }
+    .list { display: grid; gap: 8px; margin-bottom: 20px; }
+    .row { background: #fff; border-radius: 12px; padding: 12px 14px; box-shadow: 0 1px 0 rgba(0,0,0,.04); }
+    .row strong { display: block; font-size: 14px; }
+    .row span { font-size: 12px; color: #6b7c74; }
+    .cta { width: 100%; border: 0; border-radius: 12px; padding: 14px; background: #6B9080; color: #fff; font-weight: 600; font-size: 15px; }
+    .cta:active { opacity: .88; }
+    .cta:disabled { opacity: .5; }
+    .empty, .err { background: #fff; border-radius: 12px; padding: 16px; text-align: center; }
+    .err { color: #8a3b3b; }
+    .ghost { margin-top: 10px; border: 0; background: #e7efeb; color: #2d4a3e; border-radius: 10px; padding: 10px 14px; font-size: 13px; }
+    .toast { margin-top: 12px; font-size: 13px; color: #6B9080; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>日程信物助手</h1>
+  <p class="lead">今日 / 明日日程，一键发送提醒信物到 Pop。</p>
+  <div class="list" id="events"></div>
+  <button type="button" class="cta" id="send">发送今日提醒信物</button>
+  <p class="toast" id="toast" hidden></p>
+  <script src="./app.js"></script>
+</body>
+</html>

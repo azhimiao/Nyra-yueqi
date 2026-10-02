@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra.app/schemas/nychar-relationship-v1.schema.json",
+  "title": "Nyra Character Initial Relationship Configuration v1",
+  "description": "Portable initial configuration only; never current relationship state or user history.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "mode", "relationshipType"],
+  "properties": {
+    "schema": {
+      "const": "nyra.character.relationship"
+    },
+    "version": {
+      "const": 1
+    },
+    "mode": {
+      "const": "initial-portable-config"
+    },
+    "relationshipType": {
+      "enum": ["companion", "friend", "lover", "partner", "family", "mentor", "colleague", "custom"]
+    },
+    "customTypeLabel": {
+      "type": "string",
+      "maxLength": 80
+    },
+    "communicationStyle": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "addressPreferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "characterTerms": {
+          "type": "array",
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          }
+        },
+        "genericUserTerms": {
+          "type": "array",
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          }
+        }
+      }
+    },
+    "boundaries": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "relationshipType": {
+            "const": "custom"
+          }
+        },
+        "required": ["relationshipType"]
+      },
+      "then": {
+        "required": ["customTypeLabel"]
+      }
+    }
+  ]
+}

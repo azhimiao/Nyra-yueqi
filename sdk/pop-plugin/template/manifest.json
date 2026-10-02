@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "kind": "yueqi-pop-plugin",
+  "id": "sample-dice",
+  "name": "投骰子",
+  "version": "1.0.0",
+  "author": "月栖示例",
+  "description": "在 Pop 单聊或群聊里掷一颗骰子。",
+  "contentRating": "general",
+  "entry": "plugin.js",
+  "icon": "icon.svg",
+  "permissions": [
+    "pop.plugin",
+    "pop.session",
+    "pop.inject",
+    "storage.read",
+    "storage.write"
+  ],
+  "pop": {
+    "hosts": ["dm", "group"],
+    "toolbarLabel": "骰子",
+    "toolbarIcon": "dices",
+    "panel": "sheet",
+    "sessionModes": ["tool"]
+  }
+}

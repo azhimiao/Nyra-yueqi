@@ -1,0 +1,93 @@
+.worldbook-editor { min-width: 0; --wb-serif: var(--nyra-display, "Songti SC", "Noto Serif SC", Georgia, serif); --wb-paper: var(--reading-sheet, #fcfdff); --wb-edge: var(--reading-edge, #c6d5e1); --wb-mark: var(--reading-mark, #8a7557); }
+[data-theme="ink"] .worldbook-editor { --wb-paper: var(--reading-sheet, #1a2c3d); --wb-edge: var(--reading-edge, #405a71); --wb-mark: var(--reading-mark, #cfb998); }
+.worldbook-editor h2, .worldbook-editor h3 { margin: 0; overflow-wrap: anywhere; }
+.worldbook-editor .wb-scope { display: flex; align-items: center; gap: 10px; padding: 2px 0 12px; border-bottom: 1px solid var(--author-line); }
+.worldbook-editor .wb-scope-mark { display: grid; place-items: center; flex: 0 0 36px; width: 36px; height: 36px; border-radius: 50%; background: var(--author-soft); color: var(--author-accent); font: 21px var(--wb-serif); }
+.worldbook-editor .wb-scope > label { min-width: 0; flex: 1; display: flex; align-items: center; gap: 8px; }
+.worldbook-editor .wb-scope > label > span { color: var(--author-muted); font-size: 12px; flex: 0 0 4em; }
+.worldbook-editor.author-editor[data-context-space="worldbook"] .wb-scope select[data-wb-filter] { flex: 1; border: 1px solid var(--wb-edge); border-radius: 6px; background: var(--wb-paper); padding: 7px 22px 7px 9px; min-height: 44px; font-size: 15px; text-overflow: ellipsis; }
+.worldbook-editor .wb-scope-count { flex: 0 0 auto; font-size: 12px; color: var(--author-muted); max-width: 30%; }
+.worldbook-editor .wb-heading { position: relative; display: flex; align-items: center; gap: 12px; padding: 17px 0 16px; }
+.worldbook-editor .wb-heading > div { flex: 1; min-width: 0; }
+.worldbook-editor .wb-heading h2 { font: 400 23px/1.55 var(--wb-serif); letter-spacing: .025em; }
+.worldbook-editor .wb-heading p { margin-top: 6px; line-height: 1.7; }
+.worldbook-editor .wb-orbit { flex: 0 0 62px; width: 62px; height: 58px; color: var(--wb-mark); stroke: currentColor; stroke-width: 1; opacity: .8; }
+.worldbook-editor .wb-orbit circle:last-of-type { fill: var(--author-bg); }
+.worldbook-editor .wb-heading > button { position: absolute; right: 0; top: 0; }
+.worldbook-editor .wb-browse-tools { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; margin-bottom: 12px; }
+.worldbook-editor .wb-browse-tools button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 12px; font-size: 14px; border: 1px solid var(--wb-edge); border-radius: 7px; color: var(--author-accent); background: var(--wb-paper); min-height: 46px; }
+.worldbook-editor .wb-browse-tools .wb-add { border-color: var(--author-accent); color: var(--author-bg); background: var(--author-accent); }
+.worldbook-editor .wb-browse-tools .wb-search-toggle[aria-expanded="true"] { border-color: var(--author-accent); background: var(--author-soft); }
+.worldbook-editor .wb-search-toggle svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.worldbook-editor .wb-search { margin: 4px 0 14px; }
+.worldbook-editor.author-editor[data-context-space="worldbook"] .wb-search input[data-wb-search] { background: var(--author-soft); border-color: transparent; border-radius: 5px; }
+.worldbook-editor .wb-add > span { font-size: 19px; font-weight: 300; }
+.worldbook-editor .wb-categories { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 0 0 11px; }
+.worldbook-editor .wb-categories button { padding: 9px 12px; border: 1px solid transparent; border-radius: 6px; background: transparent; min-width: 44px; color: var(--author-muted); font-size: 14px; }
+.worldbook-editor .wb-categories button[aria-pressed="true"] { color: var(--author-ink); border-color: var(--wb-edge); background: var(--author-soft); }
+.worldbook-editor [data-wb-list] { border: 1px solid var(--wb-edge); border-radius: 9px; background: var(--wb-paper); padding: 0 16px; box-shadow: var(--reading-shadow, 0 3px 12px rgb(32 59 83 / 4%)); }
+.worldbook-editor .wb-entry-row { min-width: 0; border-bottom: 1px solid var(--author-line); padding: 0; }
+.worldbook-editor .wb-entry-row:last-child { border-bottom: 0; }
+.worldbook-editor .wb-entry-open { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 10px; width: 100%; min-width: 0; padding: 15px 0 12px; border: 0; border-radius: 0; background: transparent; text-align: start; color: inherit; }
+.worldbook-editor .wb-entry-open:hover { background: transparent; }
+.worldbook-editor .wb-entry-heading { display: flex; flex-direction: column; gap: 5px; min-width: 0; grid-column: 1 / -1; }
+.worldbook-editor .wb-entry-heading > .wb-kicker { display: flex; align-items: center; gap: 7px; }
+.worldbook-editor .wb-entry-heading > .wb-kicker::before { content: ""; width: 5px; height: 12px; border: 1px solid var(--wb-mark); border-radius: 1px; flex: 0 0 5px; }
+.worldbook-editor .wb-entry-open strong { font: 400 20px/1.6 var(--wb-serif); overflow-wrap: anywhere; }
+.worldbook-editor .wb-kicker { font-size: 12px; letter-spacing: .08em; color: var(--author-muted); }
+.worldbook-editor .wb-entry-excerpt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 15px; color: var(--author-muted); line-height: 1.8; overflow-wrap: anywhere; white-space: pre-line; }
+.worldbook-editor .wb-entry-meta { font-size: 12px; color: var(--author-muted); line-height: 1.85; margin-top: 0; }
+.worldbook-editor .wb-expand-mark { display: inline-flex; align-items: center; justify-content: flex-end; gap: 5px; margin-left: auto; padding: 3px 0; font: 500 14px/1.5 var(--nyra-font-body, system-ui); color: var(--author-accent); }
+.worldbook-editor .wb-expand-mark svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.worldbook-editor .is-open .wb-expand-mark svg { transform: rotate(180deg); }
+.worldbook-editor .wb-reading { padding: 0 0 12px; }
+.worldbook-editor .wb-reading-copy { font: 400 16px/1.85 var(--wb-serif); overflow-wrap: anywhere; white-space: pre-wrap; padding: 0 0 15px; }
+.worldbook-editor .wb-reading-copy p + p { margin-top: 13px; }
+.worldbook-editor .wb-reading-context { margin: 0 0 13px; padding: 9px 0; border-top: 1px dotted var(--author-line); color: var(--author-muted); font-size: 12px; line-height: 1.8; }
+.worldbook-editor .wb-reading-context > div { display: flex; gap: 12px; align-items: baseline; }
+.worldbook-editor .wb-reading-context dt { flex: 0 0 auto; }
+.worldbook-editor .wb-reading-context dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.worldbook-editor .wb-reading-actions { display: flex; align-items: start; justify-content: space-between; flex-wrap: wrap; gap: 10px 12px; padding-top: 0; }
+.worldbook-editor .wb-reading-actions > button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 12px; color: var(--author-accent); border: 1px solid var(--wb-edge); border-radius: 6px; background: var(--author-soft); font-size: 14px; }
+.worldbook-editor .wb-reading-actions > button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.35; }
+.worldbook-editor .wb-usage { min-width: 0; margin-left: auto; }
+.worldbook-editor .wb-usage > summary { min-height: 44px; padding: 11px 3px; font-size: 14px; color: var(--author-accent); cursor: pointer; list-style-position: inside; }
+.worldbook-editor .wb-usage[open] { flex: 1 1 100%; margin-left: 0; }
+.worldbook-editor .wb-usage-content { padding: 10px 0 2px; }
+.worldbook-editor .wb-usage-content > button { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--wb-edge); border-radius: 6px; color: var(--author-accent); background: var(--author-soft); font-size: 14px; }
+.worldbook-editor .wb-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 48px; cursor: pointer; margin: 8px 0; }
+.worldbook-editor .wb-toggle input { width: 20px; height: 20px; min-height: 20px; flex: 0 0 20px; accent-color: var(--author-accent); }
+.worldbook-editor .wb-sharing-note { font-size: 13px; line-height: 1.8; color: var(--author-muted); padding: 9px 0 9px 12px; border-left: 2px solid var(--author-line); margin-block: 12px; }
+.worldbook-editor .wb-footnote { margin-top: 13px; font-size: 12px; line-height: 1.8; }
+.worldbook-editor .wb-transfer { margin-top: 15px; }
+.worldbook-editor .wb-transfer > summary { font-size: 14px; font-weight: 400; color: var(--author-muted); }
+.worldbook-editor .wb-empty { padding: 22px 0 24px; line-height: 1.8; }
+.worldbook-editor .wb-empty-line { display: block; width: 36px; border-top: 1px solid var(--wb-mark); margin-bottom: 15px; }
+.worldbook-editor .wb-empty h3 { font: 400 21px/1.6 var(--wb-serif); margin-bottom: 9px; }
+.worldbook-editor .wb-empty > p { font-size: 14px; line-height: 1.8; }
+.worldbook-editor .wb-form { display: grid; gap: 4px; min-width: 0; }
+.worldbook-editor .wb-edit-heading { padding: 10px 0 12px; }
+.worldbook-editor .wb-edit-heading h3 { font: 400 24px/1.6 var(--wb-serif); margin-top: 6px; }
+.worldbook-editor .wb-form-savebar { position: sticky; top: 0; z-index: 3; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; background: var(--author-bg); border-bottom: 1px solid var(--author-line); }
+.worldbook-editor .wb-form-savebar > button { max-width: 60%; }
+.worldbook-editor .wb-form .author-field { min-width: 0; margin: 14px 0; }
+.worldbook-editor .wb-form :is(input,textarea,select,button) { border-radius: 6px; }
+.worldbook-editor .wb-form-usage { margin-top: 17px; }
+.worldbook-editor .wb-field-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.worldbook-editor .wb-disclosure > summary { cursor: pointer; min-height: 48px; display: list-item; align-content: center; }
+.worldbook-editor .wb-disclosure[open] > .author-field, .worldbook-editor .wb-disclosure[open] > .wb-field-pair { margin-top: 16px; }
+.worldbook-editor .wb-disclosure { border-top: 1px solid var(--author-line); padding-top: 4px; }
+.worldbook-editor textarea { width: 100%; min-height: 96px; resize: vertical; line-height: 1.7; }
+.worldbook-editor [name="content"] { min-height: 200px; }
+.worldbook-editor .wb-danger { color: var(--author-danger); }
+.worldbook-editor .wb-danger button { color: inherit; }
+.worldbook-editor .wb-leave, .worldbook-editor .wb-import-review { padding: 16px 0; border-top: 1px solid var(--author-line); }
+.worldbook-editor .wb-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.worldbook-editor button, .worldbook-editor summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.worldbook-editor button:active { opacity: .72; }
+.worldbook-editor button:focus-visible, .worldbook-editor summary:focus-visible { outline: 2px solid var(--author-accent); outline-offset: 3px; }
+.worldbook-editor input, .worldbook-editor select, .worldbook-editor textarea { box-sizing: border-box; max-width: 100%; font-size: 16px; }
+.worldbook-editor .author-status.is-error { color: var(--author-danger) !important; }
+@media (min-width: 600px) { .worldbook-editor .wb-heading { padding-block: 22px 19px; } .worldbook-editor .wb-reading-copy { max-width: 42em; } }
+@media (max-width: 420px) { .worldbook-editor .wb-field-pair { grid-template-columns: minmax(0, 1fr); } .worldbook-editor .wb-heading h2 { font-size: 22px; } .worldbook-editor .wb-browse-tools button { padding-inline: 9px; } }
+@media (prefers-reduced-motion: reduce) { .worldbook-editor * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

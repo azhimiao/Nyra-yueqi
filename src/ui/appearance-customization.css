@@ -1,0 +1,88 @@
+/* Explicit user appearance overrides; default installation keeps existing tokens. */
+html[data-theme="ink"] body[data-app-mode="app"] .nyra-dock { background: #162334 !important; border-color: #405061; box-shadow: 0 -1px 0 #405061; }
+html[data-theme="ink"] body[data-app-mode="app"] .nyra-dock > button { color: #b1c0cb !important; }
+html[data-theme="ink"] body[data-app-mode="app"] .nyra-dock > button:is(.is-active,.is-context-active) { color: #edf3f7 !important; }
+html[data-theme="ink"] body[data-app-mode="app"] .nyra-dock > button > span:last-child,
+html[data-theme="ink"] body[data-app-mode="app"] .nyra-dock > button > svg { color: #c6d4df !important; }
+html[data-appearance-customized="true"] { --author-theme-bg: #f5f9fc; --author-theme-surface: #fff; --author-theme-soft: #edf1f4; --author-theme-ink: #182b3b; --author-theme-muted: #526779; --author-theme-accent: #071b2e; --author-theme-line: rgb(4 25 43 / 16%); }
+html[data-appearance-customized="true"][data-theme="mist"] { --author-theme-bg: #f1f6f9; --author-theme-soft: #e4edf3; --author-theme-accent: #12445f; }
+html[data-appearance-customized="true"][data-theme="pine"] { --author-theme-bg: #f3f6f5; --author-theme-soft: #e6efea; --author-theme-accent: #14464f; }
+html[data-appearance-customized="true"][data-theme="ink"] { --author-theme-bg: #182438; --author-theme-surface: #182438; --author-theme-soft: #1d2a40; --author-theme-ink: #edf2f6; --author-theme-muted: #aebbd0; --author-theme-accent: #b9d8ff; --author-theme-line: #3a4d69; }
+html[data-appearance-customized="true"] body,
+html[data-appearance-customized="true"] .mini-phone { --nyra-bg-elevated: var(--author-theme-surface); --nyra-surface-soft: var(--author-theme-soft); --nyra-ink-soft: var(--author-theme-muted); --chat-ui-bg: var(--author-theme-bg); --chat-ui-surface: var(--author-theme-surface); --chat-ui-surface-soft: var(--author-theme-soft); --chat-ui-ink: var(--author-theme-ink); --chat-ui-muted: var(--author-theme-muted); --chat-ui-accent: var(--author-theme-accent); --chat-ui-line: var(--author-theme-line); --chat-ui-line-strong: var(--author-theme-line); }
+html[data-appearance-customized="true"] .mini-phone { --mini-os-bg: var(--author-theme-bg); --mini-os-surface: var(--author-theme-surface); --mini-os-surface-soft: var(--author-theme-soft); --mini-os-ink: var(--author-theme-ink); --mini-os-muted: var(--author-theme-muted); --mini-os-navy: var(--author-theme-accent); --nyra-phone-bg: var(--author-theme-bg); --nyra-phone-surface: var(--author-theme-surface); --nyra-phone-ink: var(--author-theme-ink); --nyra-phone-muted: var(--author-theme-muted); --nyra-phone-line: var(--author-theme-line); }
+html[data-appearance-customized="true"] .mini-phone .author-route > .mini-appbar { background: var(--author-theme-surface); }
+html[data-appearance-customized="true"] body[data-app-mode="app"],
+html[data-appearance-customized="true"] .mini-phone { --chat-ui-radius: var(--author-bubble-radius); }
+html[data-appearance-customized="true"] :is(body[data-app-mode="app"] .message, .mini-phone .mini-message, body[data-app-mode="app"] .message > .message-bubble, .mini-phone .mini-message > .message-bubble) { font-size: var(--author-chat-size) !important; }
+html[data-appearance-customized="true"] :is(body[data-app-mode="app"] .message:not(.has-turn-activity), .mini-phone .mini-message:not(.has-turn-activity), body[data-app-mode="app"] .message > .message-bubble, .mini-phone .mini-message > .message-bubble) { padding: var(--author-bubble-padding) !important; }
+html[data-appearance-customized="true"] :is(body[data-app-mode="app"] .message-list, .mini-phone .mini-pop-chat-thread .mini-message-list, .mini-phone .mini-message-list__pin) { gap: var(--author-chat-gap) !important; }
+html[data-appearance-colors="true"] :is(body[data-app-mode="app"] .message.user, .mini-phone .mini-message.is-user) { background: var(--author-user-color); color: var(--author-user-ink); }
+html[data-appearance-colors="true"] :is(body[data-app-mode="app"] .message.ai:not(.has-turn-activity), .mini-phone .mini-message.is-ai:not(.has-turn-activity), body[data-app-mode="app"] .message.ai > .message-bubble, .mini-phone .mini-message.is-ai > .message-bubble) { background: var(--author-ai-color); color: var(--author-ai-ink); }
+html[data-appearance-customized="true"] :is(.mini-phone .mini-widget, body[data-app-mode="app"] .editorial-journal-card) { border-radius: var(--author-card-radius); }
+html[data-appearance-cards="soft"] :is(.mini-phone .mini-widget, body[data-app-mode="app"] .editorial-journal-card) { background: var(--nyra-surface-soft, #f0f5f9); border: 1px solid transparent; box-shadow: 0 3px 14px rgb(15 40 70 / 6%); }
+html[data-appearance-cards="outline"] :is(.mini-phone .mini-widget, body[data-app-mode="app"] .editorial-journal-card) { background: var(--nyra-bg-elevated, #fff); border: 1px solid var(--nyra-line-strong, #cbd6df); box-shadow: none; }
+html[data-appearance-cards="glass"] :is(.mini-phone .mini-widget, body[data-app-mode="app"] .editorial-journal-card) { background: color-mix(in srgb, var(--nyra-bg-elevated, #fff) 68%, transparent); border: 1px solid color-mix(in srgb, var(--nyra-bg-elevated, #fff) 75%, transparent); box-shadow: 0 4px 18px rgb(15 40 70 / 6%); backdrop-filter: blur(16px); }
+
+/* The phone home consumes material tokens so the saved card style remains
+ * visible even though the compact home widgets use a shared glass primitive. */
+html[data-appearance-customized="true"] .mini-phone .mini-home {
+  --home-widget-radius: var(--author-card-radius, 16px);
+}
+html[data-appearance-cards="soft"] .mini-phone .mini-home {
+  --home-glass-fill: rgb(239 245 248 / 100%);
+  --home-glass-sheen: none;
+  --home-glass-edge: transparent;
+  --home-glass-shadow: 0 3px 14px rgb(15 40 70 / 7%);
+  --home-glass-blur: blur(10px) saturate(112%);
+}
+html[data-appearance-cards="outline"] .mini-phone .mini-home {
+  --home-glass-fill: rgb(255 255 255 / 100%);
+  --home-glass-sheen: none;
+  --home-glass-edge: var(--nyra-phone-line, rgb(203 214 223 / 90%));
+  --home-glass-shadow: none;
+  --home-glass-blur: none;
+}
+html[data-appearance-cards="glass"] .mini-phone .mini-home {
+  --home-glass-fill: rgb(255 255 255 / 30%);
+  --home-glass-sheen: linear-gradient(135deg, rgb(255 255 255 / 30%), rgb(255 255 255 / 5%) 60%);
+  --home-glass-edge: rgb(255 255 255 / 60%);
+  --home-glass-shadow: inset 0 1px 0 rgb(255 255 255 / 48%), 0 5px 18px rgb(28 57 81 / 6%);
+  --home-glass-blur: blur(18px) saturate(135%);
+}
+
+/* A dark wallpaper needs an inverted home ink palette while retaining the
+ * user's card style choice. */
+html .mini-phone[data-wallpaper-tone="dark"] .mini-home {
+  --home-glass-fill: rgb(14 28 40 / 46%);
+  --home-glass-sheen: linear-gradient(135deg, rgb(255 255 255 / 18%), rgb(255 255 255 / 3%) 62%);
+  --home-glass-edge: rgb(255 255 255 / 28%);
+  --home-glass-shadow: inset 0 1px 0 rgb(255 255 255 / 22%), 0 6px 20px rgb(0 0 0 / 18%);
+  --home-glass-blur: blur(18px) saturate(125%);
+  --nyra-phone-ink: #f3f7f8;
+  --nyra-phone-ink-soft: rgb(235 243 245 / 74%);
+  --nyra-phone-muted: rgb(225 236 240 / 64%);
+  --nyra-phone-navy: #f3f8fa;
+  --nyra-phone-line: rgb(255 255 255 / 24%);
+  --mini-os-ink: #f3f7f8;
+  --mini-os-muted: rgb(225 236 240 / 70%);
+  --mini-os-ink-soft: rgb(235 243 245 / 74%);
+  --mini-os-navy: #f3f8fa;
+  --mini-os-line: rgb(255 255 255 / 24%);
+  --mini-os-surface: rgb(255 255 255 / 12%);
+  --mini-os-surface-soft: rgb(255 255 255 / 8%);
+}
+html[data-appearance-cards="soft"] .mini-phone[data-wallpaper-tone="dark"] .mini-home {
+  --home-glass-fill: rgb(37 56 68 / 100%);
+  --home-glass-sheen: none;
+  --home-glass-edge: transparent;
+  --home-glass-shadow: 0 4px 16px rgb(0 0 0 / 18%);
+  --home-glass-blur: blur(10px) saturate(112%);
+}
+html[data-appearance-cards="outline"] .mini-phone[data-wallpaper-tone="dark"] .mini-home {
+  --home-glass-fill: rgb(15 27 38 / 100%);
+  --home-glass-sheen: none;
+  --home-glass-edge: rgb(255 255 255 / 34%);
+  --home-glass-shadow: none;
+  --home-glass-blur: none;
+}

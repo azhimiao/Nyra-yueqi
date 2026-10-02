@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "kind": "yueqi-phone-ext",
+  "id": "sample-calendar-token",
+  "name": "日程信物助手",
+  "version": "1.0.0",
+  "author": "月栖",
+  "description": "读取今日日程，并向 Pop 发送提醒信物卡。",
+  "contentRating": "general",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "permissions": [
+    "calendar.read",
+    "chat.send_token"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "appKey": "c5",
+  "threads": [
+    {
+      "id": "thread-mom",
+      "title": "妈妈",
+      "avatarHint": "妈",
+      "lastMessagePreview": "记得吃饭，别总点外卖。",
+      "lastMessageAt": "2026-03-12T18:42:00.000Z",
+      "unreadCount": 1,
+      "pinned": true
+    },
+    {
+      "id": "thread-lab",
+      "title": "实验室群",
+      "avatarHint": "实",
+      "lastMessagePreview": "明天仪器预约改到下午三点。",
+      "lastMessageAt": "2026-03-11T09:15:00.000Z",
+      "unreadCount": 0,
+      "pinned": false
+    }
+  ],
+  "messagesByThread": {
+    "thread-mom": [
+      {
+        "id": "m1",
+        "role": "other",
+        "senderName": "妈妈",
+        "content": "今天冷不冷？多穿一件。",
+        "sentAt": "2026-03-12T18:20:00.000Z",
+        "type": "text",
+        "meta": null
+      },
+      {
+        "id": "m2",
+        "role": "self",
+        "senderName": null,
+        "content": "不冷，实验室暖气开着。",
+        "sentAt": "2026-03-12T18:28:00.000Z",
+        "type": "text",
+        "meta": null
+      },
+      {
+        "id": "m3",
+        "role": "other",
+        "senderName": "妈妈",
+        "content": "记得吃饭，别总点外卖。",
+        "sentAt": "2026-03-12T18:42:00.000Z",
+        "type": "text",
+        "meta": null
+      }
+    ],
+    "thread-lab": [
+      {
+        "id": "l1",
+        "role": "other",
+        "senderName": "阿澄",
+        "content": "星梨，样本编号核对一下？",
+        "sentAt": "2026-03-11T09:00:00.000Z",
+        "type": "text",
+        "meta": null
+      },
+      {
+        "id": "l2",
+        "role": "self",
+        "senderName": null,
+        "content": "好，我下班前发你。",
+        "sentAt": "2026-03-11T09:08:00.000Z",
+        "type": "text",
+        "meta": null
+      },
+      {
+        "id": "l3",
+        "role": "other",
+        "senderName": "阿澄",
+        "content": "明天仪器预约改到下午三点。",
+        "sentAt": "2026-03-11T09:15:00.000Z",
+        "type": "text",
+        "meta": null
+      }
+    ]
+  }
+}

@@ -2,8 +2,6 @@ export const DEFAULT_NOTICE_LINK_HOSTS = Object.freeze([
   "download.memprism.com",
   "memprism.com",
   "www.memprism.com",
-  "github.com",
-  "azhimiao.github.io",
 ]);
 
 export function noticeLinkHostsFromEnv(raw = "") {

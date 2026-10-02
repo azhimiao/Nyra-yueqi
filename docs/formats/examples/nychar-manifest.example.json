@@ -1,0 +1,82 @@
+{
+  "schema": "nyra.character-package.manifest",
+  "formatVersion": 1,
+  "packageId": "00000000-0000-4000-8000-000000000002",
+  "characterId": "mira.stargazer",
+  "createdAt": "2026-01-15T12:00:00Z",
+  "producer": {
+    "name": "Nyra Character Studio",
+    "version": "1.0.0"
+  },
+  "components": {
+    "character": {
+      "path": "character.json",
+      "mediaType": "application/json",
+      "size": 512,
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "schemaVersion": 1
+    },
+    "worldbook": {
+      "path": "worldbook.json",
+      "mediaType": "application/json",
+      "size": 256,
+      "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "schemaVersion": 1
+    },
+    "relationship": {
+      "path": "relationship.json",
+      "mediaType": "application/json",
+      "size": 256,
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "schemaVersion": 1
+    },
+    "appearance": {
+      "path": "appearance.json",
+      "mediaType": "application/json",
+      "size": 256,
+      "sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+      "schemaVersion": 1
+    },
+    "actions": {
+      "path": "actions.json",
+      "mediaType": "application/json",
+      "size": 256,
+      "sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+      "schemaVersion": 1
+    },
+    "voice": {
+      "path": "voice.json",
+      "mediaType": "application/json",
+      "size": 256,
+      "sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+      "schemaVersion": 1
+    },
+    "skills": {
+      "path": "skills.json",
+      "mediaType": "application/json",
+      "size": 256,
+      "sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+      "schemaVersion": 1
+    }
+  },
+  "assets": [
+    {
+      "path": "assets/avatar.png",
+      "mediaType": "image/png",
+      "size": 4096,
+      "sha256": "9999999999999999999999999999999999999999999999999999999999999999"
+    },
+    {
+      "path": "assets/pet/wave.webp",
+      "mediaType": "image/webp",
+      "size": 8192,
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "path": "assets/voice/greeting.ogg",
+      "mediaType": "audio/ogg",
+      "size": 16384,
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>第一幕</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+      color: #1d2a2d;
+      background: linear-gradient(165deg, #eef3f0, #d8e3df);
+      overflow: hidden;
+    }
+    .app {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12px;
+      padding: var(--nyra-game-safe-top, 72px) 16px var(--nyra-game-safe-bottom, 24px);
+    }
+    .panel {
+      border: 1px solid rgb(255 255 255 / 55%);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgb(255 255 255 / 55%);
+      backdrop-filter: blur(12px);
+    }
+    h1 { margin: 0 0 6px; font-size: 18px; letter-spacing: -0.02em; }
+    p { margin: 0; color: rgb(29 42 45 / 62%); font-size: 12px; line-height: 1.5; }
+    .characters {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      align-content: start;
+      overflow: auto;
+      min-height: 0;
+    }
+    .character, .cta {
+      border: 0;
+      border-radius: 12px;
+      min-height: 44px;
+      padding: 10px 12px;
+      font: inherit;
+      font-weight: 650;
+    }
+    .character {
+      text-align: left;
+      color: #1d2a2d;
+      background: rgb(255 255 255 / 72%);
+    }
+    .character.is-active { outline: 2px solid #3f7f76; }
+    .cta {
+      color: #fff;
+      background: #2f4448;
+    }
+    .cta:disabled { opacity: 0.4; }
+    .log {
+      overflow: auto;
+      min-height: 0;
+      white-space: pre-wrap;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="panel">
+      <h1>第一幕</h1>
+      <p>选择一位角色，走进门后的第一句。进度会保存在栖机里。</p>
+    </section>
+    <section class="panel characters" id="characters">正在读取角色…</section>
+    <section class="panel log" id="log">等待开始。</section>
+    <button type="button" class="cta" id="start" disabled>开始第一幕</button>
+  </main>
+  <script>
+    var selected = { id: "", name: "" };
+    var playerName = "你";
+
+    function esc(value) {
+      return String(value == null ? "" : value).replace(/[&<>"]/g, function (ch) {
+        return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch];
+      });
+    }
+
+    function api() {
+      if (!window.NyraGame) throw new Error("宿主未注入 NyraGame。请从栖市安装后打开。");
+      return window.NyraGame;
+    }
+
+    async function boot() {
+      var host = api();
+      try {
+        await host.setChrome({
+          material: "glass",
+          buttonColor: "#1d2a2d",
+          buttonBackground: "rgba(255,255,255,.55)"
+        });
+      } catch (e) { /* optional */ }
+
+      var profile = await host.getPlayerProfile();
+      playerName = (profile && profile.name) || "你";
+      var list = await host.listCharacters();
+      var box = document.getElementById("characters");
+      if (!list || !list.length) {
+        box.textContent = "还没有可选角色。";
+        return;
+      }
+      box.innerHTML = list.map(function (ch) {
+        return '<button type="button" class="character" data-id="' + esc(ch.id) + '" data-name="' + esc(ch.name) + '">' + esc(ch.name) + "</button>";
+      }).join("");
+      Array.prototype.forEach.call(box.querySelectorAll(".character"), function (btn) {
+        btn.onclick = function () {
+          selected.id = btn.getAttribute("data-id") || "";
+          selected.name = btn.getAttribute("data-name") || "";
+          Array.prototype.forEach.call(box.querySelectorAll(".character"), function (n) { n.classList.remove("is-active"); });
+          btn.classList.add("is-active");
+          document.getElementById("start").disabled = false;
+        };
+      });
+
+      var save = await host.loadGame();
+      if (save && save.lastText) {
+        document.getElementById("log").textContent = "上次：\n" + save.lastText;
+      }
+    }
+
+    async function start() {
+      var host = api();
+      var log = document.getElementById("log");
+      log.textContent = "正在让 " + selected.name + " 进入第一幕…";
+      try {
+        var pkg = await host.getRoleLightPackage(selected.id);
+        var result = await host.callLLM({
+          characterId: selected.id,
+          messages: (pkg.messages || []).concat([
+            { role: "system", content: "你在月栖小游戏里以角色第一人称说话，语气自然，不超过 3 句。" },
+            { role: "user", content: "玩家打开一扇陌生的门，门后传来微弱的音乐声。请进入第一幕。" }
+          ])
+        });
+        var text = (result && result.content) || "（没有返回）";
+        log.textContent = text;
+        await host.saveGame({
+          selectedCharacterId: selected.id,
+          lastText: text
+        });
+        await host.recordGameEvent({
+          characterIds: [selected.id],
+          summary: playerName + "和" + selected.name + "开启了《第一幕》，" + selected.name + "陪" + playerName + "走进了门后。"
+        });
+      } catch (err) {
+        log.textContent = err && err.message ? err.message : String(err);
+      }
+    }
+
+    document.getElementById("start").onclick = start;
+    boot().catch(function (err) {
+      document.getElementById("log").textContent = err && err.message ? err.message : String(err);
+    });
+  </script>
+</body>
+</html>

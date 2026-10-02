@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "characterId": "lively_shorthair",
+  "displayName": "活泼短发",
+  "visual": {
+    "artStyle": "日系赛璐璐",
+    "bodyProportion": "semi_chibi_adult",
+    "hair": "栗色短发",
+    "eyes": "翠绿",
+    "face": "圆脸笑窝",
+    "outfit": "运动外套白裙",
+    "accessories": ["发卡"],
+    "palette": ["#8b5a3c", "#3da06b", "#f0f6ff"]
+  },
+  "personalityMotion": {
+    "energy": 0.85,
+    "shyness": 0.2,
+    "expressiveness": 0.8,
+    "blinkRate": 0.7,
+    "gazeAvoidance": 0.15,
+    "reactionSpeed": 0.8
+  },
+  "provider": { "imageProvider": "fixture", "seed": 22 }
+}

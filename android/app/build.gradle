@@ -1,5 +1,15 @@
 apply plugin: 'com.android.application'
 
+def nyraVersionName = System.getenv("NYRA_VERSION_NAME") ?: "1.0.0"
+def nyraVersionCode = (System.getenv("NYRA_VERSION_CODE") ?: "1000000") as Integer
+def nyraReleaseSigning = [
+    storeFile: System.getenv("NYRA_KEYSTORE_PATH"),
+    storePassword: System.getenv("NYRA_STORE_PASSWORD"),
+    keyAlias: System.getenv("NYRA_KEY_ALIAS"),
+    keyPassword: System.getenv("NYRA_KEY_PASSWORD"),
+]
+def nyraReleaseSigningReady = nyraReleaseSigning.values().every { it != null && !it.trim().isEmpty() }
+
 android {
     namespace "app.yueqi.open"
     compileSdk rootProject.ext.compileSdkVersion
@@ -10,8 +20,8 @@ android {
         applicationId "app.yueqi.open"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "0.1.0"
+        versionCode nyraVersionCode
+        versionName nyraVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -19,11 +29,37 @@ android {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    signingConfigs {
+        if (nyraReleaseSigningReady) {
+            release {
+                storeFile file(nyraReleaseSigning.storeFile)
+                storePassword nyraReleaseSigning.storePassword
+                keyAlias nyraReleaseSigning.keyAlias
+                keyPassword nyraReleaseSigning.keyPassword
+            }
+        }
+    }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (nyraReleaseSigningReady) {
+                signingConfig signingConfigs.release
+            }
         }
+    }
+}
+
+gradle.taskGraph.whenReady { graph ->
+    def requestedRelease = graph.allTasks.any {
+        it.path.toLowerCase().contains("release")
+    }
+    if (requestedRelease && !nyraReleaseSigningReady) {
+        throw new GradleException(
+            "Nyra release signing material is missing. Run `npm run security:init-release`. " +
+            "Release builds never fall back to debug signing."
+        )
     }
 }
 

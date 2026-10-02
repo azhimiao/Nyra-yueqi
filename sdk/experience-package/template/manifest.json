@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "kind": "yueqi-experience",
+  "id": "sample-theater-door",
+  "name": "门后一幕",
+  "version": "1.0.0",
+  "author": "月栖示例",
+  "description": "最小情景剧体验包：一句话设定 + 开场旁白。",
+  "contentRating": "general",
+  "entry": "script.json",
+  "category": "theater",
+  "permissions": ["xp.mode", "timeline.write"],
+  "experience": {
+    "runtime": "theater-v1",
+    "saveKey": "sample-theater-door"
+  }
+}

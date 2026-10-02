@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Avatar Factory Preview</title>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #12141a; color: #e8ecf7; margin: 24px; }
+      a { color: #7dd3c0; }
+      .card { border: 1px solid #2c3348; border-radius: 12px; padding: 12px; margin: 12px 0; max-width: 720px; }
+      img { max-width: 160px; background: #333; margin: 4px; }
+    </style>
+  </head>
+  <body>
+    <h1>Avatar Factory Preview</h1>
+    <p>打开 <code>/avatar-packs/catalog.json</code> 列出角色。身份锁图页：jobs 目录需本地静态服务。</p>
+    <div id="list"></div>
+    <script type="module">
+      const list = document.getElementById("list");
+      const catalog = await (await fetch("/avatar-packs/catalog.json")).json();
+      for (const a of catalog.avatars || []) {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `<strong>${a.characterId}</strong> ${a.fixture ? "(fixture)" : ""}<br/>
+          <a href="${a.manifestUrl}">manifest</a>`;
+        list.appendChild(div);
+      }
+    </script>
+  </body>
+</html>

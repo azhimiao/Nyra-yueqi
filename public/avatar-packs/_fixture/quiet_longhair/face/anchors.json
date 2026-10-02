@@ -1,0 +1,18 @@
+{
+  "faceAnchor": {
+    "x": 512,
+    "y": 420
+  },
+  "leftEyeAnchor": {
+    "x": 470,
+    "y": 400
+  },
+  "rightEyeAnchor": {
+    "x": 554,
+    "y": 400
+  },
+  "mouthAnchor": {
+    "x": 512,
+    "y": 460
+  }
+}

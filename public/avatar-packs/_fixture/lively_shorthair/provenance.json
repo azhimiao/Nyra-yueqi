@@ -1,0 +1,27 @@
+{
+  "provider": "fixture",
+  "model": "fixture",
+  "promptTemplateVersion": "v1-fixture",
+  "seed": 22,
+  "generatedAt": "2026-08-02T15:27:56.758Z",
+  "retries": {},
+  "estimatedCostUsd": 0,
+  "licenseNote": "internal-catalog-only",
+  "publishable": false,
+  "matting": {
+    "primaryMode": "fallback_matting",
+    "usedIsnet": 0,
+    "usedFallback": 39,
+    "fallbackPolicy": "fallback_matting"
+  },
+  "registration": {
+    "mode": "js_alpha_bbox",
+    "result": "PASS",
+    "thresholds": {
+      "footPx": 4,
+      "centerPx": 8,
+      "heightPct": 3
+    }
+  },
+  "qaResult": "DEGRADED_PASS"
+}

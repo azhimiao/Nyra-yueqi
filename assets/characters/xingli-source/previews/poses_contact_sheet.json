@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "columns": 6,
+  "rows": 4,
+  "items": [
+    {
+      "index": 1,
+      "row": 1,
+      "column": 1,
+      "id": "idle_loop",
+      "frame": "idle_000.png",
+      "path": "clips/idle_loop/idle_000.png"
+    },
+    {
+      "index": 2,
+      "row": 1,
+      "column": 2,
+      "id": "talk_loop",
+      "frame": "talk_000.png",
+      "path": "clips/talk_loop/talk_000.png"
+    },
+    {
+      "index": 3,
+      "row": 1,
+      "column": 3,
+      "id": "talk_loop",
+      "frame": "talk_001.png",
+      "path": "clips/talk_loop/talk_001.png"
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 4,
+      "id": "listen",
+      "frame": "listen_000.png",
+      "path": "clips/listen/listen_000.png"
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 5,
+      "id": "thinking",
+      "frame": "thinking_000.png",
+      "path": "clips/thinking/thinking_000.png"
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 6,
+      "id": "greet",
+      "frame": "greet_000.png",
+      "path": "clips/greet/greet_000.png"
+    },
+    {
+      "index": 7,
+      "row": 2,
+      "column": 1,
+      "id": "greet",
+      "frame": "greet_001.png",
+      "path": "clips/greet/greet_001.png"
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 2,
+      "id": "greet",
+      "frame": "greet_002.png",
+      "path": "clips/greet/greet_002.png"
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 3,
+      "id": "react_tap",
+      "frame": "react_tap_000.png",
+      "path": "clips/react_tap/react_tap_000.png"
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 4,
+      "id": "react_tap",
+      "frame": "react_tap_001.png",
+      "path": "clips/react_tap/react_tap_001.png"
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 5,
+      "id": "comfort",
+      "frame": "comfort_000.png",
+      "path": "clips/comfort/comfort_000.png"
+    },
+    {
+      "index": 12,
+      "row": 2,
+      "column": 6,
+      "id": "welcome_home",
+      "frame": "welcome_home_000.png",
+      "path": "clips/welcome_home/welcome_home_000.png"
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "id": "lean_close",
+      "frame": "lean_close_000.png",
+      "path": "clips/lean_close/lean_close_000.png"
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "id": "shy_look_away",
+      "frame": "shy_look_away_000.png",
+      "path": "clips/shy_look_away/shy_look_away_000.png"
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "id": "selfie",
+      "frame": "selfie_000.png",
+      "path": "clips/selfie/selfie_000.png"
+    },
+    {
+      "index": 16,
+      "row": 3,
+      "column": 4,
+      "id": "sit_idle",
+      "frame": "sit_idle_000.png",
+      "path": "clips/sit_idle/sit_idle_000.png"
+    },
+    {
+      "index": 17,
+      "row": 3,
+      "column": 5,
+      "id": "sleep_loop",
+      "frame": "sleep_000.png",
+      "path": "clips/sleep_loop/sleep_000.png"
+    },
+    {
+      "index": 18,
+      "row": 3,
+      "column": 6,
+      "id": "drag",
+      "frame": "drag_000.png",
+      "path": "clips/drag/drag_000.png"
+    },
+    {
+      "index": 19,
+      "row": 4,
+      "column": 1,
+      "id": "stand_to_sit",
+      "frame": "stand_to_sit_000.png",
+      "path": "clips/stand_to_sit/stand_to_sit_000.png"
+    },
+    {
+      "index": 20,
+      "row": 4,
+      "column": 2,
+      "id": "stand_to_sit",
+      "frame": "stand_to_sit_001.png",
+      "path": "clips/stand_to_sit/stand_to_sit_001.png"
+    },
+    {
+      "index": 21,
+      "row": 4,
+      "column": 3,
+      "id": "stand_to_sit",
+      "frame": "stand_to_sit_002.png",
+      "path": "clips/stand_to_sit/stand_to_sit_002.png"
+    },
+    {
+      "index": 22,
+      "row": 4,
+      "column": 4,
+      "id": "sit_to_sleep",
+      "frame": "sit_to_sleep_000.png",
+      "path": "clips/sit_to_sleep/sit_to_sleep_000.png"
+    },
+    {
+      "index": 23,
+      "row": 4,
+      "column": 5,
+      "id": "sit_to_sleep",
+      "frame": "sit_to_sleep_001.png",
+      "path": "clips/sit_to_sleep/sit_to_sleep_001.png"
+    },
+    {
+      "index": 24,
+      "row": 4,
+      "column": 6,
+      "id": "sit_to_sleep",
+      "frame": "sit_to_sleep_002.png",
+      "path": "clips/sit_to_sleep/sit_to_sleep_002.png"
+    }
+  ]
+}
