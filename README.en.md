@@ -42,25 +42,17 @@ Open http://127.0.0.1:5173. After you pick a language and App or Mini Phone, ope
 > [!TIP]
 > Keep keys in local `.env` or Settings. Never commit them.
 
-### Install
+### Memory
 
-The website package is the commercial build, with login, hosted models, and Credits:
+A long companionship does not work by pouring every old message into the model at once.
 
-https://download.memprism.com/nyra-latest.apk
+Each character carries a card. The origin memories on that card are their own past, written by the author ahead of time. What the two of you have actually said is stored apart, and only for that person. Switch characters, and you switch both the conversation and the memory.
 
-https://github.com/azhimiao/Nyra-yueqi/releases/latest
+When the next line is due, the old store does not flood in. Memories sit on the device in a palace of drawers. A light lexical search picks a few that might matter, then checks whether this sentence really touches them. Only the ones that match come into the turn. An open question, such as "what do you remember", can bring back real memories. A specific question that does not meet the text is left empty. A nearby-looking record is not used to fill the gap.
 
-This repository is for running and changing the source yourself. Debug build:
+The world book holds setting. The diary and the album are evidence from the days you shared. They stay separate from the character's origin, and from any other character's memory.
 
-```bash
-npm run build:android
-```
-
-Output: `android/app/build/outputs/apk/debug/app-debug.apk` (`app.yueqi.open`).
-
-### The edge of this source
-
-Cloud login, hosted models, and BillingCredit are in the website package. Memory palace and turn orchestration are not in this tree. Chat carries the character card and recent messages. See [OPEN_SOURCE.md](./OPEN_SOURCE.md).
+In the code you clone here, the model sees the character card and the recent conversation. The retrieval that lifts older memories out of the drawers is not in this repository. See [OPEN_SOURCE.md](./OPEN_SOURCE.md).
 
 ### Docs
 
