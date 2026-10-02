@@ -19,17 +19,11 @@ Yueqi is for staying with someone over time. Keep several characters, and switch
 
 If it fits, leave a [Star](https://github.com/azhimiao/Nyra-yueqi).
 
----
+<p align="center">
+  <img src="docs/assets/readme/board.en.svg" width="880" alt="Keep talking, switch characters, two screens, your API">
+</p>
 
-### Highlights
-
-- **Stay in the conversation.** The same person can keep talking. Close the app and come back, and the last messages are still there.
-- **Several characters, switch anytime.** Each one has their own name, how they address you, persona, and memory. Switch, and you are with someone else.
-- **The desktop pet is only a look.** Changing the pet does not change the character. Who they are lives on the character card.
-- **Two screens.** A full App, and a Mini Phone.
-- **The rest of the day.** Diary, world book, listening together, reading together, album, calendar.
-- **Scenario theater stays separate.** Its cast and relationships do not continue the daily companion chat.
-- **Your own API.** Requests go to your API. The key stays on the device.
+The desktop pet is only a look. Changing it does not change who the character is. Diary, world book, listening, reading, the album, and the calendar sit alongside the chat. Scenario theater keeps its own cast.
 
 ### Run
 
