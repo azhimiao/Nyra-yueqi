@@ -43,17 +43,7 @@ npm install
 npm start
 ```
 
-- App: http://127.0.0.1:5173
-- Local gateway: http://127.0.0.1:8787
-
-First launch: pick a language, then App or Mini Phone. Open **API** and set Base URL, API key, and model.
-
-Or run the two processes yourself:
-
-```bash
-npm run server
-npm run dev
-```
+Open http://127.0.0.1:5173. After you pick a language and a room, open **API** and fill in your own address, key, and model.
 
 > [!TIP]
 > Keep keys in local `.env` or Settings. Never commit them.
