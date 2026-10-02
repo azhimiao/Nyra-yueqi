@@ -4,16 +4,32 @@
 
 <h1 align="center">Yueqi</h1>
 
-<p align="center">The open-source, local-first AI companion.</p>
+<p align="center">A lamp left on at night. The person stays. So does the day.</p>
 
 <p align="center">
   <a href="./README.md">简体中文</a> ·
   <a href="./README.en.md">English</a>
 </p>
 
-Chat, characters, and memory stay on your device. Bring your own OpenAI-compatible API. This source tree has no cloud login and no paid credits.
+<p align="center">
+  <a href="https://github.com/azhimiao/Nyra-yueqi/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/azhimiao/Nyra-yueqi?style=social"></a>
+</p>
+
+Yueqi is a companion that stays on your own device. Chat, characters, and the days you share are kept locally. Bring an OpenAI-compatible API. This source tree has no cloud account and no paid credits.
+
+If the lamp reaches you, leave a [Star](https://github.com/azhimiao/Nyra-yueqi). It stays at the top of the page, like someone passing by and turning the wick up.
 
 ---
+
+### Highlights
+
+- **Two rooms.** The App is the wide room. The Mini Phone fits in the hand. One life, two ways to open the door.
+- **The character lives on the card.** Name, address, persona, and memory travel with them. The desktop pet is the figure by the window: the look can change, the person does not.
+- **A thread that belongs to the two of you.** Everyday talk lives in Pop. The conversation is written on the device. Close the page, and the words remain.
+- **Days spent together.** Diary, world book, listening, reading, the album, and the calendar sit on the same table.
+- **A phone you can arrange.** Home widgets can move, and you can bring in one of your own.
+- **Another play, another stage.** Scenario theater keeps its own cast and relationships, apart from daily companionship.
+- **The key stays with you.** Requests go from this device to your own API. The key remains local.
 
 ### Run
 
@@ -44,13 +60,13 @@ npm run dev
 
 ### Install
 
-The store / website / GitHub Release APK is the commercial build (login, hosted models, Credits). It is not built from this source:
+To move in first, use the commercial build. Login, hosted models, and Credits live in that package:
 
 https://download.memprism.com/nyra-latest.apk
 
 https://github.com/azhimiao/Nyra-yueqi/releases/latest
 
-Build a debug APK from this repo:
+This repository is for running and changing the source yourself. Debug build:
 
 ```bash
 npm run build:android
@@ -58,22 +74,9 @@ npm run build:android
 
 Output: `android/app/build/outputs/apk/debug/app-debug.apk` (`app.yueqi.open`).
 
-### What you get
+### The edge of this source
 
-- **Pop chat** — local conversations; Conversation V2 is the write authority
-- **Character cards** — persona, address, memory; pet look is not identity
-- **Two shells** — App and Mini Phone
-- **Scenario theater** — its own cast and relationship, not a continuation of daily chat
-- **Character World and market** — local, no cloud account
-- **BYOK** — requests go from the device to your own API
-
-### What this is not
-
-- Cloud login / register
-- Hosted models
-- BillingCredit
-- The paid edition (that is the website APK)
-- Memory palace, retrieval, and turn orchestration. Chat uses the character card and recent messages. See [OPEN_SOURCE.md](./OPEN_SOURCE.md)
+Cloud login, hosted models, and BillingCredit live in the website package. Memory palace and turn orchestration are not in this tree. Chat carries the character card and recent messages. See [OPEN_SOURCE.md](./OPEN_SOURCE.md).
 
 ### Docs
 
@@ -102,5 +105,7 @@ Read the [contributing guide](./CONTRIBUTING.md) first. Open an Issue before lar
 If your project name includes Yueqi / 月栖 / Nyra, add a README note: **not an official Yueqi project, not affiliated with this repository.**
 
 ---
+
+If you are still here, leave a [Star](https://github.com/azhimiao/Nyra-yueqi). The lamp is still on.
 
 [MIT](./LICENSE) · [Terms and privacy](https://azhimiao.github.io/legal/)

@@ -4,16 +4,32 @@
 
 <h1 align="center">月栖</h1>
 
-<p align="center">开源的本地优先 AI 陪伴。</p>
+<p align="center">夜里留一盏灯。人在，日子也在。</p>
 
 <p align="center">
   <a href="./README.md">简体中文</a> ·
   <a href="./README.en.md">English</a>
 </p>
 
-聊天、角色、记忆都在你自己的设备上。模型接口你自带（OpenAI 兼容）。这份源码没有云登录，也没有付费积分。
+<p align="center">
+  <a href="https://github.com/azhimiao/Nyra-yueqi/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/azhimiao/Nyra-yueqi?style=social"></a>
+</p>
+
+月栖是一处留在你自己设备上的陪伴。聊天、角色和日子都收在本地。模型接口由你带来，OpenAI 兼容即可。这份源码没有云账号，也没有付费积分。
+
+如果这盏灯也照到了你，请给仓库点一颗 [Star](https://github.com/azhimiao/Nyra-yueqi)。星星会留在页顶，像有人路过，把灯芯拨亮了一下。
 
 ---
+
+### 亮点
+
+- **两处居所。** 大屏是 App，掌上是小手机。同一段生活，两种打开的方式。
+- **角色住在卡里。** 名字、称呼、人设和记忆跟着角色走。桌宠负责在窗边出现：样子可以换，人还是那个人。
+- **一条只属于你们的消息。** 日常说在 Pop 里。会话写在本机，合上页面，话还在。
+- **日子是一起过的。** 日记、世界书、一起听、一起看、相册和日历，铺在同一张桌上。
+- **小手机可以自己布置。** 桌面上的组件能换位置，也能导入你自己的一块。
+- **另一出戏，另开一场。** 情景剧带着自己的人物和关系，不接着日常陪伴往下演。
+- **钥匙在你手里。** 请求从这台设备发到你自己的 API。密钥留在本机。
 
 ### 运行
 
@@ -44,13 +60,13 @@ npm run dev
 
 ### 安装包
 
-商店 / 官网 / GitHub Release 安装包都是商业版（登录、托管、Credits 等），不是这份源码打出来的包：
+想先住进来，可以用官网的商业版。登录、托管模型和积分都在那一份安装包里：
 
 https://download.memprism.com/nyra-latest.apk
 
 https://github.com/azhimiao/Nyra-yueqi/releases/latest
 
-要从这份开源码自己打 Debug 包：
+这份仓库用来自己跑、自己改。Debug 包：
 
 ```bash
 npm run build:android
@@ -58,21 +74,9 @@ npm run build:android
 
 产物在 `android/app/build/outputs/apk/debug/app-debug.apk`，包名 `app.yueqi.open`。
 
-### 这里有什么
+### 这份源码的边界
 
-- **Pop 聊天** — 本地会话，Conversation V2 是权威写入
-- **角色卡** — 人设、称呼、记忆；桌宠外观不是角色身份
-- **双壳** — App 大屏 / 小手机桌面
-- **情景剧** — 作品自己的角色和关系，不接着日常陪伴聊天
-- **角色世界 · 数字市场** — 本机可用，不需要云账号
-- **BYOK** — 请求从设备发到你自己的 API
-
-### 这里没有什么
-
-- 云登录 / 注册
-- 托管模型与 BillingCredit
-- 付费完整版（官网 APK 才是）
-- 记忆宫殿、检索和回合编排的实现。聊天只带角色卡和最近可见消息，见 [OPEN_SOURCE.md](./OPEN_SOURCE.md)
+云登录、托管模型和 BillingCredit 在官网安装包里。记忆宫殿和回合编排的实现没有放进这份源码，聊天带着角色卡和最近的消息。细节见 [OPEN_SOURCE.md](./OPEN_SOURCE.md)。
 
 ### 文档
 
@@ -101,5 +105,7 @@ npm run build:android
 如果你的项目名字里带「月栖 / Yueqi / Nyra」，请在 README 写明：**不是月栖官方项目，与本仓库无隶属关系。**
 
 ---
+
+愿意的话，再点一次 [Star](https://github.com/azhimiao/Nyra-yueqi)。灯还亮着。
 
 [MIT](./LICENSE) · [用户协议与隐私政策](https://azhimiao.github.io/legal/)
